@@ -1533,22 +1533,22 @@
 
   <!-- ========================= 19 · SUPPLY CHAIN COHERENCE ========================= -->
   <section class="slide" data-title="Supply Chain Coherence">
-    <div class="eyebrow reveal">19 · Supply-Chain Coherence · OPEX vs PO vs Issue-Out · FY 2025</div>
-    <h1 class="slide-title reveal">Most rigs buy 4–8× what they consume.<br><em>Only AXIMA &amp; NUADA are near steady-state.</em></h1>
-    <p class="lede reveal d1">Adjusted OPEX tells the rig's total daily cost; PO = what's bought; Issue-Out = what's consumed. Together they answer: is the rig buying more than it consumes — and consuming more than its OPEX implies?</p>
+    <div class="eyebrow reveal">19 · Supply-Chain Flow · Adjusted OPEX vs PO vs GR · FY 2025</div>
+    <h1 class="slide-title reveal">Ordered vs Received vs Spent —<br><em>two rigs show major delivery-ahead-of-orders pattern.</em></h1>
+    <p class="lede reveal d1">Adjusted OPEX tells the rig's total daily cost; PO = what was committed (orders placed in 2025); GR = what was actually delivered into inventory. The PO ÷ GR ratio reveals whether the rig is actively replenishing (PO ≈ GR) or working through prior commitments (GR &gt; PO).</p>
 
     <div class="reveal d2" style="overflow-x:auto;margin-top:1rem;">
       <table class="bench-table">
         <thead>
-          <tr><th>Rig</th><th>Adjusted OPEX/day</th><th>PO/day</th><th>Issue-Out/day</th><th>PO ÷ IO (×)</th><th>IO ÷ OPEX</th><th>Signal</th></tr>
+          <tr><th>Rig</th><th>Adjusted OPEX/day</th><th>PO/day</th><th>GR/day</th><th>PO ÷ GR</th><th>Signal</th></tr>
         </thead>
         <tbody>
-          <tr><td><span class="rig-name">AXIMA</span><span class="rig-type" style="color:var(--premium);">Premium JU</span></td><td>$33.8k</td><td class="val-red">$37.0k</td><td>$22.5k</td><td class="val-green">1.6×</td><td class="val-green">67%</td><td class="val-green">Near steady-state · material-intensive</td></tr>
-          <tr><td><span class="rig-name">BANBA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td><td>$21.0k</td><td>$28.0k</td><td>$6.1k</td><td class="val-red">4.6×</td><td class="val-amber">29%</td><td class="val-red">⚠ Stockpiling signal</td></tr>
-          <tr><td><span class="rig-name">NUADA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td><td class="val-red">$35.3k</td><td class="val-green">$12.0k</td><td>$10.4k</td><td class="val-green">1.1×</td><td class="val-amber">30%</td><td class="val-amber">Near steady-state · but OPEX high</td></tr>
-          <tr><td><span class="rig-name">LUG</span><span class="rig-type" style="color:var(--platform);">Platform</span></td><td>$14.5k</td><td>$21.0k</td><td>$3.6k</td><td class="val-red">5.8×</td><td class="val-amber">25%</td><td class="val-red">⚠ Strong stockpiling</td></tr>
-          <tr><td><span class="rig-name">MIDIR</span><span class="rig-type" style="color:var(--land);">Land</span></td><td>$14.9k</td><td>$21.0k</td><td>$3.8k</td><td class="val-red">5.5×</td><td class="val-amber">26%</td><td class="val-red">⚠ Stockpiling · deepens loss</td></tr>
-          <tr><td><span class="rig-name">DRAVUS</span><span class="rig-type" style="color:var(--land);">Land</span></td><td class="val-red">$36.7k</td><td>$21.0k</td><td>$2.6k</td><td class="val-red">7.9×</td><td class="val-red">7%</td><td class="val-red">⚠ Highest ratio · labour/service-heavy</td></tr>
+          <tr><td><span class="rig-name">AXIMA</span><span class="rig-type" style="color:var(--premium);">Premium JU</span></td><td>$33.8k</td><td>$37.0k</td><td>$40.4k</td><td class="val-green">0.92×</td><td class="val-green">In balance · steady-state</td></tr>
+          <tr><td><span class="rig-name">BANBA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td><td>$21.0k</td><td>$27.7k</td><td>$25.7k</td><td class="val-green">1.08×</td><td class="val-green">In balance · slight ordering ahead</td></tr>
+          <tr><td><span class="rig-name">NUADA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td><td class="val-red">$35.3k</td><td class="val-amber">$12.2k</td><td>$37.1k</td><td class="val-red">0.33×</td><td class="val-red">⚠ Receiving 3× more than ordering · drawing prior commitments</td></tr>
+          <tr><td><span class="rig-name">LUG</span><span class="rig-type" style="color:var(--platform);">Platform</span></td><td>$14.5k</td><td>$20.7k</td><td>$17.8k</td><td class="val-green">1.16×</td><td class="val-green">Slight ordering ahead</td></tr>
+          <tr><td><span class="rig-name">MIDIR</span><span class="rig-type" style="color:var(--land);">Land</span></td><td>$14.9k</td><td>$21.2k</td><td>$25.9k</td><td class="val-amber">0.82×</td><td class="val-amber">Modest receiving ahead</td></tr>
+          <tr><td><span class="rig-name">DRAVUS</span><span class="rig-type" style="color:var(--land);">Land</span></td><td class="val-red">$36.7k</td><td>$20.9k</td><td class="val-red">$45.1k</td><td class="val-red">0.46×</td><td class="val-red">⚠ Receiving 2× more than ordering · major delivery year</td></tr>
         </tbody>
       </table>
     </div>
@@ -1556,17 +1556,17 @@
     <div class="grid-2 reveal d3" style="margin-top:1.4rem;gap:1rem;">
       <div class="card accent">
         <span class="num-tag">Coherence read</span>
-        <h3>BANBA, LUG, MIDIR &amp; DRAVUS buy 4–8× more than they consume daily.</h3>
-        <p>Strong stockpiling signal — consistent with the dead-stock build-up. AXIMA is the only rig near steady-state (PO ≈ 1.6× IO) and the most material-intensive operation (IO = 67% of Adjusted OPEX). DRAVUS shows the opposite — IO is just 7% of Adjusted OPEX → labour-/service-heavy profile.</p>
+        <h3>NUADA and DRAVUS are receiving 2–3× what they are ordering.</h3>
+        <p>For both rigs, GR substantially exceeds PO in 2025 — meaning deliveries reflect commitments made in prior years rather than active 2025 ordering. AXIMA, BANBA, LUG and MIDIR all sit close to balance (PO ÷ GR between 0.8× and 1.2×) — typical steady-state procurement rhythm.</p>
       </div>
       <div class="card">
-        <span class="num-tag">Operating model lever</span>
-        <h3>Consumption-triggered replenishment + PO approval gate.</h3>
-        <p>The ratios above tell us the fleet's buying signal is decoupled from operational draw. Three combined steps close the gap: (1) min/max caps aligned with best-practice bracket, (2) past-consumption check at 6M/12M/3Y thresholds before reorder, (3) cross-plant SAP visibility so transfers happen before external POs.</p>
+        <span class="num-tag">Why it matters</span>
+        <h3>The gap shows where prior-period ordering is now landing.</h3>
+        <p>NUADA's $12k/day PO is very low for a standard jackup — pairing with $37k GR confirms a phase of working through 2024 commitments rather than fresh ordering. DRAVUS's $45k GR/day is the fleet's highest delivery rate — also explains its FY25 CAPEX spike (22.3%). Useful planning signal: 2026 PO is likely to step up as both rigs return to active replenishment.</p>
       </div>
     </div>
 
-    <div class="src-band reveal d4"><strong>Source · </strong>SAP MB51 (GR + IO, re-priced via ME2N PO history) + ME2N (PO) · <strong>Filters · </strong>drilling-only · CMT &amp; WIR removed · DAGDA &amp; HARIMA excluded (decommissioned / newbuild) · <strong>Denominator · </strong>operating days (Ops + Rig Move).</div>
+    <div class="src-band reveal d4"><strong>Source · </strong>SAP MB51 GR + ME2N PO · <strong>Filters · </strong>year=2025 · target rigs · CMT &amp; WIR excluded · non-project (capex cost center empty) · <strong>Denominator · </strong>operating days (Ops + Rig Move) · <strong>Methodology · </strong>same filter set as the per-rig PO/GR slides — reconciled to rev-14 PPTX daily averages.</div>
   </section>
 
   <!-- ========================= 20 · PART 3 DIVIDER ========================= -->

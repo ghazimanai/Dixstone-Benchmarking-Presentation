@@ -4,7 +4,7 @@ Executive presentation prepared by **Sigma Energy** for **Dixstone Drilling** â€
 a 26-slide single-file HTML deck covering peer benchmarking, internal SAP-driven
 deep-dives, and per-rig one-pagers.
 
-**Live URL:** _(populated after first Vercel deploy)_
+**ğŸŒ Live URL:** https://dixstone-benchmarking-presentation.vercel.app/
 
 ## Contents
 

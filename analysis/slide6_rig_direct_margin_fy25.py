@@ -62,7 +62,6 @@ def main():
         ("Helmerich & Payne",  "Land + Platform (US)",       3678.660,2511.408,31.7, "normalization_rules.md §3.3"),
         ("Nabors Industries",  "Land + Platform (Global)",   3184.693,1914.376,39.9, "normalization_rules.md §3.4"),
         ("Precision Drilling", "Land (Canada + US Intl)",    1316.931, 885.464,32.8, "normalization_rules.md §3.5"),
-        ("Vantage Drilling",   "Drillship (divestment year)",  79.180,  85.839, -8.4, "normalization_rules.md §3.8 — anomaly FY25"),
     ]
 
     print(f"\n{'Entity':<22s} {'Segment':<32s} {'Rev':>10s} {'Cost':>10s} {'Margin %':>10s}")

@@ -33,7 +33,6 @@ PEERS = [
     ("Shelf Drilling",    "Standard JU pure",    33,  33, 0,   0,   0, "MENA + SE Asia",       "Shelf_raw R37 FY24 (FY25 H1 only)"),
     ("Borr Drilling",     "Premium JU pure",     24,  24, 0,   0,   0, "Global",               "Borr_raw R26 (24 owned premium JU)"),
     ("Velesto Energy",    "Standard JU",          6,   6, 0,   0,   0, "SE Asia",              "Velesto_raw R37 (6 jackups)"),
-    ("Vantage Drilling",  "Drillship + managed",  5,   0, 1,   0,   0, "Global",               "Vantage_raw R22 (1 owned + 4 managed); owned-only Platinum Explorer"),
 ]
 
 

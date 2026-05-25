@@ -38,7 +38,6 @@ PEERS = [
     ("ADES",               "ADES_raw",                  8, [],           0.001, "Blended JU+Land"),  # no direct CAPEX line extracted yet
     ("Shelf Drilling",     "Shelf Drilling_raw",       10, [84],         1.0,   "Standard JU"),      # FY25 H1 only — annualise w/ caveat
     ("Velesto",            "Velesto_raw",               8, [],           0.001, "Standard JU"),      # no CAPEX line extracted yet
-    ("Vantage Drilling",   "Vantage Drilling_raw",     11, [78],         0.001, "Mixed"),
     # Land/platform peers
     ("Helmerich & Payne",  "H&P_raw",                  10, [97],         0.001, "Land + Platform"),
     ("Nabors Industries",  "Nabors_raw",               10, [103],        0.001, "Land + Platform"),

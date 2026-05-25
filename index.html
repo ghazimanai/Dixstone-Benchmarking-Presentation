@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>
+  /* Apply saved theme before render — prevents flash of wrong theme */
+  (function(){
+    var t = localStorage.getItem('dixstone-theme');
+    document.documentElement.setAttribute('data-theme', t || 'dark');
+  })();
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Dixstone · Strategic Peer Benchmarking Review</title>
@@ -23,7 +30,7 @@
 <meta name="theme-color" content="#06080d">
 
 <!-- Favicon (re-using Sigma anchor mark) -->
-<link rel="icon" type="image/svg+xml" href="sigma-logo.svg">
+<link rel="icon" type="image/svg+xml" href="sigma-logo-white.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -429,6 +436,112 @@
     .stat .val,.seg-cell .dix .val{color:#c98815 !important;}
     .reveal{opacity:1 !important;transform:none !important;}
   }
+
+  /* =====================================================================
+     LIGHT THEME — toggled via html[data-theme="light"]
+     Defaults to dark when attribute absent.
+     ===================================================================== */
+  html[data-theme="light"]{
+    --bg:#fafbfc; --bg2:#ffffff; --bg3:#f0f3f8; --bg-card:#ffffff;
+    --border:rgba(201,136,21,0.30); --border2:rgba(15,20,29,0.10);
+    --sigma:#c98815; --sigma2:#b8780f; --sigma3:#e8a020; --sigma-soft:rgba(201,136,21,0.10);
+    --text:#0a0e15; --text2:#3a4150; --muted:#6b7280; --muted2:#9aa3af;
+    --good:#1f7a4c; --bad:#c41e3a; --info:#0f70b7;
+    --grid:rgba(201,136,21,0.06);
+    --premium:#b8780f; --standard:#1976d2; --land:#6b4f9b; --platform:#2d8366;
+  }
+  html[data-theme="light"] body{
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,136,21,0.04), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 0% 100%, rgba(25,118,210,0.025), transparent 50%),
+      #fafbfc;
+  }
+  html[data-theme="light"] body::before{
+    background-image:
+      linear-gradient(rgba(201,136,21,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,136,21,0.04) 1px, transparent 1px);
+    opacity:0.5;
+  }
+  html[data-theme="light"] .cover{
+    background:
+      radial-gradient(ellipse 100% 60% at 50% 0%, rgba(201,136,21,0.08), transparent 65%),
+      linear-gradient(180deg, rgba(201,136,21,0.02), transparent 40%),
+      #ffffff;
+  }
+  html[data-theme="light"] .cover-grid{
+    background-image:
+      linear-gradient(rgba(201,136,21,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,136,21,0.04) 1px, transparent 1px);
+  }
+  html[data-theme="light"] .cover-arc svg{opacity:0.55;}
+  html[data-theme="light"] .card{background:#ffffff;box-shadow:0 1px 3px rgba(0,0,0,0.04);}
+  html[data-theme="light"] .insight-card{background:#ffffff;}
+  html[data-theme="light"] .pillar{background:linear-gradient(155deg, #ffffff 0%, #f7f9fc 100%);}
+  html[data-theme="light"] .segment-block{background:#ffffff;}
+  html[data-theme="light"] .seg-cell{background:#f7f9fc;}
+  html[data-theme="light"] .brief-q{background:#ffffff;}
+  html[data-theme="light"] .mega-kpi .mk{background:#ffffff;}
+  html[data-theme="light"] .org-panel{background:#ffffff;}
+  html[data-theme="light"] .deck-header{
+    background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0));
+    border-bottom:1px solid rgba(15,20,29,0.08);
+  }
+  html[data-theme="light"] .nav-dots{
+    background:rgba(255,255,255,0.92);
+    border:1px solid rgba(15,20,29,0.10);
+  }
+  html[data-theme="light"] .nav-dot{background:rgba(15,20,29,0.18);}
+  html[data-theme="light"] .nav-dot.active{background:var(--sigma);border-color:var(--sigma);}
+  html[data-theme="light"] .nav-dot .tip{background:#ffffff;border:1px solid rgba(15,20,29,0.12);color:var(--text2);}
+  html[data-theme="light"] .closing{background:radial-gradient(ellipse 70% 50% at 50% 50%, rgba(201,136,21,0.06), transparent 70%), #ffffff;}
+  html[data-theme="light"] .bench-table{background:#ffffff;}
+  html[data-theme="light"] .bench-table th{background:#f0f3f8;}
+  html[data-theme="light"] .bench-table tr:hover td{background:#f7f9fc;}
+  html[data-theme="light"] .hbar-row .ht{background:#e8ecf2;}
+  html[data-theme="light"] .stk-row .skt{background:#e8ecf2;}
+  html[data-theme="light"] .npt-driver-bar{background:#e8ecf2;}
+  html[data-theme="light"] .cover-top .badge{background:rgba(201,136,21,0.12);color:var(--sigma);}
+  html[data-theme="light"] .segment-block .seg-pill{background:rgba(201,136,21,0.10);}
+  html[data-theme="light"] .segment-block.standard .seg-pill{background:rgba(25,118,210,0.10);color:var(--standard);border-color:rgba(25,118,210,0.30);}
+  html[data-theme="light"] .segment-block.land .seg-pill{background:rgba(107,79,155,0.10);color:var(--land);border-color:rgba(107,79,155,0.30);}
+  html[data-theme="light"] .segment-block.platform .seg-pill{background:rgba(45,131,102,0.10);color:var(--platform);border-color:rgba(45,131,102,0.30);}
+  html[data-theme="light"] .src-band{color:var(--muted);}
+  html[data-theme="light"] .stat-strip strong{color:var(--sigma);}
+
+  /* THEME TOGGLE BUTTON ------------------------------------------------ */
+  .theme-toggle{
+    position:fixed;bottom:1.2rem;right:1.5rem;z-index:50;
+    width:40px;height:40px;border-radius:999px;
+    background:rgba(13,17,25,0.72);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    border:1px solid var(--border2);color:var(--text2);
+    cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;
+    transition:background 0.25s ease, color 0.25s ease, transform 0.2s ease, border-color 0.25s ease;
+  }
+  .theme-toggle:hover{color:var(--sigma);transform:translateY(-1px);border-color:var(--border);}
+  .theme-toggle svg{width:18px;height:18px;}
+  .theme-toggle .ico-sun{display:none;}
+  .theme-toggle .ico-moon{display:block;}
+  html[data-theme="light"] .theme-toggle{background:rgba(255,255,255,0.92);}
+  html[data-theme="light"] .theme-toggle .ico-sun{display:block;}
+  html[data-theme="light"] .theme-toggle .ico-moon{display:none;}
+  @media (max-width:700px){
+    .theme-toggle{bottom:0.7rem;right:0.7rem;width:36px;height:36px;}
+  }
+  /* Theme toggle is suppressed in print */
+  @media print{ .theme-toggle{display:none !important;} }
+
+  /* LOGO DUAL-IMAGE SWAP ----------------------------------------------- */
+  .for-light{display:none;}
+  html[data-theme="light"] .for-dark{display:none;}
+  html[data-theme="light"] .for-light{display:block;}
+
+  /* Smooth fade between themes */
+  html, body, .slide, .card, .insight-card, .pillar, .segment-block, .seg-cell,
+  .brief-q, .mega-kpi .mk, .org-panel, .deck-header, .nav-dots, .nav-dot,
+  .hbar-row .ht, .stk-row .skt, .bench-table, .bench-table th, .theme-toggle{
+    transition:background-color 0.35s ease, background 0.35s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
 </style>
 </head>
 <body>
@@ -437,12 +550,16 @@
 
 <header class="deck-header" id="deck-header">
   <div class="brand">
-    <img src="sigma-logo.svg" alt="Sigma Energy" class="sigma-mark">
+    <img src="sigma-logo-white.svg" alt="Sigma Energy" class="sigma-mark for-dark">
+    <img src="sigma-logo-black.svg" alt="Sigma Energy" class="sigma-mark for-light">
     <span class="sep"></span>
     <span>Strategic Review</span>
   </div>
   <div class="right">
-    <div class="dixstone-pill"><img src="dixstone-logo-white.png" alt="Dixstone"></div>
+    <div class="dixstone-pill">
+      <img src="dixstone-logo-white.png" alt="Dixstone" class="for-dark">
+      <img src="dixstone-logo-navy.png" alt="Dixstone" class="for-light">
+    </div>
     <div class="page-counter"><span class="now" id="page-now">01</span> / 26</div>
   </div>
 </header>
@@ -471,8 +588,14 @@
     </div>
     <div class="cover-top">
       <div class="cover-logos">
-        <img src="sigma-logo.svg" alt="Sigma Energy" class="sigma-mark">
-        <div class="dixstone-pill"><img src="dixstone-logo-white.png" alt="Dixstone"></div>
+        <span>
+          <img src="sigma-logo-white.svg" alt="Sigma Energy" class="sigma-mark for-dark">
+          <img src="sigma-logo-black.svg" alt="Sigma Energy" class="sigma-mark for-light">
+        </span>
+        <div class="dixstone-pill">
+          <img src="dixstone-logo-white.png" alt="Dixstone" class="for-dark">
+          <img src="dixstone-logo-navy.png" alt="Dixstone" class="for-light">
+        </div>
       </div>
     </div>
     <div class="cover-top" style="top:auto;bottom:5vh;justify-content:space-between;">
@@ -1399,6 +1522,16 @@
 
 </main>
 
+<button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark / light theme" title="Toggle dark / light theme">
+  <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2 M12 20v2 M4.93 4.93l1.41 1.41 M17.66 17.66l1.41 1.41 M2 12h2 M20 12h2 M4.93 19.07l1.41-1.41 M17.66 6.34l1.41-1.41"/>
+  </svg>
+  <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+</button>
+
 <script>
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
@@ -1439,6 +1572,17 @@
   }
   window.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+
+  /* Theme toggle ------------------------------------------------------ */
+  const themeBtn = document.getElementById('theme-toggle');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      const html = document.documentElement;
+      const next = (html.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
+      html.setAttribute('data-theme', next);
+      try { localStorage.setItem('dixstone-theme', next); } catch(e){}
+    });
+  }
 
   document.addEventListener('keydown', (e) => {
     const cur = dots.findIndex(d => d.classList.contains('active'));

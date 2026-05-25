@@ -1,0 +1,12 @@
+peer,fleet_type,total_active,jackups,floaters,land,platform,region,source_row
+Dixstone,Mixed,7,3,0,2,2,West Africa,Dixstone_P&L tab (6 operating rigs + HARIMA newbuild)
+Helmerich & Payne,Land + Platform,367,0,0,360,7,US + Intl,H&P_raw R16 (available); R20+R27 land sub-totals
+Nabors Industries,Land + Platform,269,0,0,242,27,Global incl. SANAD,Nabors_raw R23 (active marketed); R24 land + R25 platform
+Precision Drilling,Land,184,0,0,184,0,Canada + US + Intl,Precision_raw R23 (marketable)
+ADNOC Drilling,Blended (mixed),140,48,0,92,0,UAE,ADNOC_raw R19; JU=R22 offshore+R23 island
+ADES Holding,Blended JU + onshore,123,50,0,40,0,MENA + intl,ADES_raw R39; FY24 disclosure for JU split (FY25 partial)
+Valaris,Offshore (JU+Floaters+ARO),46,33,15,0,0,Global,"Valaris_raw R22 (owned 46) + R28 ARO (9); JU=24+9, Floaters R24+R25"
+Shelf Drilling,Standard JU pure,33,33,0,0,0,MENA + SE Asia,Shelf_raw R37 FY24 (FY25 H1 only)
+Borr Drilling,Premium JU pure,24,24,0,0,0,Global,Borr_raw R26 (24 owned premium JU)
+Velesto Energy,Standard JU,6,6,0,0,0,SE Asia,Velesto_raw R37 (6 jackups)
+Vantage Drilling,Drillship + managed,5,0,1,0,0,Global,Vantage_raw R22 (1 owned + 4 managed); owned-only Platinum Explorer

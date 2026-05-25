@@ -441,72 +441,242 @@
      LIGHT THEME — toggled via html[data-theme="light"]
      Defaults to dark when attribute absent.
      ===================================================================== */
+  /* --- LIGHT THEME · v2 (consulting-grade) ---
+     Soft slate body so white cards float. Layered drop shadows for
+     depth. Section colour bands. Tinted source strips. Header masthead.
+  */
   html[data-theme="light"]{
-    --bg:#fafbfc; --bg2:#ffffff; --bg3:#f0f3f8; --bg-card:#ffffff;
-    --border:rgba(201,136,21,0.30); --border2:rgba(15,20,29,0.10);
+    --bg:#eef2f7;          /* body — soft cool slate (cards float on this) */
+    --bg2:#ffffff;
+    --bg3:#e6ebf2;
+    --bg-card:#ffffff;
+    --bg-band:#e3e9f1;     /* tinted section / source-band strip */
+    --bg-band-soft:#f3f6fa;
+    --border:rgba(201,136,21,0.34);
+    --border2:rgba(15,20,29,0.12);
+    --border3:rgba(15,20,29,0.18);  /* card border, slightly stronger */
     --sigma:#c98815; --sigma2:#b8780f; --sigma3:#e8a020; --sigma-soft:rgba(201,136,21,0.10);
     --text:#0a0e15; --text2:#3a4150; --muted:#6b7280; --muted2:#9aa3af;
     --good:#1f7a4c; --bad:#c41e3a; --info:#0f70b7;
-    --grid:rgba(201,136,21,0.06);
+    --grid:rgba(15,20,29,0.04);
     --premium:#b8780f; --standard:#1976d2; --land:#6b4f9b; --platform:#2d8366;
+    --shadow-card: 0 1px 2px rgba(15,20,29,0.05), 0 6px 18px rgba(15,20,29,0.06);
+    --shadow-card-lift: 0 2px 4px rgba(15,20,29,0.06), 0 14px 36px rgba(15,20,29,0.08);
   }
+
+  /* Body backdrop — soft slate with a faint warm radial */
   html[data-theme="light"] body{
     background:
-      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,136,21,0.04), transparent 60%),
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,136,21,0.05), transparent 60%),
       radial-gradient(ellipse 60% 40% at 0% 100%, rgba(25,118,210,0.025), transparent 50%),
-      #fafbfc;
+      var(--bg);
   }
   html[data-theme="light"] body::before{
     background-image:
-      linear-gradient(rgba(201,136,21,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(201,136,21,0.04) 1px, transparent 1px);
-    opacity:0.5;
+      linear-gradient(rgba(15,20,29,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,20,29,0.03) 1px, transparent 1px);
+    opacity:0.6;
   }
+
+  /* COVER — warm cream + crisp gold rule on left of title */
   html[data-theme="light"] .cover{
     background:
-      radial-gradient(ellipse 100% 60% at 50% 0%, rgba(201,136,21,0.08), transparent 65%),
-      linear-gradient(180deg, rgba(201,136,21,0.02), transparent 40%),
-      #ffffff;
+      radial-gradient(ellipse 100% 60% at 50% 0%, rgba(201,136,21,0.10), transparent 65%),
+      linear-gradient(180deg, #fdfaf5, #ffffff 45%);
   }
   html[data-theme="light"] .cover-grid{
     background-image:
-      linear-gradient(rgba(201,136,21,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(201,136,21,0.04) 1px, transparent 1px);
+      linear-gradient(rgba(201,136,21,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,136,21,0.06) 1px, transparent 1px);
   }
-  html[data-theme="light"] .cover-arc svg{opacity:0.55;}
-  html[data-theme="light"] .card{background:#ffffff;box-shadow:0 1px 3px rgba(0,0,0,0.04);}
-  html[data-theme="light"] .insight-card{background:#ffffff;}
-  html[data-theme="light"] .pillar{background:linear-gradient(155deg, #ffffff 0%, #f7f9fc 100%);}
-  html[data-theme="light"] .segment-block{background:#ffffff;}
-  html[data-theme="light"] .seg-cell{background:#f7f9fc;}
-  html[data-theme="light"] .brief-q{background:#ffffff;}
-  html[data-theme="light"] .mega-kpi .mk{background:#ffffff;}
-  html[data-theme="light"] .org-panel{background:#ffffff;}
+  html[data-theme="light"] .cover-arc svg{opacity:0.75;}
+  html[data-theme="light"] .cover-arc svg circle{stroke:rgba(201,136,21,0.55) !important;}
+  html[data-theme="light"] .cover-title{position:relative;padding-left:1.2rem;}
+  html[data-theme="light"] .cover-title::before{
+    content:'';position:absolute;left:0;top:0.15em;bottom:0.15em;width:3px;
+    background:linear-gradient(180deg, var(--sigma), var(--sigma3));border-radius:2px;
+  }
+  html[data-theme="light"] .cover-meta{border-top-color:var(--border2);}
+
+  /* CARDS — real elevation, stronger borders */
+  html[data-theme="light"] .card,
+  html[data-theme="light"] .insight-card,
+  html[data-theme="light"] .brief-q,
+  html[data-theme="light"] .mega-kpi .mk,
+  html[data-theme="light"] .org-panel{
+    background:#ffffff;
+    border-color:var(--border3);
+    box-shadow:var(--shadow-card);
+  }
+  html[data-theme="light"] .card:hover,
+  html[data-theme="light"] .pillar:hover{box-shadow:var(--shadow-card-lift);}
+  html[data-theme="light"] .pillar{
+    background:linear-gradient(155deg, #ffffff 0%, #f7f9fc 100%);
+    border-color:var(--border3);
+    box-shadow:var(--shadow-card);
+  }
+  html[data-theme="light"] .stat{
+    background:#ffffff !important;
+    border-color:var(--border3) !important;
+    box-shadow:var(--shadow-card);
+  }
+
+  /* SEGMENT BLOCKS — full-width top colour band + side stripe stays, shadow added */
+  html[data-theme="light"] .segment-block{
+    background:#ffffff;
+    border:1px solid var(--border3);
+    border-top:4px solid var(--sigma);
+    border-left:1px solid var(--border3);   /* override the 3px left border */
+    box-shadow:var(--shadow-card);
+    border-radius:8px;
+    position:relative;
+  }
+  html[data-theme="light"] .segment-block.premium{border-top-color:var(--premium);}
+  html[data-theme="light"] .segment-block.standard{border-top-color:var(--standard);}
+  html[data-theme="light"] .segment-block.land{border-top-color:var(--land);}
+  html[data-theme="light"] .segment-block.platform{border-top-color:var(--platform);}
+  html[data-theme="light"] .seg-cell{
+    background:#f7f9fc;
+    border-color:var(--border2);
+  }
+  html[data-theme="light"] .segment-head{border-bottom-color:var(--border2);}
+
+  /* SEG-PILL labels — stronger, tinted backgrounds */
+  html[data-theme="light"] .segment-block .seg-pill{
+    background:rgba(201,136,21,0.12);
+    border-color:rgba(201,136,21,0.40);
+  }
+  html[data-theme="light"] .segment-block.standard .seg-pill{
+    background:rgba(25,118,210,0.10);color:var(--standard);border-color:rgba(25,118,210,0.35);}
+  html[data-theme="light"] .segment-block.land .seg-pill{
+    background:rgba(107,79,155,0.10);color:var(--land);border-color:rgba(107,79,155,0.35);}
+  html[data-theme="light"] .segment-block.platform .seg-pill{
+    background:rgba(45,131,102,0.10);color:var(--platform);border-color:rgba(45,131,102,0.35);}
+
+  /* DECK HEADER — soft strip masthead */
   html[data-theme="light"] .deck-header{
-    background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0));
-    border-bottom:1px solid rgba(15,20,29,0.08);
+    background:linear-gradient(180deg, rgba(243,246,250,0.96), rgba(243,246,250,0.84) 80%, rgba(243,246,250,0));
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border2);
   }
+
+  /* NAV DOTS pill */
   html[data-theme="light"] .nav-dots{
-    background:rgba(255,255,255,0.92);
-    border:1px solid rgba(15,20,29,0.10);
+    background:rgba(255,255,255,0.96);
+    border:1px solid var(--border2);
+    box-shadow:0 4px 14px rgba(15,20,29,0.06);
   }
-  html[data-theme="light"] .nav-dot{background:rgba(15,20,29,0.18);}
+  html[data-theme="light"] .nav-dot{background:rgba(15,20,29,0.20);}
   html[data-theme="light"] .nav-dot.active{background:var(--sigma);border-color:var(--sigma);}
-  html[data-theme="light"] .nav-dot .tip{background:#ffffff;border:1px solid rgba(15,20,29,0.12);color:var(--text2);}
-  html[data-theme="light"] .closing{background:radial-gradient(ellipse 70% 50% at 50% 50%, rgba(201,136,21,0.06), transparent 70%), #ffffff;}
-  html[data-theme="light"] .bench-table{background:#ffffff;}
-  html[data-theme="light"] .bench-table th{background:#f0f3f8;}
+  html[data-theme="light"] .nav-dot .tip{
+    background:#ffffff;border:1px solid var(--border2);color:var(--text2);
+    box-shadow:0 4px 12px rgba(15,20,29,0.08);
+  }
+
+  /* CLOSING slide — warm hero */
+  html[data-theme="light"] .closing{
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 50%, rgba(201,136,21,0.10), transparent 70%),
+      linear-gradient(180deg, #fdfaf5, #ffffff 60%);
+  }
+
+  /* TABLES */
+  html[data-theme="light"] .bench-table{
+    background:#ffffff;
+    border:1px solid var(--border3);
+    box-shadow:var(--shadow-card);
+    border-radius:8px;overflow:hidden;
+  }
+  html[data-theme="light"] .bench-table th{
+    background:var(--bg-band);
+    color:var(--text);
+    border-bottom-color:var(--border3);
+  }
+  html[data-theme="light"] .bench-table td{border-bottom-color:var(--border2);}
   html[data-theme="light"] .bench-table tr:hover td{background:#f7f9fc;}
-  html[data-theme="light"] .hbar-row .ht{background:#e8ecf2;}
-  html[data-theme="light"] .stk-row .skt{background:#e8ecf2;}
-  html[data-theme="light"] .npt-driver-bar{background:#e8ecf2;}
+
+  /* BARS */
+  html[data-theme="light"] .hbar-row .ht,
+  html[data-theme="light"] .stk-row .skt,
+  html[data-theme="light"] .npt-driver-bar{background:#dde3eb;}
+
+  /* COVER-TOP badges/text */
+  html[data-theme="light"] .cover-top{color:var(--muted);}
   html[data-theme="light"] .cover-top .badge{background:rgba(201,136,21,0.12);color:var(--sigma);}
-  html[data-theme="light"] .segment-block .seg-pill{background:rgba(201,136,21,0.10);}
-  html[data-theme="light"] .segment-block.standard .seg-pill{background:rgba(25,118,210,0.10);color:var(--standard);border-color:rgba(25,118,210,0.30);}
-  html[data-theme="light"] .segment-block.land .seg-pill{background:rgba(107,79,155,0.10);color:var(--land);border-color:rgba(107,79,155,0.30);}
-  html[data-theme="light"] .segment-block.platform .seg-pill{background:rgba(45,131,102,0.10);color:var(--platform);border-color:rgba(45,131,102,0.30);}
-  html[data-theme="light"] .src-band{color:var(--muted);}
+
+  /* SOURCE BAND — tinted strip with gold left accent */
+  html[data-theme="light"] .src-band{
+    color:var(--text2);
+    background:var(--bg-band-soft);
+    border:1px solid var(--border2);
+    border-left:3px solid var(--sigma);
+    border-radius:0 6px 6px 0;
+    padding:0.85rem 1.1rem;
+    margin-top:1.6rem;
+  }
+  html[data-theme="light"] .src-band strong{color:var(--text);}
+
+  /* DIVIDER SLIDES (Part 2 / Part 3) — printed-report chapter feel */
+  html[data-theme="light"] .divider-slide{
+    background:
+      radial-gradient(ellipse 90% 60% at 50% 35%, rgba(201,136,21,0.12), transparent 70%),
+      linear-gradient(180deg, var(--bg-band), #ffffff);
+  }
+
+  /* STAT-STRIP inside insight cards */
+  html[data-theme="light"] .stat-strip{border-top-color:var(--border2);}
   html[data-theme="light"] .stat-strip strong{color:var(--sigma);}
+
+  /* SEGMENT-VIEW slide read tagline — slightly darker for white bg */
+  html[data-theme="light"] .segment-head .read{color:var(--text2);}
+
+  /* INSIGHT-CARDS keep their gold left accent visible on white */
+  html[data-theme="light"] .insight-card{border-left:3px solid var(--sigma);}
+
+  /* SLIDE-TITLE em accent — slightly darker gold to read on white */
+  html[data-theme="light"] h1.slide-title em{color:var(--sigma);}
+
+  /* PROGRESS BAR keeps gold gradient (no change needed) */
+  html[data-theme="light"] .progress-bar{background:linear-gradient(90deg, var(--sigma3), var(--sigma), var(--sigma2));}
+
+  /* RIG ONE-PAGER cards — elevation + tinted segment-pill backgrounds */
+  html[data-theme="light"] .op-kpi,
+  html[data-theme="light"] .op-panel{
+    background:#ffffff;
+    border-color:var(--border3);
+    box-shadow:var(--shadow-card);
+  }
+  html[data-theme="light"] .op-rig-type.premium{background:rgba(184,120,15,0.12);color:var(--premium);border-color:rgba(184,120,15,0.40);}
+  html[data-theme="light"] .op-rig-type.standard{background:rgba(25,118,210,0.10);color:var(--standard);border-color:rgba(25,118,210,0.35);}
+  html[data-theme="light"] .op-rig-type.platform{background:rgba(45,131,102,0.10);color:var(--platform);border-color:rgba(45,131,102,0.35);}
+  html[data-theme="light"] .op-rig-type.land{background:rgba(107,79,155,0.10);color:var(--land);border-color:rgba(107,79,155,0.35);}
+  html[data-theme="light"] .op-header{border-bottom-color:var(--border3);}
+
+  /* "Where Dixstone Stands" headline cards get gold left bar on white */
+  html[data-theme="light"] .card.accent{border-left:3px solid var(--sigma);}
+
+  /* Insight-list (Next Steps) — tighter on white */
+  html[data-theme="light"] .insight-list li{border-bottom-color:var(--border2);}
+
+  /* Brief-q (Engagement Brief) — gold left bar more prominent */
+  html[data-theme="light"] .brief-q{border-left:3px solid var(--sigma);}
+
+  /* Engagement-brief comparability note */
+  html[data-theme="light"] .slide > div[style*="font-family:'JetBrains Mono'"]{
+    background:var(--bg-band-soft);
+    border:1px solid var(--border2);
+    border-left:3px solid var(--sigma);
+    border-radius:0 6px 6px 0;
+    padding:0.9rem 1.2rem !important;
+  }
+
+  /* Stat boxes on Market Context slide */
+  html[data-theme="light"] .stat[style*="background:var(--bg-card)"],
+  html[data-theme="light"] .stat[style*="bg-card"]{
+    background:#ffffff !important;
+    border:1px solid var(--border3) !important;
+    box-shadow:var(--shadow-card);
+  }
 
   /* THEME TOGGLE — floating button (bottom-right, always visible) ---- */
   .theme-toggle{

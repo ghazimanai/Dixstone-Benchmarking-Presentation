@@ -802,7 +802,7 @@
       <img src="dixstone-logo-white.png" alt="Dixstone" class="for-dark">
       <img src="dixstone-logo-navy.png" alt="Dixstone" class="for-light">
     </div>
-    <div class="page-counter"><span class="now" id="page-now">01</span> / 29</div>
+    <div class="page-counter"><span class="now" id="page-now">01</span> / 30</div>
   </div>
 </header>
 
@@ -1568,14 +1568,84 @@
     <div class="src-band reveal d4"><strong>Source · </strong>SAP MB51 GR + ME2N PO · <strong>Filters · </strong>year=2025 · target rigs · CMT &amp; WIR excluded · non-project (capex cost center empty) · <strong>Denominator · </strong>operating days (Ops + Rig Move) · <strong>Methodology · </strong>same filter set as the per-rig PO/GR slides — reconciled to rev-14 PPTX daily averages.</div>
   </section>
 
-  <!-- ========================= 20 · PART 3 DIVIDER ========================= -->
+  <!-- ========================= 20 · OUTLIER MAP ========================= -->
+  <section class="slide" data-title="Outlier Map">
+    <div class="eyebrow reveal">20 · Internal vs Peers · Outlier Map · FY 2025</div>
+    <h1 class="slide-title reveal">Where Dixstone is a peer-set outlier —<br><em>four structural positions worth flagging.</em></h1>
+    <p class="lede reveal d1">Six per-rig metrics normalised to comparable per-rig basis across the 9-peer set. Inventory, capital intensity and crew-per-rig sit at the extremes; revenue per rig sits comfortably above peer median; CAPEX is structurally below.</p>
+
+    <div class="mega-kpi reveal d2">
+      <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">$5.93M</div><div class="ml">Inventory / rig · <strong style="color:var(--bad);">HIGHEST</strong></div><div class="md">vs peer median $1.99M — Dixstone holds ~3× peer benchmark</div></div>
+      <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">3.8×</div><div class="ml">Inventory turnover · <strong style="color:var(--bad);">LOWEST</strong></div><div class="md">vs peer range 9–37× — slowest inventory cycling in the peer set</div></div>
+      <div class="mk" style="border-left-color:var(--good);"><div class="mv" style="color:var(--good);">$22.6M</div><div class="ml">Revenue / rig · above median</div><div class="md">vs peer median ~$15M — premium dayrate captured</div></div>
+    </div>
+
+    <div class="reveal d3" style="overflow-x:auto;margin-top:0.4rem;">
+      <table class="bench-table">
+        <thead>
+          <tr><th>Metric</th><th>Dixstone</th><th>ADES</th><th>ADNOC</th><th>H&amp;P</th><th>Nabors</th><th>Precision</th><th>Borr</th><th>Shelf</th><th>Velesto</th><th>Position</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rig-name">Inventory · $/rig</span><span class="rig-type">FY25 BS / fleet</span></td>
+            <td class="val-red"><strong>$5.93M</strong></td><td>$2.05M</td><td>$1.99M</td><td>$1.38M</td><td>$0.35M</td><td>$0.19M</td><td>n/a</td><td>n/a</td><td>$3.95M</td>
+            <td class="val-red">🔴 Highest</td>
+          </tr>
+          <tr>
+            <td><span class="rig-name">Inventory turnover</span><span class="rig-type">Rev ÷ Inv</span></td>
+            <td class="val-red"><strong>3.8×</strong></td><td>7.1×</td><td>17.6×</td><td>11.6×</td><td class="val-green">33.9×</td><td class="val-green">37.6×</td><td>n/a</td><td>n/a</td><td>9.0×</td>
+            <td class="val-red">🔴 Lowest</td>
+          </tr>
+          <tr>
+            <td><span class="rig-name">Headcount / rig</span><span class="rig-type">Employees ÷ fleet</span></td>
+            <td class="val-amber"><strong>~85</strong></td><td>65</td><td>n/a</td><td>67</td><td>52</td><td>27</td><td>85</td><td>117</td><td>108</td>
+            <td class="val-amber">🟡 Top of pack</td>
+          </tr>
+          <tr>
+            <td><span class="rig-name">Land FTE / rig</span><span class="rig-type">MIDIR · DRAVUS</span></td>
+            <td class="val-red"><strong>72 / 66</strong></td><td>—</td><td>—</td><td class="val-green">~50</td><td class="val-green">~50</td><td class="val-green">~27</td><td>—</td><td>—</td><td>—</td>
+            <td class="val-red">🔴 Highest</td>
+          </tr>
+          <tr>
+            <td><span class="rig-name">Revenue / rig</span><span class="rig-type">FY25 Theoretical</span></td>
+            <td class="val-green"><strong>$22.6M</strong></td><td>$14.5M</td><td>$35.0M</td><td>$15.9M</td><td>$11.9M</td><td>$7.2M</td><td>$37.8M</td><td>$14.8M</td><td>$35.5M</td>
+            <td class="val-green">🟢 Above median</td>
+          </tr>
+          <tr>
+            <td><span class="rig-name">5Y CAPEX / Rev</span><span class="rig-type">2021–2025</span></td>
+            <td class="val-red"><strong>3–13%</strong></td><td>26%</td><td>26%</td><td>12%</td><td>17%</td><td>11%</td><td>22%</td><td>20%</td><td>19%</td>
+            <td class="val-red">🔴 Lowest</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2 reveal d4" style="margin-top:1.3rem;gap:1rem;">
+      <div class="card accent">
+        <span class="num-tag">Concentration of risk</span>
+        <h3>Three of the four outliers point to working-capital lock-up.</h3>
+        <p>Inventory $/rig (3× peer), inventory turnover (4× slower), and land FTE/rig (1.5× the peer norm) all describe the same underlying pattern — capital and headcount tied up beyond what operating need justifies. Combined working-capital opportunity sits well above the $10–15M dead-stock release already quantified.</p>
+      </div>
+      <div class="card">
+        <span class="num-tag">What's NOT a problem</span>
+        <h3>Revenue capture per rig is healthy.</h3>
+        <p>Dixstone earns $22.6M per rig vs peer median ~$15M — premium dayrates are being achieved. The issue is on the cost-base side (inventory, headcount, OPEX intensity) and the capital-deployment side (under-investment in CAPEX). The revenue side is not the gap.</p>
+      </div>
+    </div>
+
+    <div class="src-band reveal d4">
+      <strong>Source · </strong>Per-peer normalised BS (Inventory) and IS (Revenue) from FY2025 10-K / 20-F / 40-F · Fleet counts from non-financial Excel · Dixstone from rev-13 P&amp;L and MB52 end-2025 · <strong>Peer median · </strong>excludes Borr / Shelf / Valaris (expense-as-incurred inventory policy → no BS line) · <strong>Caveat · </strong>headcount comparison uses total employees ÷ active rigs; some peers may include corporate/shore staff inflating the per-rig ratio.
+    </div>
+  </section>
+
+  <!-- ========================= 21 · PART 3 DIVIDER ========================= -->
   <section class="slide divider-slide" data-title="Part 3 · Rig One-Pagers">
     <div class="eyebrow reveal" style="justify-content:center;">Part 3 of 3</div>
     <h1 class="reveal d1">Rig <em>One-Pagers</em></h1>
     <p class="reveal d2">One slide per rig — key operating metrics, P&amp;L snapshot, supply chain position, and NPT equipment drivers. Six rigs: AXIMA · BANBA · NUADA · LUG · MIDIR · DRAVUS.</p>
   </section>
 
-  <!-- ========================= 21 · AXIMA ONE-PAGER ========================= -->
+  <!-- ========================= 22 · AXIMA ONE-PAGER ========================= -->
   <section class="slide onepager" data-title="AXIMA">
     <div class="op-header reveal">
       <div><span class="op-rig-name">AXIMA</span><span class="op-rig-type premium">Premium Jack-Up</span></div>
@@ -1647,7 +1717,7 @@
     </div>
   </section>
 
-  <!-- ========================= 22 · BANBA ONE-PAGER ========================= -->
+  <!-- ========================= 23 · BANBA ONE-PAGER ========================= -->
   <section class="slide onepager" data-title="BANBA">
     <div class="op-header reveal">
       <div><span class="op-rig-name">BANBA</span><span class="op-rig-type standard">Standard Jack-Up</span></div>
@@ -1719,7 +1789,7 @@
     </div>
   </section>
 
-  <!-- ========================= 23 · NUADA ONE-PAGER ========================= -->
+  <!-- ========================= 24 · NUADA ONE-PAGER ========================= -->
   <section class="slide onepager" data-title="NUADA">
     <div class="op-header reveal">
       <div><span class="op-rig-name">NUADA</span><span class="op-rig-type standard">Standard Jack-Up</span></div>
@@ -1791,7 +1861,7 @@
     </div>
   </section>
 
-  <!-- ========================= 24 · LUG ONE-PAGER ========================= -->
+  <!-- ========================= 25 · LUG ONE-PAGER ========================= -->
   <section class="slide onepager" data-title="LUG">
     <div class="op-header reveal">
       <div><span class="op-rig-name">LUG</span><span class="op-rig-type platform">Platform Rig</span></div>
@@ -1863,7 +1933,7 @@
     </div>
   </section>
 
-  <!-- ========================= 25 · MIDIR ONE-PAGER ========================= -->
+  <!-- ========================= 26 · MIDIR ONE-PAGER ========================= -->
   <section class="slide onepager" data-title="MIDIR">
     <div class="op-header reveal">
       <div><span class="op-rig-name">MIDIR</span><span class="op-rig-type land">Land Rig</span></div>
@@ -1935,7 +2005,7 @@
     </div>
   </section>
 
-  <!-- ========================= 26 · DRAVUS ONE-PAGER ========================= -->
+  <!-- ========================= 27 · DRAVUS ONE-PAGER ========================= -->
   <section class="slide onepager" data-title="DRAVUS">
     <div class="op-header reveal">
       <div><span class="op-rig-name">DRAVUS</span><span class="op-rig-type land">Land Rig</span></div>
@@ -2009,9 +2079,9 @@
 
 
 
-  <!-- ========================= 27 · IMPACTFUL ACTIONS ========================= -->
+  <!-- ========================= 28 · IMPACTFUL ACTIONS ========================= -->
   <section class="slide" data-title="Impactful Actions">
-    <div class="eyebrow reveal">27 · The Five Impactful Actions</div>
+    <div class="eyebrow reveal">28 · The Five Impactful Actions</div>
     <h1 class="slide-title reveal">Where the data points to <em>actionable impact.</em></h1>
 
     <div class="grid-2 reveal d1" style="gap:1.2rem;">
@@ -2054,9 +2124,9 @@
     </div>
   </section>
 
-  <!-- ========================= 28 · NEXT STEPS ========================= -->
+  <!-- ========================= 29 · NEXT STEPS ========================= -->
   <section class="slide" data-title="Next Steps">
-    <div class="eyebrow reveal">28 · Next Steps</div>
+    <div class="eyebrow reveal">29 · Next Steps</div>
     <h1 class="slide-title reveal">From <em>insight</em> to <em>execution.</em></h1>
 
     <ol class="insight-list reveal d1" style="max-width:1050px;">
@@ -2098,9 +2168,9 @@
     </ol>
   </section>
 
-  <!-- ========================= 29 · CLOSING ========================= -->
+  <!-- ========================= 30 · CLOSING ========================= -->
   <section class="slide closing" data-title="Close">
-    <div class="eyebrow reveal" style="margin-bottom:2rem;">29 · Closing</div>
+    <div class="eyebrow reveal" style="margin-bottom:2rem;">30 · Closing</div>
     <h1 class="reveal d1">Where Dixstone stands —<br>and <em>where the data points next.</em></h1>
     <p class="closing-sub reveal d2">Operational signal on standard jack-up and land. Working-capital signal on inventory. A reinvestment watch-item on the balance sheet. Quantified, segment-matched, and traceable to source.</p>
     <div class="closing-meta reveal d3">

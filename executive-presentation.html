@@ -532,9 +532,13 @@
   @media print{ .theme-toggle{display:none !important;} }
 
   /* LOGO DUAL-IMAGE SWAP ----------------------------------------------- */
-  .for-light{display:none;}
-  html[data-theme="light"] .for-dark{display:none;}
-  html[data-theme="light"] .for-light{display:block;}
+  /* Use !important to win over the height/width/display rules on
+     .deck-header .brand img.sigma-mark and .dixstone-pill img which
+     otherwise force display:block via higher specificity. */
+  .for-light{display:none !important;}
+  .for-dark{display:block !important;}
+  html[data-theme="light"] .for-dark{display:none !important;}
+  html[data-theme="light"] .for-light{display:block !important;}
 
   /* Smooth fade between themes */
   html, body, .slide, .card, .insight-card, .pillar, .segment-block, .seg-cell,

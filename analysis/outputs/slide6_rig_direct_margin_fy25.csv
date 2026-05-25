@@ -1,0 +1,18 @@
+entity,segment,revenue_usdk,revenue_usdm,rig_direct_margin_usdk,cost_of_rev_norm_usdm,rig_direct_margin_pct,source
+AXIMA,Premium Jackup,39209.89583333333,,15504.06825222936,,39.5,"Dixstone_P&L tab, row 35"
+BANBA,Jackup,33320.83333333333,,12098.30914658933,,36.3,"Dixstone_P&L tab, row 35"
+NUADA,Jackup,34373.95833333333,,14140.57546876051,,41.1,"Dixstone_P&L tab, row 35"
+LUG,Platform,23834.27083333333,,8842.218329289337,,37.1,"Dixstone_P&L tab, row 35"
+MIDIR,Land,13593.33333333333,,-1449.038062602656,,-10.7,"Dixstone_P&L tab, row 35"
+DRAVUS,Land,14125,,3325.094230252002,,23.5,"Dixstone_P&L tab, row 35"
+Borr Drilling,Premium JU (pure),,906.7,,500.6,44.8,normalization_rules.md §3.2
+ADNOC Drilling,Mixed (land + offshore),,4902.886,,2612.899,46.7,normalization_rules.md §3.1B
+ADES Holding,Mixed JU + onshore + barge,,1783.723,,700.878,60.7,normalization_rules.md §3.1
+Valaris (Jackups),JU segment,,823.4,,486.5,40.9,normalization_rules.md §3.7 segment table
+Valaris (ARO JV),JU (Saudi Aramco JV),,571.0,,360.7,36.8,normalization_rules.md §3.7 segment table
+Shelf Drilling,Standard JU,,470.2,,259.0,44.9,normalization_rules.md §3.6 — H1 2025 only
+Velesto Energy,Standard JU (Malaysia),,212.612,,108.367,49.0,normalization_rules.md §3.9
+Helmerich & Payne,Land + Platform (US),,3678.66,,2511.408,31.7,normalization_rules.md §3.3
+Nabors Industries,Land + Platform (Global),,3184.693,,1914.376,39.9,normalization_rules.md §3.4
+Precision Drilling,Land (Canada + US Intl),,1316.931,,885.464,32.8,normalization_rules.md §3.5
+Vantage Drilling,Drillship (divestment year),,79.18,,85.839,-8.4,normalization_rules.md §3.8 — anomaly FY25

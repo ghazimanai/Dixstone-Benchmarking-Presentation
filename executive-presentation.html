@@ -508,28 +508,62 @@
   html[data-theme="light"] .src-band{color:var(--muted);}
   html[data-theme="light"] .stat-strip strong{color:var(--sigma);}
 
-  /* THEME TOGGLE BUTTON ------------------------------------------------ */
+  /* THEME TOGGLE — floating button (bottom-right, always visible) ---- */
   .theme-toggle{
-    position:fixed;bottom:1.2rem;right:1.5rem;z-index:50;
-    width:40px;height:40px;border-radius:999px;
-    background:rgba(13,17,25,0.72);
-    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
-    border:1px solid var(--border2);color:var(--text2);
-    cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;
-    transition:background 0.25s ease, color 0.25s ease, transform 0.2s ease, border-color 0.25s ease;
+    position:fixed;top:1.2rem;right:1.5rem;z-index:55;
+    height:38px;padding:0 14px 0 12px;border-radius:999px;
+    background:rgba(13,17,25,0.82);
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    border:1px solid var(--border);color:var(--text);
+    cursor:pointer;display:flex;align-items:center;gap:0.5rem;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;font-weight:500;
+    box-shadow:0 4px 16px rgba(0,0,0,0.22);
+    transition:background 0.25s ease, color 0.25s ease, transform 0.2s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    animation: themePulse 2.6s ease-in-out 1s 2;
   }
-  .theme-toggle:hover{color:var(--sigma);transform:translateY(-1px);border-color:var(--border);}
-  .theme-toggle svg{width:18px;height:18px;}
+  .theme-toggle:hover{color:var(--sigma);transform:translateY(-1px);border-color:var(--sigma);box-shadow:0 6px 22px rgba(232,160,32,0.22);}
+  .theme-toggle svg{width:16px;height:16px;}
   .theme-toggle .ico-sun{display:none;}
   .theme-toggle .ico-moon{display:block;}
-  html[data-theme="light"] .theme-toggle{background:rgba(255,255,255,0.92);}
+  .theme-toggle .lbl-dark{display:inline;}
+  .theme-toggle .lbl-light{display:none;}
+  html[data-theme="light"] .theme-toggle{background:rgba(255,255,255,0.92);box-shadow:0 4px 16px rgba(0,0,0,0.10);}
   html[data-theme="light"] .theme-toggle .ico-sun{display:block;}
   html[data-theme="light"] .theme-toggle .ico-moon{display:none;}
+  html[data-theme="light"] .theme-toggle .lbl-dark{display:none;}
+  html[data-theme="light"] .theme-toggle .lbl-light{display:inline;}
+  @keyframes themePulse{
+    0%, 100% { box-shadow: 0 4px 16px rgba(0,0,0,0.22); }
+    50%      { box-shadow: 0 4px 22px rgba(232,160,32,0.55), 0 0 0 4px rgba(232,160,32,0.15); }
+  }
   @media (max-width:700px){
-    .theme-toggle{bottom:0.7rem;right:0.7rem;width:36px;height:36px;}
+    .theme-toggle{top:0.7rem;right:0.7rem;font-size:10px;padding:0 10px;height:34px;}
   }
   /* Theme toggle is suppressed in print */
-  @media print{ .theme-toggle{display:none !important;} }
+  @media print{ .theme-toggle, .header-theme-toggle{display:none !important;} }
+
+  /* THEME TOGGLE — inside deck-header (slides 2+, integrated) -------- */
+  .header-theme-toggle{
+    height:26px;padding:0 10px 0 8px;border-radius:4px;
+    background:transparent;border:1px solid var(--border2);color:var(--text2);
+    cursor:pointer;display:flex;align-items:center;gap:0.4rem;
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.13em;text-transform:uppercase;font-weight:500;
+    transition:background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .header-theme-toggle:hover{color:var(--sigma);border-color:var(--sigma);background:var(--sigma-soft);}
+  .header-theme-toggle svg{width:13px;height:13px;}
+  .header-theme-toggle .ico-sun{display:none;}
+  .header-theme-toggle .ico-moon{display:block;}
+  .header-theme-toggle .lbl-dark{display:inline;}
+  .header-theme-toggle .lbl-light{display:none;}
+  html[data-theme="light"] .header-theme-toggle .ico-sun{display:block;}
+  html[data-theme="light"] .header-theme-toggle .ico-moon{display:none;}
+  html[data-theme="light"] .header-theme-toggle .lbl-dark{display:none;}
+  html[data-theme="light"] .header-theme-toggle .lbl-light{display:inline;}
+  @media (max-width:700px){
+    .header-theme-toggle .lbl-dark, .header-theme-toggle .lbl-light{display:none !important;}
+    .header-theme-toggle{padding:0 8px;}
+  }
 
   /* LOGO DUAL-IMAGE SWAP ----------------------------------------------- */
   /* Use !important to win over the height/width/display rules on
@@ -560,6 +594,17 @@
     <span>Strategic Review</span>
   </div>
   <div class="right">
+    <button class="header-theme-toggle" id="header-theme-toggle" type="button" aria-label="Toggle dark / light theme" title="Toggle theme — keyboard: T">
+      <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4"/>
+        <path d="M12 2v2 M12 20v2 M4.93 4.93l1.41 1.41 M17.66 17.66l1.41 1.41 M2 12h2 M20 12h2 M4.93 19.07l1.41-1.41 M17.66 6.34l1.41-1.41"/>
+      </svg>
+      <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <span class="lbl-dark">Light mode</span>
+      <span class="lbl-light">Dark mode</span>
+    </button>
     <div class="dixstone-pill">
       <img src="dixstone-logo-white.png" alt="Dixstone" class="for-dark">
       <img src="dixstone-logo-navy.png" alt="Dixstone" class="for-light">
@@ -1582,16 +1627,25 @@
   window.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
 
-  /* Theme toggle ------------------------------------------------------ */
-  const themeBtn = document.getElementById('theme-toggle');
-  if (themeBtn) {
-    themeBtn.addEventListener('click', () => {
-      const html = document.documentElement;
-      const next = (html.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
-      html.setAttribute('data-theme', next);
-      try { localStorage.setItem('dixstone-theme', next); } catch(e){}
-    });
+  /* Theme toggle — wired to both header button and floating button.
+     Keyboard shortcut: T (also works during a presentation, no modifier). */
+  function toggleTheme() {
+    const html = document.documentElement;
+    const next = (html.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
+    html.setAttribute('data-theme', next);
+    try { localStorage.setItem('dixstone-theme', next); } catch(e){}
   }
+  ['theme-toggle', 'header-theme-toggle'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.addEventListener('click', toggleTheme);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 't' || e.key === 'T') {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      e.preventDefault();
+      toggleTheme();
+    }
+  });
 
   document.addEventListener('keydown', (e) => {
     const cur = dots.findIndex(d => d.classList.contains('active'));

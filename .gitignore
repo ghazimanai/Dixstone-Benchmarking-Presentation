@@ -10,15 +10,20 @@ Thumbs.db
 .vscode/
 .idea/
 
-# SAP / source data — must NEVER be committed
+# SAP / source data — must NEVER be committed (raw exports, full P&L, etc.)
 *.xlsx
 *.xlsm
-*.csv
 *.tsv
 *.pptx
 
-# Python build scripts (kept locally only)
-*.py
+# Block CSVs by default — except in analysis/outputs which is the
+# audit-trail folder of derived metric tables that feed the deck.
+*.csv
+!analysis/outputs/*.csv
+
+# Python — block top-level build scripts and caches,
+# but ALLOW analysis/ which holds methodology lineage scripts.
+/*.py
 __pycache__/
 .venv/
 venv/

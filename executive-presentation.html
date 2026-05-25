@@ -1,0 +1,1443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dixstone · Strategic Peer Benchmarking Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --bg:#06080d; --bg2:#0d1119; --bg3:#141a26; --bg-card:#0f141d;
+    --border:rgba(232,160,32,0.18); --border2:rgba(200,210,230,0.08);
+    --sigma:#e8a020; --sigma2:#f4b840; --sigma3:#c98815; --sigma-soft:rgba(232,160,32,0.12);
+    --text:#f0f3f9; --text2:#c8cdd8; --muted:#8b94a6; --muted2:#5d6677;
+    --good:#5dbf8a; --bad:#ff6b80; --info:#5eb3ff;
+    --grid:rgba(232,160,32,0.04);
+    --premium:#e8a020; --standard:#5eb3ff; --land:#a895d6; --platform:#7bc5a8;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:400;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  body{
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232,160,32,0.06), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 0% 100%, rgba(94,179,255,0.04), transparent 50%),
+      var(--bg);
+    background-attachment:fixed;
+    min-height:100vh;
+  }
+  body::before{
+    content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse 90% 70% at 50% 50%, #000 30%, transparent 80%);
+    opacity:0.7;
+  }
+
+  .deck{position:relative;z-index:1;}
+  .slide{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:5rem 7vw;
+    scroll-snap-align:start;
+    position:relative;
+  }
+  @media (max-width:1100px){ .slide{padding:4rem 6vw;} }
+  @media (max-width:700px){ .slide{padding:3rem 5vw;min-height:auto;} }
+
+  h1,h2,h3,h4,.eyebrow{font-family:'Space Grotesk',sans-serif;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--sigma);font-weight:500;margin-bottom:1.2rem;
+    display:flex;align-items:center;gap:0.6rem;
+  }
+  .eyebrow::before{content:'';width:24px;height:1px;background:var(--sigma);display:inline-block;}
+  h1.slide-title{font-size:clamp(2.2rem,4.6vw,3.8rem);font-weight:600;line-height:1.08;letter-spacing:-0.02em;margin:0 0 1.5rem 0;color:var(--text);}
+  h1.slide-title em{font-style:normal;color:var(--sigma);font-weight:500;}
+  .lede{font-size:clamp(1rem,1.25vw,1.12rem);color:var(--text2);max-width:780px;font-weight:300;line-height:1.55;margin-bottom:2.2rem;}
+
+  /* Cards */
+  .card{
+    background:linear-gradient(180deg, var(--bg-card), var(--bg2));
+    border:1px solid var(--border2);
+    border-radius:8px;padding:1.4rem 1.5rem;position:relative;overflow:hidden;
+    transition:border-color 0.25s ease;
+  }
+  .card.accent{border-color:var(--border);}
+  .card .corner{
+    position:absolute;top:0;right:0;width:60px;height:60px;
+    background:linear-gradient(225deg, var(--sigma-soft), transparent 55%);
+    pointer-events:none;
+  }
+  .card .num-tag{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--sigma);letter-spacing:0.1em;font-weight:500;
+    border:1px solid var(--border);padding:2px 8px;border-radius:3px;display:inline-block;margin-bottom:0.7rem;
+  }
+  .card h3{font-size:1.05rem;font-weight:600;margin:0 0 0.5rem 0;color:var(--text);line-height:1.3;letter-spacing:-0.01em;}
+  .card p{font-size:0.9rem;color:var(--text2);margin:0;line-height:1.5;font-weight:400;}
+  .card .metric-strip{font-family:'JetBrains Mono',monospace;font-size:0.74rem;color:var(--muted);margin-top:0.7rem;padding-top:0.6rem;border-top:1px solid var(--border2);letter-spacing:0.02em;}
+
+  .stat{display:flex;flex-direction:column;gap:0.2rem;}
+  .stat .label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;font-weight:500;}
+  .stat .val{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,2.6vw,2.4rem);font-weight:600;color:var(--text);line-height:1;letter-spacing:-0.01em;}
+  .stat .val.sigma{color:var(--sigma);}
+  .stat .delta{font-family:'JetBrains Mono',monospace;font-size:0.74rem;color:var(--text2);font-weight:500;}
+
+  .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
+  @media (max-width:1100px){
+    .grid-3,.grid-4{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:700px){
+    .grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}
+  }
+
+  /* COVER */
+  .cover{
+    background:
+      radial-gradient(ellipse 100% 60% at 50% 0%, rgba(232,160,32,0.10), transparent 65%),
+      linear-gradient(180deg, rgba(232,160,32,0.02), transparent 40%),
+      var(--bg);
+    padding:0;align-items:stretch;justify-content:flex-end;
+  }
+  .cover-grid{
+    position:absolute;inset:0;pointer-events:none;
+    background-image:
+      linear-gradient(rgba(232,160,32,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,160,32,0.05) 1px, transparent 1px);
+    background-size:96px 96px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 60%, #000 20%, transparent 80%);
+  }
+  .cover-arc{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+  .cover-arc svg{position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:140%;height:120%;opacity:0.35;}
+  .cover-content{position:relative;z-index:2;padding:0 7vw 7vh 7vw;width:100%;}
+  .cover-top{position:absolute;top:5vh;left:7vw;right:7vw;z-index:3;display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;}
+  .cover-top .lhs{display:flex;align-items:center;gap:1rem;}
+  .cover-top .badge{background:rgba(232,160,32,0.12);border:1px solid var(--border);color:var(--sigma);padding:4px 10px;border-radius:3px;font-weight:500;}
+  .cover-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.6rem,6vw,5.8rem);font-weight:500;color:var(--text);line-height:1.0;letter-spacing:-0.025em;margin:0 0 1.5rem 0;max-width:1100px;}
+  .cover-title em{font-style:normal;color:var(--sigma);font-weight:500;display:block;}
+  .cover-sub{font-family:'Inter',sans-serif;font-size:clamp(1.05rem,1.3vw,1.2rem);font-weight:300;color:var(--text2);max-width:680px;line-height:1.5;margin-bottom:2.4rem;}
+  .cover-meta{display:flex;gap:3rem;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;padding-top:2rem;border-top:1px solid var(--border2);}
+  .cover-meta strong{display:block;color:var(--text);font-weight:500;font-size:0.92rem;font-family:'Space Grotesk',sans-serif;margin-top:0.3rem;letter-spacing:0;text-transform:none;}
+
+  /* Nav — horizontal bottom bar, centred. Subtle pill background so it reads
+     as a deliberate UI element rather than scattered dots over the canvas.
+     Sits low and out of the way of any preview-pane toolbars on the right. */
+  .nav-dots{
+    position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);z-index:50;
+    display:flex;flex-direction:row;gap:0.7rem;align-items:center;
+    background:rgba(13,17,25,0.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    padding:0.55rem 0.85rem;border-radius:999px;border:1px solid var(--border2);
+  }
+  .nav-dot{width:8px;height:8px;border-radius:50%;background:rgba(200,210,230,0.22);border:1px solid transparent;cursor:pointer;transition:all 0.2s;position:relative;}
+  .nav-dot:hover{background:var(--sigma-soft);}
+  .nav-dot.active{background:var(--sigma);border-color:var(--sigma);box-shadow:0 0 0 4px rgba(232,160,32,0.15);}
+  .nav-dot .tip{
+    position:absolute;bottom:18px;left:50%;transform:translateX(-50%);
+    background:var(--bg3);border:1px solid var(--border2);padding:4px 10px;border-radius:3px;
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;color:var(--text2);
+    white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 0.15s;
+  }
+  .nav-dot:hover .tip{opacity:1;}
+  @media (max-width:700px){.nav-dots{bottom:0.6rem;padding:0.4rem 0.7rem;}}
+  .progress{position:fixed;top:0;left:0;right:0;height:2px;background:transparent;z-index:60;}
+  .progress-bar{height:100%;background:linear-gradient(90deg, var(--sigma3), var(--sigma), var(--sigma2));width:0%;transition:width 0.1s;}
+  .deck-header{
+    position:fixed;top:0;left:0;right:0;z-index:40;
+    background:linear-gradient(180deg, rgba(6,8,13,0.92), rgba(6,8,13,0));
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;
+    transform:translateY(-100%);transition:transform 0.3s ease;
+    border-bottom:1px solid var(--border2);
+  }
+  .deck-header.show{transform:translateY(0);}
+  .deck-header .brand{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;color:var(--text2);text-transform:uppercase;display:flex;align-items:center;gap:0.85rem;}
+  .deck-header .brand .dot{width:6px;height:6px;border-radius:50%;background:var(--sigma);}
+  .deck-header .brand img.sigma-mark{height:22px;width:auto;display:block;}
+  .deck-header .brand .sep{width:1px;height:14px;background:var(--border2);}
+  .deck-header .right{display:flex;align-items:center;gap:1rem;}
+  .deck-header .dixstone-pill{display:flex;align-items:center;}
+  .deck-header .dixstone-pill img{height:18px;width:auto;display:block;opacity:0.92;}
+  .deck-header .page-counter{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.15em;}
+  .deck-header .page-counter .now{color:var(--sigma);font-weight:500;}
+
+  /* Cover logos */
+  .cover-logos{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;width:100%;}
+  .cover-logos .sigma-mark{height:38px;width:auto;display:block;}
+  .cover-logos .dixstone-pill{display:flex;align-items:center;}
+  .cover-logos .dixstone-pill img{height:32px;width:auto;display:block;}
+
+  /* Insight cards */
+  .insight-card{
+    background:linear-gradient(180deg, rgba(15,20,29,0.95), rgba(13,17,25,0.95));
+    border:1px solid var(--border2);border-left:3px solid var(--sigma);
+    border-radius:6px;padding:1.4rem 1.5rem;display:flex;flex-direction:column;gap:0.8rem;
+  }
+  .insight-card .ic-eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;color:var(--sigma);
+    text-transform:uppercase;font-weight:500;
+  }
+  .insight-card h3{font-size:1.15rem;font-weight:600;margin:0;color:var(--text);line-height:1.3;letter-spacing:-0.015em;}
+  .insight-card .body{font-size:0.92rem;color:var(--text2);line-height:1.55;margin:0;}
+  .insight-card .stat-strip{
+    display:flex;gap:1.3rem;margin-top:auto;padding-top:0.7rem;border-top:1px solid var(--border2);
+    font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);letter-spacing:0.02em;
+  }
+  .insight-card .stat-strip strong{color:var(--sigma);font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.92rem;letter-spacing:0;display:block;margin-bottom:0.15rem;}
+
+  /* Segment blocks */
+  .segment-block{
+    background:var(--bg-card);border:1px solid var(--border2);border-radius:8px;
+    padding:1.2rem 1.5rem;margin-bottom:0.9rem;position:relative;border-left-width:3px;
+  }
+  .segment-block.premium{border-left-color:var(--premium);}
+  .segment-block.standard{border-left-color:var(--standard);}
+  .segment-block.land{border-left-color:var(--land);}
+  .segment-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:1rem;margin-bottom:0.8rem;padding-bottom:0.7rem;border-bottom:1px solid var(--border2);}
+  .segment-head .lhs{display:flex;align-items:baseline;gap:0.9rem;flex-wrap:wrap;}
+  .segment-head h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;margin:0;color:var(--text);letter-spacing:-0.01em;}
+  .segment-head .seg-pill{
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;
+    padding:3px 9px;border-radius:3px;background:rgba(232,160,32,0.10);color:var(--sigma);border:1px solid var(--border);
+  }
+  .segment-block.standard .seg-pill{background:rgba(94,179,255,0.10);color:var(--standard);border-color:rgba(94,179,255,0.30);}
+  .segment-block.land .seg-pill{background:rgba(168,149,214,0.10);color:var(--land);border-color:rgba(168,149,214,0.30);}
+  .segment-block.platform{border-left-color:var(--platform);}
+  .segment-block.platform .seg-pill{background:rgba(123,197,168,0.10);color:var(--platform);border-color:rgba(123,197,168,0.30);}
+  .segment-head .read{font-size:0.88rem;color:var(--text2);font-weight:400;line-height:1.5;max-width:580px;}
+  .seg-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0.7rem;}
+  @media (max-width:1100px){.seg-grid{grid-template-columns:repeat(3,1fr);}}
+  @media (max-width:700px){.seg-grid{grid-template-columns:repeat(2,1fr);}}
+  .seg-cell{background:var(--bg2);border:1px solid var(--border2);border-radius:5px;padding:0.7rem 0.85rem;display:flex;flex-direction:column;gap:0.3rem;}
+  .seg-cell .metric{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;font-weight:500;line-height:1.3;min-height:24px;}
+  .seg-cell .dix{display:flex;justify-content:space-between;align-items:baseline;}
+  .seg-cell .dix .who{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--sigma);letter-spacing:0.05em;text-transform:uppercase;font-weight:500;}
+  .seg-cell .dix .val{font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:600;color:var(--sigma);font-feature-settings:"tnum";letter-spacing:-0.01em;line-height:1;}
+  .seg-cell .pp{display:flex;justify-content:space-between;align-items:baseline;font-size:0.75rem;color:var(--text2);margin-top:0.15rem;font-family:'JetBrains Mono',monospace;}
+  .seg-cell .pp .who{color:var(--muted);}
+  .seg-cell .pp .val{color:var(--text2);font-weight:500;}
+  .seg-cell.lead .val{color:var(--good) !important;}
+  .seg-cell.lag .val{color:var(--bad) !important;}
+
+  /* Pillar cards */
+  .framework{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;}
+  @media (max-width:1100px){.framework{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:700px){.framework{grid-template-columns:1fr;}}
+  .pillar{
+    background:linear-gradient(155deg, var(--bg-card) 0%, var(--bg2) 100%);
+    border:1px solid var(--border2);border-radius:8px;padding:1.3rem;position:relative;overflow:hidden;
+    transition:transform 0.25s ease, border-color 0.25s ease;
+  }
+  .pillar:hover{transform:translateY(-2px);border-color:var(--border);}
+  .pillar .icon-box{
+    width:40px;height:40px;border-radius:8px;
+    background:linear-gradient(135deg, rgba(232,160,32,0.18), rgba(232,160,32,0.06));
+    border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;margin-bottom:0.9rem;color:var(--sigma);
+  }
+  .pillar h4{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;margin:0 0 0.4rem 0;color:var(--text);letter-spacing:-0.01em;}
+  .pillar p{font-size:0.84rem;color:var(--text2);margin:0;line-height:1.5;}
+  .pillar .stat-tag{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--sigma);margin-top:0.8rem;padding-top:0.6rem;border-top:1px solid var(--border2);letter-spacing:0.05em;font-weight:500;}
+
+  /* Insight list (next steps) */
+  .insight-list{list-style:none;padding:0;margin:0;}
+  .insight-list li{display:grid;grid-template-columns:auto 1fr;gap:1.3rem;align-items:start;padding:1rem 0;border-bottom:1px solid var(--border2);}
+  .insight-list li:last-child{border-bottom:none;}
+  .insight-list li .num{font-family:'Space Grotesk',sans-serif;font-size:1.7rem;font-weight:500;color:var(--sigma);line-height:1;font-feature-settings:"tnum";min-width:42px;letter-spacing:-0.01em;}
+  .insight-list li h4{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;margin:0 0 0.3rem 0;color:var(--text);letter-spacing:-0.01em;}
+  .insight-list li p{font-size:0.88rem;color:var(--text2);margin:0;line-height:1.5;}
+
+  /* Closing */
+  .closing{
+    background:radial-gradient(ellipse 70% 50% at 50% 50%, rgba(232,160,32,0.08), transparent 70%), var(--bg);
+    text-align:center;justify-content:center;align-items:center;
+  }
+  .closing h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,4vw,3.6rem);font-weight:500;letter-spacing:-0.025em;max-width:1000px;line-height:1.1;color:var(--text);margin:0 0 1.5rem 0;}
+  .closing h1 em{font-style:normal;color:var(--sigma);font-weight:500;}
+  .closing .closing-sub{font-size:1.05rem;font-weight:300;color:var(--text2);max-width:620px;line-height:1.55;margin:0 0 2.5rem 0;}
+  .closing .closing-meta{display:flex;gap:3rem;font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;padding-top:2rem;border-top:1px solid var(--border2);}
+
+  /* Engagement-brief callout */
+  .brief-row{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;align-items:start;}
+  @media (max-width:900px){.brief-row{grid-template-columns:1fr;}}
+  .brief-q{background:var(--bg-card);border:1px solid var(--border2);border-left:3px solid var(--sigma);border-radius:6px;padding:1.3rem 1.5rem;}
+  .brief-q .lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--sigma);font-weight:500;margin-bottom:0.6rem;}
+  .brief-q h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;margin:0 0 0.5rem 0;color:var(--text);line-height:1.3;letter-spacing:-0.01em;}
+  .brief-q p{font-size:0.9rem;color:var(--text2);margin:0;line-height:1.55;}
+
+  /* Reveal */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease, transform 0.7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .reveal.d1{transition-delay:0.1s;}
+  .reveal.d2{transition-delay:0.2s;}
+  .reveal.d3{transition-delay:0.3s;}
+  .reveal.d4{transition-delay:0.4s;}
+
+  /* ── Section divider slides ── */
+  .divider-slide{
+    background:radial-gradient(ellipse 70% 50% at 50% 50%, rgba(232,160,32,0.07), transparent 70%), var(--bg);
+    justify-content:center;align-items:center;text-align:center;
+  }
+  .divider-slide .part-num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:var(--sigma);margin-bottom:1.2rem;}
+  .divider-slide h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,4vw,3.4rem);font-weight:500;letter-spacing:-0.025em;color:var(--text);margin:0 0 1rem 0;line-height:1.1;}
+  .divider-slide h1 em{font-style:normal;color:var(--sigma);}
+  .divider-slide p{font-size:1rem;font-weight:300;color:var(--text2);max-width:560px;line-height:1.55;}
+
+  /* ── Deep-dive benchmark slide ── */
+  .bench-table{width:100%;border-collapse:collapse;margin-top:1rem;}
+  .bench-table thead tr{border-bottom:1px solid var(--border);}
+  .bench-table thead th{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:0.5rem 0.8rem;text-align:left;}
+  .bench-table thead th:not(:first-child){text-align:right;}
+  .bench-table tbody tr{border-bottom:1px solid var(--border2);transition:background 0.15s;}
+  .bench-table tbody tr:hover{background:rgba(232,160,32,0.03);}
+  .bench-table tbody td{padding:0.65rem 0.8rem;font-size:0.88rem;color:var(--text2);vertical-align:middle;}
+  .bench-table tbody td:not(:first-child){text-align:right;font-family:'JetBrains Mono',monospace;font-size:0.82rem;}
+  .bench-table .rig-name{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--text);font-size:0.95rem;}
+  .bench-table .rig-type{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;display:block;margin-top:1px;}
+  .bench-table .val-red{color:var(--bad);}
+  .bench-table .val-green{color:var(--good);}
+  .bench-table .val-amber{color:var(--sigma);}
+  .bench-table .best-bracket{font-size:0.78rem;color:var(--muted);font-style:italic;}
+  /* bar viz for inventory */
+  .inv-bar-wrap{display:flex;align-items:center;gap:0.6rem;justify-content:flex-end;}
+  .inv-bar-track{width:90px;height:6px;background:var(--bg3);border-radius:3px;overflow:hidden;flex-shrink:0;}
+  .inv-bar-fill{height:100%;border-radius:3px;background:var(--bad);transition:width 0.5s ease;}
+  .inv-bar-fill.good{background:var(--good);}
+
+  /* ── One-pager rig slides ── */
+  .onepager{padding:3.5rem 6vw 3rem;}
+  .op-header{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.6rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+  .op-rig-name{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:600;letter-spacing:-0.02em;color:var(--text);line-height:1;}
+  .op-rig-type{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;padding:3px 10px;border-radius:3px;font-weight:500;margin-left:0.7rem;}
+  .op-rig-type.premium{background:rgba(232,160,32,0.12);color:var(--premium);border:1px solid rgba(232,160,32,0.3);}
+  .op-rig-type.standard{background:rgba(94,179,255,0.10);color:var(--standard);border:1px solid rgba(94,179,255,0.3);}
+  .op-rig-type.platform{background:rgba(123,197,168,0.10);color:var(--platform);border:1px solid rgba(123,197,168,0.3);}
+  .op-rig-type.land{background:rgba(168,149,214,0.10);color:var(--land);border:1px solid rgba(168,149,214,0.3);}
+  .op-kpi-row{display:grid;grid-template-columns:repeat(6,1fr);gap:0.9rem;margin-bottom:1.2rem;}
+  @media (max-width:1100px){.op-kpi-row{grid-template-columns:repeat(3,1fr);}}
+  @media (max-width:700px){.op-kpi-row{grid-template-columns:repeat(2,1fr);}}
+  .op-kpi{background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:0.85rem 1rem;}
+  .op-kpi .lbl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:0.3rem;}
+  .op-kpi .v{font-family:'Space Grotesk',sans-serif;font-size:1.45rem;font-weight:600;color:var(--sigma);line-height:1;letter-spacing:-0.01em;}
+  .op-kpi .v.red{color:var(--bad);}
+  .op-kpi .v.green{color:var(--good);}
+  .op-kpi .sub{font-size:0.75rem;color:var(--muted);margin-top:0.2rem;font-family:'JetBrains Mono',monospace;}
+  .op-body{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;}
+  @media (max-width:900px){.op-body{grid-template-columns:1fr;}}
+  .op-panel{background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.1rem 1.3rem;}
+  .op-panel .ptitle{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--sigma);font-weight:500;margin-bottom:0.8rem;}
+  .op-panel .prow{display:flex;justify-content:space-between;align-items:center;padding:0.4rem 0;border-bottom:1px solid var(--border2);font-size:0.86rem;}
+  .op-panel .prow:last-child{border-bottom:none;}
+  .op-panel .prow .pk{color:var(--text2);}
+  .op-panel .prow .pv{font-family:'JetBrains Mono',monospace;font-size:0.82rem;font-weight:500;color:var(--text);}
+  .op-panel .prow .pv.red{color:var(--bad);}
+  .op-panel .prow .pv.amber{color:var(--sigma);}
+  .op-panel .prow .pv.green{color:var(--good);}
+  /* Mega-KPI strip (for top of deep-dive slides) */
+  .mega-kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.4rem;}
+  @media (max-width:900px){.mega-kpi{grid-template-columns:1fr;}}
+  .mega-kpi .mk{background:var(--bg-card);border:1px solid var(--border2);border-left:3px solid var(--sigma);border-radius:6px;padding:0.95rem 1.1rem;}
+  .mega-kpi .mk .mv{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:600;color:var(--sigma);line-height:1;letter-spacing:-0.02em;}
+  .mega-kpi .mk .ml{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;margin:0.5rem 0 0.3rem 0;}
+  .mega-kpi .mk .md{font-size:0.85rem;color:var(--text2);line-height:1.45;}
+
+  /* Source / methodology footer band */
+  .src-band{font-family:'JetBrains Mono',monospace;font-size:0.74rem;color:var(--muted);letter-spacing:0.04em;line-height:1.55;margin-top:1.3rem;padding-top:0.9rem;border-top:1px solid var(--border2);}
+  .src-band strong{color:var(--text2);font-weight:500;}
+
+  /* Horizontal rig bars */
+  .hbar-list{display:flex;flex-direction:column;gap:0.5rem;}
+  .hbar-row{display:grid;grid-template-columns:130px 1fr 100px;gap:0.8rem;align-items:center;padding:0.3rem 0;}
+  .hbar-row .hk{font-family:'Space Grotesk',sans-serif;font-size:0.92rem;color:var(--text);font-weight:500;}
+  .hbar-row .ht{background:var(--bg3);height:18px;border-radius:3px;position:relative;overflow:hidden;}
+  .hbar-row .hf{height:100%;background:linear-gradient(90deg,var(--sigma3),var(--sigma));border-radius:3px;display:flex;align-items:center;padding-left:0.5rem;}
+  .hbar-row .hf.red{background:linear-gradient(90deg,#b94656,var(--bad));}
+  .hbar-row .hf.green{background:linear-gradient(90deg,#3e9168,var(--good));}
+  .hbar-row .hf.platform{background:linear-gradient(90deg,#5a9580,var(--platform));}
+  .hbar-row .hf.land{background:linear-gradient(90deg,#8273b5,var(--land));}
+  .hbar-row .hf.standard{background:linear-gradient(90deg,#3d8ed4,var(--standard));}
+  .hbar-row .hv{font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--text);text-align:right;font-weight:500;}
+  .hbar-row .hv .sub{color:var(--muted);font-size:0.72rem;display:block;margin-top:1px;}
+
+  /* Stacked inventory bar (dead vs live) */
+  .stk-row{display:grid;grid-template-columns:130px 1fr 130px;gap:0.8rem;align-items:center;padding:0.3rem 0;}
+  .stk-row .skk{font-family:'Space Grotesk',sans-serif;font-size:0.92rem;color:var(--text);font-weight:500;}
+  .stk-row .skk .typ{display:block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;margin-top:1px;}
+  .stk-row .skt{background:var(--bg3);height:22px;border-radius:3px;position:relative;overflow:hidden;display:flex;}
+  .stk-row .stk-dead{background:linear-gradient(90deg,#b94656,var(--bad));height:100%;}
+  .stk-row .stk-live{background:linear-gradient(90deg,#3e9168,var(--good));height:100%;}
+  .stk-row .skv{font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:var(--text);text-align:right;}
+  .stk-row .skv .pct{color:var(--bad);font-weight:600;}
+  .stk-row .skv .total{color:var(--text);font-weight:500;}
+
+  /* Org structure compare panels */
+  .org-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+  @media (max-width:900px){.org-grid{grid-template-columns:1fr;}}
+  .org-panel{background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.2rem 1.4rem;border-top:3px solid var(--sigma3);}
+  .org-panel.future{border-top-color:var(--good);}
+  .org-panel .ohead{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;color:var(--sigma);text-transform:uppercase;font-weight:500;margin-bottom:0.3rem;}
+  .org-panel.future .ohead{color:var(--good);}
+  .org-panel h4{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;margin:0 0 0.7rem 0;color:var(--text);letter-spacing:-0.01em;}
+  .org-panel ul{margin:0 0 0.6rem 0;padding:0;list-style:none;}
+  .org-panel li{padding:0.32rem 0;font-size:0.86rem;color:var(--text2);border-bottom:1px solid var(--border2);line-height:1.45;}
+  .org-panel li:last-child{border-bottom:none;}
+  .org-panel li strong{color:var(--text);font-weight:600;}
+  .org-panel .gap{font-size:0.82rem;color:var(--bad);font-style:italic;margin-top:0.6rem;padding-top:0.6rem;border-top:1px dashed var(--border2);}
+  .org-panel.future .gap{color:var(--good);font-style:normal;}
+
+  /* NPT driver bar */
+  .npt-driver{display:flex;align-items:center;gap:0.7rem;padding:0.35rem 0;border-bottom:1px solid var(--border2);}
+  .npt-driver:last-child{border-bottom:none;}
+  .npt-driver .dk{font-size:0.83rem;color:var(--text2);min-width:130px;}
+  .npt-driver .dtrack{flex:1;height:5px;background:var(--bg3);border-radius:3px;overflow:hidden;}
+  .npt-driver .dfill{height:100%;border-radius:3px;background:var(--bad);}
+  .npt-driver .dpct{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--bad);min-width:38px;text-align:right;}
+
+  @media print{
+    @page{size:A4 landscape;margin:0;}
+    body{background:#fff !important;color:#000;}
+    body::before, .nav-dots, .progress, .deck-header{display:none !important;}
+    .slide{page-break-after:always;break-after:page;min-height:auto;padding:1.5cm;}
+    .card,.insight-card,.pillar,.segment-block,.brief-q{background:#fafafa !important;border:1px solid #ddd !important;color:#000 !important;}
+    .seg-cell{background:#f4f4f4 !important;border-color:#ddd !important;}
+    .card h3,.insight-card h3,.pillar h4,.brief-q h3,h1,h2,h3,h4{color:#000 !important;}
+    .card p,.insight-card .body,.pillar p,.brief-q p{color:#333 !important;}
+    .stat .val,.seg-cell .dix .val{color:#c98815 !important;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress"><div class="progress-bar" id="progress-bar"></div></div>
+
+<header class="deck-header" id="deck-header">
+  <div class="brand">
+    <img src="sigma-logo.svg" alt="Sigma Energy" class="sigma-mark">
+    <span class="sep"></span>
+    <span>Strategic Review</span>
+  </div>
+  <div class="right">
+    <div class="dixstone-pill"><img src="dixstone-logo-white.png" alt="Dixstone"></div>
+    <div class="page-counter"><span class="now" id="page-now">01</span> / 26</div>
+  </div>
+</header>
+
+<nav class="nav-dots" id="nav-dots"></nav>
+
+<main class="deck">
+
+  <!-- ========================= 1 · COVER ========================= -->
+  <section class="slide cover" data-title="Cover">
+    <div class="cover-grid"></div>
+    <div class="cover-arc">
+      <svg viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="cg1" cx="50%" cy="40%" r="50%">
+            <stop offset="0%" stop-color="#e8a020" stop-opacity="0.35"/>
+            <stop offset="60%" stop-color="#e8a020" stop-opacity="0.05"/>
+            <stop offset="100%" stop-color="#e8a020" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="600" cy="320" r="380" stroke="url(#cg1)" stroke-width="1" fill="none"/>
+        <circle cx="600" cy="320" r="280" stroke="rgba(232,160,32,0.18)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
+        <circle cx="600" cy="320" r="180" stroke="rgba(232,160,32,0.10)" stroke-width="1" fill="none"/>
+        <circle cx="600" cy="320" r="90" stroke="rgba(232,160,32,0.06)" stroke-width="1" fill="none"/>
+      </svg>
+    </div>
+    <div class="cover-top">
+      <div class="cover-logos">
+        <img src="sigma-logo.svg" alt="Sigma Energy" class="sigma-mark">
+        <div class="dixstone-pill"><img src="dixstone-logo-white.png" alt="Dixstone"></div>
+      </div>
+    </div>
+    <div class="cover-top" style="top:auto;bottom:5vh;justify-content:space-between;">
+      <div>Strategic Peer Benchmarking · Dixstone Drilling</div>
+      <div>Confidential · Executive Review</div>
+    </div>
+    <div class="cover-content reveal in">
+      <div class="eyebrow">Cost-structure benchmarking · FY 2021 – FY 2025</div>
+      <h1 class="cover-title">Dixstone Strategic<br><em>Peer Benchmarking Review</em></h1>
+      <p class="cover-sub">Where Dixstone stands against the offshore-drilling peer set — and the four observations that matter most.</p>
+      <div class="cover-meta">
+        <div>Prepared by<strong>Sigma Energy</strong></div>
+        <div>Issued<strong>May 2026</strong></div>
+        <div>Scope<strong>18 KPIs · 9 peers · 5 FYs · 6 rig one-pagers</strong></div>
+        <div>Engagement<strong>QC25377</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= 2 · METHODOLOGY ========================= -->
+  <section class="slide" data-title="Methodology">
+    <div class="eyebrow reveal">02 · Methodology</div>
+    <h1 class="slide-title reveal">A benchmarking framework built on<br><em>three independent lines of evidence.</em></h1>
+    <p class="lede reveal d1">Three independent lines of evidence — primary regulatory disclosures, an agentic AI research persona (<strong style="color:var(--text);font-weight:500;">DFA-1, Drilling Financial Analyst</strong>), and the Sigma team's hands-on operating and advisory experience across offshore and land drilling — triangulated cell by cell across the FY21 – FY25 frame.</p>
+
+    <div class="framework">
+      <div class="pillar reveal d2">
+        <div class="icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3h18v18H3z M3 9h18 M9 3v18"/></svg></div>
+        <h4>Regulatory filings as the anchor</h4>
+        <p>SEC EDGAR (10-K, 10-Q, 20-F), Oslo Børs, Tadawul, Bursa, SEDAR+, HKEXnews — direct from the regulator, not from aggregators.</p>
+        <div class="stat-tag">11 regulators · audited</div>
+      </div>
+      <div class="pillar reveal d2">
+        <div class="icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 3v3 M12 18v3 M3 12h3 M18 12h3 M5.6 5.6l2.1 2.1 M16.3 16.3l2.1 2.1 M5.6 18.4l2.1-2.1 M16.3 7.7l2.1-2.1"/></svg></div>
+        <h4>Agentic AI research · DFA-1</h4>
+        <p>An autonomous agentic AI persona — <strong style="color:var(--text);font-weight:500;">DFA-1, our Drilling Financial Analyst</strong> — runs 8–20 primary-source searches per metric, triangulates filings, ESG reports, ratings opinions and trade press, and produces a labelled industry-benchmark inference where direct disclosure is absent.</p>
+        <div class="stat-tag">Per-cell research trail</div>
+      </div>
+      <div class="pillar reveal d2">
+        <div class="icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12c0-5 4-9 9-9s9 4 9 9-4 9-9 9c-2.5 0-4.8-1-6.4-2.6 M3 12v-4 M3 12h4"/></svg></div>
+        <h4>Sigma industry depth</h4>
+        <p>The Sigma team brings hands-on operating and advisory experience across both offshore and land drilling — calibrating which AI inferences are credible, framing the right questions of the data, and validating every benchmark against how the industry actually runs day-to-day.</p>
+        <div class="stat-tag">Offshore + land · validation</div>
+      </div>
+      <div class="pillar reveal d3">
+        <div class="icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg></div>
+        <h4>Historical depth + real-time refresh</h4>
+        <p>FY21 – FY25 spans one full jack-up cycle. The benchmarking layer re-pulls against new disclosures (10-K, 20-F, quarterlies, fleet-status reports) as they file — never older than the most recent peer release.</p>
+        <div class="stat-tag">5 FYs · live signal</div>
+      </div>
+      <div class="pillar reveal d3">
+        <div class="icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V8 M9 20V4 M14 20V12 M19 20V6 M4 20h16"/></svg></div>
+        <h4>Segment-matched, uniform definitions</h4>
+        <p>Premium JU vs premium JU; standard JU vs standard JU; land vs land. 18 KPIs with identical formulas across every peer and FY — no per-peer normalisation that obscures comparison.</p>
+        <div class="stat-tag">4 tiers · 18 KPIs</div>
+      </div>
+      <div class="pillar reveal d3">
+        <div class="icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18 M12 3a14 14 0 0 1 0 18 M12 3a14 14 0 0 0 0 18"/></svg></div>
+        <h4>Dixstone — SAP-direct, per rig</h4>
+        <p>Bottom-up from SAP exports — MB52 inventory, MB51 movements, ME2N purchase orders, P&amp;L by rig, NPT trending. Per-rig granularity preserved; aggregation reversible.</p>
+        <div class="stat-tag">Auditable · per rig</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= 3 · ENGAGEMENT BRIEF ========================= -->
+  <section class="slide" data-title="Engagement Brief">
+    <div class="eyebrow reveal">03 · Engagement Brief</div>
+    <h1 class="slide-title reveal">What this review is <em>here to answer.</em></h1>
+    <p class="lede reveal d1">Sigma was retained to answer two specific questions for Dixstone leadership. The rest of this deck addresses each in order.</p>
+
+    <div class="brief-row reveal d2">
+      <div class="brief-q">
+        <div class="lbl">Question 01</div>
+        <h3>Where does Dixstone stand vs the peer set?</h3>
+        <p>A segment-aware view — premium jack-up, standard jack-up, platform rig, land — drawing on primary filings from 9 peers across 5 fiscal years.</p>
+      </div>
+      <div class="brief-q">
+        <div class="lbl">Question 02</div>
+        <h3>What are the most impactful actions?</h3>
+        <p>Four observations with quantified implications, ranked by what materially moves the FY26 P&amp;L and working-capital position.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:1.6rem;font-size:0.86rem;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:0.05em;line-height:1.6;max-width:920px;">
+      A note on comparability — Dixstone operates with a captive demand anchor and a broader services scope (drilling + marine + construction + decommissioning) than the listed peer cohort. Operational KPIs (NPT, utilisation, headcount, inventory) read as direct benchmarks. Commercial and capital-structure metrics carry that context. Valaris financial metrics are sourced from the jack-up segment breakdown in their 2025 Annual Report (p. 21), not from consolidated company financials.
+    </div>
+  </section>
+
+  <!-- ========================= 4 · WHERE DIXSTONE STANDS ========================= -->
+  <section class="slide" data-title="Where Dixstone Stands">
+    <div class="eyebrow reveal">04 · Where Dixstone Stands</div>
+    <h1 class="slide-title reveal">A summary view <em>across the fleet.</em></h1>
+    <p class="lede reveal d1">Four observations from the FY25 segment-level benchmarking — one per business line, plus one on the balance sheet.</p>
+
+    <div class="grid-4 reveal d2">
+      <div class="card accent">
+        <div class="corner"></div>
+        <span class="num-tag">01 · AXIMA</span>
+        <h3>Best-in-segment reliability.</h3>
+        <p>2.7% NPT — top quartile against every premium-jackup peer. Operational asset, not yet priced in.</p>
+        <div class="metric-strip">NPT 2.7% · GM 39.5% · $130K/day</div>
+      </div>
+      <div class="card accent">
+        <div class="corner"></div>
+        <span class="num-tag">02 · BANBA &amp; NUADA</span>
+        <h3>Above-peer dayrate; below-peer NPT.</h3>
+        <p>$100K dayrate leads the standard-JU peer set. NPT (8.7% / 5.8%) lags Shelf's 0.6% — the operational gap.</p>
+        <div class="metric-strip">Dayrate $100K · NPT 5.8–8.7%</div>
+      </div>
+      <div class="card accent">
+        <div class="corner"></div>
+        <span class="num-tag">03 · MIDIR</span>
+        <h3>Loss-making at FY25 economics.</h3>
+        <p>−10.7% gross margin vs land peers at 29–40%. Cost structure (51.9% payroll, 103.9% O&amp;M) is the issue.</p>
+        <div class="metric-strip">GM −10.7% · Payroll 51.9% · O&amp;M 103.9%</div>
+      </div>
+      <div class="card accent">
+        <div class="corner"></div>
+        <span class="num-tag">04 · INVENTORY</span>
+        <h3>$22.5M dead-stock.</h3>
+        <p>54% of total inventory. Working-capital trap on a 12-month timeline — discrete and isolatable.</p>
+        <div class="metric-strip">Inventory $41.5M · 324 vendors</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= 5 · MARKET CONTEXT ========================= -->
+  <section class="slide" data-title="Market Context">
+    <div class="eyebrow reveal">05 · Market Context</div>
+    <h1 class="slide-title reveal">A high-dayrate environment.<br>Utilisation is <em>tightening.</em></h1>
+
+    <div class="grid-4 reveal d1" style="margin-bottom:1.8rem;">
+      <div class="stat" style="background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.1rem 1.2rem;">
+        <span class="label">Premium JU · peer median</span>
+        <span class="val sigma">$130K<span style="font-size:0.6em;color:var(--muted);font-weight:400;">/day</span></span>
+        <span class="delta">+53% vs FY21 trough</span>
+      </div>
+      <div class="stat" style="background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.1rem 1.2rem;">
+        <span class="label">Jack-up utilisation</span>
+        <span class="val">78<span style="font-size:0.6em;color:var(--muted);font-weight:400;">%</span></span>
+        <span class="delta">Off 86% high of FY24</span>
+      </div>
+      <div class="stat" style="background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.1rem 1.2rem;">
+        <span class="label">Saudi demand</span>
+        <span class="val">60<span style="font-size:0.6em;color:var(--muted);font-weight:400;">%+</span></span>
+        <span class="delta">Of global JU backlog</span>
+      </div>
+      <div class="stat" style="background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.1rem 1.2rem;">
+        <span class="label">JU newbuilds in flight</span>
+        <span class="val">0</span>
+        <span class="delta">Structural tightening</span>
+      </div>
+    </div>
+
+    <div class="grid-2 reveal d2" style="gap:1.4rem;">
+      <div class="card accent">
+        <div class="corner"></div>
+        <span class="num-tag">Market signal</span>
+        <h3>Reliability is rising as a differentiator.</h3>
+        <p>With newbuild supply absent and dayrates at multi-year highs, operator uptime carries an increasing share of the competitive variance — alongside rate.</p>
+      </div>
+      <div class="card accent">
+        <div class="corner"></div>
+        <span class="num-tag">Dixstone position</span>
+        <h3>Fleet utilisation 97.5% — at or above every listed peer.</h3>
+        <p>Cycle is being captured in full. AXIMA reliability sits in the segment top quartile. Standard JU and land segments at 100%.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= 6 · SEGMENT VIEW ========================= -->
+  <section class="slide" data-title="Segment View">
+    <div class="eyebrow reveal">06 · Dixstone vs Peers · Segment View · FY 2025</div>
+    <h1 class="slide-title reveal">Each rig benchmarked against<br><em>its direct peer set.</em></h1>
+
+    <div class="segment-block premium reveal d1">
+      <div class="segment-head">
+        <div class="lhs">
+          <span class="seg-pill">Premium Jack-Up</span>
+          <h3>AXIMA <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Borr · Valaris · ADES · Velesto · Vantage</span></h3>
+        </div>
+        <div class="read">Reliability leads the segment. Strongest operational position in the fleet.</div>
+      </div>
+      <div class="seg-grid">
+        <div class="seg-cell"><div class="metric">Dayrate</div><div class="dix"><span class="who">AXIMA</span><span class="val">$130K</span></div><div class="pp"><span class="who">Peer median</span><span class="val">$130K</span></div><div class="pp"><span class="who">Borr · top</span><span class="val">$150K</span></div></div>
+        <div class="seg-cell lead"><div class="metric">NPT</div><div class="dix"><span class="who">AXIMA</span><span class="val">2.7%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">3.0%</span></div><div class="pp"><span class="who">ADES · best</span><span class="val">1.5%</span></div></div>
+        <div class="seg-cell"><div class="metric">Gross Margin</div><div class="dix"><span class="who">AXIMA</span><span class="val">39.5%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">50.0%</span></div><div class="pp"><span class="who">ADES · top</span><span class="val">58.4%</span></div></div>
+        <div class="seg-cell"><div class="metric">FTE / rig</div><div class="dix"><span class="who">AXIMA</span><span class="val">106</span></div><div class="pp"><span class="who">Jackup cap</span><span class="val">~96</span></div><div class="pp"><span class="who">Crew delta</span><span class="val">+10</span></div></div>
+        <div class="seg-cell"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">AXIMA</span><span class="val">6.1%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">11.0%</span></div><div class="pp"><span class="who">Borr · low</span><span class="val">4.6%</span></div></div>
+      </div>
+    </div>
+
+    <div class="segment-block standard reveal d2">
+      <div class="segment-head">
+        <div class="lhs">
+          <span class="seg-pill">Standard Jack-Up</span>
+          <h3>BANBA &amp; NUADA <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Shelf · Valaris · ADES</span></h3>
+        </div>
+        <div class="read">Dayrate leads peer set; 100% utilisation. NPT is the operational gap.</div>
+      </div>
+      <div class="seg-grid">
+        <div class="seg-cell lead"><div class="metric">Dayrate</div><div class="dix"><span class="who">BANBA · NUADA</span><span class="val">$100K</span></div><div class="pp"><span class="who">Shelf</span><span class="val">$96K</span></div><div class="pp"><span class="who">Valaris</span><span class="val">$85K</span></div></div>
+        <div class="seg-cell lag"><div class="metric">NPT</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">8.7% / 5.8%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">3.0%</span></div><div class="pp"><span class="who">Shelf · best</span><span class="val">0.6%</span></div></div>
+        <div class="seg-cell lag"><div class="metric">Gross Margin</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">38.7% / 38.7%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">45.0%</span></div><div class="pp"><span class="who">ADES · top</span><span class="val">52.0%</span></div></div>
+        <div class="seg-cell lag"><div class="metric">FTE / rig</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">104 / 96</span></div><div class="pp"><span class="who">Peer median</span><span class="val">~85</span></div><div class="pp"><span class="who">Industry cap · best</span><span class="val">~75</span></div></div>
+        <div class="seg-cell lag"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">~4% / ~3%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">9.0%</span></div><div class="pp"><span class="who">Shelf</span><span class="val">9.4%</span></div></div>
+      </div>
+    </div>
+
+    <div class="segment-block land reveal d3">
+      <div class="segment-head">
+        <div class="lhs">
+          <span class="seg-pill">Land Rigs</span>
+          <h3>MIDIR &amp; DRAVUS <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Helmerich &amp; Payne · Nabors · Precision</span></h3>
+        </div>
+        <div class="read">Utilisation matches peers. Unit economics gap is the issue.</div>
+      </div>
+      <div class="seg-grid">
+        <div class="seg-cell"><div class="metric">Dayrate</div><div class="dix"><span class="who">MIDIR · DRAVUS</span><span class="val">$40K</span></div><div class="pp"><span class="who">HP / Nabors</span><span class="val">$25–35K</span></div><div class="pp"><span class="who">MENA premium</span><span class="val">applies</span></div></div>
+        <div class="seg-cell lag"><div class="metric">NPT</div><div class="dix"><span class="who">MIDIR / DRAVUS</span><span class="val">6.9% / 3.3%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">~3.5%</span></div><div class="pp"><span class="who">HP · best</span><span class="val">~2.0%</span></div></div>
+        <div class="seg-cell lag"><div class="metric">Gross Margin</div><div class="dix"><span class="who">MIDIR / DRAVUS</span><span class="val">−10.7% / 23.5%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">29.0%</span></div><div class="pp"><span class="who">Precision · top</span><span class="val">32.6%</span></div></div>
+        <div class="seg-cell lag"><div class="metric">FTE / rig</div><div class="dix"><span class="who">MIDIR / DRAVUS</span><span class="val">72 / 66</span></div><div class="pp"><span class="who">Peer median</span><span class="val">~55</span></div><div class="pp"><span class="who">US-land · best</span><span class="val">~50</span></div></div>
+        <div class="seg-cell lag"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">MIDIR / DRAVUS</span><span class="val">~3% / ~2%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">~18%</span></div><div class="pp"><span class="who">Nabors · top</span><span class="val">23.0%</span></div></div>
+      </div>
+    </div>
+
+    <div class="segment-block platform reveal d4">
+      <div class="segment-head">
+        <div class="lhs">
+          <span class="seg-pill">Platform Rig</span>
+          <h3>LUG <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Helmerich &amp; Payne · Nabors · Precision</span></h3>
+        </div>
+        <div class="read">Full utilisation. NPT above peer benchmark — targeted improvement opportunity.</div>
+      </div>
+      <div class="seg-grid">
+        <div class="seg-cell"><div class="metric">Dayrate</div><div class="dix"><span class="who">LUG</span><span class="val">$70K</span></div><div class="pp"><span class="who">HP / Nabors</span><span class="val">$25–35K</span></div><div class="pp"><span class="who">Platform premium</span><span class="val">applies</span></div></div>
+        <div class="seg-cell lag"><div class="metric">NPT</div><div class="dix"><span class="who">LUG</span><span class="val">6.7%</span></div><div class="pp"><span class="who">HP · best</span><span class="val">~2.0%</span></div><div class="pp"><span class="who">Nabors</span><span class="val">~3.0%</span></div></div>
+        <div class="seg-cell"><div class="metric">Gross Margin</div><div class="dix"><span class="who">LUG</span><span class="val">~28%</span></div><div class="pp"><span class="who">HP</span><span class="val">29.3%</span></div><div class="pp"><span class="who">Precision · top</span><span class="val">32.6%</span></div></div>
+        <div class="seg-cell"><div class="metric">FTE / rig</div><div class="dix"><span class="who">LUG</span><span class="val">~55</span></div><div class="pp"><span class="who">Land norm</span><span class="val">50–60</span></div><div class="pp"><span class="who">Delta</span><span class="val">modest</span></div></div>
+        <div class="seg-cell lag"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">LUG</span><span class="val">~2.5%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">~15%</span></div><div class="pp"><span class="who">Nabors · top</span><span class="val">23.0%</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= 7 · IMPACTFUL ACTIONS ========================= -->
+  <section class="slide" data-title="Impactful Actions">
+    <div class="eyebrow reveal">07 · The Five Impactful Actions</div>
+    <h1 class="slide-title reveal">Where the data points to <em>actionable impact.</em></h1>
+
+    <div class="grid-2 reveal d1" style="gap:1.2rem;">
+
+      <div class="insight-card">
+        <div class="ic-eyebrow">01 · Standard Jack-Up · NPT</div>
+        <h3>Power generation &amp; BOP are the shared NPT culprit on both jack-ups.</h3>
+        <p class="body">BANBA (8.7%) and NUADA (5.8%) flag identical top-two equipment groups in 2025, excluding miscellaneous. Power Generation accounts for 21% of BANBA's NPT hours and 40% of NUADA's; BOP systems account for 11% and 26% respectively. Both rigs pointing at the same failure modes opens the door to a shared root-cause programme — common PM protocols, aligned spares strategy, and joint crew competency uplift — closing both rigs toward the 3–4% peer benchmark simultaneously. Recovery: 4–6 operating days per rig at $100K/day.</p>
+        <div class="stat-strip"><span><strong>~$2–3M/yr</strong>JU recovery</span><span><strong>9–12 mo</strong>horizon</span><span><strong>High</strong>feasibility</span></div>
+      </div>
+
+      <div class="insight-card">
+        <div class="ic-eyebrow">02 · Platform &amp; Land · NPT</div>
+        <h3>TDS is the dominant NPT driver across LUG and MIDIR.</h3>
+        <p class="body">LUG (6.7%) and MIDIR (6.9%) both show TDS as the primary NPT contributor in 2025: TDS accounts for 34% of LUG's NPT hours and 49% of MIDIR's. LUG's second contributor is the Pump (25%); MIDIR's second is the BOP (13%). A TDS-focused overhaul and preventive maintenance cycle — ideally coordinated across both assets — represents the single highest-impact intervention for this segment. Recovery: 3–5 operating days per rig annually.</p>
+        <div class="stat-strip"><span><strong>~$1–2M/yr</strong>platform &amp; land recovery</span><span><strong>9–12 mo</strong>horizon</span><span><strong>High</strong>feasibility</span></div>
+      </div>
+
+      <div class="insight-card">
+        <div class="ic-eyebrow">03 · Land · Strategic</div>
+        <h3>Address MIDIR's loss-making unit economics.</h3>
+        <p class="body">FY25 gross margin −10.7%; payroll 51.9%, O&amp;M 103.9% of revenue. Three options on the table: crew restructure, contract reprice, or rig reassignment. Single-rig P&amp;L swing of $3–4M.</p>
+        <div class="stat-strip"><span><strong>$3–4M/yr</strong>P&amp;L swing</span><span><strong>6–9 mo</strong>horizon</span><span><strong>Strategic</strong>decision</span></div>
+      </div>
+
+      <div class="insight-card">
+        <div class="ic-eyebrow">04 · Inventory · Working Capital</div>
+        <h3>Clear the $22.5M dead-stock position.</h3>
+        <p class="body">54% of total inventory locked in non-moving SKUs. Dead-stock is not cost-free or harmless to carry: it degrades cycle-count accuracy, consumes warehouse space, and pulls the materials team toward non-relevant items — precisely the conditions that erode stockout protection on the SKUs that actually matter. Industry practice is systematic clearance: bond-yard auction, SKU-level scrap policy, and cross-rig pooling. At minimum, off-site demobilisation to a town staging facility halts carrying-cost accumulation immediately and restores focus on active inventory management. Expected cash release: $10–15M over 12 months, plus elimination of recurring P&amp;L write-down risk.</p>
+        <div class="stat-strip"><span><strong>$10–15M</strong>cash release</span><span><strong>12 mo</strong>horizon</span><span><strong>Medium</strong>feasibility</span></div>
+      </div>
+
+      <div class="insight-card" style="grid-column:1/-1;">
+        <div class="ic-eyebrow">05 · Capital · Strategic Watch-Item</div>
+        <h3>Reinvestment cadence sits at the cohort floor.</h3>
+        <p class="body">CAPEX 4.07% of revenue vs peer median ~11% (Borr 4.6%, Shelf 9.4%, Nabors 23%). Critically, current spending is weighted toward equipment replacement rather than API recertification of existing assets — the inverse of industry practice. Peers prioritise API recertification to maintain equipment longevity, suppress NPT, and reduce replacement costs over the asset lifecycle; Dixstone's pattern suggests the opposite sequence — replacing equipment that recertification would have extended. Sustained underinvestment in recertification compounds into accelerating NPT, shortened useful life, and concentrated SPS-cycle exposure. Worth surfacing into the FY26 capital planning cycle.</p>
+        <div class="stat-strip"><span><strong>Strategic</strong>watch-item</span><span><strong>Multi-year</strong>horizon</span><span><strong>Policy</strong>decision</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================= 8 · NEXT STEPS ========================= -->
+  <section class="slide" data-title="Next Steps">
+    <div class="eyebrow reveal">08 · Next Steps</div>
+    <h1 class="slide-title reveal">From <em>insight</em> to <em>execution.</em></h1>
+
+    <ol class="insight-list reveal d1" style="max-width:1050px;">
+      <li>
+        <div class="num">01</div>
+        <div>
+          <h4>Standard JU NPT programme — BANBA &amp; NUADA · Power Generation &amp; BOP focus</h4>
+          <p>Shared root-cause review targeting Power Generation (BANBA 21%, NUADA 40%) and BOP (BANBA 11%, NUADA 26%) — the two common failure modes across both rigs in FY25. Joint PM schedule rebuild and spares alignment. Target: both rigs below 4% NPT by FY26 Q4.</p>
+        </div>
+      </li>
+      <li>
+        <div class="num">02</div>
+        <div>
+          <h4>Platform &amp; Land NPT programme — LUG &amp; MIDIR · TDS focus</h4>
+          <p>TDS-led intervention: TDS accounts for 34% of LUG NPT hours and 49% of MIDIR NPT hours in FY25. Coordinated TDS overhaul and preventive maintenance cycle across both assets. LUG Pump (25%) and MIDIR BOP (13%) addressed in parallel. Target: LUG and MIDIR below 4% NPT by FY26 Q4.</p>
+        </div>
+      </li>
+      <li>
+        <div class="num">03</div>
+        <div>
+          <h4>MIDIR options review</h4>
+          <p>Eight-week structured review of the three options (crew restructure / contract reprice / reassignment) with a financial model per scenario and a board-ready recommendation.</p>
+        </div>
+      </li>
+      <li>
+        <div class="num">04</div>
+        <div>
+          <h4>Inventory rationalisation programme</h4>
+          <p>Twelve-month execution. Bond-yard auction design, SKU-level scrap policy, cross-rig pooling protocol, monthly KPI cadence. As an immediate first step: off-site demobilisation of dead-stock to town staging facility to halt carrying-cost accumulation.</p>
+        </div>
+      </li>
+      <li>
+        <div class="num">05</div>
+        <div>
+          <h4>Quarterly peer-benchmarking refresh</h4>
+          <p>The benchmarking dataset refreshes against new peer disclosures each quarter. One executive readout per quarter — flagging deltas worth acting on.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ========================= 9 · CLOSING ========================= -->
+  <section class="slide closing" data-title="Close">
+    <div class="eyebrow reveal" style="margin-bottom:2rem;">09 · Closing</div>
+    <h1 class="reveal d1">Where Dixstone stands —<br>and <em>where the data points next.</em></h1>
+    <p class="closing-sub reveal d2">Operational signal on standard jack-up and land. Working-capital signal on inventory. A reinvestment watch-item on the balance sheet. Quantified, segment-matched, and traceable to source.</p>
+    <div class="closing-meta reveal d3">
+      <div>Prepared by<strong style="display:block;color:var(--text);font-weight:500;font-size:0.92rem;font-family:'Space Grotesk',sans-serif;margin-top:0.3rem;letter-spacing:0;text-transform:none;">Sigma Energy</strong></div>
+      <div>Dataset<strong style="display:block;color:var(--text);font-weight:500;font-size:0.92rem;font-family:'Space Grotesk',sans-serif;margin-top:0.3rem;letter-spacing:0;text-transform:none;">90 cells · 5 FYs</strong></div>
+      <div>Engagement<strong style="display:block;color:var(--text);font-weight:500;font-size:0.92rem;font-family:'Space Grotesk',sans-serif;margin-top:0.3rem;letter-spacing:0;text-transform:none;">QC25377</strong></div>
+    </div>
+  </section>
+
+
+  <!-- ========================= 10 · PART 2 DIVIDER ========================= -->
+  <section class="slide divider-slide" data-title="Part 2 · Deep-Dive">
+    <div class="eyebrow reveal" style="justify-content:center;">Part 2 of 3</div>
+    <h1 class="reveal d1">Internal <em>Deep-Dive</em><br>Benchmarking</h1>
+    <p class="reveal d2">Nine slides drilling into the four metrics that move the P&amp;L most — Purchase Orders, Goods Receipt &amp; Adjusted OPEX, Inventory, and Workforce — closing with a supply-chain coherence read. All figures sourced directly from SAP (ME2N · MB51 · MB52) and per-rig P&amp;L.</p>
+  </section>
+
+  <!-- ========================= 11 · PO · METHODOLOGY + ANNUAL ========================= -->
+  <section class="slide" data-title="PO · Methodology &amp; Annual">
+    <div class="eyebrow reveal">11 · Purchase Orders · Methodology &amp; Annual Profile · 2017–2025</div>
+    <h1 class="slide-title reveal">$283M of OPEX PO across the fleet.<br><em>~169k approved lines · 9 years.</em></h1>
+    <p class="lede reveal d1">Order-side view — what each rig committed to buy. Filters mirror the April 2026 internal analysis: ME2N extract, drilling-only scope, CMT and WIR purchase groups removed, project (CAPEX) POs excluded.</p>
+
+    <div class="mega-kpi reveal d2">
+      <div class="mk"><div class="mv">~169k</div><div class="ml">Approved PO lines · 2017–2025</div><div class="md">All rigs and material groups; DAGDA &amp; OGMA retained for unit-price reference.</div></div>
+      <div class="mk"><div class="mv">$13.7M</div><div class="ml">LUG · 2023 — highest single rig-year</div><div class="md">Cycle peak. Cameroon +$4.0M and Gabon +$3.2M in 2024–25.</div></div>
+      <div class="mk"><div class="mv">6 rigs</div><div class="ml">Fleet-wide ramp · 2018 → 2024</div><div class="md">From 2 rigs operating to 6 — fleet activity nearly tripled.</div></div>
+    </div>
+
+    <div class="grid-2 reveal d3" style="gap:1.1rem;">
+      <div class="card">
+        <span class="num-tag">Scope &amp; filters</span>
+        <h3>Drilling-only · non-project · 2017–2025.</h3>
+        <p>ME2N approved PO lines, excluding cementing (CMT) and wireline (WIR). Services POs excluded from this view; goods only. DAGDA decommissioned 2024 (zero OPEX PO). Country-base purchasing (Cameroon, Gabon) growing 2024 → 2025; RDC drops out.</p>
+      </div>
+      <div class="card">
+        <span class="num-tag">Activity denominator</span>
+        <h3>Operating days = Operations + Rig Move.</h3>
+        <p>The true denominator for daily-cost benchmarking. Rig moves &lt; 25 days/rig/year, included in the operating-day total. 6 rigs ≥ 360 operating days in 2024 — full-year utilisation.</p>
+      </div>
+    </div>
+
+    <div class="src-band reveal d4">
+      <strong>Source · </strong>SAP ME2N (PO history) + activity log 2017–2025 · <strong>Filters · </strong>drilling-only · CMT &amp; WIR removed · project POs excluded · <strong>Coverage · </strong>all rigs + central bases · DAGDA &amp; OGMA retained as price-reference only.
+    </div>
+  </section>
+
+  <!-- ========================= 12 · PO · DAILY 2025 ========================= -->
+  <section class="slide" data-title="PO · Daily 2025">
+    <div class="eyebrow reveal">12 · Daily PO per Rig · FY 2025 Insights</div>
+    <h1 class="slide-title reveal">AXIMA $37k/day buys 3× NUADA's $12k.<br><em>Jackup spread is wide once normalised.</em></h1>
+    <p class="lede reveal d1">Daily PO = annual non-project PO ÷ operating days. Land &amp; platform cluster tight at $21k — expected, but signal-clean. NUADA is the structural low — useful internal benchmark for jackup operations.</p>
+
+    <div class="reveal d2" style="margin-top:1.2rem;">
+      <div class="hbar-list">
+        <div class="hbar-row"><div class="hk">AXIMA <span style="font-size:0.72rem;color:var(--muted);display:block;">Premium JU</span></div>
+          <div class="ht"><div class="hf red" style="width:100%;">⚠ Highest in fleet</div></div>
+          <div class="hv">$37k/day<span class="sub">~$11.5M/yr</span></div></div>
+        <div class="hbar-row"><div class="hk">BANBA <span style="font-size:0.72rem;color:var(--muted);display:block;">Standard JU</span></div>
+          <div class="ht"><div class="hf standard" style="width:76%;">Trending down vs 2024 ($47k)</div></div>
+          <div class="hv">$28k/day<span class="sub">~$10.2M/yr</span></div></div>
+        <div class="hbar-row"><div class="hk">LUG <span style="font-size:0.72rem;color:var(--muted);display:block;">Platform</span></div>
+          <div class="ht"><div class="hf platform" style="width:57%;">Land/platform band</div></div>
+          <div class="hv">$21k/day<span class="sub">~$7.7M/yr</span></div></div>
+        <div class="hbar-row"><div class="hk">MIDIR <span style="font-size:0.72rem;color:var(--muted);display:block;">Land</span></div>
+          <div class="ht"><div class="hf land" style="width:57%;">Land/platform band</div></div>
+          <div class="hv">$21k/day<span class="sub">~$7.7M/yr</span></div></div>
+        <div class="hbar-row"><div class="hk">DRAVUS <span style="font-size:0.72rem;color:var(--muted);display:block;">Land</span></div>
+          <div class="ht"><div class="hf land" style="width:57%;">Land/platform band</div></div>
+          <div class="hv">$21k/day<span class="sub">~$7.7M/yr</span></div></div>
+        <div class="hbar-row"><div class="hk">NUADA <span style="font-size:0.72rem;color:var(--muted);display:block;">Standard JU</span></div>
+          <div class="ht"><div class="hf green" style="width:32%;">Structural low · fleet benchmark</div></div>
+          <div class="hv">$12k/day<span class="sub">~$4.4M/yr</span></div></div>
+      </div>
+    </div>
+
+    <div class="grid-3 reveal d3" style="margin-top:1.4rem;gap:1rem;">
+      <div class="card accent"><span class="num-tag">Premium JU outlier</span><h3>AXIMA $37k/day — 3× NUADA.</h3><p>Premium-jackup spec drives part of it, but the gap is too large to be only spec-driven. Mix of consumption intensity, project leakage, and ageing inventory replenishment.</p></div>
+      <div class="card"><span class="num-tag">Internal benchmark</span><h3>NUADA — settled, low-CAPEX steady-state.</h3><p>$12k/day is a clean internal target for jackup operations. Applying its protocol to BANBA alone would close ~$5–6M/yr.</p></div>
+      <div class="card"><span class="num-tag">Land &amp; platform cluster</span><h3>LUG · MIDIR · DRAVUS = $21k/day each.</h3><p>Tight band — but well above what their issue-out rate justifies (see Supply Chain Coherence slide).</p></div>
+    </div>
+
+    <div class="src-band reveal d4"><strong>Source · </strong>SAP ME2N 2025 · <strong>Filters · </strong>non-project PO · CMT &amp; WIR excluded · <strong>Denominator · </strong>operating days (Ops + Rig Move).</div>
+  </section>
+
+  <!-- ========================= 13 · GR · METHODOLOGY + ADJUSTED OPEX ========================= -->
+  <section class="slide" data-title="GR · Methodology &amp; Adjusted OPEX">
+    <div class="eyebrow reveal">13 · Goods Receipt · As-Booked vs Adjusted OPEX · 2020–2025</div>
+    <h1 class="slide-title reveal">$283M booked, $249M true.<br><em>$34.1M of CAPEX-misclassified items removed.</em></h1>
+    <p class="lede reveal d1">OPEX as-booked under-prices many GR movements because account-assignment is incomplete. We rebuilt unit prices from PO history (PO-history join). The $34.1M delta matches the CAPEX reclassification figure exactly — used as the cost-driver base, not as-booked.</p>
+
+    <div class="mega-kpi reveal d2">
+      <div class="mk"><div class="mv">$283M</div><div class="ml">As-booked OPEX · fleet 2020–2025</div><div class="md">$72.7M peak year (2024); DRAVUS $25.2M alone.</div></div>
+      <div class="mk"><div class="mv">−$34.1M</div><div class="ml">Reclassified to CAPEX</div><div class="md">Matches the CAPEX reclassification delta exactly.</div></div>
+      <div class="mk"><div class="mv">$249M</div><div class="ml">Adjusted OPEX (true) · 2020–2025</div><div class="md">Fleet-wide $24.4k/day after reclass — use this view.</div></div>
+    </div>
+
+    <div class="grid-2 reveal d3" style="gap:1.1rem;">
+      <div class="card">
+        <span class="num-tag">Methodology</span>
+        <h3>50,179 of 157,754 GR lines valued · 31.8% line coverage.</h3>
+        <p>Each GR line joined to the most-recent confirmed PO unit price for the same material; standard price retained as fallback only. Dollar coverage is materially higher than line coverage — the valued subset concentrates higher-value recurring items.</p>
+      </div>
+      <div class="card">
+        <span class="num-tag">Why two views</span>
+        <h3>The $34.1M difference is the CAPEX-reclassification basis.</h3>
+        <p>Use Adjusted OPEX for cost-driver analysis. As-booked overstates rig opex by 12% on average; in some rig-years (DRAVUS 2024) the gap is larger and obscures the true operating cost intensity.</p>
+      </div>
+    </div>
+
+    <div class="src-band reveal d4"><strong>Source · </strong>SAP MB51 (GR 2020–2025) + ME2N (price history) · <strong>Filters · </strong>all rigs &amp; central base · drilling-only · CMT &amp; WIR removed · <strong>Coverage · </strong>50,179 / 157,754 lines (31.8%).</div>
+  </section>
+
+  <!-- ========================= 14 · GR · DAILY OPEX 2025 ========================= -->
+  <section class="slide" data-title="Adjusted OPEX · Daily 2025">
+    <div class="eyebrow reveal">14 · Adjusted Daily OPEX per Rig · FY 2025 Insights</div>
+    <h1 class="slide-title reveal">DRAVUS &amp; AXIMA top out at $37k &amp; $34k.<br><em>NUADA $35k — high for a non-premium jackup.</em></h1>
+    <p class="lede reveal d1">Adjusted OPEX = booked OPEX − CAPEX-misclassified items. Daily = ÷ operating days. The picture every cost-driver and benchmarking metric should be built on.</p>
+
+    <div class="reveal d2" style="margin-top:1.2rem;">
+      <div class="hbar-list">
+        <div class="hbar-row"><div class="hk">DRAVUS <span style="font-size:0.72rem;color:var(--muted);display:block;">Land</span></div>
+          <div class="ht"><div class="hf red" style="width:100%;">⚠ Highest — small revenue base</div></div>
+          <div class="hv">$36.7k/day<span class="sub">~$13.3M/yr</span></div></div>
+        <div class="hbar-row"><div class="hk">NUADA <span style="font-size:0.72rem;color:var(--muted);display:block;">Standard JU</span></div>
+          <div class="ht"><div class="hf standard" style="width:96%;">⚠ High for non-premium JU</div></div>
+          <div class="hv">$35.3k/day<span class="sub">~$12.9M/yr</span></div></div>
+        <div class="hbar-row"><div class="hk">AXIMA <span style="font-size:0.72rem;color:var(--muted);display:block;">Premium JU</span></div>
+          <div class="ht"><div class="hf" style="width:92%;">Scale of operation</div></div>
+          <div class="hv">$33.8k/day<span class="sub">~$12.3M/yr</span></div></div>
+        <div class="hbar-row"><div class="hk">BANBA <span style="font-size:0.72rem;color:var(--muted);display:block;">Standard JU</span></div>
+          <div class="ht"><div class="hf standard" style="width:57%;">$34k → $21k YoY · normalising</div></div>
+          <div class="hv">$21.0k/day<span class="sub">~$7.7M/yr</span></div></div>
+        <div class="hbar-row"><div class="hk">MIDIR <span style="font-size:0.72rem;color:var(--muted);display:block;">Land</span></div>
+          <div class="ht"><div class="hf land" style="width:41%;">Clean platform/land band</div></div>
+          <div class="hv">$14.9k/day<span class="sub">~$5.4M/yr</span></div></div>
+        <div class="hbar-row"><div class="hk">LUG <span style="font-size:0.72rem;color:var(--muted);display:block;">Platform</span></div>
+          <div class="ht"><div class="hf platform" style="width:40%;">Clean platform/land band</div></div>
+          <div class="hv">$14.5k/day<span class="sub">~$5.3M/yr</span></div></div>
+      </div>
+    </div>
+
+    <div class="grid-3 reveal d3" style="margin-top:1.4rem;gap:1rem;">
+      <div class="card accent"><span class="num-tag">Two-tier fleet</span><h3>Jackups + DRAVUS cluster $33–37k. Platform &amp; remaining land $14–15k.</h3><p>BANBA's drop $34k → $21k is 2025 normalisation after a 2024 anomaly — watch for reversion.</p></div>
+      <div class="card"><span class="num-tag">NUADA red flag</span><h3>$35k/day — same band as AXIMA premium.</h3><p>Worth digging into spares mix and services intensity. The supply-side already showed NUADA's PO is low ($12k) — opex pressure is consumption-led, not buy-led.</p></div>
+      <div class="card"><span class="num-tag">DRAVUS optical issue</span><h3>$37k/day driven by small revenue base.</h3><p>Adjusted OPEX absolute is ~$13M — moderate; the daily rate is amplified by 353 short-cycle billable days at $40k. Read it with the P&amp;L.</p></div>
+    </div>
+
+    <div class="src-band reveal d4"><strong>Source · </strong>SAP MB51 (GR re-priced) − CAPEX reclassification · <strong>Filters · </strong>drilling-only · CMT &amp; WIR removed · <strong>Denominator · </strong>operating days (Ops + Rig Move).</div>
+  </section>
+
+  <!-- ========================= 15 · INVENTORY · LEVELS vs BRACKETS ========================= -->
+  <section class="slide" data-title="Inventory · Levels vs Brackets">
+    <div class="eyebrow reveal">15 · Inventory Levels per Rig vs Best-Practice Brackets · End-2025</div>
+    <h1 class="slide-title reveal">$41.5M fleet inventory.<br><em>$27M above the best-practice ceiling — every rig is over.</em></h1>
+    <p class="lede reveal d1">MB52 end-2025 snapshot. 16,427 of 28,385 distinct materials valued (57.9% — clean enough for analysis; high-dollar items over-represented in PO history). Drilling-only scope. NUADA carries the largest single excess at $9.3M above its bracket.</p>
+
+    <div class="mega-kpi reveal d2">
+      <div class="mk"><div class="mv">$41.5M</div><div class="ml">Total fleet inventory · end-2025</div><div class="md">Sampled rigs + bases. Gabon base alone holds $2.7M to be split across BANBA/NUADA.</div></div>
+      <div class="mk"><div class="mv">$27M</div><div class="ml">Above best-practice upper bound</div><div class="md">~66% of total inventory is excess vs the segment-matched bracket.</div></div>
+      <div class="mk"><div class="mv">6 / 6</div><div class="ml">Rigs over their bracket</div><div class="md">Structural — not a few exceptions.</div></div>
+    </div>
+
+    <div class="reveal d3" style="margin-top:0.8rem;">
+      <div class="hbar-list">
+        <div class="hbar-row"><div class="hk">NUADA <span style="font-size:0.72rem;color:var(--muted);display:block;">Standard JU · bracket $2.5–3.0M</span></div>
+          <div class="ht"><div class="hf red" style="width:100%;">⚠ Largest excess — $9.3M over bracket</div></div>
+          <div class="hv">$12.3M<span class="sub">~4× upper bound</span></div></div>
+        <div class="hbar-row"><div class="hk">BANBA <span style="font-size:0.72rem;color:var(--muted);display:block;">Standard JU · bracket $2.5–3.0M</span></div>
+          <div class="ht"><div class="hf red" style="width:73%;">⚠ $6.0M over bracket</div></div>
+          <div class="hv">$9.0M<span class="sub">3× upper bound</span></div></div>
+        <div class="hbar-row"><div class="hk">AXIMA <span style="font-size:0.72rem;color:var(--muted);display:block;">Premium JU · bracket $2.5–3.5M</span></div>
+          <div class="ht"><div class="hf" style="width:49%;">$2.5M over bracket</div></div>
+          <div class="hv">$6.0M<span class="sub">1.7× upper bound</span></div></div>
+        <div class="hbar-row"><div class="hk">LUG <span style="font-size:0.72rem;color:var(--muted);display:block;">Platform · bracket $0.4–0.6M</span></div>
+          <div class="ht"><div class="hf red platform" style="width:43%;background:linear-gradient(90deg,#b94656,var(--bad));">⚠ ~9× bracket</div></div>
+          <div class="hv">$5.3M<span class="sub">~9× upper bound</span></div></div>
+        <div class="hbar-row"><div class="hk">MIDIR <span style="font-size:0.72rem;color:var(--muted);display:block;">Land · bracket $0.4–0.6M</span></div>
+          <div class="ht"><div class="hf red" style="width:41%;">⚠ ~8× bracket</div></div>
+          <div class="hv">$5.0M<span class="sub">~8× upper bound</span></div></div>
+        <div class="hbar-row"><div class="hk">Gabon Base <span style="font-size:0.72rem;color:var(--muted);display:block;">Central · to split JU rigs</span></div>
+          <div class="ht"><div class="hf" style="width:22%;">Pending allocation</div></div>
+          <div class="hv">$2.7M<span class="sub">JU spares pool</span></div></div>
+        <div class="hbar-row"><div class="hk">HARIMA <span style="font-size:0.72rem;color:var(--muted);display:block;">Platform · newbuild</span></div>
+          <div class="ht"><div class="hf platform" style="width:9%;">Newbuild</div></div>
+          <div class="hv">$1.1M<span class="sub">73% dead at 1Y</span></div></div>
+      </div>
+    </div>
+
+    <div class="src-band reveal d4"><strong>Source · </strong>SAP MB52 end-2025 (re-priced via ME2N PO history) · <strong>Filters · </strong>drilling-only · CMT &amp; WIR removed · <strong>Coverage · </strong>16,427 / 28,385 lines (57.9%) · <strong>Note · </strong>GL inventory gap within 4% tolerance · DRAVUS held at Cameroon base (separate count).</div>
+  </section>
+
+  <!-- ========================= 16 · INVENTORY · DEAD STOCK ========================= -->
+  <section class="slide" data-title="Inventory · Dead Stock">
+    <div class="eyebrow reveal">16 · Dead Stock by Rig · 3-Year No-Movement Threshold · End-2025</div>
+    <h1 class="slide-title reveal">$22.5M dead stock — 54% of fleet inventory.<br><em>$18.1M truly dormant at the 5-year threshold.</em></h1>
+    <p class="lede reveal d1">Dead stock = no consumption movement over the indicated period. The red segment of each bar shows the 3-year dormant portion. Working capital tied up with no operational return — a recurring write-down risk, not a one-off.</p>
+
+    <div class="mega-kpi reveal d2">
+      <div class="mk"><div class="mv">$22.5M</div><div class="ml">Dead at 3-year threshold</div><div class="md">54.1% of total fleet inventory.</div></div>
+      <div class="mk"><div class="mv">$18.1M</div><div class="ml">Dead at 5-year threshold</div><div class="md">43.6% — truly dormant, write-down candidates.</div></div>
+      <div class="mk"><div class="mv">$10–15M</div><div class="ml">Cash release potential · 12-mo</div><div class="md">Bond-yard auction · SKU scrap policy · cross-rig pool.</div></div>
+    </div>
+
+    <div class="reveal d3" style="margin-top:1rem;">
+      <div class="hbar-list">
+        <div class="stk-row"><div class="skk">NUADA<span class="typ">Standard JU</span></div>
+          <div class="skt"><div class="stk-dead" style="width:57%;"></div><div class="stk-live" style="width:43%;"></div></div>
+          <div class="skv"><span class="total">$12.3M</span><br><span class="pct">57% dead</span></div></div>
+        <div class="stk-row"><div class="skk">BANBA<span class="typ">Standard JU</span></div>
+          <div class="skt" style="width:73%;"><div class="stk-dead" style="width:59%;"></div><div class="stk-live" style="width:41%;"></div></div>
+          <div class="skv"><span class="total">$9.0M</span><br><span class="pct">59% dead</span></div></div>
+        <div class="stk-row"><div class="skk">AXIMA<span class="typ">Premium JU</span></div>
+          <div class="skt" style="width:49%;"><div class="stk-dead" style="width:38%;"></div><div class="stk-live" style="width:62%;"></div></div>
+          <div class="skv"><span class="total">$6.0M</span><br><span class="pct" style="color:var(--sigma);">38% dead</span></div></div>
+        <div class="stk-row"><div class="skk">LUG<span class="typ">Platform</span></div>
+          <div class="skt" style="width:43%;"><div class="stk-dead" style="width:60%;"></div><div class="stk-live" style="width:40%;"></div></div>
+          <div class="skv"><span class="total">$5.3M</span><br><span class="pct">60% dead</span></div></div>
+        <div class="stk-row"><div class="skk">MIDIR<span class="typ">Land</span></div>
+          <div class="skt" style="width:41%;"><div class="stk-dead" style="width:40%;"></div><div class="stk-live" style="width:60%;"></div></div>
+          <div class="skv"><span class="total">$5.0M</span><br><span class="pct" style="color:var(--sigma);">40% dead</span></div></div>
+        <div class="stk-row"><div class="skk">Gabon Base<span class="typ">Central</span></div>
+          <div class="skt" style="width:22%;"><div class="stk-dead" style="width:65%;"></div><div class="stk-live" style="width:35%;"></div></div>
+          <div class="skv"><span class="total">$2.7M</span><br><span class="pct">65% dead</span></div></div>
+        <div class="stk-row"><div class="skk">HARIMA<span class="typ">Newbuild</span></div>
+          <div class="skt" style="width:9%;"><div class="stk-dead" style="width:73%;"></div><div class="stk-live" style="width:27%;"></div></div>
+          <div class="skv"><span class="total">$1.1M</span><br><span class="pct">73% dead</span></div></div>
+      </div>
+    </div>
+
+    <div class="grid-2 reveal d4" style="margin-top:1.4rem;gap:1rem;">
+      <div class="card accent"><span class="num-tag">Highest absolute</span><h3>NUADA &amp; BANBA — $12.3M of dead stock combined.</h3><p>Both standard JUs are running ~4× their bracket and ~58% of stock is dormant. NUADA represents the single largest cash-release opportunity in the fleet.</p></div>
+      <div class="card"><span class="num-tag">Composition caveat</span><h3>Capital items currently on the inventory line.</h3><p>A complete diesel engine is currently sitting on a rig's inventory line. Reclassify engines, large rotating equipment, BOP-grade components, and capital spares onto the capital-equipment register before re-running the bracket analysis.</p></div>
+    </div>
+
+    <div class="src-band reveal d4"><strong>Source · </strong>SAP MB52 end-2025 snapshot · <strong>Methodology · </strong>3Y / 5Y no-movement based on issue-out history · <strong>Recommendation · </strong>(1) reclassify capital items · (2) mandatory consumption-check before reorder · (3) cross-plant SAP visibility for transfers.</div>
+  </section>
+
+  <!-- ========================= 17 · PEOPLE · MANNING ========================= -->
+  <section class="slide" data-title="People · Manning &amp; Cost">
+    <div class="eyebrow reveal">17 · Workforce · Drilling-Crew Manning vs Industry Caps · FY 2025</div>
+    <h1 class="slide-title reveal">AXIMA &amp; BANBA over jackup cap.<br><em>MIDIR &amp; DRAVUS · expat cost double the land norm.</em></h1>
+    <p class="lede reveal d1">Rig-resident headcount per rig (day &amp; night shifts combined) vs industry max. Jackup cap ~96, platform/land cap 66. Expat cost as % of theoretical revenue is the second lever — the combination of overmanning and expat-loaded crew is what compresses gross margin.</p>
+
+    <div class="reveal d2" style="overflow-x:auto;">
+      <table class="bench-table">
+        <thead>
+          <tr>
+            <th>Rig</th>
+            <th>Type</th>
+            <th>Drilling Crew (rig-resident)</th>
+            <th>Industry max</th>
+            <th>Excess vs cap</th>
+            <th>Expat % of Theoretical Revenue</th>
+            <th>Flag</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="rig-name">AXIMA</span></td><td><span class="rig-type" style="color:var(--premium);">Premium JU</span></td><td>106</td><td>~96</td><td class="val-amber">+10</td><td>9.6%</td><td class="val-amber">Modest overmanning</td></tr>
+          <tr><td><span class="rig-name">HURSTGRA</span></td><td><span class="rig-type" style="color:var(--standard);">Jackup</span></td><td>94</td><td>~96</td><td class="val-green">−2</td><td>—</td><td class="val-green">At cap</td></tr>
+          <tr><td><span class="rig-name">NUADA</span></td><td><span class="rig-type" style="color:var(--standard);">Standard JU</span></td><td>96</td><td>~96</td><td class="val-green">at cap</td><td class="val-amber">13.9%</td><td class="val-amber">Expat-heavy</td></tr>
+          <tr><td><span class="rig-name">BANBA</span></td><td><span class="rig-type" style="color:var(--standard);">Standard JU</span></td><td>104</td><td>~96</td><td class="val-amber">+8</td><td>11.5%</td><td class="val-amber">Slight over · expat-loaded</td></tr>
+          <tr><td><span class="rig-name">LUG</span></td><td><span class="rig-type" style="color:var(--platform);">Platform</span></td><td>66</td><td>66</td><td class="val-green">at cap</td><td>9.8%</td><td class="val-green">In line</td></tr>
+          <tr><td><span class="rig-name">HARIMA</span></td><td><span class="rig-type" style="color:var(--platform);">Platform · NB</span></td><td>56</td><td>66</td><td class="val-green">−10</td><td>—</td><td class="val-green">Newbuild</td></tr>
+          <tr><td><span class="rig-name">MIDIR</span></td><td><span class="rig-type" style="color:var(--land);">Land</span></td><td>72</td><td>66</td><td class="val-red">+6</td><td class="val-red">16.2%</td><td class="val-red">⚠ Overmanning + expat overload</td></tr>
+          <tr><td><span class="rig-name">DRAVUS</span></td><td><span class="rig-type" style="color:var(--land);">Land</span></td><td>66</td><td>66</td><td class="val-green">at cap</td><td class="val-red">10.5%</td><td class="val-red">⚠ Expat overload</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-3 reveal d3" style="margin-top:1.4rem;gap:1rem;">
+      <div class="card accent"><span class="num-tag">Jackup overmanning</span><h3>AXIMA 106 / BANBA 104 vs cap 96.</h3><p>Modest excess (+10 / +8) but enough for a direct ~2% drag on gross margin given the bonus-loaded jackup expat rate. ~$0.8–1.0M annual recovery per rig.</p></div>
+      <div class="card"><span class="num-tag">Land · critical combination</span><h3>MIDIR &amp; DRAVUS — overmanning + expat overload.</h3><p>Both carrying 16% / 11% expat-cost as % of theoretical revenue — vs industry land norm &lt;8%. Combination explodes margin: MIDIR Adj RGM at −10.7%.</p></div>
+      <div class="card"><span class="num-tag">Industry benchmark</span><h3>Workforce 20–35% of revenue.</h3><p>Above 35%, gross margin can't realistically reach the 40% profitability threshold. MIDIR sits at 51.9% — structurally cannot reach profitability under current dayrate.</p></div>
+    </div>
+
+    <div class="src-band reveal d4"><strong>Source · </strong>Rig manning chart (drilling crew total) cross-checked with 2025 Workforce-cost lines and Expatriate-cost line as % of theoretical revenue · <strong>Caps · </strong>jackup max ~96, platform/land max 66 (rig-resident headcount, day &amp; night shifts combined).</div>
+  </section>
+
+  <!-- ========================= 18 · PEOPLE · ORGANIZATION ========================= -->
+  <section class="slide" data-title="People · Organization Evolution">
+    <div class="eyebrow reveal">18 · Workforce · Organizational Evolution for 7-Rig Steady State</div>
+    <h1 class="slide-title reveal">From early-stage to <em>classic drilling-contractor.</em></h1>
+    <p class="lede reveal d1">Today's structure fits an early-stage contractor with resource focus on projects and rig-fleet preparation. With 7 full-time rigs, the structure should evolve toward a classic drilling-contractor model — three dedicated heads added under the Technical Manager.</p>
+
+    <div class="org-grid reveal d2">
+      <div class="org-panel">
+        <div class="ohead">Current · Early-Stage Fit</div>
+        <h4>Project- &amp; Readiness-Heavy</h4>
+        <ul>
+          <li>Drilling Manager — direct reports:</li>
+          <li><strong>Fleet Readiness Manager</strong></li>
+          <li><strong>Operations Manager</strong></li>
+          <li><strong>Technical Support Manager</strong> (Electrical / Mech / Maintenance bundled)</li>
+          <li><strong>Projects Manager</strong> (multiple project teams)</li>
+          <li><strong>QHSE Manager</strong> · <strong>Cementing Operations Manager</strong></li>
+          <li><strong>Financial Controller</strong> · <strong>Doc Controller</strong> · single <strong>Buyer</strong></li>
+        </ul>
+        <div class="gap">Gaps for steady-state: no dedicated Drilling Supply Chain Manager · no dedicated Drilling Assets Manager · Maintenance bundled inside Tech Support · single Buyer under Finance, not SC leadership.</div>
+      </div>
+      <div class="org-panel future">
+        <div class="ohead">Recommended · Classic Drilling Contractor</div>
+        <h4>Aligned with 7-Rig Steady State</h4>
+        <ul>
+          <li>Add three dedicated heads under Technical Manager:</li>
+          <li><strong>Drilling Supply Chain Manager</strong> — owns ME2N, MB51, MB52, GR/IR, country-base material strategy</li>
+          <li><strong>Drilling Assets Manager</strong> — owns rig asset register, transfers, certification, life-cycle</li>
+          <li><strong>Maintenance Manager</strong> — owns CMMS, PM compliance, OEM-aligned routines (assets + maintenance reporting in)</li>
+          <li><strong>Projects Manager</strong> — kept distinct (engineering / capital projects)</li>
+        </ul>
+        <div class="gap">Reporting line: all four can report to a Technical Manager, provided each has a clear functional head. Some peers split Engineering &amp; Projects from Assets &amp; Maintenance — both models work at this fleet size.</div>
+      </div>
+    </div>
+
+    <div class="src-band reveal d3"><strong>Source · </strong>Current Dixstone organisation chart (Paris HQ + Field) · <strong>Calibration · </strong>peers operating 5–15 rig fleets (Borr, Shelf, Vantage).</div>
+  </section>
+
+  <!-- ========================= 19 · SUPPLY CHAIN COHERENCE ========================= -->
+  <section class="slide" data-title="Supply Chain Coherence">
+    <div class="eyebrow reveal">19 · Supply-Chain Coherence · OPEX vs PO vs Issue-Out · FY 2025</div>
+    <h1 class="slide-title reveal">Most rigs buy 4–8× what they consume.<br><em>Only AXIMA &amp; NUADA are near steady-state.</em></h1>
+    <p class="lede reveal d1">Adjusted OPEX tells the rig's total daily cost; PO = what's bought; Issue-Out = what's consumed. Together they answer: is the rig buying more than it consumes — and consuming more than its OPEX implies?</p>
+
+    <div class="reveal d2" style="overflow-x:auto;margin-top:1rem;">
+      <table class="bench-table">
+        <thead>
+          <tr><th>Rig</th><th>Adjusted OPEX/day</th><th>PO/day</th><th>Issue-Out/day</th><th>PO ÷ IO (×)</th><th>IO ÷ OPEX</th><th>Signal</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="rig-name">AXIMA</span><span class="rig-type" style="color:var(--premium);">Premium JU</span></td><td>$33.8k</td><td class="val-red">$37.0k</td><td>$22.5k</td><td class="val-green">1.6×</td><td class="val-green">67%</td><td class="val-green">Near steady-state · material-intensive</td></tr>
+          <tr><td><span class="rig-name">BANBA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td><td>$21.0k</td><td>$28.0k</td><td>$6.1k</td><td class="val-red">4.6×</td><td class="val-amber">29%</td><td class="val-red">⚠ Stockpiling signal</td></tr>
+          <tr><td><span class="rig-name">NUADA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td><td class="val-red">$35.3k</td><td class="val-green">$12.0k</td><td>$10.4k</td><td class="val-green">1.1×</td><td class="val-amber">30%</td><td class="val-amber">Near steady-state · but OPEX high</td></tr>
+          <tr><td><span class="rig-name">LUG</span><span class="rig-type" style="color:var(--platform);">Platform</span></td><td>$14.5k</td><td>$21.0k</td><td>$3.6k</td><td class="val-red">5.8×</td><td class="val-amber">25%</td><td class="val-red">⚠ Strong stockpiling</td></tr>
+          <tr><td><span class="rig-name">MIDIR</span><span class="rig-type" style="color:var(--land);">Land</span></td><td>$14.9k</td><td>$21.0k</td><td>$3.8k</td><td class="val-red">5.5×</td><td class="val-amber">26%</td><td class="val-red">⚠ Stockpiling · deepens loss</td></tr>
+          <tr><td><span class="rig-name">DRAVUS</span><span class="rig-type" style="color:var(--land);">Land</span></td><td class="val-red">$36.7k</td><td>$21.0k</td><td>$2.6k</td><td class="val-red">7.9×</td><td class="val-red">7%</td><td class="val-red">⚠ Highest ratio · labour/service-heavy</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2 reveal d3" style="margin-top:1.4rem;gap:1rem;">
+      <div class="card accent">
+        <span class="num-tag">Coherence read</span>
+        <h3>BANBA, LUG, MIDIR &amp; DRAVUS buy 4–8× more than they consume daily.</h3>
+        <p>Strong stockpiling signal — consistent with the dead-stock build-up. AXIMA is the only rig near steady-state (PO ≈ 1.6× IO) and the most material-intensive operation (IO = 67% of Adjusted OPEX). DRAVUS shows the opposite — IO is just 7% of Adjusted OPEX → labour-/service-heavy profile.</p>
+      </div>
+      <div class="card">
+        <span class="num-tag">Operating model lever</span>
+        <h3>Consumption-triggered replenishment + PO approval gate.</h3>
+        <p>The ratios above tell us the fleet's buying signal is decoupled from operational draw. Three combined steps close the gap: (1) min/max caps aligned with best-practice bracket, (2) past-consumption check at 6M/12M/3Y thresholds before reorder, (3) cross-plant SAP visibility so transfers happen before external POs.</p>
+      </div>
+    </div>
+
+    <div class="src-band reveal d4"><strong>Source · </strong>SAP MB51 (GR + IO, re-priced via ME2N PO history) + ME2N (PO) · <strong>Filters · </strong>drilling-only · CMT &amp; WIR removed · DAGDA &amp; HARIMA excluded (decommissioned / newbuild) · <strong>Denominator · </strong>operating days (Ops + Rig Move).</div>
+  </section>
+
+  <!-- ========================= 20 · PART 3 DIVIDER ========================= -->
+  <section class="slide divider-slide" data-title="Part 3 · Rig One-Pagers">
+    <div class="eyebrow reveal" style="justify-content:center;">Part 3 of 3</div>
+    <h1 class="reveal d1">Rig <em>One-Pagers</em></h1>
+    <p class="reveal d2">One slide per rig — key operating metrics, P&amp;L snapshot, supply chain position, and NPT equipment drivers. Six rigs: AXIMA · BANBA · NUADA · LUG · MIDIR · DRAVUS.</p>
+  </section>
+
+  <!-- ========================= 21 · AXIMA ONE-PAGER ========================= -->
+  <section class="slide onepager" data-title="AXIMA">
+    <div class="op-header reveal">
+      <div><span class="op-rig-name">AXIMA</span><span class="op-rig-type premium">Premium Jack-Up</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+    </div>
+    <div class="op-kpi-row reveal d1">
+      <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v amber">84.9%</div><div class="sub">310 / 365 days</div></div>
+      <div class="op-kpi"><div class="lbl">NPT</div><div class="v amber">2.7%</div><div class="sub">Top-quartile peer</div></div>
+      <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$39.2M</div><div class="sub">$130K/day · 301.6 bill. days</div></div>
+      <div class="op-kpi"><div class="lbl">Adj RGM</div><div class="v green">39.5%</div><div class="sub">$15.5M absolute</div></div>
+      <div class="op-kpi"><div class="lbl">People % Rev</div><div class="v amber">31.7%</div><div class="sub">$12.4M · 106 FTE</div></div>
+      <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$37K</div><div class="sub">1.6× buy-to-issue</div></div>
+    </div>
+    <div class="op-body reveal d2">
+      <div class="op-panel">
+        <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
+        <div class="prow"><span class="pk">Revenue</span><span class="pv">$39,210</span></div>
+        <div class="prow"><span class="pk">Workforce cost</span><span class="pv amber">$12,415 (31.7%)</span></div>
+        <div class="prow"><span class="pk">Spare parts GR</span><span class="pv">$5,930</span></div>
+        <div class="prow"><span class="pk">Adj Rig Gross Margin</span><span class="pv green">$15,504 (39.5%)</span></div>
+        <div class="prow"><span class="pk">Inventory (end-2025)</span><span class="pv">$6.0M</span></div>
+        <div class="prow"><span class="pk">Dead stock %</span><span class="pv amber">38%</span></div>
+        <div class="prow"><span class="pk">Annual PO (est.)</span><span class="pv red">~$11.5M</span></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">NPT Equipment Drivers · 2025 · (excl. Misc 7.1%)</div>
+        <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:52.4%"></div></div><span class="dpct">52.4%</span></div>
+        <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:16.9%"></div></div><span class="dpct">16.9%</span></div>
+        <div class="npt-driver"><span class="dk">Rig Crew</span><div class="dtrack"><div class="dfill" style="width:15.4%"></div></div><span class="dpct">15.4%</span></div>
+        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">Total NPT hours 2025</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">201.25 hrs</div>
+          <div style="font-size:0.82rem;color:var(--text2);margin-top:0.3rem;">BOP overhaul + TDS PM cycle = primary intervention. Total NPT hours lowest in fleet.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= 22 · BANBA ONE-PAGER ========================= -->
+  <section class="slide onepager" data-title="BANBA">
+    <div class="op-header reveal">
+      <div><span class="op-rig-name">BANBA</span><span class="op-rig-type standard">Standard Jack-Up</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+    </div>
+    <div class="op-kpi-row reveal d1">
+      <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
+      <div class="op-kpi"><div class="lbl">NPT</div><div class="v red">8.7%</div><div class="sub">Lagging peer median</div></div>
+      <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$33.3M</div><div class="sub">$100K/day · 333.2 bill. days</div></div>
+      <div class="op-kpi"><div class="lbl">Adj RGM</div><div class="v amber">36.3%</div><div class="sub">$12.1M absolute</div></div>
+      <div class="op-kpi"><div class="lbl">People % Rev</div><div class="v amber">33.7%</div><div class="sub">$11.2M · ~104 FTE</div></div>
+      <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$28K</div><div class="sub">4.6× buy-to-issue</div></div>
+    </div>
+    <div class="op-body reveal d2">
+      <div class="op-panel">
+        <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
+        <div class="prow"><span class="pk">Revenue</span><span class="pv">$33,321</span></div>
+        <div class="prow"><span class="pk">Workforce cost</span><span class="pv amber">$11,236 (33.7%)</span></div>
+        <div class="prow"><span class="pk">Spare parts GR</span><span class="pv">$3,743</span></div>
+        <div class="prow"><span class="pk">Adj Rig Gross Margin</span><span class="pv amber">$12,098 (36.3%)</span></div>
+        <div class="prow"><span class="pk">Inventory (end-2025)</span><span class="pv red">$9.0M</span></div>
+        <div class="prow"><span class="pk">Dead stock %</span><span class="pv red">59%</span></div>
+        <div class="prow"><span class="pk">Annual PO (est.)</span><span class="pv red">~$10.2M</span></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">NPT Equipment Drivers · 2025 · (excl. Misc 62.9%)</div>
+        <div class="npt-driver"><span class="dk">Power Generation</span><div class="dtrack"><div class="dfill" style="width:21%"></div></div><span class="dpct">21.0%</span></div>
+        <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:10.6%"></div></div><span class="dpct">10.6%</span></div>
+        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">Key observation</div>
+          <div style="font-size:0.88rem;color:var(--text2);line-height:1.5;">Shares same top-2 failure modes as NUADA (PowGen + BOP). Joint root-cause programme is the most efficient path. Manning is above rig design cap (~96) — crew optimisation study recommended alongside NPT programme. Recovery: 4–6 billable days × $100K = $400–600K annually.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= 23 · NUADA ONE-PAGER ========================= -->
+  <section class="slide onepager" data-title="NUADA">
+    <div class="op-header reveal">
+      <div><span class="op-rig-name">NUADA</span><span class="op-rig-type standard">Standard Jack-Up</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+    </div>
+    <div class="op-kpi-row reveal d1">
+      <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
+      <div class="op-kpi"><div class="lbl">NPT</div><div class="v red">5.8%</div><div class="sub">Lagging peer median</div></div>
+      <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$34.4M</div><div class="sub">$100K/day · 343.7 bill. days</div></div>
+      <div class="op-kpi"><div class="lbl">Adj RGM</div><div class="v amber">41.1%</div><div class="sub">$14.1M absolute</div></div>
+      <div class="op-kpi"><div class="lbl">People % Rev</div><div class="v green">30.0%</div><div class="sub">$10.3M · ~90 FTE</div></div>
+      <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v green">$12K</div><div class="sub">1.2× buy-to-issue · fleet best</div></div>
+    </div>
+    <div class="op-body reveal d2">
+      <div class="op-panel">
+        <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
+        <div class="prow"><span class="pk">Revenue</span><span class="pv">$34,374</span></div>
+        <div class="prow"><span class="pk">Workforce cost</span><span class="pv green">$10,309 (30.0%)</span></div>
+        <div class="prow"><span class="pk">Spare parts GR</span><span class="pv">$3,435</span></div>
+        <div class="prow"><span class="pk">Adj Rig Gross Margin</span><span class="pv amber">$14,141 (41.1%)</span></div>
+        <div class="prow"><span class="pk">Inventory (end-2025)</span><span class="pv red">$12.3M</span></div>
+        <div class="prow"><span class="pk">Dead stock %</span><span class="pv red">57%</span></div>
+        <div class="prow"><span class="pk">Annual PO (est.)</span><span class="pv green">~$4.4M</span></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">NPT Equipment Drivers · 2025 · (excl. Misc 17.9%)</div>
+        <div class="npt-driver"><span class="dk">Power Generation</span><div class="dtrack"><div class="dfill" style="width:39.9%"></div></div><span class="dpct">39.9%</span></div>
+        <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:26.2%"></div></div><span class="dpct">26.2%</span></div>
+        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">Key observation</div>
+          <div style="font-size:0.88rem;color:var(--text2);line-height:1.5;">Best supply chain discipline in the fleet ($12K/day PO, 1.2× ratio). Inventory is the anomaly — $12.3M stock with 57% dead. Shared NPT failure modes with BANBA (PowGen 40%, BOP 26%). Inventory rationalisation programme could release $9.3M vs the $3.0M best-practice bracket. This rig should be the supply chain benchmark for the fleet.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= 24 · LUG ONE-PAGER ========================= -->
+  <section class="slide onepager" data-title="LUG">
+    <div class="op-header reveal">
+      <div><span class="op-rig-name">LUG</span><span class="op-rig-type platform">Platform Rig</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+    </div>
+    <div class="op-kpi-row reveal d1">
+      <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
+      <div class="op-kpi"><div class="lbl">NPT</div><div class="v red">6.7%</div><div class="sub">Above peer benchmark</div></div>
+      <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$23.8M</div><div class="sub">$70K/day · 340.5 bill. days</div></div>
+      <div class="op-kpi"><div class="lbl">Adj RGM</div><div class="v amber">37.1%</div><div class="sub">$8.8M absolute</div></div>
+      <div class="op-kpi"><div class="lbl">People % Rev</div><div class="v amber">32.0%</div><div class="sub">$7.6M · ~55 FTE</div></div>
+      <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$21K</div><div class="sub">5.8× buy-to-issue</div></div>
+    </div>
+    <div class="op-body reveal d2">
+      <div class="op-panel">
+        <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
+        <div class="prow"><span class="pk">Revenue</span><span class="pv">$23,834</span></div>
+        <div class="prow"><span class="pk">Workforce cost</span><span class="pv amber">$7,637 (32.0%)</span></div>
+        <div class="prow"><span class="pk">Spare parts GR</span><span class="pv">$3,085</span></div>
+        <div class="prow"><span class="pk">Adj Rig Gross Margin</span><span class="pv amber">$8,842 (37.1%)</span></div>
+        <div class="prow"><span class="pk">Inventory (end-2025)</span><span class="pv red">$5.3M</span></div>
+        <div class="prow"><span class="pk">Dead stock %</span><span class="pv red">60%</span></div>
+        <div class="prow"><span class="pk">Annual PO (est.)</span><span class="pv red">~$7.7M</span></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">NPT Equipment Drivers · 2025 · (excl. Misc 7.1%)</div>
+        <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:34%"></div></div><span class="dpct">34.0%</span></div>
+        <div class="npt-driver"><span class="dk">Pump</span><div class="dtrack"><div class="dfill" style="width:25.1%"></div></div><span class="dpct">25.1%</span></div>
+        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">Key observation</div>
+          <div style="font-size:0.88rem;color:var(--text2);line-height:1.5;">Platform premium dayrate ($70K) already 2× US land peers. TDS and Pump are the primary NPT drivers — coordinated overhaul with MIDIR (TDS-focus) is the efficient path. Inventory $5.3M is 8–9× the $0.6M best-practice bracket for a platform rig. Highest PO-to-issue ratio in class (5.8×) — purchasing protocol review required immediately.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= 25 · MIDIR ONE-PAGER ========================= -->
+  <section class="slide onepager" data-title="MIDIR">
+    <div class="op-header reveal">
+      <div><span class="op-rig-name">MIDIR</span><span class="op-rig-type land">Land Rig</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+    </div>
+    <div class="op-kpi-row reveal d1">
+      <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
+      <div class="op-kpi"><div class="lbl">NPT</div><div class="v red">6.9%</div><div class="sub">Above peer benchmark</div></div>
+      <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$13.6M</div><div class="sub">$40K/day · 339.8 bill. days</div></div>
+      <div class="op-kpi"><div class="lbl">Adj RGM</div><div class="v red">−10.7%</div><div class="sub">−$1.4M absolute</div></div>
+      <div class="op-kpi"><div class="lbl">People % Rev</div><div class="v red">51.9%</div><div class="sub">$7.1M · ~72 FTE</div></div>
+      <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$21K</div><div class="sub">5.5× buy-to-issue</div></div>
+    </div>
+    <div class="op-body reveal d2">
+      <div class="op-panel">
+        <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
+        <div class="prow"><span class="pk">Revenue</span><span class="pv">$13,593</span></div>
+        <div class="prow"><span class="pk">Workforce cost</span><span class="pv red">$7,054 (51.9%)</span></div>
+        <div class="prow"><span class="pk">Spare parts GR</span><span class="pv">$3,472</span></div>
+        <div class="prow"><span class="pk">Adj Rig Gross Margin</span><span class="pv red">−$1,449 (−10.7%)</span></div>
+        <div class="prow"><span class="pk">Inventory (end-2025)</span><span class="pv amber">$5.0M</span></div>
+        <div class="prow"><span class="pk">Dead stock %</span><span class="pv amber">40%</span></div>
+        <div class="prow"><span class="pk">Annual PO (est.)</span><span class="pv red">~$7.7M</span></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">NPT Equipment Drivers · 2025 · (excl. Misc 9.1%)</div>
+        <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:49.1%"></div></div><span class="dpct">49.1%</span></div>
+        <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:12.5%"></div></div><span class="dpct">12.5%</span></div>
+        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">⚠ Critical — loss-making at FY25 economics</div>
+          <div style="font-size:0.88rem;color:var(--text2);line-height:1.5;">−10.7% gross margin. Payroll alone (51.9%) exceeds what the dayrate can absorb at $40K/day. Expat labour estimated at ~16% of revenue vs industry norm &lt;8%. Three-option review: crew restructure / contract reprice / rig reassignment. TDS overhaul (49% of NPT) is the highest-impact operational intervention — recovers ~$1.0M at $40K/day.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= 26 · DRAVUS ONE-PAGER ========================= -->
+  <section class="slide onepager" data-title="DRAVUS">
+    <div class="op-header reveal">
+      <div><span class="op-rig-name">DRAVUS</span><span class="op-rig-type land">Land Rig</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+    </div>
+    <div class="op-kpi-row reveal d1">
+      <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
+      <div class="op-kpi"><div class="lbl">NPT</div><div class="v amber">3.3%</div><div class="sub">Near peer benchmark</div></div>
+      <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$14.1M</div><div class="sub">$40K/day · 353.1 bill. days</div></div>
+      <div class="op-kpi"><div class="lbl">Adj RGM</div><div class="v amber">23.5%</div><div class="sub">$3.3M absolute</div></div>
+      <div class="op-kpi"><div class="lbl">People % Rev</div><div class="v red">40.9%</div><div class="sub">$5.8M · ~66 FTE</div></div>
+      <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$21K</div><div class="sub">8.1× buy-to-issue · fleet high</div></div>
+    </div>
+    <div class="op-body reveal d2">
+      <div class="op-panel">
+        <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
+        <div class="prow"><span class="pk">Revenue</span><span class="pv">$14,125</span></div>
+        <div class="prow"><span class="pk">Workforce cost</span><span class="pv red">$5,779 (40.9%)</span></div>
+        <div class="prow"><span class="pk">Spare parts GR</span><span class="pv">$3,269</span></div>
+        <div class="prow"><span class="pk">Adj Rig Gross Margin</span><span class="pv amber">$3,325 (23.5%)</span></div>
+        <div class="prow"><span class="pk">Inventory (end-2025)</span><span class="pv amber">TBD — Cameroon base</span></div>
+        <div class="prow"><span class="pk">Dead stock %</span><span class="pv amber">TBD</span></div>
+        <div class="prow"><span class="pk">Annual PO (est.)</span><span class="pv red">~$7.7M</span></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">NPT Equipment Drivers · 2025 · (excl. Misc ~38.1%)</div>
+        <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:26.7%"></div></div><span class="dpct">26.7%</span></div>
+        <div class="npt-driver"><span class="dk">Drawworks</span><div class="dtrack"><div class="dfill" style="width:10.1%"></div></div><span class="dpct">10.1%</span></div>
+        <div class="npt-driver"><span class="dk">Rig Floor</span><div class="dtrack"><div class="dfill" style="width:8.5%"></div></div><span class="dpct">8.5%</span></div>
+        <div class="npt-driver"><span class="dk">Power Generation</span><div class="dtrack"><div class="dfill" style="width:7.5%"></div></div><span class="dpct">7.5%</span></div>
+        <div style="margin-top:0.7rem;padding-top:0.6rem;border-top:1px solid var(--border2);">
+          <div style="font-size:0.88rem;color:var(--text2);line-height:1.5;">Best NPT in land segment (3.3%). Supply chain is the concern: 8.1× buy-to-issue is the fleet's highest ratio. Inventory held at Cameroon base — not in fleet MB52 extract; separate count required. Expat labour ~11% of revenue vs &lt;8% norm — people cost reduction is the margin lever here.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const navDots = document.getElementById('nav-dots');
+  const header = document.getElementById('deck-header');
+  const pageNow = document.getElementById('page-now');
+  const progressBar = document.getElementById('progress-bar');
+
+  slides.forEach((s, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot';
+    dot.dataset.idx = i;
+    dot.innerHTML = `<span class="tip">${String(i+1).padStart(2,'0')} · ${s.dataset.title || ''}</span>`;
+    dot.addEventListener('click', () => s.scrollIntoView({ behavior:'smooth', block:'start' }));
+    navDots.appendChild(dot);
+  });
+  const dots = Array.from(navDots.querySelectorAll('.nav-dot'));
+
+  const slideObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const idx = slides.indexOf(e.target);
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      pageNow.textContent = String(idx + 1).padStart(2, '0');
+      header.classList.toggle('show', idx > 0);
+    });
+  }, { threshold: 0.5 });
+  slides.forEach(s => slideObserver.observe(s));
+
+  function updateProgress() {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = max <= 0 ? 0 : Math.min(100, (window.scrollY / max) * 100);
+    progressBar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive:true });
+  updateProgress();
+
+  document.addEventListener('keydown', (e) => {
+    const cur = dots.findIndex(d => d.classList.contains('active'));
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+      e.preventDefault();
+      slides[Math.min(slides.length - 1, cur + 1)]?.scrollIntoView({ behavior:'smooth', block:'start' });
+    } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+      e.preventDefault();
+      slides[Math.max(0, cur - 1)]?.scrollIntoView({ behavior:'smooth', block:'start' });
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      slides[0]?.scrollIntoView({ behavior:'smooth' });
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      slides[slides.length - 1]?.scrollIntoView({ behavior:'smooth' });
+    }
+  });
+</script>
+
+</body>
+</html>
+<script async data-explicit-opt-in="true" data-deployment-id="dpl_9cbWgZu9sTwwxKXMvkjEdJVUKqGw" src="https://vercel.live/_next-live/feedback/feedback.js"></script>

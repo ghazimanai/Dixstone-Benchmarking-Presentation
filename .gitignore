@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# OS / Editor
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# SAP / source data — must NEVER be committed
+*.xlsx
+*.xlsm
+*.csv
+*.tsv
+*.pptx
+
+# Python build scripts (kept locally only)
+*.py
+__pycache__/
+.venv/
+venv/
+
+# Backup / scratch
+*~
+*.bak
+*.orig

@@ -249,6 +249,8 @@
   .seg-cell .pp .val{color:var(--text2);font-weight:500;}
   .seg-cell.lead .val{color:var(--good) !important;}
   .seg-cell.lag .val{color:var(--bad) !important;}
+  .seg-cell.close{position:relative;}
+  .seg-cell.close .val{color:var(--sigma) !important;}
 
   /* Pillar cards */
   .framework{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;}
@@ -2417,12 +2419,12 @@
           <span class="seg-pill">Premium Jack-Up</span>
           <h3>AXIMA <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Borr · ADNOC · ADES · Valaris-JU · Velesto</span></h3>
         </div>
-        <div class="read">Reliability leads the segment. Strongest operational position in the fleet.</div>
+        <div class="read">Reliability leads the segment. RDM <strong>only −7.2pp from peer median</strong> — bridgeable via spare-parts discipline + cert/PM uplift.</div>
       </div>
       <div class="seg-grid">
         <div class="seg-cell"><div class="metric">Dayrate</div><div class="dix"><span class="who">AXIMA</span><span class="val">$130K</span></div><div class="pp"><span class="who">Peer median</span><span class="val">$130K</span></div><div class="pp"><span class="who">Borr · top</span><span class="val">$150K</span></div></div>
         <div class="seg-cell lead"><div class="metric">NPT</div><div class="dix"><span class="who">AXIMA</span><span class="val">2.7%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">3.0%</span></div><div class="pp"><span class="who">ADES · best</span><span class="val">1.5%</span></div></div>
-        <div class="seg-cell lag"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">AXIMA</span><span class="val">39.5%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">46.7%</span></div><div class="pp"><span class="who">ADES · top</span><span class="val">60.7%</span></div></div>
+        <div class="seg-cell close"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">AXIMA</span><span class="val">39.5%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">46.7%</span></div><div class="pp"><span class="who">Gap vs median</span><span class="val">−7.2 pp</span></div></div>
         <div class="seg-cell"><div class="metric">FTE / rig</div><div class="dix"><span class="who">AXIMA</span><span class="val">106</span></div><div class="pp"><span class="who">Jackup cap</span><span class="val">~96</span></div><div class="pp"><span class="who">Crew delta</span><span class="val">+10</span></div></div>
         <div class="seg-cell"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">AXIMA · 2025</span><span class="val">6.1%</span></div><div class="pp"><span class="who">5Y avg (2021–25)</span><span class="val">4.6%</span></div><div class="pp"><span class="who">Δ vs 5Y</span><span class="val">+1.5 pp</span></div></div>
       </div>
@@ -2434,12 +2436,12 @@
           <span class="seg-pill">Standard Jack-Up</span>
           <h3>BANBA &amp; NUADA <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Shelf · Valaris · ADES</span></h3>
         </div>
-        <div class="read">Dayrate sits in the peer range. NPT, crew over-manning and the deepest CAPEX under-investment in the fleet are the operational gaps.</div>
+        <div class="read">Dayrate sits in the peer range. RDM <strong>only −6.6pp (BANBA) and −1.8pp (NUADA) from peer median</strong> — closing the NPT gap alone covers most of the delta. NUADA effectively at peer median already.</div>
       </div>
       <div class="seg-grid">
         <div class="seg-cell lead"><div class="metric">Dayrate</div><div class="dix"><span class="who">BANBA · NUADA</span><span class="val">$100K</span></div><div class="pp"><span class="who">Shelf · FY25</span><span class="val">$83K</span></div><div class="pp"><span class="who">Valaris JU · FY25</span><span class="val">$138K</span></div></div>
         <div class="seg-cell lag"><div class="metric">NPT</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">8.7% / 5.8%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">3.0%</span></div><div class="pp"><span class="who">Shelf · best</span><span class="val">0.6%</span></div></div>
-        <div class="seg-cell lag"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">36.3% / 41.1%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">42.9%</span></div><div class="pp"><span class="who">Velesto · top</span><span class="val">49.0%</span></div></div>
+        <div class="seg-cell close"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">36.3% / 41.1%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">42.9%</span></div><div class="pp"><span class="who">Gap vs median</span><span class="val">−6.6 / −1.8 pp</span></div></div>
         <div class="seg-cell lag"><div class="metric">FTE / rig</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">104 / 96</span></div><div class="pp"><span class="who">Peer median</span><span class="val">~85</span></div><div class="pp"><span class="who">Industry cap · best</span><span class="val">~75</span></div></div>
         <div class="seg-cell"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">BANBA / NUADA · 2025</span><span class="val">3.6% / 2.6%</span></div><div class="pp"><span class="who">5Y avg (2021–25)</span><span class="val">3.4% / 6.0%</span></div><div class="pp"><span class="who">Δ vs 5Y</span><span class="val">+0.2 / −3.4 pp</span></div></div>
       </div>

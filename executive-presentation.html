@@ -1044,82 +1044,122 @@
     </div>
   </section>
 
-  <!-- ========================= 8 · GR · METHODOLOGY + ADJUSTED OPEX ========================= -->
-  <section class="slide" data-title="OPEX GR · As-Booked vs Adjusted 2021-2025">
-    <div class="eyebrow reveal">08 · OPEX Goods Receipt · As-Booked vs Adjusted · 2021–2025</div>
-    <h1 class="slide-title reveal">$283M booked, $249M true.<br><em>$34.1M of CAPEX-misclassified items removed.</em></h1>
-    <p class="lede reveal d1">OPEX as-booked under-prices many GR movements because account-assignment is incomplete. We rebuilt unit prices from PO history (PO-history join). The $34.1M delta matches the CAPEX reclassification figure exactly — used as the cost-driver base, not as-booked.</p>
+  <!-- ========================= 8 · GR · FLEET TRAJECTORY 2021-2025 ========================= -->
+  <section class="slide" data-title="GR · Fleet Trajectory 2021-2025">
+    <div class="eyebrow reveal">08 · Equivalent PO OPEX GR · Fleet Trajectory · 2021–2025</div>
+    <h1 class="slide-title reveal">Fleet GR jumped <em>+46% YoY</em> to $64.5M in 2025 —<br>first time crossing <em>40% of revenue</em> in 5 years.</h1>
+    <p class="lede reveal d1">P&amp;L-derived Equivalent PO OPEX GR (Dixstone_P&amp;L tab row 40) — captures total externally-procured OPEX spend including services and reclassed-CAPEX items. Cleaner than MB51 transaction aggregation: audited, complete, and matches the economic measure used by finance. Fleet GR ran 32–34% of revenue 2021–2024 then jumped to 40.7% in 2025 — concentrated on AXIMA, MIDIR, DRAVUS.</p>
 
     <div class="mega-kpi reveal d2">
-      <div class="mk"><div class="mv">$283M</div><div class="ml">As-booked OPEX · fleet 2021–2025</div><div class="md">$72.7M peak year (2024); DRAVUS $25.2M alone.</div></div>
-      <div class="mk"><div class="mv">−$34.1M</div><div class="ml">Reclassified to CAPEX</div><div class="md">Matches the CAPEX reclassification delta exactly.</div></div>
-      <div class="mk"><div class="mv">$249M</div><div class="ml">Adjusted OPEX (true) · 2021–2025</div><div class="md">Fleet-wide $24.4k/day after reclass — use this view.</div></div>
+      <div class="mk"><div class="mv">$64.5M</div><div class="ml">Fleet GR · FY 2025</div><div class="md">40.7% of theoretical revenue · highest GR-intensity in 5 years</div></div>
+      <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">+46%</div><div class="ml">YoY 2024 → 2025</div><div class="md">$44.0M → $64.5M · +$20.5M in a single year · +8pp of revenue</div></div>
+      <div class="mk"><div class="mv">$213.8M</div><div class="ml">5-year cumulative · 2021–2025</div><div class="md">$27.3M (2021) → $64.5M (2025) · 2.4× growth · revenue grew 2.0× over same period</div></div>
     </div>
 
-    <div class="grid-2 reveal d3" style="gap:1.1rem;">
-      <div class="card">
-        <span class="num-tag">Methodology</span>
-        <h3>50,179 of 157,754 GR lines valued · 31.8% line coverage.</h3>
-        <p>Each GR line joined to the most-recent confirmed PO unit price for the same material; standard price retained as fallback only. Dollar coverage is materially higher than line coverage — the valued subset concentrates higher-value recurring items.</p>
+    <div class="reveal d3" style="overflow-x:auto;margin-top:1.1rem;">
+      <table class="bench-table" style="font-size:0.84rem;">
+        <thead>
+          <tr><th>$M GR · per rig</th><th>2025</th><th>2024</th><th>Δ 24→25</th><th>2023</th><th>2022</th><th>2021</th><th>5Y total</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="rig-name">AXIMA</span><span class="rig-type" style="color:var(--premium);">Premium JU</span></td>
+            <td>$14.9M · 37.9%</td><td>$9.8M · 22.2%</td><td class="val-red"><strong>+52% · +15.7pp</strong></td><td>$8.1M · 21.4%</td><td>$1.4M</td><td>—</td><td><strong>$34.2M</strong></td></tr>
+          <tr><td><span class="rig-name">BANBA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td>
+            <td>$11.2M · 33.5%</td><td>$9.6M · 40.9%</td><td class="val-green"><strong>+16% · −7.4pp</strong></td><td>$7.4M · 28.2%</td><td>$6.3M · 24.0%</td><td>$5.8M · 35.3%</td><td><strong>$40.3M</strong></td></tr>
+          <tr><td><span class="rig-name">NUADA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td>
+            <td>$9.5M · 27.7%</td><td>$8.5M · 28.2%</td><td class="val-green"><strong>+13% · −0.5pp</strong></td><td>$10.2M · 60.7%</td><td>$10.1M · 41.2%</td><td>$6.3M · 61.1%</td><td><strong>$44.7M</strong></td></tr>
+          <tr><td><span class="rig-name">LUG</span><span class="rig-type" style="color:var(--platform);">Platform</span></td>
+            <td>$7.3M · 30.8%</td><td>$4.5M · 34.9%</td><td class="val-green"><strong>+63% · −4.1pp</strong></td><td>$6.2M · 29.3%</td><td>$4.5M · 24.1%</td><td>$5.6M · 32.5%</td><td><strong>$28.2M</strong></td></tr>
+          <tr><td><span class="rig-name">MIDIR</span><span class="rig-type" style="color:var(--land);">Land</span></td>
+            <td class="val-red"><strong>$10.1M · 74.1%</strong></td><td>$4.9M · 42.1%</td><td class="val-red"><strong>+103% · +32.0pp</strong></td><td>$6.4M · 48.8%</td><td>$3.8M · 37.7%</td><td>$4.6M · 41.8%</td><td><strong>$29.8M</strong></td></tr>
+          <tr><td><span class="rig-name">DRAVUS</span><span class="rig-type" style="color:var(--land);">Land</span></td>
+            <td class="val-red"><strong>$10.5M · 74.2%</strong></td><td>$6.4M · 51.7%</td><td class="val-red"><strong>+64% · +22.5pp</strong></td><td>$4.1M · 33.5%</td><td>$2.8M · 38.2%</td><td>$0.4M</td><td><strong>$24.2M</strong></td></tr>
+          <tr style="background:rgba(232,160,32,0.08);font-weight:600;border-top:2px solid var(--border3);">
+            <td><strong>FLEET</strong></td><td><strong>$64.5M · 40.7%</strong></td><td>$44.0M · 32.7%</td><td class="val-red"><strong>+46% · +8.0pp</strong></td><td>$43.4M · 34.0%</td><td>$34.6M · 32.1%</td><td>$27.3M · 34.3%</td><td><strong>$213.8M</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2 reveal d4" style="margin-top:1rem;gap:1rem;">
+      <div class="card accent" style="border-left-color:var(--bad);">
+        <span class="num-tag" style="color:var(--bad);">Land rigs · structural deterioration</span>
+        <h3>MIDIR + DRAVUS together spent <strong>$20.6M on GR</strong> in 2025 — 74% of their combined $27.7M revenue.</h3>
+        <p>Both rigs doubled their GR YoY. MIDIR went from 42% to 74% of revenue (+32pp). DRAVUS from 52% to 74% (+22pp). At this intensity, no margin recovery is possible without compressing GR — confirms the cost-side intervention story on slides 23 and 43.</p>
       </div>
       <div class="card">
-        <span class="num-tag">Why two views</span>
-        <h3>The $34.1M difference is the CAPEX-reclassification basis.</h3>
-        <p>Use Adjusted OPEX for cost-driver analysis. As-booked overstates rig opex by 12% on average; in some rig-years (DRAVUS 2024) the gap is larger and obscures the true operating cost intensity.</p>
+        <span class="num-tag" style="color:var(--good);">Standard JU · BANBA + NUADA normalising</span>
+        <h3>Both saw GR-intensity drop YoY: BANBA <strong>−7.4pp</strong>, NUADA <strong>−0.5pp</strong>.</h3>
+        <p>Combined 2025 GR $20.6M = 30.7% of their $67.7M revenue. Tracking toward Premium-JU peer band of ~25%. Counter-narrative to the MB51 view which had flagged NUADA as a "red flag" at $35k/day — on the P&amp;L basis, NUADA is actually on the right trajectory.</p>
       </div>
     </div>
 
-    <div class="src-band reveal d4"><strong>Source · </strong>SAP MB51 (GR 2021–2025) + ME2N (price history) · <strong>Filters · </strong>all rigs &amp; central base · drilling-only · CMT &amp; WIR removed · <strong>Coverage · </strong>50,179 / 157,754 lines (31.8%).</div>
+    <div class="src-band reveal d4">
+      <strong>Source · </strong>drilling_contractors_financial_metrics.xlsx · Dixstone_P&amp;L tab · Row 40 (Equivalent PO OPEX GR) · audited fleet P&amp;L · <strong>Methodology · </strong>Equivalent PO OPEX GR = SPARE PARTS + SERVICES FOR OPS + PARTS/CONSUMABLES/MAINTENANCE + LOGISTICS + ENGINEERING + GENERAL SERVICES + GOODS TRANSPORT + OPEX-reclassed-from-CAPEX · <strong>vs MB51 · </strong>P&amp;L captures all externally-procured spend (incl. services + CAPEX reclass); MB51-filtered Real OPEX GR ($37.4M FY25) is a subset (excludes services and capital-reclassed items).
+    </div>
   </section>
 
-  <!-- ========================= 9 · GR · DAILY OPEX 2025 ========================= -->
-  <section class="slide" data-title="Adjusted OPEX · Daily 2025">
-    <div class="eyebrow reveal">09 · Adjusted Daily OPEX per Rig · FY 2025 Insights</div>
-    <h1 class="slide-title reveal">DRAVUS &amp; AXIMA top out at $37k &amp; $34k.<br><em>NUADA $35k — high for a non-premium jackup.</em></h1>
-    <p class="lede reveal d1">Adjusted OPEX = booked OPEX − CAPEX-misclassified items. Daily = ÷ operating days. The picture every cost-driver and benchmarking metric should be built on.</p>
+  <!-- ========================= 9 · GR · DAILY 2025 ========================= -->
+  <section class="slide" data-title="Daily GR · FY 2025">
+    <div class="eyebrow reveal">09 · Daily Equivalent PO OPEX GR per Rig · FY 2025 Insights</div>
+    <h1 class="slide-title reveal">AXIMA $48k/day · two land rigs at $28k —<br><em>land rigs spend more per day than a Standard JU.</em></h1>
+    <p class="lede reveal d1">Daily GR = annual Equivalent PO OPEX GR (P&amp;L row 40) ÷ operating days. Sharper view than MB51-based because it includes services + reclassed CAPEX. <strong>Headline shift vs prior view:</strong> NUADA is NO LONGER the standout — its daily GR ($26k) is well below AXIMA. MIDIR + DRAVUS land rigs at $27–29k/day are spending more per operating day than the Standard JUs.</p>
 
     <div class="reveal d2" style="margin-top:1.2rem;">
       <div class="hbar-list">
-        <div class="hbar-row"><div class="hk">DRAVUS <span style="font-size:0.72rem;color:var(--muted);display:block;">Land</span></div>
-          <div class="ht"><div class="hf red" style="width:100%;">⚠ Highest — small revenue base</div></div>
-          <div class="hv">$36.7k/day<span class="sub">~$13.3M/yr</span></div></div>
-        <div class="hbar-row"><div class="hk">NUADA <span style="font-size:0.72rem;color:var(--muted);display:block;">Standard JU</span></div>
-          <div class="ht"><div class="hf standard" style="width:96%;">⚠ High for non-premium JU</div></div>
-          <div class="hv">$35.3k/day<span class="sub">~$12.9M/yr</span></div></div>
-        <div class="hbar-row"><div class="hk">AXIMA <span style="font-size:0.72rem;color:var(--muted);display:block;">Premium JU</span></div>
-          <div class="ht"><div class="hf" style="width:92%;">Scale of operation</div></div>
-          <div class="hv">$33.8k/day<span class="sub">~$12.3M/yr</span></div></div>
-        <div class="hbar-row"><div class="hk">BANBA <span style="font-size:0.72rem;color:var(--muted);display:block;">Standard JU</span></div>
-          <div class="ht"><div class="hf standard" style="width:57%;">$34k → $21k YoY · normalising</div></div>
-          <div class="hv">$21.0k/day<span class="sub">~$7.7M/yr</span></div></div>
-        <div class="hbar-row"><div class="hk">MIDIR <span style="font-size:0.72rem;color:var(--muted);display:block;">Land</span></div>
-          <div class="ht"><div class="hf land" style="width:41%;">Clean platform/land band</div></div>
-          <div class="hv">$14.9k/day<span class="sub">~$5.4M/yr</span></div></div>
-        <div class="hbar-row"><div class="hk">LUG <span style="font-size:0.72rem;color:var(--muted);display:block;">Platform</span></div>
-          <div class="ht"><div class="hf platform" style="width:40%;">Clean platform/land band</div></div>
-          <div class="hv">$14.5k/day<span class="sub">~$5.3M/yr</span></div></div>
+        <div class="hbar-row"><div class="hk">AXIMA <span style="font-size:0.72rem;color:var(--muted);display:block;">Premium JU · 310 ops days</span></div>
+          <div class="ht"><div class="hf red" style="width:100%;">⚠ Highest absolute — investment / SPS-driven</div></div>
+          <div class="hv">$48.0k/day<span class="sub">$14.9M / 310 days</span></div></div>
+        <div class="hbar-row"><div class="hk">BANBA <span style="font-size:0.72rem;color:var(--muted);display:block;">Standard JU · 365 ops days</span></div>
+          <div class="ht"><div class="hf standard" style="width:64%;">Tracking down YoY · was $26k 2024</div></div>
+          <div class="hv">$30.6k/day<span class="sub">$11.2M / 365 days</span></div></div>
+        <div class="hbar-row"><div class="hk">DRAVUS <span style="font-size:0.72rem;color:var(--muted);display:block;">Land · 365 ops days</span></div>
+          <div class="ht"><div class="hf land" style="width:60%;">⚠ Land at JU-level GR/day — was $17k 2024</div></div>
+          <div class="hv">$28.7k/day<span class="sub">$10.5M / 365 days</span></div></div>
+        <div class="hbar-row"><div class="hk">MIDIR <span style="font-size:0.72rem;color:var(--muted);display:block;">Land · 365 ops days</span></div>
+          <div class="ht"><div class="hf land" style="width:58%;">⚠ Land at JU-level GR/day — was $13k 2024</div></div>
+          <div class="hv">$27.6k/day<span class="sub">$10.1M / 365 days</span></div></div>
+        <div class="hbar-row"><div class="hk">NUADA <span style="font-size:0.72rem;color:var(--muted);display:block;">Standard JU · 365 ops days</span></div>
+          <div class="ht"><div class="hf standard" style="width:54%;">Normalised · was $28k 2023</div></div>
+          <div class="hv">$26.1k/day<span class="sub">$9.5M / 365 days</span></div></div>
+        <div class="hbar-row"><div class="hk">LUG <span style="font-size:0.72rem;color:var(--muted);display:block;">Platform · 365 ops days</span></div>
+          <div class="ht"><div class="hf platform" style="width:42%;">Lowest in fleet · in-band for platform</div></div>
+          <div class="hv">$20.1k/day<span class="sub">$7.3M / 365 days</span></div></div>
       </div>
     </div>
 
     <div class="grid-3 reveal d3" style="margin-top:1.4rem;gap:1rem;">
-      <div class="card accent"><span class="num-tag">Two-tier fleet</span><h3>Jackups + DRAVUS cluster $33–37k. Platform &amp; remaining land $14–15k.</h3><p>BANBA's drop $34k → $21k is 2025 normalisation after a 2024 anomaly — watch for reversion.</p></div>
-      <div class="card"><span class="num-tag">NUADA red flag</span><h3>$35k/day — same band as AXIMA premium.</h3><p>Worth digging into spares mix and services intensity. The supply-side already showed NUADA's PO is low ($12k) — opex pressure is consumption-led, not buy-led.</p></div>
-      <div class="card"><span class="num-tag">DRAVUS optical issue</span><h3>$37k/day driven by small revenue base.</h3><p>Adjusted OPEX absolute is ~$13M — moderate; the daily rate is amplified by 353 short-cycle billable days at $40k. Read it with the P&amp;L.</p></div>
+      <div class="card accent">
+        <span class="num-tag">Premium JU · AXIMA</span>
+        <h3>$48k/day reflects intensive 2025 — Spare Parts +6pp · Engineering +3pp YoY.</h3>
+        <p>For a Premium JU at $130K dayrate, $48k/day GR ≈ 37% of revenue — within band for a maintenance-intensive year. Worth confirming via the 2026 PM schedule whether this is one-year catch-up or a new run-rate. If it persists, +6pp Spare Parts cost compresses margin from 39.5% toward 35%.</p>
+      </div>
+      <div class="card accent" style="border-left-color:var(--bad);">
+        <span class="num-tag" style="color:var(--bad);">Land rigs · MIDIR + DRAVUS</span>
+        <h3>$27–29k/day = higher than every JU except AXIMA.</h3>
+        <p>For a Land rig at $40K dayrate, $27–29k/day GR equals 68–72% of revenue — structurally untenable. Both rigs doubled their GR YoY (MIDIR +103%, DRAVUS +64%). Cost-side intervention required regardless of dayrate strategy.</p>
+      </div>
+      <div class="card">
+        <span class="num-tag" style="color:var(--good);">Standard JU · BANBA + NUADA</span>
+        <h3>BANBA $31k · NUADA $26k — both tracking down to Premium-JU peer band.</h3>
+        <p>Counter to the prior MB51 read which flagged NUADA at $35k/day. P&amp;L basis shows NUADA at $26k — fleet-second-lowest after LUG. NUADA's 5Y GR-intensity dropped from 61% (2021/2023) to 28% (2025) — material improvement.</p>
+      </div>
     </div>
 
-    <div class="src-band reveal d4"><strong>Source · </strong>SAP MB51 (GR re-priced) − CAPEX reclassification · <strong>Filters · </strong>drilling-only · CMT &amp; WIR removed · <strong>Denominator · </strong>operating days (Ops + Rig Move).</div>
+    <div class="src-band reveal d4">
+      <strong>Source · </strong>Dixstone_P&amp;L tab · Row 40 (Equivalent PO OPEX GR) ÷ Row 5 (Operating Days) per rig · <strong>Operating days 2025 · </strong>AXIMA 310 · BANBA/NUADA/LUG/MIDIR/DRAVUS 365 · <strong>Why P&amp;L not MB51 · </strong>P&amp;L captures total externally-procured spend (services + reclassed CAPEX included) — what was actually consumed. MB51 view excludes both → understates the true daily GR intensity by ~40%.
+    </div>
   </section>
 
   <!-- ========================= 10 · FLEET GR · MAT GROUPS ========================= -->
   <section class="slide" data-title="GR · Mat Groups · Fleet">
     <div class="eyebrow reveal">10 · Goods Receipt · Top Material Groups · Fleet · FY 2025</div>
-    <h1 class="slide-title reveal">$37.4M Real OPEX recorded in 2025 —<br><em>same filter as MB51 pivot · capital-equipment items excluded.</em></h1>
-    <p class="lede reveal d1">What was actually booked as Real OPEX in 2025 — Dixstone recognises spend at GR posting, so this view equals the OPEX hitting the P&amp;L. Same filter as MB51 pivot tables: Operation Type = WE · Year = 2025 · Real OPEX column (excludes OPEX reclassed to CAPEX) · OPEX cost-center populated (excludes SOPEX-classified capital items such as water makers, process equipment). Top 15 mat groups = 57% of fleet Real OPEX.</p>
+    <h1 class="slide-title reveal">$64.5M fleet GR · top 15 material groups visible —<br><em>$37.4M MB51-coded · the rest is services + reclassed CAPEX.</em></h1>
+    <p class="lede reveal d1">P&amp;L Equivalent PO OPEX GR is $64.5M fleet · 2025 (slides 8–9). Of that, <strong>$37.4M is material-coded in MB51</strong> — those are the categories shown below. The remaining ~$27M is services (Engineering, Telecom, Inspection, Logistics, General Services) and OPEX reclassed from CAPEX — captured in the P&amp;L but not visible by material group in MB51. Top 15 mat groups = 58% of the MB51-coded subset.</p>
 
     <div class="mega-kpi reveal d2">
-      <div class="mk"><div class="mv">$37.4M</div><div class="ml">Total fleet GR · FY 2025</div><div class="md">Real OPEX GR (OPEX cost-center filter applied · excludes SOPEX-classified capital items)</div></div>
-      <div class="mk"><div class="mv">$3.6M</div><div class="ml">"NO MATERIAL" services tail</div><div class="md">9.6% — procurement master-data improvement opportunity</div></div>
-      <div class="mk"><div class="mv">$2.2M</div><div class="ml">ELEC + MECHA · cross-cutting</div><div class="md">Top 2 named categories: every rig consumes electrical + mechanical materials</div></div>
+      <div class="mk"><div class="mv">$64.5M</div><div class="ml">Fleet GR · FY 2025 · P&amp;L basis</div><div class="md">Audited total · includes services + reclassed CAPEX (slide 8 source)</div></div>
+      <div class="mk"><div class="mv">$37.4M</div><div class="ml">MB51 material-coded subset</div><div class="md">~58% of P&amp;L GR · material-group breakdown below applies to this subset</div></div>
+      <div class="mk"><div class="mv">$27M</div><div class="ml">Non-material-coded balance</div><div class="md">Services, reclassed CAPEX, freight, "no material" GR entries</div></div>
     </div>
 
     <div class="reveal d3" style="margin-top:0.5rem;">
@@ -1819,7 +1859,7 @@
         <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
         <div class="prow"><span class="pk">Revenue</span><span class="pv">$39,210<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $44,245 · <span style="color:var(--bad);">−11.4%</span></small></span></div>
         <div class="prow"><span class="pk">Workforce cost</span><span class="pv amber">$12,415 (31.7%)<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $13,318 (30.1%) · <span style="color:var(--bad);">−6.8% · +1.6pp</span></small></span></div>
-        <div class="prow"><span class="pk">Spare parts GR</span><span class="pv">$5,930<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $4,027 (9.1%) · <span style="color:var(--bad);">+47.3% · +6.0pp</span></small></span></div>
+        <div class="prow"><span class="pk">Equivalent PO OPEX GR</span><span class="pv">$14,871 (37.9%)<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $9,818 (22.2%) · <span style="color:var(--bad);">+51.5% · +15.7pp</span></small></span></div>
         <div class="prow"><span class="pk">Rig Direct Margin (norm.)</span><span class="pv green">$15,504 (39.5%)<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $21,105 (47.7%) · <span style="color:var(--bad);">−26.5% · −8.2pp</span></small></span></div>
         <div class="prow"><span class="pk">Inventory (end-2025)</span><span class="pv">$6.0M</span></div>
         <div class="prow"><span class="pk">Dead stock %</span><span class="pv amber">38%</span></div>
@@ -1891,7 +1931,7 @@
         <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
         <div class="prow"><span class="pk">Revenue</span><span class="pv">$33,321<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $23,418 · <span style="color:var(--good);">+42.3%</span></small></span></div>
         <div class="prow"><span class="pk">Workforce cost</span><span class="pv amber">$11,236 (33.7%)<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $8,829 (37.7%) · <span style="color:var(--good);">+27.3% · −4.0pp</span></small></span></div>
-        <div class="prow"><span class="pk">Spare parts GR</span><span class="pv">$3,743<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $5,082 (21.7%) · <span style="color:var(--good);">−26.3% · −10.5pp</span></small></span></div>
+        <div class="prow"><span class="pk">Equivalent PO OPEX GR</span><span class="pv">$11,157 (33.5%)<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $9,581 (40.9%) · <span style="color:var(--good);">+16.4% · −7.4pp</span></small></span></div>
         <div class="prow"><span class="pk">Rig Direct Margin (norm.)</span><span class="pv amber">$12,098 (36.3%)<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $6,018 (25.7%) · <span style="color:var(--good);">+101% · +10.6pp</span></small></span></div>
         <div class="prow"><span class="pk">Inventory (end-2025)</span><span class="pv red">$9.0M</span></div>
         <div class="prow"><span class="pk">Dead stock %</span><span class="pv red">59%</span></div>
@@ -1963,7 +2003,7 @@
         <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
         <div class="prow"><span class="pk">Revenue</span><span class="pv">$34,374<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $30,112 · <span style="color:var(--good);">+14.2%</span></small></span></div>
         <div class="prow"><span class="pk">Workforce cost</span><span class="pv green">$10,309 (30.0%)<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $10,088 (33.5%) · <span style="color:var(--good);">+2.2% · −3.5pp</span></small></span></div>
-        <div class="prow"><span class="pk">Spare parts GR</span><span class="pv">$3,435<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $5,119 (17.0%) · <span style="color:var(--good);">−32.9% · −7.0pp</span></small></span></div>
+        <div class="prow"><span class="pk">Equivalent PO OPEX GR</span><span class="pv">$9,538 (27.7%)<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $8,498 (28.2%) · <span style="color:var(--good);">+12.2% · −0.5pp</span></small></span></div>
         <div class="prow"><span class="pk">Rig Direct Margin (norm.)</span><span class="pv amber">$14,141 (41.1%)<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $11,954 (39.7%) · <span style="color:var(--good);">+18.3% · +1.4pp</span></small></span></div>
         <div class="prow"><span class="pk">Inventory (end-2025)</span><span class="pv red">$12.3M</span></div>
         <div class="prow"><span class="pk">Dead stock %</span><span class="pv red">57%</span></div>
@@ -2035,7 +2075,7 @@
         <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
         <div class="prow"><span class="pk">Revenue</span><span class="pv">$23,834<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $12,895 · <span style="color:var(--good);">+84.8%</span></small></span></div>
         <div class="prow"><span class="pk">Workforce cost</span><span class="pv amber">$7,637 (32.0%)<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $6,177 (47.9%) · <span style="color:var(--good);">+23.6% · −15.9pp</span></small></span></div>
-        <div class="prow"><span class="pk">Spare parts GR</span><span class="pv">$3,085<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $1,509 (11.7%) · <span style="color:var(--bad);">+104.4% · +1.2pp</span></small></span></div>
+        <div class="prow"><span class="pk">Equivalent PO OPEX GR</span><span class="pv">$7,336 (30.8%)<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $4,500 (34.9%) · <span style="color:var(--good);">+63.0% · −4.1pp</span></small></span></div>
         <div class="prow"><span class="pk">Rig Direct Margin (norm.)</span><span class="pv amber">$8,842 (37.1%)<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $348 (2.7%) · <span style="color:var(--good);">+2440% · +34.4pp</span></small></span></div>
         <div class="prow"><span class="pk">Inventory (end-2025)</span><span class="pv red">$5.3M</span></div>
         <div class="prow"><span class="pk">Dead stock %</span><span class="pv red">60%</span></div>
@@ -2107,7 +2147,7 @@
         <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
         <div class="prow"><span class="pk">Revenue</span><span class="pv">$13,593<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $11,650 · <span style="color:var(--good);">+16.7%</span></small></span></div>
         <div class="prow"><span class="pk">Workforce cost</span><span class="pv red">$7,054 (51.9%)<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $7,980 (68.5%) · <span style="color:var(--good);">−11.6% · −16.6pp</span></small></span></div>
-        <div class="prow"><span class="pk">Spare parts GR</span><span class="pv">$3,472<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $1,608 (13.8%) · <span style="color:var(--bad);">+115.9% · +11.7pp</span></small></span></div>
+        <div class="prow"><span class="pk">Equivalent PO OPEX GR</span><span class="pv">$10,067 (74.1%)<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $4,906 (42.1%) · <span style="color:var(--bad);">+105% · +32.0pp</span></small></span></div>
         <div class="prow"><span class="pk">Rig Direct Margin (norm.)</span><span class="pv red">−$1,449 (−10.7%)<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $839 (7.2%) · <span style="color:var(--bad);">sign flip · −17.9pp</span></small></span></div>
         <div class="prow"><span class="pk">Inventory (end-2025)</span><span class="pv amber">$5.0M</span></div>
         <div class="prow"><span class="pk">Dead stock %</span><span class="pv amber">40%</span></div>
@@ -2179,7 +2219,7 @@
         <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
         <div class="prow"><span class="pk">Revenue</span><span class="pv">$14,125<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $12,395 · <span style="color:var(--good);">+13.9%</span></small></span></div>
         <div class="prow"><span class="pk">Workforce cost</span><span class="pv red">$5,779 (40.9%)<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $5,627 (45.4%) · <span style="color:var(--good);">+2.7% · −4.5pp</span></small></span></div>
-        <div class="prow"><span class="pk">Spare parts GR</span><span class="pv">$3,269<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $2,454 (19.8%) · <span style="color:var(--bad);">+33.2% · +3.3pp</span></small></span></div>
+        <div class="prow"><span class="pk">Equivalent PO OPEX GR</span><span class="pv">$10,487 (74.2%)<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $6,406 (51.7%) · <span style="color:var(--bad);">+63.7% · +22.5pp</span></small></span></div>
         <div class="prow"><span class="pk">Rig Direct Margin (norm.)</span><span class="pv amber">$3,325 (23.5%)<small style="display:block;font-size:0.66rem;color:var(--muted);font-weight:400;line-height:1.35;margin-top:2px;">2024: $4,189 (33.8%) · <span style="color:var(--bad);">−20.6% · −10.3pp</span></small></span></div>
         <div class="prow"><span class="pk">Inventory (end-2025)</span><span class="pv amber">TBD — Cameroon base</span></div>
         <div class="prow"><span class="pk">Dead stock %</span><span class="pv amber">TBD</span></div>

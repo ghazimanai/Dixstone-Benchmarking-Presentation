@@ -367,11 +367,13 @@
   .op-panel .prow .pv.amber{color:var(--sigma);}
   .op-panel .prow .pv.green{color:var(--good);}
   /* Dual-value rows: 2025 | 2024 with vertical separator */
-  .op-panel .prow .pv-group{display:flex;align-items:center;}
-  .op-panel .prow .pv-group .pv{text-align:right;padding-right:0.85rem;border-right:1px solid var(--border3);min-width:110px;display:inline-block;}
-  .op-panel .prow .pv-group .pv-prev{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);padding-left:0.85rem;min-width:180px;text-align:left;line-height:1.4;}
+  .op-panel .prow .pv-group{display:flex;align-items:stretch;}
+  .op-panel .prow .pv-group .pv{text-align:right;padding-right:1rem;border-right:2px solid rgba(232,160,32,0.55);min-width:130px;display:inline-flex;align-items:center;justify-content:flex-end;}
+  .op-panel .prow .pv-group .pv-prev{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);padding-left:1rem;min-width:180px;text-align:left;line-height:1.4;display:flex;align-items:center;}
   /* Single-value rows: align the value to the same column as 2025 in dual-value rows */
-  .op-panel .prow.no-prev .pv-group .pv{border-right:none;padding-right:0;margin-right:calc(0.85rem + 180px);}
+  .op-panel .prow.no-prev .pv-group .pv{border-right:none;padding-right:0;margin-right:calc(1rem + 180px);}
+  /* Light theme separator — keep visible against light background */
+  html[data-theme="light"] .op-panel .prow .pv-group .pv{border-right-color:rgba(201,136,21,0.55);}
   /* Material-group breakdown row — 3 stacked panels under existing 2-panel */
   .op-body-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem;}
   @media (max-width:1100px){.op-body-3{grid-template-columns:1fr;}}

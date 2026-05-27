@@ -2255,56 +2255,51 @@
 
   <!-- ========================= 26 · AOI · SUPPLY CHAIN DETAIL ========================= -->
   <section class="slide" data-title="AOI · Supply Chain Detail">
-    <div class="eyebrow reveal">26 · Areas of Improvement · Supply Chain — Detail</div>
-    <h1 class="slide-title reveal">Six discrete process gaps drive over-stocking and inefficiency —<br><em>observed in the LUG audit and reproducible fleet-wide.</em></h1>
+    <div class="eyebrow reveal">26 · Supply Chain · Three Pillars of Improvement</div>
+    <h1 class="slide-title reveal">The supply-chain fix rests on three pillars —<br><em>get it into SAP · free up the warehouse · standardise &amp; train.</em></h1>
+    <p class="lede reveal d1">The process gaps surfaced in the LUG audit consolidate into three workstreams. Each is concrete and self-contained; together they close the over-stocking, dead-stock and visibility problems behind Phase 1's working-capital findings.</p>
 
-    <div class="grid-2 reveal d2" style="gap:1.1rem;margin-top:0.8rem;">
-      <div class="card accent">
-        <span class="num-tag">MR-to-PO Process · MAJOR</span>
-        <h3>Manual Excel + email cycle.</h3>
-        <p><strong>Problem · </strong>Time-consuming, loosely controlled, produces delays, inaccuracies, duplications and omissions.</p>
-        <p><strong>Action · </strong>Implement MR cycle approval in SAP — initial request from Mech/Elec/STP only, then Matman creates and routes the SAP MR. Instant qty-on-hand, on-order, min/max visibility plus full traceability.</p>
+    <div class="grid-3 reveal d2" style="gap:1.2rem;margin-top:1rem;">
+      <div class="insight-card">
+        <div class="ic-eyebrow">PILLAR I</div>
+        <h3>SAP — one system of record</h3>
+        <p class="body">Everything transacted in SAP, nothing in local Excel. Visibility and traceability at every step.</p>
+        <ul style="margin:0.5rem 0 0;padding-left:1.1rem;line-height:1.5;font-size:0.9rem;color:var(--text2);">
+          <li><strong>MR-to-PO cycle in SAP</strong> — replace the manual Excel + email loop; instant qty-on-hand, on-order &amp; min/max visibility</li>
+          <li><strong>Country-level material coding</strong> (CMR · CGO · GAB · RDC) for base-level stock &amp; transfer visibility</li>
+          <li><strong>Past-consumption fields</strong> (6M / 12M / 36M) on the PO screen at point of purchase</li>
+          <li><strong>Single source of truth</strong> — ban local Excels; material-master created at first arrival with zone allocation</li>
+          <li><strong>Taxonomy cleanup</strong> — collapse 200+ material groups → ~30–40 clean categories</li>
+        </ul>
       </div>
-      <div class="card accent" style="border-left-color:var(--bad);">
-        <span class="num-tag" style="color:var(--bad);">Rig Issue-out Discipline · CRITICAL</span>
-        <h3>Six conflicting versions of how IOs happen.</h3>
-        <p><strong>Problem · </strong>Warehouses open without control, no log books, no daily SAP entries. Whole month of Feb 2026 captured only 26 line items.</p>
-        <p><strong>Action · </strong>Lock warehouses → log books at every container → daily SAP issue-outs by rig Matman → central Matman audits daily → senior accountability (STP, NTP, Sr Mech, Sr Elec, HSE).</p>
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow" style="color:var(--bad);">PILLAR II</div>
+        <h3>Inventory management — free up the warehouse</h3>
+        <p class="body">Create space and release cash by clearing what doesn't move and capping what does. Target <strong>$10–15M release in 12 months</strong>.</p>
+        <ul style="margin:0.5rem 0 0;padding-left:1.1rem;line-height:1.5;font-size:0.9rem;color:var(--text2);">
+          <li><strong>Remove dead stock</strong> — $22.5M (54% of inventory) sitting idle &gt;3 years</li>
+          <li><strong>Implement min / max caps</strong> per rig to stop re-accumulation</li>
+          <li><strong>E&amp;O programme</strong> — systematic excess &amp; obsolete review and disposition</li>
+          <li><strong>Dead-stock reduction</strong> — bond-yard auction · SKU scrap policy · cross-rig pooling</li>
+          <li><strong>Reclassify capital items</strong> (engines, BOP-grade, rotating equipment) off the inventory line</li>
+        </ul>
       </div>
-      <div class="card accent">
-        <span class="num-tag">Rig Inventory Accuracy · MAJOR</span>
-        <h3>MB52 inaccurate vs SAP.</h3>
-        <p><strong>Problem · </strong>Annual wall-to-wall + bulk SAP upload, far too infrequent. Personal Excel inventory not shared with SCM. Items without SAP No. simply aren't logged.</p>
-        <p><strong>Action · </strong>One-off wall-to-wall reset → enforce daily SAP issue-out discipline → weekly cycle counts → ban local Excels, SAP as single source of truth. SAP material-master created at first arrival, with zone allocation.</p>
-      </div>
-      <div class="card accent">
-        <span class="num-tag">Warehouse Rationalisation · MAJOR</span>
-        <h3>Central warehouse &gt;$5M for one rig.</h3>
-        <p><strong>Problem · </strong>Orders of magnitude above peer benchmark. Fleet inventory $27M above best-practice ceiling.</p>
-        <p><strong>Action · </strong>Mandatory consumption check before each PO at 6M / 12M / 3Y thresholds. Apply per-rig min/max caps. Cross-plant SAP visibility for inter-country and inter-rig transfers before any external purchase.</p>
-      </div>
-      <div class="card accent">
-        <span class="num-tag">SAP Country-Level Coding · MAJOR</span>
-        <h3>Items coded at HQ-only level — no country-base segregation.</h3>
-        <p><strong>Problem · </strong>Buyers and Matman cannot see country-base specific stock, transfers between bases, or country-level usage patterns.</p>
-        <p><strong>Action · </strong>Roll out SAP material codes at country level (CMR, CGO, GAB, RDC, etc.). Ties consumption, inventory and PO to the country-base where the rig actually operates — unlocks transfer logic before each new PO.</p>
-      </div>
-      <div class="card accent" style="border-left-color:var(--bad);">
-        <span class="num-tag" style="color:var(--bad);">Past Consumption at PO Level · CRITICAL</span>
-        <h3>PO buyers don't see prior consumption.</h3>
-        <p><strong>Problem · </strong>PO buyers do not see prior consumption history of the same material at PO creation time. POs created blind to whether the rig actually issues the item out — driver of over-stocking.</p>
-        <p><strong>Action · </strong>Add 6M / 12M / 36M past-consumption fields directly into the SAP PO screen. Buyer &amp; approver see consumption trend at point of purchase. Mandatory check above $25k thresholds.</p>
-      </div>
-      <div class="card accent">
-        <span class="num-tag">Material-Group Taxonomy · MAJOR</span>
-        <h3>200+ material groups · overlapping &amp; ambiguous codes confuse buyers and analytics.</h3>
-        <p><strong>Problem · </strong>The current SAP material-group taxonomy carries 200+ codes with overlapping scope (e.g. MECHA vs ROT_MACH vs DRIL_HDLG share rotating-component spend · DRIL_CTRL vs BOP-specific codes overlap · service codes ELE_SRV / MECH_SRV / STRUC_SRV duplicate intent). Buyers split orders inconsistently, analytics roll up imprecisely, and dead-stock identification by material category becomes unreliable. Confusion compounds at every reporting layer.</p>
-        <p><strong>Action · </strong>One-off taxonomy review — collapse the 200+ codes into <strong>~30–40 unambiguous categories</strong> aligned to industry standard (e.g. IADC's spare-parts classification or NOV's equipment taxonomy). Each material assigned to <strong>exactly one</strong> group with clear definition + examples. Migration mapping table → bulk re-classification via SAP MM03 → mandatory training for buyers and Matman. Unlocks reliable PO analytics, dead-stock by category, and cross-rig benchmarking on like-for-like spend.</p>
+      <div class="insight-card">
+        <div class="ic-eyebrow">PILLAR III</div>
+        <h3>Supply-chain procedures — standardise &amp; train</h3>
+        <p class="body">One playbook across every rig and country base, with the discipline and training to make it stick.</p>
+        <ul style="margin:0.5rem 0 0;padding-left:1.1rem;line-height:1.5;font-size:0.9rem;color:var(--text2);">
+          <li><strong>One fleet-wide SC playbook</strong> — MR · PO · issue-out · transfers · master-data, standardised across operations</li>
+          <li><strong>Issue-out discipline</strong> — lock warehouses, log books, daily SAP entries, senior accountability</li>
+          <li><strong>Consumption check before every PO</strong> (6M / 12M / 3Y thresholds, mandatory above $25k)</li>
+          <li><strong>Cross-plant transfer logic</strong> — check inter-rig / inter-country stock before any external buy</li>
+          <li><strong>Training</strong> — buyers &amp; Matman onboarding + refresher visits to embed the standard</li>
+        </ul>
       </div>
     </div>
 
     <div class="src-band reveal d4">
-      <strong>Source · </strong>LUG operational audit Q4 2025 · Inventory MB52 end-2025 · ME2N material-group analysis (slide 7 · 200+ codes observed) · <strong>Severity</strong> per audit risk framework: MAJOR / CRITICAL.
+      <strong>Source · </strong>LUG operational audit Q4 2025 · Inventory MB52 end-2025 · ME2N material-group analysis · <strong>Consolidation · </strong>the seven discrete audit findings (MR-to-PO · issue-out · inventory accuracy · warehouse · country coding · past-consumption · taxonomy) mapped into three execution pillars.
     </div>
   </section>
 

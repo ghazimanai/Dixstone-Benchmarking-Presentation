@@ -363,6 +363,12 @@
   .es-step p{font-size:clamp(0.85rem,1.05vw,1.02rem);color:var(--text2);margin:0;line-height:1.4;font-weight:300;}
   .es-step .chips{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.15rem;}
   .es-step .chips span{font-family:'JetBrains Mono',monospace;font-size:clamp(0.6rem,0.72vw,0.7rem);letter-spacing:0.06em;text-transform:uppercase;color:var(--sigma);border:1px solid var(--border);border-radius:3px;padding:3px 7px;}
+
+  /* Cards for slides 2-5 (auto-fit, reuse .es-step styling) */
+  .es-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-top:1.4rem;}
+  .es-step.good{border-top-color:var(--good);}
+  .es-step.bad{border-top-color:var(--bad);}
+  .es-step .big{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.4rem,2vw,1.9rem);color:var(--sigma);letter-spacing:-0.01em;line-height:1;margin:0.1rem 0 0.1rem;}
 </style>
 </head>
 <body>
@@ -422,49 +428,57 @@
   <!-- 2 -->
   <section class="slide" data-title="Where We Stand">
     <div class="eyebrow reveal">02 · Where Dixstone Stands</div>
-    <h1 class="es-statement reveal"><em>5&times;</em> margin growth in four years.</h1>
+    <h1 class="es-statement reveal" style="margin-bottom:0.5rem;">A five-year transformation &mdash; with <em>clear headroom</em>.</h1>
     <div class="es-figs reveal d1">
       <div class="es-fig"><span class="v">$53.5M</span><span class="l">Adj RDM &middot; 5&times; since FY21</span></div>
       <div class="es-fig"><span class="v good">97.5%</span><span class="l">Utilisation &middot; peer-best</span></div>
-      <div class="es-fig"><span class="v plain">33.7%</span><span class="l">Adj RDM today</span></div>
+      <div class="es-fig"><span class="v plain">33.7%</span><span class="l">Adj RDM &middot; vs 44.8% peer median</span></div>
     </div>
-    <p class="es-sub reveal d2">Driven by rising dayrates, full utilisation and tighter execution. <em>NUADA</em> already sits at peer-median margin and <em>AXIMA</em> leads its segment on reliability &mdash; with <strong>11 points of headroom</strong> still to the 44.8% peer median.</p>
+    <div class="es-cards reveal d2">
+      <div class="es-step good"><span class="n">STRENGTH</span><h4>NUADA</h4><p>Already at peer-median margin &mdash; the internal benchmark for the rest of the fleet.</p></div>
+      <div class="es-step good"><span class="n">STRENGTH</span><h4>AXIMA</h4><p>Best-in-segment reliability at 2.7% NPT &mdash; top quartile of premium jack-up peers.</p></div>
+      <div class="es-step"><span class="n">HEADROOM</span><h4>+11 points</h4><p>From 33.7% to the 44.8% peer-median margin &mdash; the opportunity ahead.</p></div>
+    </div>
   </section>
 
   <!-- 3 -->
   <section class="slide" data-title="Versus Peers">
     <div class="eyebrow reveal">03 · Versus Peers</div>
-    <h1 class="es-statement reveal">Capturing the cycle. <em>Lagging on cost.</em></h1>
+    <h1 class="es-statement reveal" style="margin-bottom:0.5rem;">Capturing the cycle. <em>Lagging on cost.</em></h1>
     <div class="es-figs reveal d1">
       <div class="es-fig"><span class="v good">97.5%</span><span class="l">Utilisation &middot; at or above every peer</span></div>
-      <div class="es-fig"><span class="v bad">&minus;11pp</span><span class="l">RDM 33.7% vs peer 44.8%</span></div>
-      <div class="es-fig"><span class="v bad">3&times;</span><span class="l">Inventory vs peer benchmark</span></div>
+      <div class="es-fig"><span class="v bad">&minus;11pp</span><span class="l">RDM 33.7% vs 44.8% peer median</span></div>
+      <div class="es-fig"><span class="v bad">3&times;</span><span class="l">Inventory per rig vs peer benchmark</span></div>
     </div>
-    <p class="es-sub reveal d2">Rate and uptime are world-class &mdash; the gap is unit economics, and it&rsquo;s concentrated: <em>ageing jackups</em> (BANBA 42y, NUADA 47y) on NPT &amp; sustaining-CAPEX, <em>land rigs</em> overstaffed vs peers, and <strong>$22.5M of dead-stock inventory</strong>.</p>
+    <div class="es-cards reveal d2">
+      <div class="es-step bad"><span class="n">JACKUPS</span><h4>Ageing fleet</h4><p>BANBA (42y) &amp; NUADA (47y) &mdash; the gap is NPT and sustaining-CAPEX, not rate.</p></div>
+      <div class="es-step bad"><span class="n">LAND</span><h4>Overstaffed</h4><p>MIDIR &amp; DRAVUS carry more crew than peers run on comparable rigs (~55 FTE benchmark).</p></div>
+      <div class="es-step bad"><span class="n">INVENTORY</span><h4>$22.5M dead stock</h4><p>Working capital tied up at roughly three times the peer benchmark per rig.</p></div>
+    </div>
   </section>
 
   <!-- 4 -->
   <section class="slide" data-title="The Prize">
     <div class="eyebrow reveal">04 · The Prize</div>
-    <h1 class="es-statement reveal"><em>$15&ndash;22M</em> in Year&nbsp;1.</h1>
-    <ul class="es-points reveal d1">
-      <li><span class="lead">Working capital</span> &mdash; PO control + dead-stock cleanup <em>$5&ndash;10M one-time + $2&ndash;4M/yr</em></li>
-      <li><span class="lead">Land workforce</span> &mdash; right-size MIDIR &amp; DRAVUS <em>~$3M/yr</em></li>
-      <li><span class="lead">Jackup uptime</span> &mdash; recover BANBA &amp; NUADA NPT <em>$3&ndash;4M/yr</em></li>
-      <li><span class="lead">CAPEX rebalance</span> &mdash; redirect to the ageing jackups <em>~$1.5M/yr</em></li>
-    </ul>
-    <p class="es-sub reveal d2">A credible path from <strong>33.7% to the 44.8%</strong> peer-median margin over 24&ndash;36 months.</p>
+    <h1 class="es-statement reveal" style="margin-bottom:0.5rem;"><em>$15&ndash;22M</em> in Year&nbsp;1.</h1>
+    <div class="es-cards reveal d1">
+      <div class="es-step"><span class="n">WORKING CAPITAL</span><div class="big">$5&ndash;10M + $2&ndash;4M/yr</div><p>Forward PO control + dead-stock cleanup.</p></div>
+      <div class="es-step"><span class="n">LAND WORKFORCE</span><div class="big">~$3M/yr</div><p>Right-size MIDIR &amp; DRAVUS to the peer benchmark.</p></div>
+      <div class="es-step"><span class="n">JACKUP UPTIME</span><div class="big">$3&ndash;4M/yr</div><p>Recover BANBA &amp; NUADA NPT toward an age-realistic target.</p></div>
+      <div class="es-step"><span class="n">CAPEX REBALANCE</span><div class="big">~$1.5M/yr</div><p>Redirect capital toward the ageing jackups that need it.</p></div>
+    </div>
+    <p class="es-sub reveal d2" style="margin-top:1.3rem;">A credible path from <strong>33.7% to the 44.8%</strong> peer-median margin over 24&ndash;36 months.</p>
   </section>
 
   <!-- 5 -->
   <section class="slide" data-title="What's Next">
     <div class="eyebrow reveal">05 · From Insight to Action</div>
-    <h1 class="es-statement reveal">Make it a <em>habit</em>, not a report.</h1>
-    <ul class="es-points reveal d1">
-      <li><span class="lead">Live peer-benchmark dashboard</span> <em>18 KPIs, refreshed as peers file</em></li>
-      <li><span class="lead">Weekly rig P&amp;L drill-down</span> <em>PO &middot; issue-out &middot; goods receipts &middot; NPT vs target</em></li>
-    </ul>
-    <p class="es-sub reveal d2">Delivered through three programmes &mdash; working capital, land workforce, jackup reliability &mdash; tracked against this FY26 baseline.</p>
+    <h1 class="es-statement reveal" style="margin-bottom:0.5rem;">Make it a <em>habit</em>, not a report.</h1>
+    <div class="es-cards reveal d1" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));">
+      <div class="es-step"><span class="n">TOOL 01</span><h4>Live peer-benchmark dashboard</h4><p>Your 18 KPIs against the peer set &mdash; refreshed as peers file, by rig category.</p></div>
+      <div class="es-step"><span class="n">TOOL 02</span><h4>Weekly rig P&amp;L drill-down</h4><p>PO &middot; issue-out &middot; goods receipts &middot; NPT vs target &mdash; rig by rig, every week.</p></div>
+    </div>
+    <p class="es-sub reveal d2" style="margin-top:1.3rem;">Delivered through three programmes &mdash; <em>working capital</em>, <em>land workforce</em>, <em>jackup reliability</em> &mdash; tracked against this FY26 baseline.</p>
     <div class="es-mono-row reveal d3"><a href="index.html" style="text-decoration:none;color:var(--sigma);">Full detail in the complete presentation &rarr;</a></div>
   </section>
 

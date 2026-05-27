@@ -77,11 +77,11 @@
 
   h1,h2,h3,h4,.eyebrow{font-family:'Space Grotesk',sans-serif;}
   .eyebrow{
-    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
-    color:var(--sigma);font-weight:500;margin-bottom:0.6rem;
+    font-family:'JetBrains Mono',monospace;font-size:clamp(1rem,1.3vw,1.45rem);letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--sigma);font-weight:600;margin-bottom:1.1rem;
     display:flex;align-items:center;gap:0.6rem;
   }
-  .eyebrow::before{content:'';width:24px;height:1px;background:var(--sigma);display:inline-block;}
+  .eyebrow::before{content:'';width:34px;height:2px;background:var(--sigma);display:inline-block;}
   h1.slide-title{font-size:clamp(1.5rem,2.7vw,2.4rem);font-weight:600;line-height:1.12;letter-spacing:-0.02em;margin:0 0 0.7rem 0;color:var(--text);}
   h1.slide-title em{font-style:normal;color:var(--sigma);font-weight:500;}
   .lede{font-size:clamp(0.92rem,1.1vw,1.04rem);color:var(--text2);max-width:1150px;font-weight:300;line-height:1.5;margin-bottom:0.9rem;}

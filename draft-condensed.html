@@ -835,21 +835,30 @@
   @media (max-width:520px){.deck-switcher{gap:0.15rem;padding:0.2rem;}.deck-switcher a{font-size:9.8px;padding:0.35rem 0.45rem;}}
   html[data-theme="light"] .deck-switcher{background:rgba(255,255,255,0.94);box-shadow:0 4px 16px rgba(0,0,0,0.12);}
   html[data-theme="light"] .deck-switcher a.active{color:#fff;}
-  .slide-num{position:fixed;bottom:1.3rem;right:1.5rem;z-index:55;font-family:'JetBrains Mono',monospace;font-size:0.95rem;letter-spacing:0.08em;color:var(--muted);background:rgba(13,17,25,0.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--border2);border-radius:999px;padding:0.45rem 1rem;}
+  .slide-num{font-family:'JetBrains Mono',monospace;font-size:0.95rem;letter-spacing:0.08em;color:var(--muted);background:rgba(13,17,25,0.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--border2);border-radius:999px;padding:0.45rem 1rem;}
   .slide-num .now{color:var(--sigma);font-weight:700;}
   html[data-theme="light"] .slide-num{background:rgba(255,255,255,0.9);color:var(--muted2);}
   .deck-logos{position:fixed;bottom:1.25rem;left:1.6rem;z-index:55;display:flex;align-items:center;gap:0.85rem;opacity:0.92;}
   .deck-logos img{height:19px;width:auto;display:block;}
   .deck-logos .sep{width:1px;height:15px;background:var(--border2);}
   @media (max-width:700px){.deck-logos{left:0.7rem;bottom:0.7rem;gap:0.6rem;}.deck-logos img{height:15px;}}
+  .br-cluster{position:fixed;bottom:1.3rem;right:1.5rem;z-index:55;display:flex;align-items:center;gap:0.7rem;}
+  .deck-toggle{display:flex;gap:0.15rem;background:rgba(13,17,25,0.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--border2);border-radius:999px;padding:0.22rem;}
+  .deck-toggle a{font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:0.35rem 0.75rem;border-radius:999px;transition:background 0.15s,color 0.15s;}
+  .deck-toggle a:hover{color:var(--text);}
+  .deck-toggle a.active{background:var(--sigma);color:#06080d;font-weight:600;}
+  html[data-theme="light"] .deck-toggle{background:rgba(255,255,255,0.9);}
 </style>
 </head>
 <body>
-<nav class="deck-switcher" aria-label="Deck version switcher"><a href="executive-summary.html">Executive Summary</a><a href="key-supporting-analysis.html">Key Supporting Analysis</a><a href="index.html">Complete Presentation</a><a href="draft-condensed.html" class="active">Draft Condensed</a></nav>
+
 
 <div class="progress"><div class="progress-bar" id="progress-bar"></div></div>
 
-<div class="slide-num"><span class="now" id="page-now">01</span> / <span id="slide-tot">0</span></div>
+<div class="br-cluster">
+  <div class="deck-toggle"><a href="executive-summary.html">Executive</a><a href="draft-condensed.html" class="active">Detailed</a></div>
+  <div class="slide-num"><span class="now" id="page-now">01</span> / <span id="slide-tot">0</span></div>
+</div>
 <div class="deck-logos">
   <img src="sigma-logo-white.svg" alt="Sigma Energy" class="for-dark">
   <img src="sigma-logo-black.svg" alt="Sigma Energy" class="for-light">

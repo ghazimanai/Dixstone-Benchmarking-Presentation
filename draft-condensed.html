@@ -87,14 +87,14 @@
 
   h1,h2,h3,h4,.eyebrow{font-family:'Space Grotesk',sans-serif;}
   .eyebrow{
-    font-family:'JetBrains Mono',monospace;font-weight:500;font-size:14.3px;letter-spacing:0.22em;text-transform:uppercase;
-    color:var(--sigma);font-weight:500;margin-bottom:1.2rem;
+    font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--sigma);font-weight:400;margin-bottom:1.2rem;
     display:flex;align-items:center;gap:0.6rem;
   }
   .eyebrow::before{content:'';width:24px;height:1px;background:var(--sigma);display:inline-block;}
   h1.slide-title{font-size:clamp(2.2rem,4.6vw,3.8rem);font-weight:600;line-height:1.08;letter-spacing:-0.02em;margin:0 0 1.5rem 0;color:var(--text);}
-  h1.slide-title em{font-style:normal;color:var(--sigma);font-weight:500;}
-  .lede{font-size:clamp(1rem,1.25vw,1.12rem);color:var(--text2);max-width:780px;font-weight:500;line-height:1.55;margin-bottom:2.2rem;}
+  h1.slide-title em{font-style:normal;color:var(--sigma);font-weight:400;}
+  .lede{font-size:clamp(1rem,1.25vw,1.12rem);color:var(--text2);max-width:780px;font-weight:400;line-height:1.55;margin-bottom:2.2rem;}
 
   /* Cards */
   .card{
@@ -110,18 +110,18 @@
     pointer-events:none;
   }
   .card .num-tag{
-    font-family:'JetBrains Mono',monospace;font-weight:500;font-size:13.7px;color:var(--sigma);letter-spacing:0.1em;font-weight:500;
+    font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.7px;color:var(--sigma);letter-spacing:0.1em;font-weight:400;
     border:1px solid var(--border);padding:2px 8px;border-radius:3px;display:inline-block;margin-bottom:0.7rem;
   }
   .card h3{font-size:1.05rem;font-weight:600;margin:0 0 0.5rem 0;color:var(--text);line-height:1.3;letter-spacing:-0.01em;}
   .card p{font-size:1.08rem;color:var(--text2);margin:0;line-height:1.5;font-weight:400;}
-  .card .metric-strip{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:0.888rem;color:var(--muted);margin-top:0.7rem;padding-top:0.6rem;border-top:1px solid var(--border2);letter-spacing:0.02em;}
+  .card .metric-strip{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.888rem;color:var(--muted);margin-top:0.7rem;padding-top:0.6rem;border-top:1px solid var(--border2);letter-spacing:0.02em;}
 
   .stat{display:flex;flex-direction:column;gap:0.2rem;}
-  .stat .label{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:13.0px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;font-weight:500;}
+  .stat .label{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;font-weight:400;}
   .stat .val{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,2.6vw,2.4rem);font-weight:600;color:var(--text);line-height:1;letter-spacing:-0.01em;}
   .stat .val.sigma{color:var(--sigma);}
-  .stat .delta{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:0.888rem;color:var(--text2);font-weight:500;}
+  .stat .delta{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.888rem;color:var(--text2);font-weight:400;}
 
   .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;}
   .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;}
@@ -152,14 +152,14 @@
   .cover-arc{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
   .cover-arc svg{position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:140%;height:120%;opacity:0.35;}
   .cover-content{position:relative;z-index:2;padding:0 7vw 7vh 7vw;width:100%;}
-  .cover-top{position:absolute;top:5vh;left:7vw;right:7vw;z-index:3;display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:14.3px;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;}
+  .cover-top{position:absolute;top:5vh;left:7vw;right:7vw;z-index:3;display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;}
   .cover-top .lhs{display:flex;align-items:center;gap:1rem;}
-  .cover-top .badge{background:rgba(232,160,32,0.12);border:1px solid var(--border);color:var(--sigma);padding:4px 10px;border-radius:3px;font-weight:500;}
-  .cover-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.6rem,6vw,5.8rem);font-weight:500;color:var(--text);line-height:1.0;letter-spacing:-0.025em;margin:0 0 1.5rem 0;max-width:1100px;}
-  .cover-title em{font-style:normal;color:var(--sigma);font-weight:500;display:block;}
-  .cover-sub{font-family:'Inter',sans-serif;font-size:clamp(1.05rem,1.3vw,1.2rem);font-weight:500;color:var(--text2);max-width:680px;line-height:1.5;margin-bottom:2.4rem;}
-  .cover-meta{display:flex;gap:3rem;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:0.936rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;padding-top:2rem;border-top:1px solid var(--border2);}
-  .cover-meta strong{display:block;color:var(--text);font-weight:500;font-size:1.104rem;font-family:'Space Grotesk',sans-serif;margin-top:0.3rem;letter-spacing:0;text-transform:none;}
+  .cover-top .badge{background:rgba(232,160,32,0.12);border:1px solid var(--border);color:var(--sigma);padding:4px 10px;border-radius:3px;font-weight:400;}
+  .cover-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.6rem,6vw,5.8rem);font-weight:400;color:var(--text);line-height:1.0;letter-spacing:-0.025em;margin:0 0 1.5rem 0;max-width:1100px;}
+  .cover-title em{font-style:normal;color:var(--sigma);font-weight:400;display:block;}
+  .cover-sub{font-family:'Inter',sans-serif;font-size:clamp(1.05rem,1.3vw,1.2rem);font-weight:400;color:var(--text2);max-width:680px;line-height:1.5;margin-bottom:2.4rem;}
+  .cover-meta{display:flex;gap:3rem;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.936rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;padding-top:2rem;border-top:1px solid var(--border2);}
+  .cover-meta strong{display:block;color:var(--text);font-weight:400;font-size:1.104rem;font-family:'Space Grotesk',sans-serif;margin-top:0.3rem;letter-spacing:0;text-transform:none;}
 
   /* Nav — horizontal bottom bar, centred. Subtle pill background so it reads
      as a deliberate UI element rather than scattered dots over the canvas.
@@ -176,7 +176,7 @@
   .nav-dot .tip{
     position:absolute;bottom:18px;left:50%;transform:translateX(-50%);
     background:var(--bg3);border:1px solid var(--border2);padding:4px 10px;border-radius:3px;
-    font-family:'JetBrains Mono',monospace;font-weight:500;font-size:13.0px;letter-spacing:0.1em;color:var(--text2);
+    font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.1em;color:var(--text2);
     white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 0.15s;
   }
   .nav-dot:hover .tip{opacity:1;}
@@ -210,15 +210,15 @@
     border-bottom:1px solid var(--border2);
   }
   .deck-header.show{transform:translateY(0);}
-  .deck-header .brand{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:14.3px;letter-spacing:0.18em;color:var(--text2);text-transform:uppercase;display:flex;align-items:center;gap:0.85rem;}
+  .deck-header .brand{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;letter-spacing:0.18em;color:var(--text2);text-transform:uppercase;display:flex;align-items:center;gap:0.85rem;}
   .deck-header .brand .dot{width:6px;height:6px;border-radius:50%;background:var(--sigma);}
   .deck-header .brand img.sigma-mark{height:22px;width:auto;display:block;}
   .deck-header .brand .sep{width:1px;height:14px;background:var(--border2);}
   .deck-header .right{display:flex;align-items:center;gap:1rem;}
   .deck-header .dixstone-pill{display:flex;align-items:center;}
   .deck-header .dixstone-pill img{height:18px;width:auto;display:block;opacity:0.92;}
-  .deck-header .page-counter{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:14.3px;color:var(--muted);letter-spacing:0.15em;}
-  .deck-header .page-counter .now{color:var(--sigma);font-weight:500;}
+  .deck-header .page-counter{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.15em;}
+  .deck-header .page-counter .now{color:var(--sigma);font-weight:400;}
 
   /* Cover logos */
   .cover-logos{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;width:100%;}
@@ -233,14 +233,14 @@
     border-radius:6px;padding:1.4rem 1.5rem;display:flex;flex-direction:column;gap:0.8rem;
   }
   .insight-card .ic-eyebrow{
-    font-family:'JetBrains Mono',monospace;font-weight:500;font-size:13.0px;letter-spacing:0.18em;color:var(--sigma);
-    text-transform:uppercase;font-weight:500;
+    font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.18em;color:var(--sigma);
+    text-transform:uppercase;font-weight:400;
   }
   .insight-card h3{font-size:1.15rem;font-weight:600;margin:0;color:var(--text);line-height:1.3;letter-spacing:-0.015em;}
   .insight-card .body{font-size:1.104rem;color:var(--text2);line-height:1.55;margin:0;}
   .insight-card .stat-strip{
     display:flex;gap:1.3rem;margin-top:auto;padding-top:0.7rem;border-top:1px solid var(--border2);
-    font-family:'JetBrains Mono',monospace;font-weight:500;font-size:0.864rem;color:var(--muted);letter-spacing:0.02em;
+    font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.864rem;color:var(--muted);letter-spacing:0.02em;
   }
   .insight-card .stat-strip strong{color:var(--sigma);font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.104rem;letter-spacing:0;display:block;margin-bottom:0.15rem;}
 
@@ -256,7 +256,7 @@
   .segment-head .lhs{display:flex;align-items:baseline;gap:0.9rem;flex-wrap:wrap;}
   .segment-head h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;margin:0;color:var(--text);letter-spacing:-0.01em;}
   .segment-head .seg-pill{
-    font-family:'JetBrains Mono',monospace;font-weight:500;font-size:13.0px;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;
+    font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.12em;text-transform:uppercase;font-weight:400;
     padding:3px 9px;border-radius:3px;background:rgba(232,160,32,0.10);color:var(--sigma);border:1px solid var(--border);
   }
   .segment-block.standard .seg-pill{background:rgba(94,179,255,0.10);color:var(--standard);border-color:rgba(94,179,255,0.30);}
@@ -268,13 +268,13 @@
   @media (max-width:1100px){.seg-grid{grid-template-columns:repeat(3,1fr);}}
   @media (max-width:700px){.seg-grid{grid-template-columns:repeat(2,1fr);}}
   .seg-cell{background:var(--bg2);border:1px solid var(--border2);border-radius:5px;padding:0.7rem 0.85rem;display:flex;flex-direction:column;gap:0.3rem;}
-  .seg-cell .metric{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:12.3px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;font-weight:500;line-height:1.3;min-height:24px;}
+  .seg-cell .metric{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:12.3px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;font-weight:400;line-height:1.3;min-height:24px;}
   .seg-cell .dix{display:flex;justify-content:space-between;align-items:baseline;}
-  .seg-cell .dix .who{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:12.3px;color:var(--sigma);letter-spacing:0.05em;text-transform:uppercase;font-weight:500;}
+  .seg-cell .dix .who{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:12.3px;color:var(--sigma);letter-spacing:0.05em;text-transform:uppercase;font-weight:400;}
   .seg-cell .dix .val{font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:600;color:var(--sigma);font-feature-settings:"tnum";letter-spacing:-0.01em;line-height:1;}
-  .seg-cell .pp{display:flex;justify-content:space-between;align-items:baseline;font-size:0.9rem;color:var(--text2);margin-top:0.15rem;font-family:'JetBrains Mono',monospace;font-weight:500;}
+  .seg-cell .pp{display:flex;justify-content:space-between;align-items:baseline;font-size:0.9rem;color:var(--text2);margin-top:0.15rem;font-family:'JetBrains Mono',monospace;font-weight:400;}
   .seg-cell .pp .who{color:var(--muted);}
-  .seg-cell .pp .val{color:var(--text2);font-weight:500;}
+  .seg-cell .pp .val{color:var(--text2);font-weight:400;}
   .seg-cell.lead .val{color:var(--good) !important;}
   .seg-cell.lag .val{color:var(--bad) !important;}
   .seg-cell.close{position:relative;}
@@ -298,13 +298,13 @@
   }
   .pillar h4{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;margin:0 0 0.4rem 0;color:var(--text);letter-spacing:-0.01em;}
   .pillar p{font-size:1.008rem;color:var(--text2);margin:0;line-height:1.5;}
-  .pillar .stat-tag{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:0.864rem;color:var(--sigma);margin-top:0.8rem;padding-top:0.6rem;border-top:1px solid var(--border2);letter-spacing:0.05em;font-weight:500;}
+  .pillar .stat-tag{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.864rem;color:var(--sigma);margin-top:0.8rem;padding-top:0.6rem;border-top:1px solid var(--border2);letter-spacing:0.05em;font-weight:400;}
 
   /* Insight list (next steps) */
   .insight-list{list-style:none;padding:0;margin:0;}
   .insight-list li{display:grid;grid-template-columns:auto 1fr;gap:1.3rem;align-items:start;padding:1rem 0;border-bottom:1px solid var(--border2);}
   .insight-list li:last-child{border-bottom:none;}
-  .insight-list li .num{font-family:'Space Grotesk',sans-serif;font-size:1.7rem;font-weight:500;color:var(--sigma);line-height:1;font-feature-settings:"tnum";min-width:42px;letter-spacing:-0.01em;}
+  .insight-list li .num{font-family:'Space Grotesk',sans-serif;font-size:1.7rem;font-weight:400;color:var(--sigma);line-height:1;font-feature-settings:"tnum";min-width:42px;letter-spacing:-0.01em;}
   .insight-list li h4{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;margin:0 0 0.3rem 0;color:var(--text);letter-spacing:-0.01em;}
   .insight-list li p{font-size:1.056rem;color:var(--text2);margin:0;line-height:1.5;}
 
@@ -313,16 +313,16 @@
     background:radial-gradient(ellipse 70% 50% at 50% 50%, rgba(232,160,32,0.08), transparent 70%), var(--bg);
     text-align:center;justify-content:center;align-items:center;
   }
-  .closing h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,4vw,3.6rem);font-weight:500;letter-spacing:-0.025em;max-width:1000px;line-height:1.1;color:var(--text);margin:0 0 1.5rem 0;}
-  .closing h1 em{font-style:normal;color:var(--sigma);font-weight:500;}
-  .closing .closing-sub{font-size:1.05rem;font-weight:500;color:var(--text2);max-width:620px;line-height:1.55;margin:0 0 2.5rem 0;}
-  .closing .closing-meta{display:flex;gap:3rem;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:0.936rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;padding-top:2rem;border-top:1px solid var(--border2);}
+  .closing h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,4vw,3.6rem);font-weight:400;letter-spacing:-0.025em;max-width:1000px;line-height:1.1;color:var(--text);margin:0 0 1.5rem 0;}
+  .closing h1 em{font-style:normal;color:var(--sigma);font-weight:400;}
+  .closing .closing-sub{font-size:1.05rem;font-weight:400;color:var(--text2);max-width:620px;line-height:1.55;margin:0 0 2.5rem 0;}
+  .closing .closing-meta{display:flex;gap:3rem;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.936rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;padding-top:2rem;border-top:1px solid var(--border2);}
 
   /* Engagement-brief callout */
   .brief-row{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;align-items:start;}
   @media (max-width:900px){.brief-row{grid-template-columns:1fr;}}
   .brief-q{background:var(--bg-card);border:1px solid var(--border2);border-left:3px solid var(--sigma);border-radius:6px;padding:1.3rem 1.5rem;}
-  .brief-q .lbl{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:13.0px;letter-spacing:0.16em;text-transform:uppercase;color:var(--sigma);font-weight:500;margin-bottom:0.6rem;}
+  .brief-q .lbl{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.16em;text-transform:uppercase;color:var(--sigma);font-weight:400;margin-bottom:0.6rem;}
   .brief-q h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;margin:0 0 0.5rem 0;color:var(--text);line-height:1.3;letter-spacing:-0.01em;}
   .brief-q p{font-size:1.08rem;color:var(--text2);margin:0;line-height:1.55;}
 
@@ -339,22 +339,22 @@
     background:radial-gradient(ellipse 70% 50% at 50% 50%, rgba(232,160,32,0.07), transparent 70%), var(--bg);
     justify-content:center;align-items:center;text-align:center;
   }
-  .divider-slide .part-num{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:14.3px;letter-spacing:0.25em;text-transform:uppercase;color:var(--sigma);margin-bottom:1.2rem;}
-  .divider-slide h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,4vw,3.4rem);font-weight:500;letter-spacing:-0.025em;color:var(--text);margin:0 0 1rem 0;line-height:1.1;}
+  .divider-slide .part-num{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;letter-spacing:0.25em;text-transform:uppercase;color:var(--sigma);margin-bottom:1.2rem;}
+  .divider-slide h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,4vw,3.4rem);font-weight:400;letter-spacing:-0.025em;color:var(--text);margin:0 0 1rem 0;line-height:1.1;}
   .divider-slide h1 em{font-style:normal;color:var(--sigma);}
-  .divider-slide p{font-size:1rem;font-weight:500;color:var(--text2);max-width:560px;line-height:1.55;}
+  .divider-slide p{font-size:1rem;font-weight:400;color:var(--text2);max-width:560px;line-height:1.55;}
 
   /* ── Deep-dive benchmark slide ── */
   .bench-table{width:100%;border-collapse:collapse;margin-top:1rem;}
   .bench-table thead tr{border-bottom:1px solid var(--border);}
-  .bench-table thead th{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:14.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);padding:0.4rem 0.7rem;text-align:left;}
+  .bench-table thead th{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);padding:0.4rem 0.7rem;text-align:left;}
   .bench-table thead th:not(:first-child){text-align:right;}
   .bench-table tbody tr{border-bottom:1px solid var(--border2);transition:background 0.15s;}
   .bench-table tbody tr:hover{background:rgba(232,160,32,0.03);}
   .bench-table tbody td{padding:0.38rem 0.7rem;font-size:1.12rem;color:var(--text2);vertical-align:middle;}
-  .bench-table tbody td:not(:first-child){text-align:right;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:1.24rem;}
+  .bench-table tbody td:not(:first-child){text-align:right;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:1.24rem;}
   .bench-table .rig-name{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--text);font-size:1.14rem;}
-  .bench-table .rig-type{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11.7px;letter-spacing:0.1em;text-transform:uppercase;display:block;margin-top:1px;}
+  .bench-table .rig-type{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.7px;letter-spacing:0.1em;text-transform:uppercase;display:block;margin-top:1px;}
   .bench-table .val-red{color:var(--bad);}
   .bench-table .val-green{color:var(--good);}
   .bench-table .val-amber{color:var(--sigma);}
@@ -369,7 +369,7 @@
   .onepager{padding:3.5rem 6vw 3rem;}
   .op-header{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.6rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
   .op-rig-name{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:600;letter-spacing:-0.02em;color:var(--text);line-height:1;}
-  .op-rig-type{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:13.0px;letter-spacing:0.18em;text-transform:uppercase;padding:3px 10px;border-radius:3px;font-weight:500;margin-left:0.7rem;}
+  .op-rig-type{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.18em;text-transform:uppercase;padding:3px 10px;border-radius:3px;font-weight:400;margin-left:0.7rem;}
   .op-rig-type.premium{background:rgba(232,160,32,0.12);color:var(--premium);border:1px solid rgba(232,160,32,0.3);}
   .op-rig-type.standard{background:rgba(94,179,255,0.10);color:var(--standard);border:1px solid rgba(94,179,255,0.3);}
   .op-rig-type.platform{background:rgba(123,197,168,0.10);color:var(--platform);border:1px solid rgba(123,197,168,0.3);}
@@ -378,34 +378,34 @@
   @media (max-width:1100px){.op-kpi-row{grid-template-columns:repeat(3,1fr);}}
   @media (max-width:700px){.op-kpi-row{grid-template-columns:repeat(2,1fr);}}
   .op-kpi{background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:0.85rem 1rem;}
-  .op-kpi .lbl{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11.7px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:0.3rem;}
+  .op-kpi .lbl{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.7px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:400;margin-bottom:0.3rem;}
   .op-kpi .v{font-family:'Space Grotesk',sans-serif;font-size:1.45rem;font-weight:600;color:var(--sigma);line-height:1;letter-spacing:-0.01em;}
   .op-kpi .v.red{color:var(--bad);}
   .op-kpi .v.green{color:var(--good);}
-  .op-kpi .sub{font-size:0.9rem;color:var(--muted);margin-top:0.2rem;font-family:'JetBrains Mono',monospace;font-weight:500;}
+  .op-kpi .sub{font-size:0.9rem;color:var(--muted);margin-top:0.2rem;font-family:'JetBrains Mono',monospace;font-weight:400;}
   .op-body{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;}
   @media (max-width:900px){.op-body{grid-template-columns:1fr;}}
   /* Rig one-pager dropdown selector */
   .op-selector{display:flex;align-items:center;gap:1rem;margin-bottom:1.1rem;flex-wrap:wrap;}
-  .op-selector .op-sel-label{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:14.3px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:500;}
+  .op-selector .op-sel-label{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:400;}
   .op-selector select{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;color:var(--sigma);background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:0.4rem 0.9rem;cursor:pointer;}
   .op-selector select:focus{outline:none;border-color:var(--sigma);}
-  .op-selector .op-sel-hint{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:13.0px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted2);}
+  .op-selector .op-sel-hint{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted2);}
   .op-panel{background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.1rem 1.3rem;}
-  .op-panel .ptitle{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:13.0px;letter-spacing:0.16em;text-transform:uppercase;color:var(--sigma);font-weight:500;margin-bottom:0.8rem;}
+  .op-panel .ptitle{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.16em;text-transform:uppercase;color:var(--sigma);font-weight:400;margin-bottom:0.8rem;}
   /* P&L panel: 4-col grid — label | 2025 | 2024 | Δ — with a column header + two dividers */
   .op-panel .prow{display:grid;grid-template-columns:1fr 108px 92px 78px;align-items:center;column-gap:0;padding:0.42rem 0;border-bottom:1px solid var(--border2);font-size:1.008rem;}
   .op-panel .prow:last-child{border-bottom:none;}
   .op-panel .prow .pk{color:var(--text2);grid-column:1;}
   .op-panel .prow.phead{padding:0.1rem 0 0.34rem;border-bottom:1px solid var(--border3);}
-  .op-panel .prow.phead .ph{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:0.768rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);text-align:right;padding-right:8px;}
-  .op-panel .prow .pv{grid-column:2;text-align:right;padding-right:8px;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:0.936rem;font-weight:500;color:var(--text);}
+  .op-panel .prow.phead .ph{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.768rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);text-align:right;padding-right:8px;}
+  .op-panel .prow .pv{grid-column:2;text-align:right;padding-right:8px;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.936rem;font-weight:400;color:var(--text);}
   .op-panel .prow .pv.red{color:var(--bad);}
   .op-panel .prow .pv.amber{color:var(--sigma);}
   .op-panel .prow .pv.green{color:var(--good);}
-  .op-panel .prow .pv2{grid-column:3;text-align:right;padding-right:8px;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:0.864rem;color:var(--text2);}
-  .op-panel .prow .pvd{grid-column:4;text-align:right;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:0.84rem;font-weight:500;}
-  .op-panel .prow .pvnote{grid-column:3 / 5;text-align:left;padding-left:8px;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:0.756rem;color:var(--muted);line-height:1.3;}
+  .op-panel .prow .pv2{grid-column:3;text-align:right;padding-right:8px;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.864rem;color:var(--text2);}
+  .op-panel .prow .pvd{grid-column:4;text-align:right;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.84rem;font-weight:400;}
+  .op-panel .prow .pvnote{grid-column:3 / 5;text-align:left;padding-left:8px;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.756rem;color:var(--muted);line-height:1.3;}
   .op-panel .prow.no-prev .pv{grid-column:2;}
   /* two subtle vertical dividers separating 2025 | 2024 | Δ, spanning the dual block + header */
   .op-panel .pl-dual{position:relative;}
@@ -418,15 +418,15 @@
   @media (max-width:1100px){.op-body-3{grid-template-columns:1fr;}}
   .op-body-3 .op-panel{padding:0.9rem 1.05rem;}
   .mg-driver{display:grid;grid-template-columns:78px 1fr 56px 42px;gap:0.45rem;align-items:center;padding:0.18rem 0;}
-  .mg-driver .mk{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:12.3px;letter-spacing:0.06em;color:var(--text);font-weight:500;text-transform:uppercase;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .mg-driver .mk{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:12.3px;letter-spacing:0.06em;color:var(--text);font-weight:400;text-transform:uppercase;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .mg-driver .mtrack{background:var(--bg3);height:8px;border-radius:2px;overflow:hidden;}
   .mg-driver .mfill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--sigma3),var(--sigma));}
   .mg-driver .mfill.po{background:linear-gradient(90deg,#3d8ed4,var(--standard));}
   .mg-driver .mfill.gr{background:linear-gradient(90deg,#5a9580,var(--platform));}
   .mg-driver .mfill.io{background:linear-gradient(90deg,#8273b5,var(--land));}
-  .mg-driver .mv{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:0.84rem;color:var(--text2);font-weight:500;text-align:right;}
-  .mg-driver .mpct{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:0.84rem;color:var(--muted);text-align:right;}
-  .op-panel .mg-total{margin-top:0.55rem;padding-top:0.5rem;border-top:1px solid var(--border2);display:flex;justify-content:space-between;align-items:baseline;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11.7px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;}
+  .mg-driver .mv{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.84rem;color:var(--text2);font-weight:400;text-align:right;}
+  .mg-driver .mpct{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.84rem;color:var(--muted);text-align:right;}
+  .op-panel .mg-total{margin-top:0.55rem;padding-top:0.5rem;border-top:1px solid var(--border2);display:flex;justify-content:space-between;align-items:baseline;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.7px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;}
   .op-panel .mg-total strong{color:var(--sigma);font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;letter-spacing:-0.01em;text-transform:none;}
 
   /* Mega-KPI strip (for top of deep-dive slides) */
@@ -434,23 +434,23 @@
   @media (max-width:900px){.mega-kpi{grid-template-columns:1fr;}}
   .mega-kpi .mk{background:var(--bg-card);border:1px solid var(--border2);border-left:3px solid var(--sigma);border-radius:6px;padding:0.95rem 1.1rem;}
   .mega-kpi .mk .mv{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:600;color:var(--sigma);line-height:1;letter-spacing:-0.02em;}
-  .mega-kpi .mk .ml{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:12.3px;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;margin:0.5rem 0 0.3rem 0;}
+  .mega-kpi .mk .ml{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:12.3px;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;margin:0.5rem 0 0.3rem 0;}
   .mega-kpi .mk .md{font-size:1.02rem;color:var(--text2);line-height:1.45;}
 
   /* Source / methodology footer band */
-  .src-band{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:0.888rem;color:var(--muted);letter-spacing:0.04em;line-height:1.55;margin-top:1.3rem;padding-top:0.9rem;border-top:1px solid var(--border2);}
-  .src-band strong{color:var(--text2);font-weight:500;}
+  .src-band{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.888rem;color:var(--muted);letter-spacing:0.04em;line-height:1.55;margin-top:1.3rem;padding-top:0.9rem;border-top:1px solid var(--border2);}
+  .src-band strong{color:var(--text2);font-weight:400;}
 
   /* Horizontal rig bars */
   .hbar-list{display:flex;flex-direction:column;gap:0.5rem;}
   .hbar-row{display:grid;grid-template-columns:200px 1fr 110px;gap:0.8rem;align-items:center;padding:0.3rem 0;}
-  .hbar-row .hk{font-family:'Space Grotesk',sans-serif;font-size:1.104rem;color:var(--text);font-weight:500;}
+  .hbar-row .hk{font-family:'Space Grotesk',sans-serif;font-size:1.104rem;color:var(--text);font-weight:400;}
   .hbar-row .ht{background:var(--bg3);height:18px;border-radius:3px;position:relative;overflow:hidden;}
   /* Industry-bracket vertical marker (used on Inventory Levels slide) */
   .hbar-row .ht.with-bracket{overflow:visible;}
   .hbar-bracket{position:absolute;top:-5px;bottom:-5px;width:2px;background:rgba(255,255,255,0.9);box-shadow:0 0 0 1px rgba(15,20,29,0.55);z-index:2;}
   .hbar-bracket::before{content:'';position:absolute;top:-4px;left:-3px;width:8px;height:8px;background:#fff;border:1px solid rgba(15,20,29,0.55);border-radius:50%;}
-  .hbar-bracket .lbl{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.4px;letter-spacing:0.06em;color:var(--text);white-space:nowrap;background:var(--bg-card);border:1px solid var(--border2);border-radius:3px;padding:1px 5px;font-weight:500;}
+  .hbar-bracket .lbl{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-weight:400;font-size:10.4px;letter-spacing:0.06em;color:var(--text);white-space:nowrap;background:var(--bg-card);border:1px solid var(--border2);border-radius:3px;padding:1px 5px;font-weight:400;}
   html[data-theme="light"] .hbar-bracket{background:rgba(15,20,29,0.85);box-shadow:0 0 0 1px rgba(255,255,255,0.5);}
   html[data-theme="light"] .hbar-bracket::before{background:#0a0e15;border-color:#fff;}
   .hbar-row .hf{height:100%;background:linear-gradient(90deg,var(--sigma3),var(--sigma));border-radius:3px;display:flex;align-items:center;padding-left:0.5rem;}
@@ -459,26 +459,26 @@
   .hbar-row .hf.platform{background:linear-gradient(90deg,#5a9580,var(--platform));}
   .hbar-row .hf.land{background:linear-gradient(90deg,#8273b5,var(--land));}
   .hbar-row .hf.standard{background:linear-gradient(90deg,#3d8ed4,var(--standard));}
-  .hbar-row .hv{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:1.02rem;color:var(--text);text-align:right;font-weight:500;}
+  .hbar-row .hv{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:1.02rem;color:var(--text);text-align:right;font-weight:400;}
   .hbar-row .hv .sub{color:var(--muted);font-size:0.864rem;display:block;margin-top:1px;}
 
   /* Stacked inventory bar (dead vs live) */
   .stk-row{display:grid;grid-template-columns:130px 1fr 130px;gap:0.8rem;align-items:center;padding:0.3rem 0;}
-  .stk-row .skk{font-family:'Space Grotesk',sans-serif;font-size:1.104rem;color:var(--text);font-weight:500;}
-  .stk-row .skk .typ{display:block;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11.7px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;margin-top:1px;}
+  .stk-row .skk{font-family:'Space Grotesk',sans-serif;font-size:1.104rem;color:var(--text);font-weight:400;}
+  .stk-row .skk .typ{display:block;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.7px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;margin-top:1px;}
   .stk-row .skt{background:var(--bg3);height:22px;border-radius:3px;position:relative;overflow:hidden;display:flex;}
   .stk-row .stk-dead{background:linear-gradient(90deg,#b94656,var(--bad));height:100%;}
   .stk-row .stk-live{background:linear-gradient(90deg,#3e9168,var(--good));height:100%;}
-  .stk-row .skv{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:0.984rem;color:var(--text);text-align:right;}
+  .stk-row .skv{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.984rem;color:var(--text);text-align:right;}
   .stk-row .skv .pct{color:var(--bad);font-weight:600;}
-  .stk-row .skv .total{color:var(--text);font-weight:500;}
+  .stk-row .skv .total{color:var(--text);font-weight:400;}
 
   /* Org structure compare panels */
   .org-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
   @media (max-width:900px){.org-grid{grid-template-columns:1fr;}}
   .org-panel{background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.2rem 1.4rem;border-top:3px solid var(--sigma3);}
   .org-panel.future{border-top-color:var(--good);}
-  .org-panel .ohead{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:13.0px;letter-spacing:0.18em;color:var(--sigma);text-transform:uppercase;font-weight:500;margin-bottom:0.3rem;}
+  .org-panel .ohead{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.18em;color:var(--sigma);text-transform:uppercase;font-weight:400;margin-bottom:0.3rem;}
   .org-panel.future .ohead{color:var(--good);}
   .org-panel h4{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;margin:0 0 0.7rem 0;color:var(--text);letter-spacing:-0.01em;}
   .org-panel ul{margin:0 0 0.6rem 0;padding:0;list-style:none;}
@@ -494,7 +494,7 @@
   .npt-driver .dk{font-size:0.996rem;color:var(--text2);min-width:130px;}
   .npt-driver .dtrack{flex:1;height:5px;background:var(--bg3);border-radius:3px;overflow:hidden;}
   .npt-driver .dfill{height:100%;border-radius:3px;background:var(--bad);}
-  .npt-driver .dpct{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:0.9rem;color:var(--bad);min-width:38px;text-align:right;}
+  .npt-driver .dpct{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.9rem;color:var(--bad);min-width:38px;text-align:right;}
 
   @media print{
     @page{size:A4 landscape;margin:0;}
@@ -761,7 +761,7 @@
     -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
     border:1px solid var(--border);color:var(--text);
     cursor:pointer;display:flex;align-items:center;gap:0.5rem;
-    font-family:'JetBrains Mono',monospace;font-weight:500;font-size:14.3px;letter-spacing:0.15em;text-transform:uppercase;font-weight:500;
+    font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;letter-spacing:0.15em;text-transform:uppercase;font-weight:400;
     box-shadow:0 4px 16px rgba(0,0,0,0.22);
     transition:background 0.25s ease, color 0.25s ease, transform 0.2s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     animation: themePulse 2.6s ease-in-out 1s 2;
@@ -792,7 +792,7 @@
     height:26px;padding:0 10px 0 8px;border-radius:4px;
     background:transparent;border:1px solid var(--border2);color:var(--text2);
     cursor:pointer;display:flex;align-items:center;gap:0.4rem;
-    font-family:'JetBrains Mono',monospace;font-weight:500;font-size:13.0px;letter-spacing:0.13em;text-transform:uppercase;font-weight:500;
+    font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.13em;text-transform:uppercase;font-weight:400;
     transition:background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   }
   .header-theme-toggle:hover{color:var(--sigma);border-color:var(--sigma);background:var(--sigma-soft);}
@@ -828,7 +828,7 @@
 
   /* ===== 3-way deck switcher (Exec Summary / Key Supporting / Complete) ===== */
   .deck-switcher{position:fixed;top:1.2rem;left:50%;transform:translateX(-50%);z-index:70;display:flex;gap:0.3rem;background:rgba(13,17,25,0.88);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:999px;padding:0.3rem;box-shadow:0 4px 18px rgba(0,0,0,0.28);}
-  .deck-switcher a{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:13.0px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:0.5rem 0.9rem;border-radius:999px;transition:all 0.15s ease;white-space:nowrap;font-weight:500;}
+  .deck-switcher a{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:0.5rem 0.9rem;border-radius:999px;transition:all 0.15s ease;white-space:nowrap;font-weight:400;}
   .deck-switcher a:hover{color:var(--text);background:var(--sigma-soft);}
   .deck-switcher a.active{color:#06080d;background:var(--sigma);}
   @media (max-width:820px){.deck-switcher a{font-size:11.1px;padding:0.4rem 0.6rem;letter-spacing:0.04em;}}
@@ -1317,7 +1317,7 @@
       <div class="rigpanel" data-rig="AXIMA">
 <div class="op-header">
       <div><span class="op-rig-name">AXIMA</span><span class="op-rig-type premium">Premium Jack-Up</span></div>
-      <div style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
     </div>
     <div class="op-kpi-row">
       <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v amber">84.9%</div><div class="sub">310 / 365 days</div></div>
@@ -1335,8 +1335,8 @@
         <div class="prow"><span class="pk">Revenue</span><span class="pv">$39,210</span><span class="pv2">$44,245</span><span class="pvd" style="color:var(--bad);">−11.4%</span></div>
         <div class="prow"><span class="pk">Workforce cost</span><span class="pv amber">$12,415 (31.7%)</span><span class="pv2">$13,318 (30.1%)</span><span class="pvd" style="color:var(--bad);">+1.6pp</span></div>
         <div class="prow"><span class="pk">Rig Direct Margin</span><span class="pv green">$15,504 (39.5%)</span><span class="pv2">$21,105 (47.7%)</span><span class="pvd" style="color:var(--bad);">−8.2pp</span></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">GR · real spent</span><span class="pv">$10,066 (25.8%)</span><span class="pv2">$7,176 (16.2%)</span><span class="pvd" style="color:var(--bad);">+9.6pp</span></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">New POs</span><span class="pv">$11.5M</span><span class="pv2">$11.6M</span><span class="pvd" style="color:var(--text2);">−1%</span></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:400;">GR · real spent</span><span class="pv">$10,066 (25.8%)</span><span class="pv2">$7,176 (16.2%)</span><span class="pvd" style="color:var(--bad);">+9.6pp</span></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:400;">New POs</span><span class="pv">$11.5M</span><span class="pv2">$11.6M</span><span class="pvd" style="color:var(--text2);">−1%</span></div>
         <div class="prow"><span class="pk">PO ÷ GR</span><span class="pv amber"><strong>1.14×</strong></span><span class="pvnote">ordering slightly ahead of consumption</span></div>
         </div>
         <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.5rem;"><span class="pk">Inventory (end-2025)</span><span class="pv">$5.0M</span></div>
@@ -1352,7 +1352,7 @@
         <div class="npt-driver"><span class="dk">Miscel</span><div class="dtrack"><div class="dfill" style="width:6.5%"></div></div><span class="dpct">6.5%</span></div>
         <div class="npt-driver"><span class="dk">Rig Floor</span><div class="dtrack"><div class="dfill" style="width:3.8%"></div></div><span class="dpct">3.8%</span></div>
         <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
-          <div style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11.7px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.7px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
           <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">201.25 hrs · 8.4 days · 2.7%</div>
           <div style="font-size:0.984rem;color:var(--text2);margin-top:0.3rem;">Lowest total NPT hours in fleet. BOP (52%) + TDS PM are the primary interventions.</div>
         </div>
@@ -1391,7 +1391,7 @@
       <div class="rigpanel" data-rig="BANBA" style="display:none;">
 <div class="op-header">
       <div><span class="op-rig-name">BANBA</span><span class="op-rig-type standard">Standard Jack-Up</span></div>
-      <div style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
     </div>
     <div class="op-kpi-row">
       <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
@@ -1409,8 +1409,8 @@
         <div class="prow"><span class="pk">Revenue</span><span class="pv">$33,321</span><span class="pv2">$23,418</span><span class="pvd" style="color:var(--good);">+42.3%</span></div>
         <div class="prow"><span class="pk">Workforce cost</span><span class="pv amber">$11,236 (33.7%)</span><span class="pv2">$8,829 (37.7%)</span><span class="pvd" style="color:var(--good);">−4.0pp</span></div>
         <div class="prow"><span class="pk">Rig Direct Margin</span><span class="pv amber">$12,098 (36.3%)</span><span class="pv2">$6,012 (25.7%)</span><span class="pvd" style="color:var(--good);">+10.6pp</span></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">GR · real spent</span><span class="pv">$8,762 (26.3%)</span><span class="pv2">$7,222 (30.8%)</span><span class="pvd" style="color:var(--good);">−4.5pp</span></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">New POs</span><span class="pv">$10.1M</span><span class="pv2">$13.0M</span><span class="pvd" style="color:var(--text2);">−22%</span></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:400;">GR · real spent</span><span class="pv">$8,762 (26.3%)</span><span class="pv2">$7,222 (30.8%)</span><span class="pvd" style="color:var(--good);">−4.5pp</span></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:400;">New POs</span><span class="pv">$10.1M</span><span class="pv2">$13.0M</span><span class="pvd" style="color:var(--text2);">−22%</span></div>
         <div class="prow"><span class="pk">PO ÷ GR</span><span class="pv amber"><strong>1.15×</strong></span><span class="pvnote">ordering slightly ahead of consumption</span></div>
         </div>
         <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.5rem;"><span class="pk">Inventory (end-2025)</span><span class="pv red">$9.0M</span></div>
@@ -1426,7 +1426,7 @@
         <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:2.4%"></div></div><span class="dpct">2.4%</span></div>
         <div class="npt-driver"><span class="dk">Pump</span><div class="dtrack"><div class="dfill" style="width:1.3%"></div></div><span class="dpct">1.3%</span></div>
         <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
-          <div style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11.7px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.7px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
           <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">763 hrs · 31.8 days · 8.7%</div>
           <div style="font-size:0.984rem;color:var(--text2);margin-top:0.3rem;">Power Generation + BOP shared culprit with NUADA. Root-cause programme recommended.</div>
         </div>
@@ -1465,7 +1465,7 @@
       <div class="rigpanel" data-rig="NUADA" style="display:none;">
 <div class="op-header">
       <div><span class="op-rig-name">NUADA</span><span class="op-rig-type standard">Standard Jack-Up</span></div>
-      <div style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
     </div>
     <div class="op-kpi-row">
       <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
@@ -1483,8 +1483,8 @@
         <div class="prow"><span class="pk">Revenue</span><span class="pv">$34,374</span><span class="pv2">$30,112</span><span class="pvd" style="color:var(--good);">+14.2%</span></div>
         <div class="prow"><span class="pk">Workforce cost</span><span class="pv green">$10,309 (30.0%)</span><span class="pv2">$10,088 (33.5%)</span><span class="pvd" style="color:var(--good);">−3.5pp</span></div>
         <div class="prow"><span class="pk">Rig Direct Margin</span><span class="pv green">$14,141 (41.1%)</span><span class="pv2">$11,966 (39.7%)</span><span class="pvd" style="color:var(--good);">+1.4pp</span></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">GR · real spent</span><span class="pv">$7,752 (22.6%)</span><span class="pv2">$6,694 (22.2%)</span><span class="pvd" style="color:var(--text2);">+0.4pp</span></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">New POs</span><span class="pv">$4.4M</span><span class="pv2">$12.3M</span><span class="pvd" style="color:var(--good);">−64%</span></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:400;">GR · real spent</span><span class="pv">$7,752 (22.6%)</span><span class="pv2">$6,694 (22.2%)</span><span class="pvd" style="color:var(--text2);">+0.4pp</span></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:400;">New POs</span><span class="pv">$4.4M</span><span class="pv2">$12.3M</span><span class="pvd" style="color:var(--good);">−64%</span></div>
         <div class="prow"><span class="pk">PO ÷ GR</span><span class="pv amber"><strong>0.56×</strong></span><span class="pvnote">drawing down excess inventory</span></div>
         </div>
         <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.5rem;"><span class="pk">Inventory (end-2025)</span><span class="pv red">$12.3M</span></div>
@@ -1500,7 +1500,7 @@
         <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:3.4%"></div></div><span class="dpct">3.4%</span></div>
         <div class="npt-driver"><span class="dk">Pump</span><div class="dtrack"><div class="dfill" style="width:3.4%"></div></div><span class="dpct">3.4%</span></div>
         <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
-          <div style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11.7px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.7px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
           <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">510.25 hrs · 21.3 days · 5.8%</div>
           <div style="font-size:0.984rem;color:var(--text2);margin-top:0.3rem;">Power Generation now dominant — joint programme with BANBA targeting shared root causes.</div>
         </div>
@@ -1539,7 +1539,7 @@
       <div class="rigpanel" data-rig="LUG" style="display:none;">
 <div class="op-header">
       <div><span class="op-rig-name">LUG</span><span class="op-rig-type platform">Platform Rig</span></div>
-      <div style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
     </div>
     <div class="op-kpi-row">
       <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
@@ -1557,8 +1557,8 @@
         <div class="prow"><span class="pk">Revenue</span><span class="pv">$23,834</span><span class="pv2">$12,895</span><span class="pvd" style="color:var(--good);">+84.8%</span></div>
         <div class="prow"><span class="pk">Workforce cost</span><span class="pv amber">$7,637 (32.0%)</span><span class="pv2">$6,177 (47.9%)</span><span class="pvd" style="color:var(--good);">−15.9pp</span></div>
         <div class="prow"><span class="pk">Rig Direct Margin</span><span class="pv amber">$8,842 (37.1%)</span><span class="pv2">$344 (2.7%)</span><span class="pvd" style="color:var(--good);">+34.4pp</span></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">GR · real spent</span><span class="pv">$6,518 (27.4%)</span><span class="pv2">$3,371 (26.1%)</span><span class="pvd" style="color:var(--text2);">+1.3pp</span></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">New POs</span><span class="pv">$7.6M</span><span class="pv2">$4.0M</span><span class="pvd" style="color:var(--text2);">+90%</span></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:400;">GR · real spent</span><span class="pv">$6,518 (27.4%)</span><span class="pv2">$3,371 (26.1%)</span><span class="pvd" style="color:var(--text2);">+1.3pp</span></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:400;">New POs</span><span class="pv">$7.6M</span><span class="pv2">$4.0M</span><span class="pvd" style="color:var(--text2);">+90%</span></div>
         <div class="prow"><span class="pk">PO ÷ GR</span><span class="pv amber"><strong>1.17×</strong></span><span class="pvnote">ordering slightly ahead of consumption</span></div>
         </div>
         <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.5rem;"><span class="pk">Inventory (end-2025)</span><span class="pv red">$5.3M</span></div>
@@ -1574,7 +1574,7 @@
         <div class="npt-driver"><span class="dk">PowGen</span><div class="dtrack"><div class="dfill" style="width:9.3%"></div></div><span class="dpct">9.3%</span></div>
         <div class="npt-driver"><span class="dk">Drawworks</span><div class="dtrack"><div class="dfill" style="width:7.5%"></div></div><span class="dpct">7.5%</span></div>
         <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
-          <div style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11.7px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.7px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
           <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">588.25 hrs · 24.5 days · 6.7%</div>
           <div style="font-size:0.984rem;color:var(--text2);margin-top:0.3rem;">TDS (34%) + Pump (25%) are the two operational levers — top-drive overhaul + pump PM cycle.</div>
         </div>
@@ -1613,7 +1613,7 @@
       <div class="rigpanel" data-rig="MIDIR" style="display:none;">
 <div class="op-header">
       <div><span class="op-rig-name">MIDIR</span><span class="op-rig-type land">Land Rig</span></div>
-      <div style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
     </div>
     <div class="op-kpi-row">
       <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
@@ -1631,8 +1631,8 @@
         <div class="prow"><span class="pk">Revenue</span><span class="pv">$13,593</span><span class="pv2">$11,650</span><span class="pvd" style="color:var(--good);">+16.7%</span></div>
         <div class="prow"><span class="pk">Workforce cost</span><span class="pv red">$7,054 (51.9%)</span><span class="pv2">$7,980 (68.5%)</span><span class="pvd" style="color:var(--good);">−16.6pp</span></div>
         <div class="prow"><span class="pk">Rig Direct Margin</span><span class="pv red">−$1,449 (−10.7%)</span><span class="pv2">$844 (7.2%)</span><span class="pvd" style="color:var(--bad);">−17.9pp</span></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">GR · real spent</span><span class="pv">$7,071 (52.0%)</span><span class="pv2">$2,540 (21.8%)</span><span class="pvd" style="color:var(--bad);">+30.2pp</span></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">New POs</span><span class="pv">$7.7M</span><span class="pv2">$10.4M</span><span class="pvd" style="color:var(--text2);">−26%</span></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:400;">GR · real spent</span><span class="pv">$7,071 (52.0%)</span><span class="pv2">$2,540 (21.8%)</span><span class="pvd" style="color:var(--bad);">+30.2pp</span></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:400;">New POs</span><span class="pv">$7.7M</span><span class="pv2">$10.4M</span><span class="pvd" style="color:var(--text2);">−26%</span></div>
         <div class="prow"><span class="pk">PO ÷ GR</span><span class="pv green"><strong>1.08×</strong></span><span class="pvnote">ordering in sync with consumption</span></div>
         </div>
         <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.5rem;"><span class="pk">Inventory (end-2025)</span><span class="pv amber">$6.0M</span></div>
@@ -1648,7 +1648,7 @@
         <div class="npt-driver"><span class="dk">Pump</span><div class="dtrack"><div class="dfill" style="width:9.7%"></div></div><span class="dpct">9.7%</span></div>
         <div class="npt-driver"><span class="dk">Miscel</span><div class="dtrack"><div class="dfill" style="width:9.1%"></div></div><span class="dpct">9.1%</span></div>
         <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
-          <div style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11.7px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.7px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
           <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">604 hrs · 25.2 days · 6.9%</div>
           <div style="font-size:0.984rem;color:var(--text2);margin-top:0.3rem;">TDS alone = 49% of NPT. Top-drive overhaul is the single highest-impact intervention.</div>
         </div>
@@ -1687,7 +1687,7 @@
       <div class="rigpanel" data-rig="DRAVUS" style="display:none;">
 <div class="op-header">
       <div><span class="op-rig-name">DRAVUS</span><span class="op-rig-type land">Land Rig</span></div>
-      <div style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
     </div>
     <div class="op-kpi-row">
       <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
@@ -1705,8 +1705,8 @@
         <div class="prow"><span class="pk">Revenue</span><span class="pv">$14,125</span><span class="pv2">$12,395</span><span class="pvd" style="color:var(--good);">+13.9%</span></div>
         <div class="prow"><span class="pk">Workforce cost</span><span class="pv red">$5,779 (40.9%)</span><span class="pv2">$5,627 (45.4%)</span><span class="pvd" style="color:var(--good);">−4.5pp</span></div>
         <div class="prow"><span class="pk">Rig Direct Margin</span><span class="pv amber">$3,325 (23.5%)</span><span class="pv2">$4,188 (33.8%)</span><span class="pvd" style="color:var(--bad);">−10.3pp</span></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">GR · real spent</span><span class="pv">$4,200 (29.7%)</span><span class="pv2">$2,946 (23.8%)</span><span class="pvd" style="color:var(--bad);">+5.9pp</span></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">New POs</span><span class="pv">$7.6M</span><span class="pv2">$8.0M</span><span class="pvd" style="color:var(--text2);">−5%</span></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:400;">GR · real spent</span><span class="pv">$4,200 (29.7%)</span><span class="pv2">$2,946 (23.8%)</span><span class="pvd" style="color:var(--bad);">+5.9pp</span></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:400;">New POs</span><span class="pv">$7.6M</span><span class="pv2">$8.0M</span><span class="pvd" style="color:var(--text2);">−5%</span></div>
         <div class="prow"><span class="pk">PO ÷ GR</span><span class="pv red"><strong>1.81×</strong></span><span class="pvnote">over-ordering 81% above consumption</span></div>
         </div>
         <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.5rem;"><span class="pk">Inventory (end-2025)</span><span class="pv red">$3.7M</span></div>
@@ -1722,7 +1722,7 @@
         <div class="npt-driver"><span class="dk">Rig Floor</span><div class="dtrack"><div class="dfill" style="width:8.5%"></div></div><span class="dpct">8.5%</span></div>
         <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:7.5%"></div></div><span class="dpct">7.5%</span></div>
         <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
-          <div style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11.7px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.7px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
           <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">285 hrs · 11.9 days · 3.3%</div>
           <div style="font-size:0.984rem;color:var(--text2);margin-top:0.3rem;">TDS (27%) + Drawworks (10%) are operational. Lowest absolute NPT among land rigs.</div>
         </div>

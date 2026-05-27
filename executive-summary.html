@@ -352,6 +352,16 @@
   .es-sub strong{color:var(--text);font-weight:600;}
   .es-points li em{font-style:normal;color:var(--sigma);font-weight:500;font-size:0.6em;letter-spacing:0;}
   .es-points li .lead{font-weight:600;}
+
+  /* Slide 1 process flow */
+  .es-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.6rem;}
+  @media (max-width:900px){.es-flow{grid-template-columns:repeat(2,1fr);}}
+  .es-step{background:linear-gradient(180deg,var(--bg-card),var(--bg2));border:1px solid var(--border2);border-top:3px solid var(--sigma);border-radius:8px;padding:1.2rem 1.2rem;display:flex;flex-direction:column;gap:0.55rem;}
+  .es-step .n{font-family:'JetBrains Mono',monospace;font-size:clamp(0.7rem,0.85vw,0.82rem);color:var(--sigma);letter-spacing:0.12em;font-weight:600;}
+  .es-step h4{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.2rem,1.9vw,1.7rem);font-weight:600;margin:0;color:var(--text);letter-spacing:-0.01em;line-height:1.1;}
+  .es-step p{font-size:clamp(0.85rem,1.05vw,1.02rem);color:var(--text2);margin:0;line-height:1.4;font-weight:300;}
+  .es-step .chips{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.15rem;}
+  .es-step .chips span{font-family:'JetBrains Mono',monospace;font-size:clamp(0.6rem,0.72vw,0.7rem);letter-spacing:0.06em;text-transform:uppercase;color:var(--sigma);border:1px solid var(--border);border-radius:3px;padding:3px 7px;}
 </style>
 </head>
 <body>
@@ -377,9 +387,30 @@
   <!-- 1 -->
   <section class="slide" data-title="Approach">
     <div class="eyebrow reveal">01 · The Approach</div>
-    <h1 class="es-statement reveal">Benchmarked <em>like-for-like</em> &mdash; built with your team.</h1>
-    <p class="es-sub reveal d1">Two phases with the Dixstone team: an internal SAP deep-dive, then an external benchmark against 9 listed peers &mdash; every rig measured against its <em>direct</em> segment, jackups vs jackups and land vs land. Not a generic industry average.</p>
-    <div class="es-mono-row reveal d2"><span>9 listed peers</span><span>18 KPIs</span><span>5 fiscal years</span><span>Audited filings</span></div>
+    <h1 class="es-statement reveal" style="margin-bottom:0.4rem;">Built from <em>your data</em> up &mdash; validated by your team.</h1>
+    <div class="es-flow reveal d1">
+      <div class="es-step">
+        <span class="n">01 · GATHER</span>
+        <h4>Your data</h4>
+        <p>Five years of SAP &mdash; financials, procurement, inventory &mdash; plus your drilling team&rsquo;s inputs on day rates, NPT, OPEX &amp; CAPEX.</p>
+      </div>
+      <div class="es-step">
+        <span class="n">02 · MEASURE</span>
+        <h4>Score Dixstone</h4>
+        <p>DrillSight builds the metrics across five categories:</p>
+        <div class="chips"><span>Cost structure</span><span>Day rates</span><span>Operations</span><span>Personnel</span><span>Safety</span></div>
+      </div>
+      <div class="es-step">
+        <span class="n">03 · COMPARE</span>
+        <h4>True peers</h4>
+        <p>The same metrics on comparable peers via our proprietary AI &mdash; like-for-like: premium jack-up vs premium jack-up, land vs land.</p>
+      </div>
+      <div class="es-step">
+        <span class="n">04 · VALIDATE</span>
+        <h4>With your team</h4>
+        <p>Findings reviewed together &mdash; surfacing where Dixstone leads, and where profitability can be unlocked.</p>
+      </div>
+    </div>
   </section>
 
   <!-- 2 -->

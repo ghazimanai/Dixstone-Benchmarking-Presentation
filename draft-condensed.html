@@ -359,23 +359,25 @@
   @media (max-width:900px){.op-body{grid-template-columns:1fr;}}
   .op-panel{background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.1rem 1.3rem;}
   .op-panel .ptitle{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--sigma);font-weight:500;margin-bottom:0.8rem;}
-  .op-panel .prow{display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid var(--border2);font-size:0.86rem;}
+  .op-panel .prow{display:grid;grid-template-columns:1fr 148px 196px;align-items:center;column-gap:0;padding:0.5rem 0;border-bottom:1px solid var(--border2);font-size:0.86rem;}
   .op-panel .prow:last-child{border-bottom:none;}
-  .op-panel .prow .pk{color:var(--text2);flex:0 0 auto;}
+  .op-panel .prow .pk{color:var(--text2);grid-column:1;}
   .op-panel .prow .pv{font-family:'JetBrains Mono',monospace;font-size:0.82rem;font-weight:500;color:var(--text);}
   .op-panel .prow .pv.red{color:var(--bad);}
   .op-panel .prow .pv.amber{color:var(--sigma);}
   .op-panel .prow .pv.green{color:var(--good);}
   /* Dual-value rows: 2025 | 2024 with CONTINUOUS vertical separator */
-  /* Negative-margin trick extends .pv through the .prow vertical padding so border-right is continuous between rows */
-  .op-panel .prow .pv-group{display:flex;align-items:stretch;margin-top:-0.5rem;margin-bottom:-0.5rem;}
-  .op-panel .prow .pv-group .pv{text-align:right;padding:0.5rem 1rem 0.5rem 0;border-right:2px solid rgba(232,160,32,0.55);min-width:130px;display:inline-flex;align-items:center;justify-content:flex-end;}
-  .op-panel .prow .pv-group .pv-prev{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);padding:0.5rem 0 0.5rem 1rem;min-width:180px;text-align:left;line-height:1.4;display:flex;align-items:center;}
+  /* P&L panel: fixed 3-col grid (label | 2025 | 2024) so the 2025 column aligns on every row */
+  .op-panel .prow .pv-group{display:contents;}
+  .op-panel .prow .pv-group .pv{grid-column:2;text-align:right;padding-right:14px;}
+  .op-panel .prow .pv-group .pv-prev{grid-column:3;padding-left:14px;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);text-align:left;line-height:1.35;}
+  /* ONE continuous vertical line spanning exactly the 6 dual-value rows */
+  .op-panel .pl-dual{position:relative;}
+  .op-panel .pl-dual::before{content:'';position:absolute;top:0;bottom:0;right:196px;width:2px;background:rgba(232,160,32,0.6);pointer-events:none;}
+  html[data-theme="light"] .op-panel .pl-dual::before{background:rgba(201,136,21,0.6);}
   /* Single-value rows: no separator, align value to same column position as 2025 in dual rows */
-  .op-panel .prow.no-prev .pv-group{margin:0;}
-  .op-panel .prow.no-prev .pv-group .pv{border-right:none;padding:0;margin-right:calc(1rem + 180px);}
+  .op-panel .prow.no-prev .pv-group .pv{grid-column:2;}
   /* Light theme separator — keep visible against light background */
-  html[data-theme="light"] .op-panel .prow .pv-group .pv{border-right-color:rgba(201,136,21,0.55);}
   /* Material-group breakdown row — 3 stacked panels under existing 2-panel */
   .op-body-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem;}
   @media (max-width:1100px){.op-body-3{grid-template-columns:1fr;}}
@@ -1301,9 +1303,811 @@
       <strong>Source · </strong>Dixstone_P&amp;L tab · CAPEX (row 38) ÷ Theoretical Revenue (row 10) · 2025 column + 2021–2025 cumulative · <strong>Highlight rule · </strong><span class="val-red">red = &lt;5% (under-invested) or &gt;10% (over-invested)</span> · plain = 5–10% healthy band · <strong>Payback · </strong>5Y Adj RDM ÷ 5Y CAPEX · <strong>Land-rig norm 3–8%</strong> from H&amp;P / Precision / Nabors (ex-growth) · DAGDA (decommissioned) excluded.
     </div>
   </section>
-  <!-- ========================= 10 · TARGET STATE · 45% RDM AT 2% NPT ========================= -->
+  <!-- ========================= 10 · RIG ONE-PAGERS DIVIDER ========================= -->
+  <section class="slide divider-slide" data-title="Rig One-Pagers">
+    <div class="eyebrow reveal" style="justify-content:center;">Rig Deep-Dive</div>
+    <h1 class="reveal d1">Rig <em>One-Pagers</em></h1>
+    <p class="reveal d2">One slide per rig — operating KPIs, P&amp;L snapshot, NPT equipment drivers, and 2025 top-5 material groups for PO / GR / IO. Six rigs: AXIMA · BANBA · NUADA · LUG · MIDIR · DRAVUS.</p>
+  </section>
+
+  <!-- ========================= 11 · AXIMA ONE-PAGER ========================= -->
+  <section class="slide onepager" data-title="AXIMA">
+    <div class="op-header reveal">
+      <div><span class="op-rig-name">AXIMA</span><span class="op-rig-type premium">Premium Jack-Up</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+    </div>
+    <div class="op-kpi-row reveal d1">
+      <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v amber">84.9%</div><div class="sub">310 / 365 days</div></div>
+      <div class="op-kpi"><div class="lbl">NPT</div><div class="v amber">2.7%</div><div class="sub">Top-quartile peer</div></div>
+      <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$39.2M</div><div class="sub">$130K/day · 301.6 bill. days</div></div>
+      <div class="op-kpi"><div class="lbl">Rig Direct Margin</div><div class="v green">39.5%</div><div class="sub">2024: 47.7% · Δ <span style="color:var(--bad);">−8.2pp</span></div></div>
+      <div class="op-kpi"><div class="lbl">Staff Cost %</div><div class="v amber">31.7%</div><div class="sub">$12.4M · 106 FTE</div></div>
+      <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$37K</div><div class="sub">PO/GR 0.92× · ME2N 2025</div></div>
+    </div>
+    <div class="op-body reveal d2">
+      <div class="op-panel">
+        <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
+        <div class="pl-dual"><div class="prow"><span class="pk">Revenue</span><div class="pv-group"><span class="pv">$39,210</span><span class="pv-prev">2024: $44,245 · <span style="color:var(--bad);">−11.4%</span></span></div></div>
+        <div class="prow"><span class="pk">Workforce cost</span><div class="pv-group"><span class="pv amber">$12,415 (31.7%)</span><span class="pv-prev">2024: $13,318 (30.1%) · <span style="color:var(--bad);">−6.8% · +1.6pp</span></span></div></div>
+        <div class="prow"><span class="pk">Rig Direct Margin (norm.)</span><div class="pv-group"><span class="pv green">$15,504 (39.5%)</span><span class="pv-prev">2024: $21,105 (47.7%) · <span style="color:var(--bad);">−26.5% · −8.2pp</span></span></div></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 Real Spent · GR</span><div class="pv-group"><span class="pv">$10,066 (25.8%)</span><span class="pv-prev">2024: $7,176 (16.2%) · <span style="color:var(--bad);">+40.3% · +9.6pp</span></span></div></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 New POs</span><div class="pv-group"><span class="pv">$11.5M</span><span class="pv-prev">2024: $11.6M · <span style="color:var(--text2);">−1% YoY</span></span></div></div>
+        <div class="prow"><span class="pk">PO ÷ GR coherence</span><div class="pv-group"><span class="pv amber"><strong>1.14×</strong></span><span class="pv-prev">ordering slightly ahead of consumption</span></div></div></div>
+        <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.55rem;"><span class="pk">Inventory (end-2025)</span><div class="pv-group"><span class="pv">$6.0M</span></div></div>
+        <div class="prow no-prev"><span class="pk">Dead stock %</span><div class="pv-group"><span class="pv amber">38%</span></div></div>
+        <div class="prow no-prev"><span class="pk">FY25 CAPEX / Rev</span><div class="pv-group"><span class="pv red">6.1%</span></div></div>
+        <div class="prow no-prev"><span class="pk">5Y CAPEX / Rev (2021–25)</span><div class="pv-group"><span class="pv red">4.6%</span></div></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">NPT Equipment Drivers · 2025 · Top 5</div>
+        <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:52.4%"></div></div><span class="dpct">52.4%</span></div>
+        <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:16.9%"></div></div><span class="dpct">16.9%</span></div>
+        <div class="npt-driver"><span class="dk">Rig Crew</span><div class="dtrack"><div class="dfill" style="width:15.4%"></div></div><span class="dpct">15.4%</span></div>
+        <div class="npt-driver"><span class="dk">Miscel</span><div class="dtrack"><div class="dfill" style="width:6.5%"></div></div><span class="dpct">6.5%</span></div>
+        <div class="npt-driver"><span class="dk">Rig Floor</span><div class="dtrack"><div class="dfill" style="width:3.8%"></div></div><span class="dpct">3.8%</span></div>
+        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">201.25 hrs · 8.4 days · 2.7%</div>
+          <div style="font-size:0.82rem;color:var(--text2);margin-top:0.3rem;">Lowest total NPT hours in fleet. BOP (52%) + TDS PM are the primary interventions.</div>
+        </div>
+      </div>
+    </div>
+    <div class="op-body-3 reveal d3">
+      <div class="op-panel">
+        <div class="ptitle">2025 PO · Top 5 Mat Groups</div>
+        <div class="mg-driver"><span class="mk" title="DRIL_HDLG">DRIL_HDLG</span><div class="mtrack"><div class="mfill po" style="width:95.0%"></div></div><span class="mv">$1.13M</span><span class="mpct">9.9%</span></div>
+        <div class="mg-driver"><span class="mk" title="DRIL_CTRL">DRIL_CTRL</span><div class="mtrack"><div class="mfill po" style="width:87.1%"></div></div><span class="mv">$1.04M</span><span class="mpct">9.0%</span></div>
+        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill po" style="width:83.5%"></div></div><span class="mv">$994K</span><span class="mpct">8.7%</span></div>
+        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill po" style="width:63.7%"></div></div><span class="mv">$759K</span><span class="mpct">6.6%</span></div>
+        <div class="mg-driver"><span class="mk" title="ROT_MACH">ROT_MACH</span><div class="mtrack"><div class="mfill po" style="width:42.1%"></div></div><span class="mv">$502K</span><span class="mpct">4.4%</span></div>
+        <div class="mg-total"><span>Total 2025 PO</span><strong>$11.5M</strong></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">2025 GR · Top 5 Mat Groups</div>
+        <div class="mg-driver"><span class="mk" title="NO MATERIAL">NO MATERIAL</span><div class="mtrack"><div class="mfill gr" style="width:95.0%"></div></div><span class="mv">$1.22M</span><span class="mpct">13.6%</span></div>
+        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill gr" style="width:49.6%"></div></div><span class="mv">$640K</span><span class="mpct">7.1%</span></div>
+        <div class="mg-driver"><span class="mk" title="PIPING">PIPING</span><div class="mtrack"><div class="mfill gr" style="width:35.6%"></div></div><span class="mv">$460K</span><span class="mpct">5.1%</span></div>
+        <div class="mg-driver"><span class="mk" title="INSP_SRV">INSP_SRV</span><div class="mtrack"><div class="mfill gr" style="width:34.9%"></div></div><span class="mv">$450K</span><span class="mpct">5.0%</span></div>
+        <div class="mg-driver"><span class="mk" title="PIPE_SRV">PIPE_SRV</span><div class="mtrack"><div class="mfill gr" style="width:30.7%"></div></div><span class="mv">$400K</span><span class="mpct">4.4%</span></div>
+        <div class="mg-total"><span>Total 2025 GR</span><strong>$9.0M</strong></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">2025 IO · Top 5 Mat Groups <span style="color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;">(proxy — 42% line coverage)</span></div>
+        <div class="mg-driver"><span class="mk" title="PPE">PPE</span><div class="mtrack"><div class="mfill io" style="width:95.0%"></div></div><span class="mv">$1.36M</span><span class="mpct">18.7%</span></div>
+        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill io" style="width:55.4%"></div></div><span class="mv">$794K</span><span class="mpct">10.9%</span></div>
+        <div class="mg-driver"><span class="mk" title="WELL_CPL">WELL_CPL</span><div class="mtrack"><div class="mfill io" style="width:52.3%"></div></div><span class="mv">$751K</span><span class="mpct">10.3%</span></div>
+        <div class="mg-driver"><span class="mk" title="DRIL_HDLG">DRIL_HDLG</span><div class="mtrack"><div class="mfill io" style="width:43.2%"></div></div><span class="mv">$617K</span><span class="mpct">8.5%</span></div>
+        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill io" style="width:42.7%"></div></div><span class="mv">$615K</span><span class="mpct">8.4%</span></div>
+        <div class="mg-total"><span>Total 2025 IO</span><strong>$7.3M</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= 12 · BANBA ONE-PAGER ========================= -->
+  <section class="slide onepager" data-title="BANBA">
+    <div class="op-header reveal">
+      <div><span class="op-rig-name">BANBA</span><span class="op-rig-type standard">Standard Jack-Up</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+    </div>
+    <div class="op-kpi-row reveal d1">
+      <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
+      <div class="op-kpi"><div class="lbl">NPT</div><div class="v red">8.7%</div><div class="sub">Lagging peer median</div></div>
+      <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$33.3M</div><div class="sub">$100K/day · 333.2 bill. days</div></div>
+      <div class="op-kpi"><div class="lbl">Rig Direct Margin</div><div class="v amber">36.3%</div><div class="sub">2024: 25.7% · Δ <span style="color:var(--good);">+10.6pp</span></div></div>
+      <div class="op-kpi"><div class="lbl">Staff Cost %</div><div class="v amber">33.7%</div><div class="sub">$11.2M · ~104 FTE</div></div>
+      <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$28K</div><div class="sub">PO/GR 1.08× · ME2N 2025</div></div>
+    </div>
+    <div class="op-body reveal d2">
+      <div class="op-panel">
+        <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
+        <div class="pl-dual"><div class="prow"><span class="pk">Revenue</span><div class="pv-group"><span class="pv">$33,321</span><span class="pv-prev">2024: $23,418 · <span style="color:var(--good);">+42.3%</span></span></div></div>
+        <div class="prow"><span class="pk">Workforce cost</span><div class="pv-group"><span class="pv amber">$11,236 (33.7%)</span><span class="pv-prev">2024: $8,829 (37.7%) · <span style="color:var(--good);">+27.3% · −4.0pp</span></span></div></div>
+        <div class="prow"><span class="pk">Rig Direct Margin (norm.)</span><div class="pv-group"><span class="pv amber">$12,098 (36.3%)</span><span class="pv-prev">2024: $6,012 (25.7%) · <span style="color:var(--good);">+101% · +10.6pp</span></span></div></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 Real Spent · GR</span><div class="pv-group"><span class="pv">$8,762 (26.3%)</span><span class="pv-prev">2024: $7,222 (30.8%) · <span style="color:var(--good);">+21.3% · −4.5pp</span></span></div></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 New POs</span><div class="pv-group"><span class="pv">$10.1M</span><span class="pv-prev">2024: $13.0M · <span style="color:var(--good);">−22% YoY</span></span></div></div>
+        <div class="prow"><span class="pk">PO ÷ GR coherence</span><div class="pv-group"><span class="pv amber"><strong>1.15×</strong></span><span class="pv-prev">ordering slightly ahead of consumption</span></div></div></div>
+        <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.55rem;"><span class="pk">Inventory (end-2025)</span><div class="pv-group"><span class="pv red">$9.0M</span></div></div>
+        <div class="prow no-prev"><span class="pk">Dead stock %</span><div class="pv-group"><span class="pv red">59%</span></div></div>
+        <div class="prow no-prev"><span class="pk">FY25 CAPEX / Rev</span><div class="pv-group"><span class="pv red">3.6%</span></div></div>
+        <div class="prow no-prev"><span class="pk">5Y CAPEX / Rev (2021–25)</span><div class="pv-group"><span class="pv red">3.4%</span></div></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">NPT Equipment Drivers · 2025 · Top 5</div>
+        <div class="npt-driver"><span class="dk">Miscel</span><div class="dtrack"><div class="dfill" style="width:62.9%"></div></div><span class="dpct">62.9%</span></div>
+        <div class="npt-driver"><span class="dk">PowGen</span><div class="dtrack"><div class="dfill" style="width:21.0%"></div></div><span class="dpct">21.0%</span></div>
+        <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:10.6%"></div></div><span class="dpct">10.6%</span></div>
+        <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:2.4%"></div></div><span class="dpct">2.4%</span></div>
+        <div class="npt-driver"><span class="dk">Pump</span><div class="dtrack"><div class="dfill" style="width:1.3%"></div></div><span class="dpct">1.3%</span></div>
+        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">763 hrs · 31.8 days · 8.7%</div>
+          <div style="font-size:0.82rem;color:var(--text2);margin-top:0.3rem;">Power Generation + BOP shared culprit with NUADA. Root-cause programme recommended.</div>
+        </div>
+      </div>
+    </div>
+    <div class="op-body-3 reveal d3">
+      <div class="op-panel">
+        <div class="ptitle">2025 PO · Top 5 Mat Groups</div>
+        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill po" style="width:95.0%"></div></div><span class="mv">$1.01M</span><span class="mpct">10.0%</span></div>
+        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill po" style="width:80.8%"></div></div><span class="mv">$858K</span><span class="mpct">8.5%</span></div>
+        <div class="mg-driver"><span class="mk" title="ELE_SRV">ELE_SRV</span><div class="mtrack"><div class="mfill po" style="width:69.3%"></div></div><span class="mv">$739K</span><span class="mpct">7.3%</span></div>
+        <div class="mg-driver"><span class="mk" title="DRIL_TUB">DRIL_TUB</span><div class="mtrack"><div class="mfill po" style="width:61.8%"></div></div><span class="mv">$658K</span><span class="mpct">6.5%</span></div>
+        <div class="mg-driver"><span class="mk" title="WELDI_SRV">WELDI_SRV</span><div class="mtrack"><div class="mfill po" style="width:40.9%"></div></div><span class="mv">$436K</span><span class="mpct">4.3%</span></div>
+        <div class="mg-total"><span>Total 2025 PO</span><strong>$10.1M</strong></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">2025 GR · Top 5 Mat Groups</div>
+        <div class="mg-driver"><span class="mk" title="NO MATERIAL">NO MATERIAL</span><div class="mtrack"><div class="mfill gr" style="width:95.0%"></div></div><span class="mv">$680K</span><span class="mpct">9.7%</span></div>
+        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill gr" style="width:74.4%"></div></div><span class="mv">$530K</span><span class="mpct">7.6%</span></div>
+        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill gr" style="width:51.9%"></div></div><span class="mv">$370K</span><span class="mpct">5.3%</span></div>
+        <div class="mg-driver"><span class="mk" title="ELE_SRV">ELE_SRV</span><div class="mtrack"><div class="mfill gr" style="width:50.9%"></div></div><span class="mv">$370K</span><span class="mpct">5.2%</span></div>
+        <div class="mg-driver"><span class="mk" title="TEL_SRV">TEL_SRV</span><div class="mtrack"><div class="mfill gr" style="width:44.1%"></div></div><span class="mv">$320K</span><span class="mpct">4.5%</span></div>
+        <div class="mg-total"><span>Total 2025 GR</span><strong>$7.0M</strong></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">2025 IO · Top 5 Mat Groups <span style="color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;">(proxy — 42% line coverage)</span></div>
+        <div class="mg-driver"><span class="mk" title="NO MATERIAL">NO MATERIAL</span><div class="mtrack"><div class="mfill io" style="width:95.0%"></div></div><span class="mv">$468K</span><span class="mpct">18.1%</span></div>
+        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill io" style="width:77.7%"></div></div><span class="mv">$381K</span><span class="mpct">14.8%</span></div>
+        <div class="mg-driver"><span class="mk" title="HDLG_LFTG">HDLG_LFTG</span><div class="mtrack"><div class="mfill io" style="width:38.8%"></div></div><span class="mv">$192K</span><span class="mpct">7.4%</span></div>
+        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill io" style="width:37.3%"></div></div><span class="mv">$184K</span><span class="mpct">7.1%</span></div>
+        <div class="mg-driver"><span class="mk" title="PPE">PPE</span><div class="mtrack"><div class="mfill io" style="width:26.8%"></div></div><span class="mv">$132K</span><span class="mpct">5.1%</span></div>
+        <div class="mg-total"><span>Total 2025 IO</span><strong>$2.6M</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= 13 · NUADA ONE-PAGER ========================= -->
+  <section class="slide onepager" data-title="NUADA">
+    <div class="op-header reveal">
+      <div><span class="op-rig-name">NUADA</span><span class="op-rig-type standard">Standard Jack-Up</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+    </div>
+    <div class="op-kpi-row reveal d1">
+      <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
+      <div class="op-kpi"><div class="lbl">NPT</div><div class="v red">5.8%</div><div class="sub">Lagging peer median</div></div>
+      <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$34.4M</div><div class="sub">$100K/day · 343.7 bill. days</div></div>
+      <div class="op-kpi"><div class="lbl">Rig Direct Margin</div><div class="v amber">41.1%</div><div class="sub">2024: 39.7% · Δ <span style="color:var(--good);">+1.4pp</span></div></div>
+      <div class="op-kpi"><div class="lbl">Staff Cost %</div><div class="v green">30.0%</div><div class="sub">$10.3M · ~90 FTE</div></div>
+      <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v green">$12K</div><div class="sub">PO/GR 0.33× · ME2N 2025</div></div>
+    </div>
+    <div class="op-body reveal d2">
+      <div class="op-panel">
+        <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
+        <div class="pl-dual"><div class="prow"><span class="pk">Revenue</span><div class="pv-group"><span class="pv">$34,374</span><span class="pv-prev">2024: $30,112 · <span style="color:var(--good);">+14.2%</span></span></div></div>
+        <div class="prow"><span class="pk">Workforce cost</span><div class="pv-group"><span class="pv green">$10,309 (30.0%)</span><span class="pv-prev">2024: $10,088 (33.5%) · <span style="color:var(--good);">+2.2% · −3.5pp</span></span></div></div>
+        <div class="prow"><span class="pk">Rig Direct Margin (norm.)</span><div class="pv-group"><span class="pv green">$14,141 (41.1%)</span><span class="pv-prev">2024: $11,966 (39.7%) · <span style="color:var(--good);">+18.3% · +1.4pp</span></span></div></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 Real Spent · GR</span><div class="pv-group"><span class="pv">$7,752 (22.6%)</span><span class="pv-prev">2024: $6,694 (22.2%) · <span style="color:var(--bad);">+15.8% · +0.4pp</span></span></div></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 New POs</span><div class="pv-group"><span class="pv">$4.4M</span><span class="pv-prev">2024: $12.3M · <span style="color:var(--good);">−64% YoY</span></span></div></div>
+        <div class="prow"><span class="pk">PO ÷ GR coherence</span><div class="pv-group"><span class="pv amber"><strong>0.56×</strong></span><span class="pv-prev">drawing down excess inventory · good given $12.3M stock</span></div></div></div>
+        <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.55rem;"><span class="pk">Inventory (end-2025)</span><div class="pv-group"><span class="pv red">$12.3M</span></div></div>
+        <div class="prow no-prev"><span class="pk">Dead stock %</span><div class="pv-group"><span class="pv red">57%</span></div></div>
+        <div class="prow no-prev"><span class="pk">FY25 CAPEX / Rev</span><div class="pv-group"><span class="pv red">2.6%</span></div></div>
+        <div class="prow no-prev"><span class="pk">5Y CAPEX / Rev (2021–25)</span><div class="pv-group"><span class="pv">6.0%</span></div></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">NPT Equipment Drivers · 2025 · Top 5</div>
+        <div class="npt-driver"><span class="dk">PowGen</span><div class="dtrack"><div class="dfill" style="width:39.9%"></div></div><span class="dpct">39.9%</span></div>
+        <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:26.2%"></div></div><span class="dpct">26.2%</span></div>
+        <div class="npt-driver"><span class="dk">Miscel</span><div class="dtrack"><div class="dfill" style="width:17.9%"></div></div><span class="dpct">17.9%</span></div>
+        <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:3.4%"></div></div><span class="dpct">3.4%</span></div>
+        <div class="npt-driver"><span class="dk">Pump</span><div class="dtrack"><div class="dfill" style="width:3.4%"></div></div><span class="dpct">3.4%</span></div>
+        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">510.25 hrs · 21.3 days · 5.8%</div>
+          <div style="font-size:0.82rem;color:var(--text2);margin-top:0.3rem;">Power Generation now dominant — joint programme with BANBA targeting shared root causes.</div>
+        </div>
+      </div>
+    </div>
+    <div class="op-body-3 reveal d3">
+      <div class="op-panel">
+        <div class="ptitle">2025 PO · Top 5 Mat Groups</div>
+        <div class="mg-driver"><span class="mk" title="STRUC_SRV">STRUC_SRV</span><div class="mtrack"><div class="mfill po" style="width:95.0%"></div></div><span class="mv">$1.65M</span><span class="mpct">37.2%</span></div>
+        <div class="mg-driver"><span class="mk" title="SEA_TRSP">SEA_TRSP</span><div class="mtrack"><div class="mfill po" style="width:22.5%"></div></div><span class="mv">$390K</span><span class="mpct">8.8%</span></div>
+        <div class="mg-driver"><span class="mk" title="IT_SRV">IT_SRV</span><div class="mtrack"><div class="mfill po" style="width:21.2%"></div></div><span class="mv">$370K</span><span class="mpct">8.3%</span></div>
+        <div class="mg-driver"><span class="mk" title="INSP_SRV">INSP_SRV</span><div class="mtrack"><div class="mfill po" style="width:17.1%"></div></div><span class="mv">$296K</span><span class="mpct">6.7%</span></div>
+        <div class="mg-driver"><span class="mk" title="MECHA_SRV">MECHA_SRV</span><div class="mtrack"><div class="mfill po" style="width:10.7%"></div></div><span class="mv">$189K</span><span class="mpct">4.2%</span></div>
+        <div class="mg-total"><span>Total 2025 PO</span><strong>$4.4M</strong></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">2025 GR · Top 5 Mat Groups</div>
+        <div class="mg-driver"><span class="mk" title="SEA_TRSP">SEA_TRSP</span><div class="mtrack"><div class="mfill gr" style="width:95.0%"></div></div><span class="mv">$420K</span><span class="mpct">11.9%</span></div>
+        <div class="mg-driver"><span class="mk" title="IT_SRV">IT_SRV</span><div class="mtrack"><div class="mfill gr" style="width:91.8%"></div></div><span class="mv">$410K</span><span class="mpct">11.5%</span></div>
+        <div class="mg-driver"><span class="mk" title="HDLG_LFTG">HDLG_LFTG</span><div class="mtrack"><div class="mfill gr" style="width:74.2%"></div></div><span class="mv">$330K</span><span class="mpct">9.3%</span></div>
+        <div class="mg-driver"><span class="mk" title="ROT_MACH">ROT_MACH</span><div class="mtrack"><div class="mfill gr" style="width:71.1%"></div></div><span class="mv">$310K</span><span class="mpct">8.9%</span></div>
+        <div class="mg-driver"><span class="mk" title="STRUC_SRV">STRUC_SRV</span><div class="mtrack"><div class="mfill gr" style="width:40.7%"></div></div><span class="mv">$180K</span><span class="mpct">5.1%</span></div>
+        <div class="mg-total"><span>Total 2025 GR</span><strong>$3.5M</strong></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">2025 IO · Top 5 Mat Groups <span style="color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;">(proxy — 42% line coverage)</span></div>
+        <div class="mg-driver"><span class="mk" title="ROT_MACH">ROT_MACH</span><div class="mtrack"><div class="mfill io" style="width:95.0%"></div></div><span class="mv">$844K</span><span class="mpct">20.1%</span></div>
+        <div class="mg-driver"><span class="mk" title="PPE">PPE</span><div class="mtrack"><div class="mfill io" style="width:41.6%"></div></div><span class="mv">$370K</span><span class="mpct">8.8%</span></div>
+        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill io" style="width:36.4%"></div></div><span class="mv">$325K</span><span class="mpct">7.7%</span></div>
+        <div class="mg-driver"><span class="mk" title="SMAL_TOOL">SMAL_TOOL</span><div class="mtrack"><div class="mfill io" style="width:35.4%"></div></div><span class="mv">$316K</span><span class="mpct">7.5%</span></div>
+        <div class="mg-driver"><span class="mk" title="HDLG_LFTG">HDLG_LFTG</span><div class="mtrack"><div class="mfill io" style="width:32.1%"></div></div><span class="mv">$287K</span><span class="mpct">6.8%</span></div>
+        <div class="mg-total"><span>Total 2025 IO</span><strong>$4.2M</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= 14 · LUG ONE-PAGER ========================= -->
+  <section class="slide onepager" data-title="LUG">
+    <div class="op-header reveal">
+      <div><span class="op-rig-name">LUG</span><span class="op-rig-type platform">Platform Rig</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+    </div>
+    <div class="op-kpi-row reveal d1">
+      <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
+      <div class="op-kpi"><div class="lbl">NPT</div><div class="v red">6.7%</div><div class="sub">Above peer benchmark</div></div>
+      <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$23.8M</div><div class="sub">$70K/day · 340.5 bill. days</div></div>
+      <div class="op-kpi"><div class="lbl">Rig Direct Margin</div><div class="v amber">37.1%</div><div class="sub">2024: 2.7% · Δ <span style="color:var(--good);">+34.4pp</span></div></div>
+      <div class="op-kpi"><div class="lbl">Staff Cost %</div><div class="v amber">32.0%</div><div class="sub">$7.6M · ~55 FTE</div></div>
+      <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$21K</div><div class="sub">PO/GR 1.16× · ME2N 2025</div></div>
+    </div>
+    <div class="op-body reveal d2">
+      <div class="op-panel">
+        <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
+        <div class="pl-dual"><div class="prow"><span class="pk">Revenue</span><div class="pv-group"><span class="pv">$23,834</span><span class="pv-prev">2024: $12,895 · <span style="color:var(--good);">+84.8%</span></span></div></div>
+        <div class="prow"><span class="pk">Workforce cost</span><div class="pv-group"><span class="pv amber">$7,637 (32.0%)</span><span class="pv-prev">2024: $6,177 (47.9%) · <span style="color:var(--good);">+23.6% · −15.9pp</span></span></div></div>
+        <div class="prow"><span class="pk">Rig Direct Margin (norm.)</span><div class="pv-group"><span class="pv amber">$8,842 (37.1%)</span><span class="pv-prev">2024: $344 (2.7%) · <span style="color:var(--good);">+2440% · +34.4pp</span></span></div></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 Real Spent · GR</span><div class="pv-group"><span class="pv">$6,518 (27.4%)</span><span class="pv-prev">2024: $3,371 (26.1%) · <span style="color:var(--bad);">+93.4% · +1.3pp</span></span></div></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 New POs</span><div class="pv-group"><span class="pv">$7.6M</span><span class="pv-prev">2024: $4.0M · <span style="color:var(--bad);">+90% YoY</span></span></div></div>
+        <div class="prow"><span class="pk">PO ÷ GR coherence</span><div class="pv-group"><span class="pv amber"><strong>1.17×</strong></span><span class="pv-prev">ordering slightly ahead of consumption</span></div></div></div>
+        <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.55rem;"><span class="pk">Inventory (end-2025)</span><div class="pv-group"><span class="pv red">$5.3M</span></div></div>
+        <div class="prow no-prev"><span class="pk">Dead stock %</span><div class="pv-group"><span class="pv red">60%</span></div></div>
+        <div class="prow no-prev"><span class="pk">FY25 CAPEX / Rev</span><div class="pv-group"><span class="pv red">1.7%</span></div></div>
+        <div class="prow no-prev"><span class="pk">5Y CAPEX / Rev (2021–25)</span><div class="pv-group"><span class="pv red">3.0%</span></div></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">NPT Equipment Drivers · 2025 · Top 5</div>
+        <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:34.0%"></div></div><span class="dpct">34.0%</span></div>
+        <div class="npt-driver"><span class="dk">Pump</span><div class="dtrack"><div class="dfill" style="width:25.1%"></div></div><span class="dpct">25.1%</span></div>
+        <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:11.4%"></div></div><span class="dpct">11.4%</span></div>
+        <div class="npt-driver"><span class="dk">PowGen</span><div class="dtrack"><div class="dfill" style="width:9.3%"></div></div><span class="dpct">9.3%</span></div>
+        <div class="npt-driver"><span class="dk">Drawworks</span><div class="dtrack"><div class="dfill" style="width:7.5%"></div></div><span class="dpct">7.5%</span></div>
+        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">588.25 hrs · 24.5 days · 6.7%</div>
+          <div style="font-size:0.82rem;color:var(--text2);margin-top:0.3rem;">TDS (34%) + Pump (25%) are the two operational levers — top-drive overhaul + pump PM cycle.</div>
+        </div>
+      </div>
+    </div>
+    <div class="op-body-3 reveal d3">
+      <div class="op-panel">
+        <div class="ptitle">2025 PO · Top 5 Mat Groups</div>
+        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill po" style="width:95.0%"></div></div><span class="mv">$511K</span><span class="mpct">6.8%</span></div>
+        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill po" style="width:85.2%"></div></div><span class="mv">$461K</span><span class="mpct">6.1%</span></div>
+        <div class="mg-driver"><span class="mk" title="DRIL_CTRL">DRIL_CTRL</span><div class="mtrack"><div class="mfill po" style="width:69.9%"></div></div><span class="mv">$375K</span><span class="mpct">5.0%</span></div>
+        <div class="mg-driver"><span class="mk" title="HDLG_LFTG">HDLG_LFTG</span><div class="mtrack"><div class="mfill po" style="width:67.1%"></div></div><span class="mv">$359K</span><span class="mpct">4.8%</span></div>
+        <div class="mg-driver"><span class="mk" title="MECHA_SRV">MECHA_SRV</span><div class="mtrack"><div class="mfill po" style="width:62.9%"></div></div><span class="mv">$339K</span><span class="mpct">4.5%</span></div>
+        <div class="mg-total"><span>Total 2025 PO</span><strong>$7.6M</strong></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">2025 GR · Top 5 Mat Groups</div>
+        <div class="mg-driver"><span class="mk" title="NO MATERIAL">NO MATERIAL</span><div class="mtrack"><div class="mfill gr" style="width:95.0%"></div></div><span class="mv">$820K</span><span class="mpct">16.0%</span></div>
+        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill gr" style="width:27.9%"></div></div><span class="mv">$240K</span><span class="mpct">4.7%</span></div>
+        <div class="mg-driver"><span class="mk" title="AER_TRSP">AER_TRSP</span><div class="mtrack"><div class="mfill gr" style="width:23.8%"></div></div><span class="mv">$210K</span><span class="mpct">4.0%</span></div>
+        <div class="mg-driver"><span class="mk" title="HDLG_LFTG">HDLG_LFTG</span><div class="mtrack"><div class="mfill gr" style="width:22.6%"></div></div><span class="mv">$200K</span><span class="mpct">3.8%</span></div>
+        <div class="mg-driver"><span class="mk" title="MECHA_SRV">MECHA_SRV</span><div class="mtrack"><div class="mfill gr" style="width:22.6%"></div></div><span class="mv">$190K</span><span class="mpct">3.8%</span></div>
+        <div class="mg-total"><span>Total 2025 GR</span><strong>$5.1M</strong></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">2025 IO · Top 5 Mat Groups <span style="color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;">(proxy — 42% line coverage)</span></div>
+        <div class="mg-driver"><span class="mk" title="NO MATERIAL">NO MATERIAL</span><div class="mtrack"><div class="mfill io" style="width:95.0%"></div></div><span class="mv">$196K</span><span class="mpct">11.1%</span></div>
+        <div class="mg-driver"><span class="mk" title="DRIL_PMP">DRIL_PMP</span><div class="mtrack"><div class="mfill io" style="width:85.6%"></div></div><span class="mv">$175K</span><span class="mpct">10.0%</span></div>
+        <div class="mg-driver"><span class="mk" title="HDLG_LFTG">HDLG_LFTG</span><div class="mtrack"><div class="mfill io" style="width:77.9%"></div></div><span class="mv">$161K</span><span class="mpct">9.1%</span></div>
+        <div class="mg-driver"><span class="mk" title="PPE">PPE</span><div class="mtrack"><div class="mfill io" style="width:74.5%"></div></div><span class="mv">$154K</span><span class="mpct">8.7%</span></div>
+        <div class="mg-driver"><span class="mk" title="WELL_CPL">WELL_CPL</span><div class="mtrack"><div class="mfill io" style="width:71.0%"></div></div><span class="mv">$146K</span><span class="mpct">8.3%</span></div>
+        <div class="mg-total"><span>Total 2025 IO</span><strong>$1.8M</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= 15 · MIDIR ONE-PAGER ========================= -->
+  <section class="slide onepager" data-title="MIDIR">
+    <div class="op-header reveal">
+      <div><span class="op-rig-name">MIDIR</span><span class="op-rig-type land">Land Rig</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+    </div>
+    <div class="op-kpi-row reveal d1">
+      <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
+      <div class="op-kpi"><div class="lbl">NPT</div><div class="v red">6.9%</div><div class="sub">Above peer benchmark</div></div>
+      <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$13.6M</div><div class="sub">$40K/day · 339.8 bill. days</div></div>
+      <div class="op-kpi"><div class="lbl">Rig Direct Margin</div><div class="v red">−10.7%</div><div class="sub">2024: 7.2% · Δ <span style="color:var(--bad);">−17.9pp</span></div></div>
+      <div class="op-kpi"><div class="lbl">Staff Cost %</div><div class="v red">51.9%</div><div class="sub">$7.1M · ~72 FTE</div></div>
+      <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$21K</div><div class="sub">PO/GR 0.82× · ME2N 2025</div></div>
+    </div>
+    <div class="op-body reveal d2">
+      <div class="op-panel">
+        <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
+        <div class="pl-dual"><div class="prow"><span class="pk">Revenue</span><div class="pv-group"><span class="pv">$13,593</span><span class="pv-prev">2024: $11,650 · <span style="color:var(--good);">+16.7%</span></span></div></div>
+        <div class="prow"><span class="pk">Workforce cost</span><div class="pv-group"><span class="pv red">$7,054 (51.9%)</span><span class="pv-prev">2024: $7,980 (68.5%) · <span style="color:var(--good);">−11.6% · −16.6pp</span></span></div></div>
+        <div class="prow"><span class="pk">Rig Direct Margin (norm.)</span><div class="pv-group"><span class="pv red">−$1,449 (−10.7%)</span><span class="pv-prev">2024: $844 (7.2%) · <span style="color:var(--bad);">sign flip · −17.9pp</span></span></div></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 Real Spent · GR</span><div class="pv-group"><span class="pv">$7,071 (52.0%)</span><span class="pv-prev">2024: $2,540 (21.8%) · <span style="color:var(--bad);">+178% · +30.2pp</span></span></div></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 New POs</span><div class="pv-group"><span class="pv">$7.7M</span><span class="pv-prev">2024: $10.4M · <span style="color:var(--good);">−26% YoY</span></span></div></div>
+        <div class="prow"><span class="pk">PO ÷ GR coherence</span><div class="pv-group"><span class="pv green"><strong>1.08×</strong></span><span class="pv-prev">ordering in sync with consumption</span></div></div></div>
+        <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.55rem;"><span class="pk">Inventory (end-2025)</span><div class="pv-group"><span class="pv amber">$5.0M</span></div></div>
+        <div class="prow no-prev"><span class="pk">Dead stock %</span><div class="pv-group"><span class="pv amber">40%</span></div></div>
+        <div class="prow no-prev"><span class="pk">FY25 CAPEX / Rev</span><div class="pv-group"><span class="pv red">11.0%</span></div></div>
+        <div class="prow no-prev"><span class="pk">5Y CAPEX / Rev (2021–25)</span><div class="pv-group"><span class="pv">8.2%</span></div></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">NPT Equipment Drivers · 2025 · Top 5</div>
+        <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:49.1%"></div></div><span class="dpct">49.1%</span></div>
+        <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:12.5%"></div></div><span class="dpct">12.5%</span></div>
+        <div class="npt-driver"><span class="dk">Drawworks</span><div class="dtrack"><div class="dfill" style="width:11.6%"></div></div><span class="dpct">11.6%</span></div>
+        <div class="npt-driver"><span class="dk">Pump</span><div class="dtrack"><div class="dfill" style="width:9.7%"></div></div><span class="dpct">9.7%</span></div>
+        <div class="npt-driver"><span class="dk">Miscel</span><div class="dtrack"><div class="dfill" style="width:9.1%"></div></div><span class="dpct">9.1%</span></div>
+        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">604 hrs · 25.2 days · 6.9%</div>
+          <div style="font-size:0.82rem;color:var(--text2);margin-top:0.3rem;">TDS alone = 49% of NPT. Top-drive overhaul is the single highest-impact intervention.</div>
+        </div>
+      </div>
+    </div>
+    <div class="op-body-3 reveal d3">
+      <div class="op-panel">
+        <div class="ptitle">2025 PO · Top 5 Mat Groups</div>
+        <div class="mg-driver"><span class="mk" title="MAIN_RTAL">MAIN_RTAL</span><div class="mtrack"><div class="mfill po" style="width:95.0%"></div></div><span class="mv">$895K</span><span class="mpct">11.4%</span></div>
+        <div class="mg-driver"><span class="mk" title="DRIL_CTRL">DRIL_CTRL</span><div class="mtrack"><div class="mfill po" style="width:80.8%"></div></div><span class="mv">$760K</span><span class="mpct">9.7%</span></div>
+        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill po" style="width:77.5%"></div></div><span class="mv">$731K</span><span class="mpct">9.3%</span></div>
+        <div class="mg-driver"><span class="mk" title="TEL_SRV">TEL_SRV</span><div class="mtrack"><div class="mfill po" style="width:46.7%"></div></div><span class="mv">$442K</span><span class="mpct">5.6%</span></div>
+        <div class="mg-driver"><span class="mk" title="DRIL_TUB">DRIL_TUB</span><div class="mtrack"><div class="mfill po" style="width:44.2%"></div></div><span class="mv">$416K</span><span class="mpct">5.3%</span></div>
+        <div class="mg-total"><span>Total 2025 PO</span><strong>$7.7M</strong></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">2025 GR · Top 5 Mat Groups</div>
+        <div class="mg-driver"><span class="mk" title="MAIN_RTAL">MAIN_RTAL</span><div class="mtrack"><div class="mfill gr" style="width:95.0%"></div></div><span class="mv">$740K</span><span class="mpct">11.8%</span></div>
+        <div class="mg-driver"><span class="mk" title="DRIL_HDLG">DRIL_HDLG</span><div class="mtrack"><div class="mfill gr" style="width:78.9%"></div></div><span class="mv">$610K</span><span class="mpct">9.8%</span></div>
+        <div class="mg-driver"><span class="mk" title="TEL_SRV">TEL_SRV</span><div class="mtrack"><div class="mfill gr" style="width:68.4%"></div></div><span class="mv">$530K</span><span class="mpct">8.5%</span></div>
+        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill gr" style="width:49.1%"></div></div><span class="mv">$380K</span><span class="mpct">6.1%</span></div>
+        <div class="mg-driver"><span class="mk" title="WELDI_SRV">WELDI_SRV</span><div class="mtrack"><div class="mfill gr" style="width:40.3%"></div></div><span class="mv">$320K</span><span class="mpct">5.0%</span></div>
+        <div class="mg-total"><span>Total 2025 GR</span><strong>$6.3M</strong></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">2025 IO · Top 5 Mat Groups <span style="color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;">(proxy — 42% line coverage)</span></div>
+        <div class="mg-driver"><span class="mk" title="ROT_MACH">ROT_MACH</span><div class="mtrack"><div class="mfill io" style="width:95.0%"></div></div><span class="mv">$301K</span><span class="mpct">20.7%</span></div>
+        <div class="mg-driver"><span class="mk" title="DRIL_PMP">DRIL_PMP</span><div class="mtrack"><div class="mfill io" style="width:82.6%"></div></div><span class="mv">$262K</span><span class="mpct">18.0%</span></div>
+        <div class="mg-driver"><span class="mk" title="DRIL_TDS">DRIL_TDS</span><div class="mtrack"><div class="mfill io" style="width:64.7%"></div></div><span class="mv">$205K</span><span class="mpct">14.1%</span></div>
+        <div class="mg-driver"><span class="mk" title="DRIL_HDLG">DRIL_HDLG</span><div class="mtrack"><div class="mfill io" style="width:55.5%"></div></div><span class="mv">$176K</span><span class="mpct">12.1%</span></div>
+        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill io" style="width:25.7%"></div></div><span class="mv">$81K</span><span class="mpct">5.6%</span></div>
+        <div class="mg-total"><span>Total 2025 IO</span><strong>$1.5M</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= 16 · DRAVUS ONE-PAGER ========================= -->
+  <section class="slide onepager" data-title="DRAVUS">
+    <div class="op-header reveal">
+      <div><span class="op-rig-name">DRAVUS</span><span class="op-rig-type land">Land Rig</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+    </div>
+    <div class="op-kpi-row reveal d1">
+      <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
+      <div class="op-kpi"><div class="lbl">NPT</div><div class="v amber">3.3%</div><div class="sub">Near peer benchmark</div></div>
+      <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$14.1M</div><div class="sub">$40K/day · 353.1 bill. days</div></div>
+      <div class="op-kpi"><div class="lbl">Rig Direct Margin</div><div class="v amber">23.5%</div><div class="sub">2024: 33.8% · Δ <span style="color:var(--bad);">−10.3pp</span></div></div>
+      <div class="op-kpi"><div class="lbl">Staff Cost %</div><div class="v red">40.9%</div><div class="sub">$5.8M · ~66 FTE</div></div>
+      <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$21K</div><div class="sub">PO/GR 0.46× · ME2N 2025</div></div>
+    </div>
+    <div class="op-body reveal d2">
+      <div class="op-panel">
+        <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
+        <div class="pl-dual"><div class="prow"><span class="pk">Revenue</span><div class="pv-group"><span class="pv">$14,125</span><span class="pv-prev">2024: $12,395 · <span style="color:var(--good);">+13.9%</span></span></div></div>
+        <div class="prow"><span class="pk">Workforce cost</span><div class="pv-group"><span class="pv red">$5,779 (40.9%)</span><span class="pv-prev">2024: $5,627 (45.4%) · <span style="color:var(--good);">+2.7% · −4.5pp</span></span></div></div>
+        <div class="prow"><span class="pk">Rig Direct Margin (norm.)</span><div class="pv-group"><span class="pv amber">$3,325 (23.5%)</span><span class="pv-prev">2024: $4,188 (33.8%) · <span style="color:var(--bad);">−20.6% · −10.3pp</span></span></div></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 Real Spent · GR</span><div class="pv-group"><span class="pv">$4,200 (29.7%)</span><span class="pv-prev">2024: $2,946 (23.8%) · <span style="color:var(--bad);">+42.6% · +5.9pp</span></span></div></div>
+        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 New POs</span><div class="pv-group"><span class="pv">$7.6M</span><span class="pv-prev">2024: $8.0M · <span style="color:var(--text2);">−5% YoY</span></span></div></div>
+        <div class="prow"><span class="pk">PO ÷ GR coherence</span><div class="pv-group"><span class="pv red"><strong>1.81×</strong></span><span class="pv-prev">OVER-ORDERING 81% above consumption — building inventory</span></div></div></div>
+        <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.55rem;"><span class="pk">Inventory (end-2025)</span><div class="pv-group"><span class="pv amber">TBD — Cameroon base</span></div></div>
+        <div class="prow no-prev"><span class="pk">Dead stock %</span><div class="pv-group"><span class="pv amber">TBD</span></div></div>
+        <div class="prow no-prev"><span class="pk">FY25 CAPEX / Rev</span><div class="pv-group"><span class="pv red">22.3%</span></div></div>
+        <div class="prow no-prev"><span class="pk">5Y CAPEX / Rev (2021–25)</span><div class="pv-group"><span class="pv red">12.5%</span></div></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">NPT Equipment Drivers · 2025 · Top 5</div>
+        <div class="npt-driver"><span class="dk">Miscel</span><div class="dtrack"><div class="dfill" style="width:32.9%"></div></div><span class="dpct">32.9%</span></div>
+        <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:26.7%"></div></div><span class="dpct">26.7%</span></div>
+        <div class="npt-driver"><span class="dk">Drawworks</span><div class="dtrack"><div class="dfill" style="width:10.1%"></div></div><span class="dpct">10.1%</span></div>
+        <div class="npt-driver"><span class="dk">Rig Floor</span><div class="dtrack"><div class="dfill" style="width:8.5%"></div></div><span class="dpct">8.5%</span></div>
+        <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:7.5%"></div></div><span class="dpct">7.5%</span></div>
+        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">285 hrs · 11.9 days · 3.3%</div>
+          <div style="font-size:0.82rem;color:var(--text2);margin-top:0.3rem;">TDS (27%) + Drawworks (10%) are operational. Lowest absolute NPT among land rigs.</div>
+        </div>
+      </div>
+    </div>
+    <div class="op-body-3 reveal d3">
+      <div class="op-panel">
+        <div class="ptitle">2025 PO · Top 5 Mat Groups</div>
+        <div class="mg-driver"><span class="mk" title="STO_RTAL">STO_RTAL</span><div class="mtrack"><div class="mfill po" style="width:95.0%"></div></div><span class="mv">$898K</span><span class="mpct">11.8%</span></div>
+        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill po" style="width:87.8%"></div></div><span class="mv">$830K</span><span class="mpct">10.9%</span></div>
+        <div class="mg-driver"><span class="mk" title="MAIN_RTAL">MAIN_RTAL</span><div class="mtrack"><div class="mfill po" style="width:58.0%"></div></div><span class="mv">$551K</span><span class="mpct">7.2%</span></div>
+        <div class="mg-driver"><span class="mk" title="PIPING">PIPING</span><div class="mtrack"><div class="mfill po" style="width:55.6%"></div></div><span class="mv">$524K</span><span class="mpct">6.9%</span></div>
+        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill po" style="width:50.7%"></div></div><span class="mv">$479K</span><span class="mpct">6.3%</span></div>
+        <div class="mg-total"><span>Total 2025 PO</span><strong>$7.6M</strong></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">2025 GR · Top 5 Mat Groups</div>
+        <div class="mg-driver"><span class="mk" title="STO_RTAL">STO_RTAL</span><div class="mtrack"><div class="mfill gr" style="width:95.0%"></div></div><span class="mv">$640K</span><span class="mpct">9.8%</span></div>
+        <div class="mg-driver"><span class="mk" title="NO MATERIAL">NO MATERIAL</span><div class="mtrack"><div class="mfill gr" style="width:86.3%"></div></div><span class="mv">$580K</span><span class="mpct">8.9%</span></div>
+        <div class="mg-driver"><span class="mk" title="MAIN_RTAL">MAIN_RTAL</span><div class="mtrack"><div class="mfill gr" style="width:76.6%"></div></div><span class="mv">$510K</span><span class="mpct">7.9%</span></div>
+        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill gr" style="width:65.9%"></div></div><span class="mv">$440K</span><span class="mpct">6.8%</span></div>
+        <div class="mg-driver"><span class="mk" title="DRIL_TDS">DRIL_TDS</span><div class="mtrack"><div class="mfill gr" style="width:54.3%"></div></div><span class="mv">$360K</span><span class="mpct">5.6%</span></div>
+        <div class="mg-total"><span>Total 2025 GR</span><strong>$6.5M</strong></div>
+      </div>
+      <div class="op-panel">
+        <div class="ptitle">2025 IO · Top 5 Mat Groups <span style="color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;">(proxy — 42% line coverage)</span></div>
+        <div class="mg-driver"><span class="mk" title="ROT_MACH">ROT_MACH</span><div class="mtrack"><div class="mfill io" style="width:95.0%"></div></div><span class="mv">$123K</span><span class="mpct">11.8%</span></div>
+        <div class="mg-driver"><span class="mk" title="DRIL_PMP">DRIL_PMP</span><div class="mtrack"><div class="mfill io" style="width:92.6%"></div></div><span class="mv">$119K</span><span class="mpct">11.5%</span></div>
+        <div class="mg-driver"><span class="mk" title="DRIL_LOGG">DRIL_LOGG</span><div class="mtrack"><div class="mfill io" style="width:65.2%"></div></div><span class="mv">$83K</span><span class="mpct">8.1%</span></div>
+        <div class="mg-driver"><span class="mk" title="HDLG_LFTG">HDLG_LFTG</span><div class="mtrack"><div class="mfill io" style="width:62.0%"></div></div><span class="mv">$79K</span><span class="mpct">7.7%</span></div>
+        <div class="mg-driver"><span class="mk" title="NO MATERIAL">NO MATERIAL</span><div class="mtrack"><div class="mfill io" style="width:58.0%"></div></div><span class="mv">$74K</span><span class="mpct">7.2%</span></div>
+        <div class="mg-total"><span>Total 2025 IO</span><strong>$1.0M</strong></div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ========================= 17 · PHASE 2 DIVIDER ========================= -->
+  <section class="slide divider-slide" data-title="Phase 2 · External Benchmarking">
+    <div class="eyebrow reveal" style="justify-content:center;">Phase 2 of 3</div>
+    <h1 class="reveal d1">External <em>Peer Benchmarking</em></h1>
+    <p class="reveal d2">Now compared against 9 listed peer contractors. Segment-matched per-rig benchmarks: dayrate · NPT · Rig Direct Margin · FTE · 5Y CAPEX intensity. Where Dixstone stands out on the cost-base and capital-deployment axes — the Outlier Map closes Phase 2.</p>
+  </section>
+
+  <!-- ========================= 18 · PEER FLEET PROFILE ========================= -->
+  <section class="slide" data-title="Peer Fleet Profile">
+    <div class="eyebrow reveal">18 · Peer Fleet Profile · FY 2025</div>
+    <h1 class="slide-title reveal">The peer set Dixstone benchmarks against —<br><em>9 listed contractors · ~1,200 rigs combined.</em></h1>
+    <p class="lede reveal d1">Dixstone's 7-rig fleet spans premium jackup, standard jackup, platform and land — so the peer set is deliberately broad: pure-play JU operators (Borr, Shelf, Velesto), pure-play land drillers (Helmerich &amp; Payne, Nabors, Precision), and blended-fleet contractors (ADES, ADNOC, Valaris). Comparison is segment-matched, not entity-level.</p>
+
+    <div class="mega-kpi reveal d2">
+      <div class="mk"><div class="mv">1,186</div><div class="ml">Total active rigs</div><div class="md">Peer set + Dixstone · FY 2025 year-end · Valaris JU + ARO only (floaters excluded for comparability)</div></div>
+      <div class="mk"><div class="mv">197</div><div class="ml">Jackup rigs</div><div class="md">ADES 50 · ADNOC 48 · Valaris JU+ARO 33 · Shelf 33 · Borr 24 · Velesto 6 · Dixstone 3</div></div>
+      <div class="mk"><div class="mv">0</div><div class="ml">Floaters in peer scope</div><div class="md">Peer set is jackup-comparable; Valaris floaters excluded per G-7 (kept Valaris jackups + ARO only)</div></div>
+      <div class="mk"><div class="mv">920</div><div class="ml">Land rigs</div><div class="md">H&amp;P 360 · Nabors 242 · Precision 184 · ADNOC 92 · ADES 40 · Dixstone 2</div></div>
+    </div>
+
+    <div class="reveal d3" style="overflow-x:auto;margin-top:0.4rem;">
+      <table class="bench-table">
+        <thead>
+          <tr>
+            <th>Contractor</th>
+            <th>Fleet type</th>
+            <th>Total Active</th>
+            <th>Jackups</th>
+            <th>Floaters</th>
+            <th>Land</th>
+            <th>Platform</th>
+            <th>Region</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:rgba(232,160,32,0.08);">
+            <td><span class="rig-name" style="color:var(--sigma);">DIXSTONE</span><span class="rig-type" style="color:var(--sigma);">Subject</span></td>
+            <td>Mixed</td>
+            <td class="val-amber">7</td>
+            <td>3</td>
+            <td>0</td>
+            <td>2</td>
+            <td>2</td>
+            <td>West Africa</td>
+          </tr>
+          <tr><td><span class="rig-name">Helmerich &amp; Payne</span><span class="rig-type" style="color:var(--platform);">Land + Platform</span></td><td>Land-heavy</td><td>367</td><td>0</td><td>0</td><td>360</td><td>7</td><td>US + Intl</td></tr>
+          <tr><td><span class="rig-name">Nabors Industries</span><span class="rig-type" style="color:var(--platform);">Land + Platform</span></td><td>Land-heavy</td><td>269</td><td>0</td><td>0</td><td>242</td><td>27</td><td>Global (incl. SANAD)</td></tr>
+          <tr><td><span class="rig-name">Precision Drilling</span><span class="rig-type" style="color:var(--land);">Land</span></td><td>Land-pure</td><td>184</td><td>0</td><td>0</td><td>184</td><td>0</td><td>Canada + US + Intl</td></tr>
+          <tr><td><span class="rig-name">ADNOC Drilling</span><span class="rig-type">Blended</span></td><td>Mixed</td><td>140</td><td>48</td><td>0</td><td>92</td><td>0</td><td>UAE</td></tr>
+          <tr><td><span class="rig-name">ADES Holding</span><span class="rig-type">Blended</span></td><td>JU + onshore</td><td>123</td><td>50</td><td>0</td><td>40</td><td>0</td><td>MENA + intl</td></tr>
+          <tr><td><span class="rig-name">Valaris</span><span class="rig-type" style="color:var(--standard);">JU + ARO only · floaters excluded</span></td><td>Jackups segment</td><td>33</td><td>33<span style="color:var(--muted);font-size:0.78em;"> (24 owned + 9 ARO JV)</span></td><td>0</td><td>0</td><td>0</td><td>Global</td></tr>
+          <tr><td><span class="rig-name">Shelf Drilling</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td><td>JU-pure</td><td>33</td><td>33</td><td>0</td><td>0</td><td>0</td><td>MENA + SE Asia</td></tr>
+          <tr><td><span class="rig-name">Borr Drilling</span><span class="rig-type" style="color:var(--premium);">Premium JU</span></td><td>JU-pure</td><td>24</td><td>24</td><td>0</td><td>0</td><td>0</td><td>Global</td></tr>
+          <tr><td><span class="rig-name">Velesto Energy</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td><td>JU-pure</td><td>6</td><td>6</td><td>0</td><td>0</td><td>0</td><td>SE Asia</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="src-band reveal d4">
+      <strong>Source · </strong>FY2025 10-K / 20-F / 40-F / annual reports · per-peer normalized fleet rows in <em>drilling_contractors_nonfinancial_metrics.xlsx</em> · <strong>Definitions · </strong>"Total Active" = year-end fleet under contract or actively marketed; H&amp;P 367 = total available (235 contracted); Nabors 269 = active marketed; Valaris 46 owned + 9 ARO JV (50%, Saudi Aramco) — Valaris floaters excluded per G-7 (jackup-comparable peer set).
+    </div>
+  </section>
+
+  <!-- ========================= 19 · MARKET CONTEXT ========================= -->
+  <section class="slide" data-title="Market Context">
+    <div class="eyebrow reveal">19 · Market Context</div>
+    <h1 class="slide-title reveal">A high-dayrate environment.<br>Utilisation is <em>tightening.</em></h1>
+
+    <div class="grid-4 reveal d1" style="margin-bottom:1.8rem;">
+      <div class="stat" style="background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.1rem 1.2rem;">
+        <span class="label">Premium JU · peer median</span>
+        <span class="val sigma">$130K<span style="font-size:0.6em;color:var(--muted);font-weight:400;">/day</span></span>
+        <span class="delta">+53% vs FY21 trough</span>
+      </div>
+      <div class="stat" style="background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.1rem 1.2rem;">
+        <span class="label">Jack-up utilisation</span>
+        <span class="val">78<span style="font-size:0.6em;color:var(--muted);font-weight:400;">%</span></span>
+        <span class="delta">Off 86% high of FY24</span>
+      </div>
+      <div class="stat" style="background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.1rem 1.2rem;">
+        <span class="label">Saudi demand</span>
+        <span class="val">60<span style="font-size:0.6em;color:var(--muted);font-weight:400;">%+</span></span>
+        <span class="delta">Of global JU backlog</span>
+      </div>
+      <div class="stat" style="background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.1rem 1.2rem;">
+        <span class="label">JU newbuilds in flight</span>
+        <span class="val">0</span>
+        <span class="delta">Structural tightening</span>
+      </div>
+    </div>
+
+    <div class="grid-2 reveal d2" style="gap:1.4rem;">
+      <div class="card accent">
+        <div class="corner"></div>
+        <span class="num-tag">Market signal</span>
+        <h3>Reliability is rising as a differentiator.</h3>
+        <p>With newbuild supply absent and dayrates at multi-year highs, operator uptime carries an increasing share of the competitive variance — alongside rate.</p>
+      </div>
+      <div class="card accent">
+        <div class="corner"></div>
+        <span class="num-tag">Dixstone position</span>
+        <h3>Fleet utilisation 97.5% — at or above every listed peer.</h3>
+        <p>Cycle is being captured in full. AXIMA reliability sits in the segment top quartile. Standard JU and land segments at 100%.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= 20 · SEGMENT VIEW ========================= -->
+  <section class="slide" data-title="Segment View">
+    <div class="eyebrow reveal">20 · Dixstone vs Peers · Segment View · FY 2025</div>
+    <h1 class="slide-title reveal">Each rig benchmarked against<br><em>its direct peer set.</em></h1>
+
+    <div class="segment-block premium reveal d1">
+      <div class="segment-head">
+        <div class="lhs">
+          <span class="seg-pill">Premium Jack-Up</span>
+          <h3>AXIMA <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Borr · ADNOC · ADES · Valaris-JU · Velesto</span></h3>
+        </div>
+        <div class="read">Reliability leads the segment. RDM <strong>only −7.2pp from peer median</strong> — bridgeable via spare-parts discipline + cert/PM uplift.</div>
+      </div>
+      <div class="seg-grid">
+        <div class="seg-cell"><div class="metric">Dayrate</div><div class="dix"><span class="who">AXIMA</span><span class="val">$130K</span></div><div class="pp"><span class="who">Peer median</span><span class="val">$130K</span></div><div class="pp"><span class="who">Borr · top</span><span class="val">$150K</span></div></div>
+        <div class="seg-cell lead"><div class="metric">NPT</div><div class="dix"><span class="who">AXIMA</span><span class="val">2.7%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">3.0%</span></div><div class="pp"><span class="who">ADES · best</span><span class="val">1.5%</span></div></div>
+        <div class="seg-cell close"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">AXIMA</span><span class="val">39.5%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">46.7%</span></div><div class="pp"><span class="who">Gap vs median</span><span class="val">−7.2 pp</span></div></div>
+        <div class="seg-cell"><div class="metric">FTE / rig</div><div class="dix"><span class="who">AXIMA</span><span class="val">106</span></div><div class="pp"><span class="who">Jackup cap</span><span class="val">~96</span></div><div class="pp"><span class="who">Crew delta</span><span class="val">+10</span></div></div>
+        <div class="seg-cell"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">AXIMA · 2025</span><span class="val">6.1%</span></div><div class="pp"><span class="who">5Y avg (2021–25)</span><span class="val">4.6%</span></div><div class="pp"><span class="who">Δ vs 5Y</span><span class="val">+1.5 pp</span></div></div>
+      </div>
+    </div>
+
+    <div class="segment-block standard reveal d2">
+      <div class="segment-head">
+        <div class="lhs">
+          <span class="seg-pill">Standard Jack-Up</span>
+          <h3>BANBA &amp; NUADA <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Shelf · Valaris · ADES</span></h3>
+        </div>
+        <div class="read">Dayrate sits in the peer range. RDM <strong>only −6.6pp (BANBA) and −1.8pp (NUADA) from peer median</strong> — closing the NPT gap alone covers most of the delta. NUADA effectively at peer median already.</div>
+      </div>
+      <div class="seg-grid">
+        <div class="seg-cell lead"><div class="metric">Dayrate</div><div class="dix"><span class="who">BANBA · NUADA</span><span class="val">$100K</span></div><div class="pp"><span class="who">Shelf · FY25</span><span class="val">$83K</span></div><div class="pp"><span class="who">Valaris JU · FY25</span><span class="val">$138K</span></div></div>
+        <div class="seg-cell lag"><div class="metric">NPT</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">8.7% / 5.8%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">3.0%</span></div><div class="pp"><span class="who">Shelf · best</span><span class="val">0.6%</span></div></div>
+        <div class="seg-cell close"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">36.3% / 41.1%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">42.9%</span></div><div class="pp"><span class="who">Gap vs median</span><span class="val">−6.6 / −1.8 pp</span></div></div>
+        <div class="seg-cell lag"><div class="metric">FTE / rig</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">104 / 96</span></div><div class="pp"><span class="who">Peer median</span><span class="val">~85</span></div><div class="pp"><span class="who">Industry cap · best</span><span class="val">~75</span></div></div>
+        <div class="seg-cell"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">BANBA / NUADA · 2025</span><span class="val">3.6% / 2.6%</span></div><div class="pp"><span class="who">5Y avg (2021–25)</span><span class="val">3.4% / 6.0%</span></div><div class="pp"><span class="who">Δ vs 5Y</span><span class="val">+0.2 / −3.4 pp</span></div></div>
+      </div>
+    </div>
+
+    <div class="segment-block land reveal d3">
+      <div class="segment-head">
+        <div class="lhs">
+          <span class="seg-pill">Land Rigs</span>
+          <h3>MIDIR &amp; DRAVUS <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Helmerich &amp; Payne · Nabors · Precision</span></h3>
+        </div>
+        <div class="read">CAPEX intensity matches peers. Unit economics gap (payroll, expat) is the issue — not under-investment.</div>
+      </div>
+      <div class="seg-grid">
+        <div class="seg-cell"><div class="metric">Dayrate</div><div class="dix"><span class="who">MIDIR · DRAVUS</span><span class="val">$40K</span></div><div class="pp"><span class="who">HP / Nabors</span><span class="val">$25–35K</span></div><div class="pp"><span class="who">MENA premium</span><span class="val">applies</span></div></div>
+        <div class="seg-cell lag"><div class="metric">NPT</div><div class="dix"><span class="who">MIDIR / DRAVUS</span><span class="val">6.9% / 3.3%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">~3.5%</span></div><div class="pp"><span class="who">HP · best</span><span class="val">~2.0%</span></div></div>
+        <div class="seg-cell lag"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">MIDIR / DRAVUS</span><span class="val">−10.7% / 23.5%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">32.8%</span></div><div class="pp"><span class="who">Nabors · top</span><span class="val">39.9%</span></div></div>
+        <div class="seg-cell lag"><div class="metric">FTE / rig</div><div class="dix"><span class="who">MIDIR / DRAVUS</span><span class="val">72 / 66</span></div><div class="pp"><span class="who">Peer median</span><span class="val">~55</span></div><div class="pp"><span class="who">US-land · best</span><span class="val">~50</span></div></div>
+        <div class="seg-cell"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">MIDIR / DRAVUS · 2025</span><span class="val">11.0% / 22.3%</span></div><div class="pp"><span class="who">5Y avg (2021–25)</span><span class="val">8.2% / 12.5%</span></div><div class="pp"><span class="who">Δ vs 5Y</span><span class="val">+2.8 / +9.8 pp</span></div></div>
+      </div>
+    </div>
+
+    <div class="segment-block platform reveal d4">
+      <div class="segment-head">
+        <div class="lhs">
+          <span class="seg-pill">Platform Rig</span>
+          <h3>LUG <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Helmerich &amp; Payne · Nabors · Precision</span></h3>
+        </div>
+        <div class="read">NPT above peer benchmark; CAPEX deeply lags peers — combined cost of reliability erosion.</div>
+      </div>
+      <div class="seg-grid">
+        <div class="seg-cell"><div class="metric">Dayrate</div><div class="dix"><span class="who">LUG</span><span class="val">$70K</span></div><div class="pp"><span class="who">HP / Nabors</span><span class="val">$25–35K</span></div><div class="pp"><span class="who">Platform premium</span><span class="val">applies</span></div></div>
+        <div class="seg-cell lag"><div class="metric">NPT</div><div class="dix"><span class="who">LUG</span><span class="val">6.7%</span></div><div class="pp"><span class="who">HP · best</span><span class="val">~2.0%</span></div><div class="pp"><span class="who">Nabors</span><span class="val">~3.0%</span></div></div>
+        <div class="seg-cell lead"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">LUG</span><span class="val">37.1%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">32.8%</span></div><div class="pp"><span class="who">Nabors · top</span><span class="val">39.9%</span></div></div>
+        <div class="seg-cell"><div class="metric">FTE / rig</div><div class="dix"><span class="who">LUG</span><span class="val">~55</span></div><div class="pp"><span class="who">Land norm</span><span class="val">50–60</span></div><div class="pp"><span class="who">Delta</span><span class="val">modest</span></div></div>
+        <div class="seg-cell"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">LUG · 2025</span><span class="val">1.7%</span></div><div class="pp"><span class="who">5Y avg (2021–25)</span><span class="val">3.0%</span></div><div class="pp"><span class="who">Δ vs 5Y</span><span class="val">−1.3 pp</span></div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.2rem;font-size:0.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:0.04em;line-height:1.55;max-width:1100px;">
+      <strong style="color:var(--text2);font-weight:500;">Rig Direct Margin normalized · methodology:</strong>
+      Revenue (dayrate only — excludes reimbursable, bareboat, management contracts) − Cost of Revenue normalized (direct rig opex; excludes D&amp;A, corporate SG&amp;A, R&amp;D, financial items, taxes; includes OPEX-reclassed-from-CAPEX). Industry precedent: H&amp;P's "Direct Margin" disclosure (10-K MD&amp;A). All peer values derived from FY2025 10-K / 20-F / 40-F / annual reports per normalization_rules.md.
+      <br><br>
+      <strong style="color:var(--text2);font-weight:500;">CAPEX / Rev · methodology:</strong>
+      Peer comparison intentionally omitted for CAPEX — a material share of Dixstone's capital outlays has been funded by sole-customer Perenco, making external peer benchmarks not directly comparable on a like-for-like basis. The 5-year average (sum CAPEX 2021–25 ÷ sum Theoretical Revenue 2021–25) is shown as the internal-only reference, smoothing single-year SPS-cycle lumpiness.
+    </div>
+  </section>
+
+
+  <!-- ========================= 21 · WHERE DIXSTONE STANDS ========================= -->
+  <section class="slide" data-title="Where Dixstone Stands">
+    <div class="eyebrow reveal">21 · Where Dixstone Stands</div>
+    <h1 class="slide-title reveal">A summary view <em>across the fleet.</em></h1>
+    <p class="lede reveal d1">Four observations from the FY25 segment-level benchmarking — one per business line, plus one on the balance sheet.</p>
+
+    <div class="grid-4 reveal d2">
+      <div class="card accent">
+        <div class="corner"></div>
+        <span class="num-tag">01 · AXIMA</span>
+        <h3>Best-in-segment reliability.</h3>
+        <p>2.7% NPT — top quartile against every premium-jackup peer. Operational asset, not yet priced in.</p>
+        <div class="metric-strip">NPT 2.7% · GM 39.5% · $130K/day</div>
+      </div>
+      <div class="card accent">
+        <div class="corner"></div>
+        <span class="num-tag">02 · BANBA &amp; NUADA</span>
+        <h3>Above-peer dayrate; below-peer NPT.</h3>
+        <p>$100K dayrate leads the standard-JU peer set. NPT (8.7% / 5.8%) lags Shelf's 0.6% — the operational gap.</p>
+        <div class="metric-strip">Dayrate $100K · NPT 5.8–8.7%</div>
+      </div>
+      <div class="card accent">
+        <div class="corner"></div>
+        <span class="num-tag">03 · MIDIR</span>
+        <h3>Loss-making at FY25 economics.</h3>
+        <p>−10.7% gross margin vs land peers at 29–40%. Cost structure (51.9% payroll, 103.9% O&amp;M) is the issue.</p>
+        <div class="metric-strip">GM −10.7% · Payroll 51.9% · O&amp;M 103.9%</div>
+      </div>
+      <div class="card accent">
+        <div class="corner"></div>
+        <span class="num-tag">04 · INVENTORY</span>
+        <h3>$22.5M dead-stock.</h3>
+        <p>54% of total inventory. Working-capital trap on a 12-month timeline — discrete and isolatable.</p>
+        <div class="metric-strip">Inventory $41.5M · 324 vendors</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= 22 · OUTLIER MAP ========================= -->
+  <section class="slide" data-title="Outlier Map">
+    <div class="eyebrow reveal">22 · Internal vs Peers · Outlier Map · FY 2025</div>
+    <h1 class="slide-title reveal">Where Dixstone is a peer-set outlier —<br><em>four structural positions worth flagging.</em></h1>
+    <p class="lede reveal d1">Six per-rig metrics normalised to comparable per-rig basis across the 9-peer set. Inventory, capital intensity and crew-per-rig sit at the extremes; revenue per rig sits comfortably above peer median; CAPEX is structurally below.</p>
+
+    <div class="mega-kpi reveal d2">
+      <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">$5.93M</div><div class="ml">Inventory / rig · <strong style="color:var(--bad);">HIGHEST</strong></div><div class="md">vs peer median $1.99M — Dixstone holds ~3× peer benchmark</div></div>
+      <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">2.5×</div><div class="ml">Inventory turnover · <strong style="color:var(--bad);">LOWEST</strong></div><div class="md">COGS ÷ Inventory · vs peer range 3–25× · indicates ~145 days of operating cost held in stores</div></div>
+      <div class="mk" style="border-left-color:var(--good);"><div class="mv" style="color:var(--good);">$22.6M</div><div class="ml">Revenue / rig · above median</div><div class="md">vs peer median ~$15M — premium dayrate captured</div></div>
+    </div>
+
+    <div class="reveal d3" style="overflow-x:auto;margin-top:0.4rem;">
+      <table class="bench-table">
+        <thead>
+          <tr><th>Metric</th><th>Dixstone</th><th>ADES</th><th>ADNOC</th><th>H&amp;P</th><th>Nabors</th><th>Precision</th><th>Borr</th><th>Shelf</th><th>Velesto</th><th>Position</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rig-name">Inventory · $/rig</span><span class="rig-type">FY25 BS / fleet</span></td>
+            <td class="val-red"><strong>$5.93M</strong></td><td>$2.05M</td><td>$1.99M</td><td>$1.38M</td><td>$0.35M</td><td>$0.19M</td><td>n/a</td><td>n/a</td><td>$3.95M</td>
+            <td class="val-red">🔴 Highest</td>
+          </tr>
+          <tr>
+            <td><span class="rig-name">Inventory turnover</span><span class="rig-type">COGS ÷ Inv</span></td>
+            <td class="val-red"><strong>2.5×</strong></td><td>2.8×</td><td>9.4×</td><td>7.9×</td><td class="val-green">20.4×</td><td class="val-green">25.3×</td><td>n/a</td><td>n/a</td><td>4.6×</td>
+            <td class="val-red">🔴 Lowest</td>
+          </tr>
+          <tr>
+            <td><span class="rig-name">Headcount / rig</span><span class="rig-type">Employees ÷ fleet</span></td>
+            <td class="val-amber"><strong>~85</strong></td><td>65</td><td>n/a</td><td>67</td><td>52</td><td>27</td><td>85</td><td>117</td><td>108</td>
+            <td class="val-amber">🟡 Top of pack</td>
+          </tr>
+          <tr>
+            <td><span class="rig-name">Land FTE / rig</span><span class="rig-type">MIDIR · DRAVUS</span></td>
+            <td class="val-red"><strong>72 / 66</strong></td><td>—</td><td>—</td><td class="val-green">~50</td><td class="val-green">~50</td><td class="val-green">~27</td><td>—</td><td>—</td><td>—</td>
+            <td class="val-red">🔴 Highest</td>
+          </tr>
+          <tr>
+            <td><span class="rig-name">Revenue / rig</span><span class="rig-type">FY25 Theoretical</span></td>
+            <td class="val-green"><strong>$22.6M</strong></td><td>$14.5M</td><td>$35.0M</td><td>$15.9M</td><td>$11.9M</td><td>$7.2M</td><td>$37.8M</td><td>$14.8M</td><td>$35.5M</td>
+            <td class="val-green">🟢 Above median</td>
+          </tr>
+          <tr>
+            <td><span class="rig-name">5Y CAPEX / Rev</span><span class="rig-type">2021–2025</span></td>
+            <td class="val-red"><strong>3–13%</strong></td><td>26%</td><td>26%</td><td>12%</td><td>17%</td><td>11%</td><td>22%</td><td>20%</td><td>19%</td>
+            <td class="val-red">🔴 Lowest</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2 reveal d4" style="margin-top:1.3rem;gap:1rem;">
+      <div class="card accent">
+        <span class="num-tag">Concentration of risk</span>
+        <h3>Three of the four outliers point to working-capital lock-up.</h3>
+        <p>Inventory $/rig (3× peer), inventory turnover (3× slower than peer median on COGS basis · ~145 days of operating cost in stores vs 14–80 days for peers), and land FTE/rig (1.5× the peer norm) all describe the same underlying pattern — capital and headcount tied up beyond what operating need justifies. Combined working-capital opportunity sits well above the $10–15M dead-stock release already quantified.</p>
+      </div>
+      <div class="card">
+        <span class="num-tag">What's NOT a problem</span>
+        <h3>Revenue capture per rig is healthy.</h3>
+        <p>Dixstone earns $22.6M per rig vs peer median ~$15M — premium dayrates are being achieved. The issue is on the cost-base side (inventory, headcount, OPEX intensity) and the capital-deployment side (under-investment in CAPEX). The revenue side is not the gap.</p>
+      </div>
+    </div>
+
+    <div class="src-band reveal d4">
+      <strong>Source · </strong>Per-peer normalised BS (Inventory) and IS (Revenue, Cost of Revenue normalized) from FY2025 10-K / 20-F / 40-F · Fleet counts from non-financial Excel · Dixstone from rev-13 P&amp;L and MB52 end-2025 · <strong>Inventory turnover</strong> = Cost of Revenue normalized ÷ end-period Inventory (textbook formulation; uses COGS not Revenue to neutralise margin differences across peers) · <strong>Peer median · </strong>excludes Borr / Shelf / Valaris (expense-as-incurred inventory policy → no BS line) · <strong>Caveat · </strong>inventory turnover is a generic working-capital metric, not a standard drilling-industry KPI (IADC publishes none) — used here as a directional indicator of capital tied up in stores · headcount comparison uses total employees ÷ active rigs; some peers may include corporate/shore staff inflating the per-rig ratio.
+    </div>
+  </section>
+
+  <!-- ========================= 23 · CAUSAL CHAIN — UNDER-CAPEX → CERT → NPT + OPEX ========================= -->
+  <section class="slide" data-title="Causal Chain · CAPEX → Cert → NPT + OPEX">
+    <div class="eyebrow reveal">23 · Why the Outlier Position Matters · CAPEX → Cert → NPT + OPEX</div>
+    <h1 class="slide-title reveal">Under-investment in CAPEX is a <em>plausible structural driver</em><br>of the elevated NPT and inflated spare-parts OPEX seen on most rigs.</h1>
+    <p class="lede reveal d1">The four diagnostic threads in this deck — bottom-quartile CAPEX, Cat IV recertification surfaced as the LUG audit's only Critical finding, NPT running 2–3× peer median on four of six rigs, and spare-parts cost climbing +3 to +12pp YoY on the underperformers — fit a single causal chain. Worth scrutinising as a hypothesis before sizing recovery actions.</p>
+
+    <div class="mega-kpi reveal d2">
+      <div class="mk"><div class="mv">3–13%</div><div class="ml">Dixstone 5Y CAPEX / Rev</div><div class="md">Bottom of peer set · vs 11–26% for listed contractors (Outlier Map)</div></div>
+      <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">5.8–8.7%</div><div class="ml">NPT% · 4 of 6 rigs</div><div class="md">BANBA · NUADA · LUG · MIDIR · DRAVUS · vs peer median 3.0% · ADES best 1.5%</div></div>
+      <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">+$5M</div><div class="ml">Spare-parts cost YoY · 2024→2025</div><div class="md">AXIMA +6.1pp · MIDIR +11.7pp · DRAVUS +3.4pp of revenue · RDM Evolution slide 18</div></div>
+    </div>
+
+    <div class="grid-3 reveal d3" style="margin-top:1.4rem;gap:1rem;">
+      <div class="card accent">
+        <span class="num-tag">Step 1 · Under-CAPEX</span>
+        <h3>Lowest sustaining CAPEX in the peer set.</h3>
+        <p>5Y fleet CAPEX/Revenue band 3–13% sits below every listed peer in the comparison set (peers 11–26%). Land rigs MIDIR (8.2%) and DRAVUS (12.5%) are the exception — and that's a separate over-spend question (slide 23). Across the Premium and Standard JU rigs, sustaining-CAPEX runs <strong>below</strong> the level peers maintain to keep equipment in cycle. Deferred recertifications and component replacements are a logical consequence.</p>
+      </div>
+      <div class="card accent" style="border-left-color:var(--bad);">
+        <span class="num-tag" style="color:var(--bad);">Step 2 · Out-of-Cert Equipment</span>
+        <h3>LUG audit raised Cat IV as the only Critical item.</h3>
+        <p>The LUG operational audit surfaced <strong>Cat IV recertification</strong> as the single Critical finding — paired with home-made Excel PM trackers and discarded task sheets. The fleet-wide asset register / certification ownership gap is not isolated to LUG; the deck flags it as a role-definition issue across the Drilling Assets Manager scope. Equipment running past its certification window is the natural consequence of sustained under-investment.</p>
+      </div>
+      <div class="card accent" style="border-left-color:var(--bad);">
+        <span class="num-tag" style="color:var(--bad);">Step 3 · NPT + OPEX Inflation</span>
+        <h3>Failures shift onto run-time and the spare-parts bill.</h3>
+        <p>Out-of-cert equipment fails more often → NPT climbs (4 of 6 rigs at 5.8–8.7%, vs peer median 3.0%). Unplanned failures get patched with unscheduled spare-parts buys → spare-parts cost jumped +3–12pp of revenue YoY across the three underperforming rigs. Engineering cost doubled fleet-wide. <strong>Same dollars, wrong line</strong>: CAPEX saved becomes OPEX paid, plus the revenue forgone to NPT.</p>
+      </div>
+    </div>
+
+    <div class="grid-2 reveal d4" style="margin-top:1rem;gap:1rem;">
+      <div class="card">
+        <span class="num-tag">Supporting evidence — already in deck</span>
+        <h3>Four threads converge on the same hypothesis.</h3>
+        <ul style="margin:0.4rem 0 0 1rem;padding:0;line-height:1.55;font-size:0.92rem;">
+          <li><strong>Slide 36 (Outlier Map)</strong> — Dixstone 5Y CAPEX/Rev lowest in peer set (3–13% vs 11–26%)</li>
+          <li><strong>Slide 39 (Pillars · Pillar 2)</strong> — Cat IV recertification = single Critical audit finding; PM record-keeping informal</li>
+          <li><strong>One-pagers (slides 25–30)</strong> — NPT 5.8–8.7% on BANBA/NUADA/LUG/MIDIR/DRAVUS vs peer median 3.0%</li>
+          <li><strong>Slide 18 (RDM Evolution)</strong> — Spare-parts cost +3 to +12pp YoY on AXIMA, MIDIR, DRAVUS; Engineering cost doubled fleet-wide</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="num-tag">Caveats — what would falsify this</span>
+        <h3>The hypothesis is testable, not proven.</h3>
+        <ul style="margin:0.4rem 0 0 1rem;padding:0;line-height:1.55;font-size:0.92rem;">
+          <li>Per-equipment cert status by rig is not yet in the deck — only the LUG audit surfaces it. A fleet-wide cert register pull would confirm or refute the scale.</li>
+          <li>If the 2025 spare-parts spike is genuine catch-up CAPEX-reclassed-to-OPEX (planned), not unplanned, the OPEX line will normalise in 2026 — that's also testable from the 2026 budget vs PM schedule.</li>
+          <li>NPT codes need to be decomposed: a substantial share could be third-party / mud / well-related rather than rig-equipment-related. The per-rig NPT-driver bars on the one-pagers suggest equipment is the dominant category, but a code-level audit is needed before committing to CAPEX as the lever.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="src-band reveal d4">
+      <strong>Source · </strong>Synthesis of slides 18 (RDM Evolution) · 22 (5Y Cumulative P&amp;L + CAPEX) · 23 (Land-Rig Over-CAPEX) · 25–30 (Rig One-Pagers · NPT panels) · 36 (Outlier Map) · 39 (Pillars · Cat IV finding) · <strong>Causal claim · </strong>presented as the most plausible structural explanation for the pattern, not an audited conclusion — confirmation requires a fleet-wide equipment certification status pull and an NPT-code decomposition.
+    </div>
+  </section>
+
+  <!-- ========================= 24 · TARGET STATE · 45% RDM AT 2% NPT ========================= -->
   <section class="slide" data-title="Target State · 44.8% RDM at 2% NPT">
-    <div class="eyebrow reveal">10 · Target State · 44.8% RDM at 2% NPT — Per-Rig Reverse-Engineered Math</div>
+    <div class="eyebrow reveal">24 · Target State · 44.8% RDM at 2% NPT — Per-Rig Reverse-Engineered Math</div>
     <h1 class="slide-title reveal">Interim target: <em>44.8% RDM at 2% NPT · peer median</em> —<br>profitability is the <em>intersection</em>, not NPT or spending alone.</h1>
     <p class="lede reveal d1">A 44.8% margin (peer median of Borr 44.8% · Shelf 44.9% · ADNOC 46.7%) cannot be reached by NPT improvement alone (cost-base too high on every rig) or by spending compression alone (NPT lost revenue too large on most). The target is the intersection. This slide reverse-engineers the math per rig: revenue if NPT were 2%, cost ceiling for 45% RDM, current cost, and the resulting <strong>daily PO/GR ceiling</strong>. Tangible numbers Dixstone management can hold each rig to. 44.8% is the Premium/Standard JU peer median (Borr 44.8% · Shelf 44.9% · ADNOC 46.7% · Velesto 49.0% · ADES 60.7%) — the segment-matched benchmark to hit.</p>
 
@@ -1433,808 +2237,6 @@
 
     <div class="src-band reveal d4">
       <strong>Methodology · </strong>Revenue at 2% NPT = Ops Days × Dayrate × 0.98 · Cost ceiling = Revenue × 55.2% (for 44.8% RDM · peer median) · Daily GR ceiling = (Cost ceiling − non-GR cost) ÷ Ops Days · "Non-GR cost" = Cost of Revenue normalized − GR (held constant at FY25 level) · <strong>Sources · </strong>Dixstone_P&amp;L tab row 5 (Ops Days) · row 9 (Dayrate) · row 34 (Cost of Revenue normalized) · row 35 (RDM normalized) · row 40 (Equivalent PO OPEX GR) · all values refreshed from May-26 update · <strong>Caveat · </strong>44.8% RDM is the Premium / Standard JU peer median (Borr 44.8% · Shelf 44.9% · ADNOC 46.7% · Velesto 49.0% · ADES 60.7%) but well above the Land peer median (32.8%) — for MIDIR / DRAVUS the realistic interim is 30–35%, with 44.8% only achievable post-workforce-restructure.
-    </div>
-  </section>
-
-  <!-- ========================= 11 · RIG ONE-PAGERS DIVIDER ========================= -->
-  <section class="slide divider-slide" data-title="Rig One-Pagers">
-    <div class="eyebrow reveal" style="justify-content:center;">Rig Deep-Dive</div>
-    <h1 class="reveal d1">Rig <em>One-Pagers</em></h1>
-    <p class="reveal d2">One slide per rig — operating KPIs, P&amp;L snapshot, NPT equipment drivers, and 2025 top-5 material groups for PO / GR / IO. Six rigs: AXIMA · BANBA · NUADA · LUG · MIDIR · DRAVUS.</p>
-  </section>
-
-  <!-- ========================= 12 · AXIMA ONE-PAGER ========================= -->
-  <section class="slide onepager" data-title="AXIMA">
-    <div class="op-header reveal">
-      <div><span class="op-rig-name">AXIMA</span><span class="op-rig-type premium">Premium Jack-Up</span></div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
-    </div>
-    <div class="op-kpi-row reveal d1">
-      <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v amber">84.9%</div><div class="sub">310 / 365 days</div></div>
-      <div class="op-kpi"><div class="lbl">NPT</div><div class="v amber">2.7%</div><div class="sub">Top-quartile peer</div></div>
-      <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$39.2M</div><div class="sub">$130K/day · 301.6 bill. days</div></div>
-      <div class="op-kpi"><div class="lbl">Rig Direct Margin</div><div class="v green">39.5%</div><div class="sub">2024: 47.7% · Δ <span style="color:var(--bad);">−8.2pp</span></div></div>
-      <div class="op-kpi"><div class="lbl">Staff Cost %</div><div class="v amber">31.7%</div><div class="sub">$12.4M · 106 FTE</div></div>
-      <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$37K</div><div class="sub">PO/GR 0.92× · ME2N 2025</div></div>
-    </div>
-    <div class="op-body reveal d2">
-      <div class="op-panel">
-        <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
-        <div class="prow"><span class="pk">Revenue</span><div class="pv-group"><span class="pv">$39,210</span><span class="pv-prev">2024: $44,245 · <span style="color:var(--bad);">−11.4%</span></span></div></div>
-        <div class="prow"><span class="pk">Workforce cost</span><div class="pv-group"><span class="pv amber">$12,415 (31.7%)</span><span class="pv-prev">2024: $13,318 (30.1%) · <span style="color:var(--bad);">−6.8% · +1.6pp</span></span></div></div>
-        <div class="prow"><span class="pk">Rig Direct Margin (norm.)</span><div class="pv-group"><span class="pv green">$15,504 (39.5%)</span><span class="pv-prev">2024: $21,105 (47.7%) · <span style="color:var(--bad);">−26.5% · −8.2pp</span></span></div></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 Real Spent · GR</span><div class="pv-group"><span class="pv">$10,066 (25.8%)</span><span class="pv-prev">2024: $7,176 (16.2%) · <span style="color:var(--bad);">+40.3% · +9.6pp</span></span></div></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 New POs</span><div class="pv-group"><span class="pv">$11.5M</span><span class="pv-prev">2024: $11.6M · <span style="color:var(--text2);">−1% YoY</span></span></div></div>
-        <div class="prow"><span class="pk">PO ÷ GR coherence</span><div class="pv-group"><span class="pv amber"><strong>1.14×</strong></span><span class="pv-prev">ordering slightly ahead of consumption</span></div></div>
-        <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.55rem;"><span class="pk">Inventory (end-2025)</span><div class="pv-group"><span class="pv">$6.0M</span></div></div>
-        <div class="prow no-prev"><span class="pk">Dead stock %</span><div class="pv-group"><span class="pv amber">38%</span></div></div>
-        <div class="prow no-prev"><span class="pk">FY25 CAPEX / Rev</span><div class="pv-group"><span class="pv red">6.1%</span></div></div>
-        <div class="prow no-prev"><span class="pk">5Y CAPEX / Rev (2021–25)</span><div class="pv-group"><span class="pv red">4.6%</span></div></div>
-      </div>
-      <div class="op-panel">
-        <div class="ptitle">NPT Equipment Drivers · 2025 · Top 5</div>
-        <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:52.4%"></div></div><span class="dpct">52.4%</span></div>
-        <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:16.9%"></div></div><span class="dpct">16.9%</span></div>
-        <div class="npt-driver"><span class="dk">Rig Crew</span><div class="dtrack"><div class="dfill" style="width:15.4%"></div></div><span class="dpct">15.4%</span></div>
-        <div class="npt-driver"><span class="dk">Miscel</span><div class="dtrack"><div class="dfill" style="width:6.5%"></div></div><span class="dpct">6.5%</span></div>
-        <div class="npt-driver"><span class="dk">Rig Floor</span><div class="dtrack"><div class="dfill" style="width:3.8%"></div></div><span class="dpct">3.8%</span></div>
-        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">201.25 hrs · 8.4 days · 2.7%</div>
-          <div style="font-size:0.82rem;color:var(--text2);margin-top:0.3rem;">Lowest total NPT hours in fleet. BOP (52%) + TDS PM are the primary interventions.</div>
-        </div>
-      </div>
-    </div>
-    <div class="op-body-3 reveal d3">
-      <div class="op-panel">
-        <div class="ptitle">2025 PO · Top 5 Mat Groups</div>
-        <div class="mg-driver"><span class="mk" title="DRIL_HDLG">DRIL_HDLG</span><div class="mtrack"><div class="mfill po" style="width:95.0%"></div></div><span class="mv">$1.13M</span><span class="mpct">9.9%</span></div>
-        <div class="mg-driver"><span class="mk" title="DRIL_CTRL">DRIL_CTRL</span><div class="mtrack"><div class="mfill po" style="width:87.1%"></div></div><span class="mv">$1.04M</span><span class="mpct">9.0%</span></div>
-        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill po" style="width:83.5%"></div></div><span class="mv">$994K</span><span class="mpct">8.7%</span></div>
-        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill po" style="width:63.7%"></div></div><span class="mv">$759K</span><span class="mpct">6.6%</span></div>
-        <div class="mg-driver"><span class="mk" title="ROT_MACH">ROT_MACH</span><div class="mtrack"><div class="mfill po" style="width:42.1%"></div></div><span class="mv">$502K</span><span class="mpct">4.4%</span></div>
-        <div class="mg-total"><span>Total 2025 PO</span><strong>$11.5M</strong></div>
-      </div>
-      <div class="op-panel">
-        <div class="ptitle">2025 GR · Top 5 Mat Groups</div>
-        <div class="mg-driver"><span class="mk" title="NO MATERIAL">NO MATERIAL</span><div class="mtrack"><div class="mfill gr" style="width:95.0%"></div></div><span class="mv">$1.22M</span><span class="mpct">13.6%</span></div>
-        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill gr" style="width:49.6%"></div></div><span class="mv">$640K</span><span class="mpct">7.1%</span></div>
-        <div class="mg-driver"><span class="mk" title="PIPING">PIPING</span><div class="mtrack"><div class="mfill gr" style="width:35.6%"></div></div><span class="mv">$460K</span><span class="mpct">5.1%</span></div>
-        <div class="mg-driver"><span class="mk" title="INSP_SRV">INSP_SRV</span><div class="mtrack"><div class="mfill gr" style="width:34.9%"></div></div><span class="mv">$450K</span><span class="mpct">5.0%</span></div>
-        <div class="mg-driver"><span class="mk" title="PIPE_SRV">PIPE_SRV</span><div class="mtrack"><div class="mfill gr" style="width:30.7%"></div></div><span class="mv">$400K</span><span class="mpct">4.4%</span></div>
-        <div class="mg-total"><span>Total 2025 GR</span><strong>$9.0M</strong></div>
-      </div>
-      <div class="op-panel">
-        <div class="ptitle">2025 IO · Top 5 Mat Groups <span style="color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;">(proxy — 42% line coverage)</span></div>
-        <div class="mg-driver"><span class="mk" title="PPE">PPE</span><div class="mtrack"><div class="mfill io" style="width:95.0%"></div></div><span class="mv">$1.36M</span><span class="mpct">18.7%</span></div>
-        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill io" style="width:55.4%"></div></div><span class="mv">$794K</span><span class="mpct">10.9%</span></div>
-        <div class="mg-driver"><span class="mk" title="WELL_CPL">WELL_CPL</span><div class="mtrack"><div class="mfill io" style="width:52.3%"></div></div><span class="mv">$751K</span><span class="mpct">10.3%</span></div>
-        <div class="mg-driver"><span class="mk" title="DRIL_HDLG">DRIL_HDLG</span><div class="mtrack"><div class="mfill io" style="width:43.2%"></div></div><span class="mv">$617K</span><span class="mpct">8.5%</span></div>
-        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill io" style="width:42.7%"></div></div><span class="mv">$615K</span><span class="mpct">8.4%</span></div>
-        <div class="mg-total"><span>Total 2025 IO</span><strong>$7.3M</strong></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================= 13 · BANBA ONE-PAGER ========================= -->
-  <section class="slide onepager" data-title="BANBA">
-    <div class="op-header reveal">
-      <div><span class="op-rig-name">BANBA</span><span class="op-rig-type standard">Standard Jack-Up</span></div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
-    </div>
-    <div class="op-kpi-row reveal d1">
-      <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
-      <div class="op-kpi"><div class="lbl">NPT</div><div class="v red">8.7%</div><div class="sub">Lagging peer median</div></div>
-      <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$33.3M</div><div class="sub">$100K/day · 333.2 bill. days</div></div>
-      <div class="op-kpi"><div class="lbl">Rig Direct Margin</div><div class="v amber">36.3%</div><div class="sub">2024: 25.7% · Δ <span style="color:var(--good);">+10.6pp</span></div></div>
-      <div class="op-kpi"><div class="lbl">Staff Cost %</div><div class="v amber">33.7%</div><div class="sub">$11.2M · ~104 FTE</div></div>
-      <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$28K</div><div class="sub">PO/GR 1.08× · ME2N 2025</div></div>
-    </div>
-    <div class="op-body reveal d2">
-      <div class="op-panel">
-        <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
-        <div class="prow"><span class="pk">Revenue</span><div class="pv-group"><span class="pv">$33,321</span><span class="pv-prev">2024: $23,418 · <span style="color:var(--good);">+42.3%</span></span></div></div>
-        <div class="prow"><span class="pk">Workforce cost</span><div class="pv-group"><span class="pv amber">$11,236 (33.7%)</span><span class="pv-prev">2024: $8,829 (37.7%) · <span style="color:var(--good);">+27.3% · −4.0pp</span></span></div></div>
-        <div class="prow"><span class="pk">Rig Direct Margin (norm.)</span><div class="pv-group"><span class="pv amber">$12,098 (36.3%)</span><span class="pv-prev">2024: $6,012 (25.7%) · <span style="color:var(--good);">+101% · +10.6pp</span></span></div></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 Real Spent · GR</span><div class="pv-group"><span class="pv">$8,762 (26.3%)</span><span class="pv-prev">2024: $7,222 (30.8%) · <span style="color:var(--good);">+21.3% · −4.5pp</span></span></div></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 New POs</span><div class="pv-group"><span class="pv">$10.1M</span><span class="pv-prev">2024: $13.0M · <span style="color:var(--good);">−22% YoY</span></span></div></div>
-        <div class="prow"><span class="pk">PO ÷ GR coherence</span><div class="pv-group"><span class="pv amber"><strong>1.15×</strong></span><span class="pv-prev">ordering slightly ahead of consumption</span></div></div>
-        <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.55rem;"><span class="pk">Inventory (end-2025)</span><div class="pv-group"><span class="pv red">$9.0M</span></div></div>
-        <div class="prow no-prev"><span class="pk">Dead stock %</span><div class="pv-group"><span class="pv red">59%</span></div></div>
-        <div class="prow no-prev"><span class="pk">FY25 CAPEX / Rev</span><div class="pv-group"><span class="pv red">3.6%</span></div></div>
-        <div class="prow no-prev"><span class="pk">5Y CAPEX / Rev (2021–25)</span><div class="pv-group"><span class="pv red">3.4%</span></div></div>
-      </div>
-      <div class="op-panel">
-        <div class="ptitle">NPT Equipment Drivers · 2025 · Top 5</div>
-        <div class="npt-driver"><span class="dk">Miscel</span><div class="dtrack"><div class="dfill" style="width:62.9%"></div></div><span class="dpct">62.9%</span></div>
-        <div class="npt-driver"><span class="dk">PowGen</span><div class="dtrack"><div class="dfill" style="width:21.0%"></div></div><span class="dpct">21.0%</span></div>
-        <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:10.6%"></div></div><span class="dpct">10.6%</span></div>
-        <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:2.4%"></div></div><span class="dpct">2.4%</span></div>
-        <div class="npt-driver"><span class="dk">Pump</span><div class="dtrack"><div class="dfill" style="width:1.3%"></div></div><span class="dpct">1.3%</span></div>
-        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">763 hrs · 31.8 days · 8.7%</div>
-          <div style="font-size:0.82rem;color:var(--text2);margin-top:0.3rem;">Power Generation + BOP shared culprit with NUADA. Root-cause programme recommended.</div>
-        </div>
-      </div>
-    </div>
-    <div class="op-body-3 reveal d3">
-      <div class="op-panel">
-        <div class="ptitle">2025 PO · Top 5 Mat Groups</div>
-        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill po" style="width:95.0%"></div></div><span class="mv">$1.01M</span><span class="mpct">10.0%</span></div>
-        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill po" style="width:80.8%"></div></div><span class="mv">$858K</span><span class="mpct">8.5%</span></div>
-        <div class="mg-driver"><span class="mk" title="ELE_SRV">ELE_SRV</span><div class="mtrack"><div class="mfill po" style="width:69.3%"></div></div><span class="mv">$739K</span><span class="mpct">7.3%</span></div>
-        <div class="mg-driver"><span class="mk" title="DRIL_TUB">DRIL_TUB</span><div class="mtrack"><div class="mfill po" style="width:61.8%"></div></div><span class="mv">$658K</span><span class="mpct">6.5%</span></div>
-        <div class="mg-driver"><span class="mk" title="WELDI_SRV">WELDI_SRV</span><div class="mtrack"><div class="mfill po" style="width:40.9%"></div></div><span class="mv">$436K</span><span class="mpct">4.3%</span></div>
-        <div class="mg-total"><span>Total 2025 PO</span><strong>$10.1M</strong></div>
-      </div>
-      <div class="op-panel">
-        <div class="ptitle">2025 GR · Top 5 Mat Groups</div>
-        <div class="mg-driver"><span class="mk" title="NO MATERIAL">NO MATERIAL</span><div class="mtrack"><div class="mfill gr" style="width:95.0%"></div></div><span class="mv">$680K</span><span class="mpct">9.7%</span></div>
-        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill gr" style="width:74.4%"></div></div><span class="mv">$530K</span><span class="mpct">7.6%</span></div>
-        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill gr" style="width:51.9%"></div></div><span class="mv">$370K</span><span class="mpct">5.3%</span></div>
-        <div class="mg-driver"><span class="mk" title="ELE_SRV">ELE_SRV</span><div class="mtrack"><div class="mfill gr" style="width:50.9%"></div></div><span class="mv">$370K</span><span class="mpct">5.2%</span></div>
-        <div class="mg-driver"><span class="mk" title="TEL_SRV">TEL_SRV</span><div class="mtrack"><div class="mfill gr" style="width:44.1%"></div></div><span class="mv">$320K</span><span class="mpct">4.5%</span></div>
-        <div class="mg-total"><span>Total 2025 GR</span><strong>$7.0M</strong></div>
-      </div>
-      <div class="op-panel">
-        <div class="ptitle">2025 IO · Top 5 Mat Groups <span style="color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;">(proxy — 42% line coverage)</span></div>
-        <div class="mg-driver"><span class="mk" title="NO MATERIAL">NO MATERIAL</span><div class="mtrack"><div class="mfill io" style="width:95.0%"></div></div><span class="mv">$468K</span><span class="mpct">18.1%</span></div>
-        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill io" style="width:77.7%"></div></div><span class="mv">$381K</span><span class="mpct">14.8%</span></div>
-        <div class="mg-driver"><span class="mk" title="HDLG_LFTG">HDLG_LFTG</span><div class="mtrack"><div class="mfill io" style="width:38.8%"></div></div><span class="mv">$192K</span><span class="mpct">7.4%</span></div>
-        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill io" style="width:37.3%"></div></div><span class="mv">$184K</span><span class="mpct">7.1%</span></div>
-        <div class="mg-driver"><span class="mk" title="PPE">PPE</span><div class="mtrack"><div class="mfill io" style="width:26.8%"></div></div><span class="mv">$132K</span><span class="mpct">5.1%</span></div>
-        <div class="mg-total"><span>Total 2025 IO</span><strong>$2.6M</strong></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================= 14 · NUADA ONE-PAGER ========================= -->
-  <section class="slide onepager" data-title="NUADA">
-    <div class="op-header reveal">
-      <div><span class="op-rig-name">NUADA</span><span class="op-rig-type standard">Standard Jack-Up</span></div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
-    </div>
-    <div class="op-kpi-row reveal d1">
-      <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
-      <div class="op-kpi"><div class="lbl">NPT</div><div class="v red">5.8%</div><div class="sub">Lagging peer median</div></div>
-      <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$34.4M</div><div class="sub">$100K/day · 343.7 bill. days</div></div>
-      <div class="op-kpi"><div class="lbl">Rig Direct Margin</div><div class="v amber">41.1%</div><div class="sub">2024: 39.7% · Δ <span style="color:var(--good);">+1.4pp</span></div></div>
-      <div class="op-kpi"><div class="lbl">Staff Cost %</div><div class="v green">30.0%</div><div class="sub">$10.3M · ~90 FTE</div></div>
-      <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v green">$12K</div><div class="sub">PO/GR 0.33× · ME2N 2025</div></div>
-    </div>
-    <div class="op-body reveal d2">
-      <div class="op-panel">
-        <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
-        <div class="prow"><span class="pk">Revenue</span><div class="pv-group"><span class="pv">$34,374</span><span class="pv-prev">2024: $30,112 · <span style="color:var(--good);">+14.2%</span></span></div></div>
-        <div class="prow"><span class="pk">Workforce cost</span><div class="pv-group"><span class="pv green">$10,309 (30.0%)</span><span class="pv-prev">2024: $10,088 (33.5%) · <span style="color:var(--good);">+2.2% · −3.5pp</span></span></div></div>
-        <div class="prow"><span class="pk">Rig Direct Margin (norm.)</span><div class="pv-group"><span class="pv green">$14,141 (41.1%)</span><span class="pv-prev">2024: $11,966 (39.7%) · <span style="color:var(--good);">+18.3% · +1.4pp</span></span></div></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 Real Spent · GR</span><div class="pv-group"><span class="pv">$7,752 (22.6%)</span><span class="pv-prev">2024: $6,694 (22.2%) · <span style="color:var(--bad);">+15.8% · +0.4pp</span></span></div></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 New POs</span><div class="pv-group"><span class="pv">$4.4M</span><span class="pv-prev">2024: $12.3M · <span style="color:var(--good);">−64% YoY</span></span></div></div>
-        <div class="prow"><span class="pk">PO ÷ GR coherence</span><div class="pv-group"><span class="pv amber"><strong>0.56×</strong></span><span class="pv-prev">drawing down excess inventory · good given $12.3M stock</span></div></div>
-        <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.55rem;"><span class="pk">Inventory (end-2025)</span><div class="pv-group"><span class="pv red">$12.3M</span></div></div>
-        <div class="prow no-prev"><span class="pk">Dead stock %</span><div class="pv-group"><span class="pv red">57%</span></div></div>
-        <div class="prow no-prev"><span class="pk">FY25 CAPEX / Rev</span><div class="pv-group"><span class="pv red">2.6%</span></div></div>
-        <div class="prow no-prev"><span class="pk">5Y CAPEX / Rev (2021–25)</span><div class="pv-group"><span class="pv">6.0%</span></div></div>
-      </div>
-      <div class="op-panel">
-        <div class="ptitle">NPT Equipment Drivers · 2025 · Top 5</div>
-        <div class="npt-driver"><span class="dk">PowGen</span><div class="dtrack"><div class="dfill" style="width:39.9%"></div></div><span class="dpct">39.9%</span></div>
-        <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:26.2%"></div></div><span class="dpct">26.2%</span></div>
-        <div class="npt-driver"><span class="dk">Miscel</span><div class="dtrack"><div class="dfill" style="width:17.9%"></div></div><span class="dpct">17.9%</span></div>
-        <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:3.4%"></div></div><span class="dpct">3.4%</span></div>
-        <div class="npt-driver"><span class="dk">Pump</span><div class="dtrack"><div class="dfill" style="width:3.4%"></div></div><span class="dpct">3.4%</span></div>
-        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">510.25 hrs · 21.3 days · 5.8%</div>
-          <div style="font-size:0.82rem;color:var(--text2);margin-top:0.3rem;">Power Generation now dominant — joint programme with BANBA targeting shared root causes.</div>
-        </div>
-      </div>
-    </div>
-    <div class="op-body-3 reveal d3">
-      <div class="op-panel">
-        <div class="ptitle">2025 PO · Top 5 Mat Groups</div>
-        <div class="mg-driver"><span class="mk" title="STRUC_SRV">STRUC_SRV</span><div class="mtrack"><div class="mfill po" style="width:95.0%"></div></div><span class="mv">$1.65M</span><span class="mpct">37.2%</span></div>
-        <div class="mg-driver"><span class="mk" title="SEA_TRSP">SEA_TRSP</span><div class="mtrack"><div class="mfill po" style="width:22.5%"></div></div><span class="mv">$390K</span><span class="mpct">8.8%</span></div>
-        <div class="mg-driver"><span class="mk" title="IT_SRV">IT_SRV</span><div class="mtrack"><div class="mfill po" style="width:21.2%"></div></div><span class="mv">$370K</span><span class="mpct">8.3%</span></div>
-        <div class="mg-driver"><span class="mk" title="INSP_SRV">INSP_SRV</span><div class="mtrack"><div class="mfill po" style="width:17.1%"></div></div><span class="mv">$296K</span><span class="mpct">6.7%</span></div>
-        <div class="mg-driver"><span class="mk" title="MECHA_SRV">MECHA_SRV</span><div class="mtrack"><div class="mfill po" style="width:10.7%"></div></div><span class="mv">$189K</span><span class="mpct">4.2%</span></div>
-        <div class="mg-total"><span>Total 2025 PO</span><strong>$4.4M</strong></div>
-      </div>
-      <div class="op-panel">
-        <div class="ptitle">2025 GR · Top 5 Mat Groups</div>
-        <div class="mg-driver"><span class="mk" title="SEA_TRSP">SEA_TRSP</span><div class="mtrack"><div class="mfill gr" style="width:95.0%"></div></div><span class="mv">$420K</span><span class="mpct">11.9%</span></div>
-        <div class="mg-driver"><span class="mk" title="IT_SRV">IT_SRV</span><div class="mtrack"><div class="mfill gr" style="width:91.8%"></div></div><span class="mv">$410K</span><span class="mpct">11.5%</span></div>
-        <div class="mg-driver"><span class="mk" title="HDLG_LFTG">HDLG_LFTG</span><div class="mtrack"><div class="mfill gr" style="width:74.2%"></div></div><span class="mv">$330K</span><span class="mpct">9.3%</span></div>
-        <div class="mg-driver"><span class="mk" title="ROT_MACH">ROT_MACH</span><div class="mtrack"><div class="mfill gr" style="width:71.1%"></div></div><span class="mv">$310K</span><span class="mpct">8.9%</span></div>
-        <div class="mg-driver"><span class="mk" title="STRUC_SRV">STRUC_SRV</span><div class="mtrack"><div class="mfill gr" style="width:40.7%"></div></div><span class="mv">$180K</span><span class="mpct">5.1%</span></div>
-        <div class="mg-total"><span>Total 2025 GR</span><strong>$3.5M</strong></div>
-      </div>
-      <div class="op-panel">
-        <div class="ptitle">2025 IO · Top 5 Mat Groups <span style="color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;">(proxy — 42% line coverage)</span></div>
-        <div class="mg-driver"><span class="mk" title="ROT_MACH">ROT_MACH</span><div class="mtrack"><div class="mfill io" style="width:95.0%"></div></div><span class="mv">$844K</span><span class="mpct">20.1%</span></div>
-        <div class="mg-driver"><span class="mk" title="PPE">PPE</span><div class="mtrack"><div class="mfill io" style="width:41.6%"></div></div><span class="mv">$370K</span><span class="mpct">8.8%</span></div>
-        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill io" style="width:36.4%"></div></div><span class="mv">$325K</span><span class="mpct">7.7%</span></div>
-        <div class="mg-driver"><span class="mk" title="SMAL_TOOL">SMAL_TOOL</span><div class="mtrack"><div class="mfill io" style="width:35.4%"></div></div><span class="mv">$316K</span><span class="mpct">7.5%</span></div>
-        <div class="mg-driver"><span class="mk" title="HDLG_LFTG">HDLG_LFTG</span><div class="mtrack"><div class="mfill io" style="width:32.1%"></div></div><span class="mv">$287K</span><span class="mpct">6.8%</span></div>
-        <div class="mg-total"><span>Total 2025 IO</span><strong>$4.2M</strong></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================= 15 · LUG ONE-PAGER ========================= -->
-  <section class="slide onepager" data-title="LUG">
-    <div class="op-header reveal">
-      <div><span class="op-rig-name">LUG</span><span class="op-rig-type platform">Platform Rig</span></div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
-    </div>
-    <div class="op-kpi-row reveal d1">
-      <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
-      <div class="op-kpi"><div class="lbl">NPT</div><div class="v red">6.7%</div><div class="sub">Above peer benchmark</div></div>
-      <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$23.8M</div><div class="sub">$70K/day · 340.5 bill. days</div></div>
-      <div class="op-kpi"><div class="lbl">Rig Direct Margin</div><div class="v amber">37.1%</div><div class="sub">2024: 2.7% · Δ <span style="color:var(--good);">+34.4pp</span></div></div>
-      <div class="op-kpi"><div class="lbl">Staff Cost %</div><div class="v amber">32.0%</div><div class="sub">$7.6M · ~55 FTE</div></div>
-      <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$21K</div><div class="sub">PO/GR 1.16× · ME2N 2025</div></div>
-    </div>
-    <div class="op-body reveal d2">
-      <div class="op-panel">
-        <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
-        <div class="prow"><span class="pk">Revenue</span><div class="pv-group"><span class="pv">$23,834</span><span class="pv-prev">2024: $12,895 · <span style="color:var(--good);">+84.8%</span></span></div></div>
-        <div class="prow"><span class="pk">Workforce cost</span><div class="pv-group"><span class="pv amber">$7,637 (32.0%)</span><span class="pv-prev">2024: $6,177 (47.9%) · <span style="color:var(--good);">+23.6% · −15.9pp</span></span></div></div>
-        <div class="prow"><span class="pk">Rig Direct Margin (norm.)</span><div class="pv-group"><span class="pv amber">$8,842 (37.1%)</span><span class="pv-prev">2024: $344 (2.7%) · <span style="color:var(--good);">+2440% · +34.4pp</span></span></div></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 Real Spent · GR</span><div class="pv-group"><span class="pv">$6,518 (27.4%)</span><span class="pv-prev">2024: $3,371 (26.1%) · <span style="color:var(--bad);">+93.4% · +1.3pp</span></span></div></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 New POs</span><div class="pv-group"><span class="pv">$7.6M</span><span class="pv-prev">2024: $4.0M · <span style="color:var(--bad);">+90% YoY</span></span></div></div>
-        <div class="prow"><span class="pk">PO ÷ GR coherence</span><div class="pv-group"><span class="pv amber"><strong>1.17×</strong></span><span class="pv-prev">ordering slightly ahead of consumption</span></div></div>
-        <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.55rem;"><span class="pk">Inventory (end-2025)</span><div class="pv-group"><span class="pv red">$5.3M</span></div></div>
-        <div class="prow no-prev"><span class="pk">Dead stock %</span><div class="pv-group"><span class="pv red">60%</span></div></div>
-        <div class="prow no-prev"><span class="pk">FY25 CAPEX / Rev</span><div class="pv-group"><span class="pv red">1.7%</span></div></div>
-        <div class="prow no-prev"><span class="pk">5Y CAPEX / Rev (2021–25)</span><div class="pv-group"><span class="pv red">3.0%</span></div></div>
-      </div>
-      <div class="op-panel">
-        <div class="ptitle">NPT Equipment Drivers · 2025 · Top 5</div>
-        <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:34.0%"></div></div><span class="dpct">34.0%</span></div>
-        <div class="npt-driver"><span class="dk">Pump</span><div class="dtrack"><div class="dfill" style="width:25.1%"></div></div><span class="dpct">25.1%</span></div>
-        <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:11.4%"></div></div><span class="dpct">11.4%</span></div>
-        <div class="npt-driver"><span class="dk">PowGen</span><div class="dtrack"><div class="dfill" style="width:9.3%"></div></div><span class="dpct">9.3%</span></div>
-        <div class="npt-driver"><span class="dk">Drawworks</span><div class="dtrack"><div class="dfill" style="width:7.5%"></div></div><span class="dpct">7.5%</span></div>
-        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">588.25 hrs · 24.5 days · 6.7%</div>
-          <div style="font-size:0.82rem;color:var(--text2);margin-top:0.3rem;">TDS (34%) + Pump (25%) are the two operational levers — top-drive overhaul + pump PM cycle.</div>
-        </div>
-      </div>
-    </div>
-    <div class="op-body-3 reveal d3">
-      <div class="op-panel">
-        <div class="ptitle">2025 PO · Top 5 Mat Groups</div>
-        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill po" style="width:95.0%"></div></div><span class="mv">$511K</span><span class="mpct">6.8%</span></div>
-        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill po" style="width:85.2%"></div></div><span class="mv">$461K</span><span class="mpct">6.1%</span></div>
-        <div class="mg-driver"><span class="mk" title="DRIL_CTRL">DRIL_CTRL</span><div class="mtrack"><div class="mfill po" style="width:69.9%"></div></div><span class="mv">$375K</span><span class="mpct">5.0%</span></div>
-        <div class="mg-driver"><span class="mk" title="HDLG_LFTG">HDLG_LFTG</span><div class="mtrack"><div class="mfill po" style="width:67.1%"></div></div><span class="mv">$359K</span><span class="mpct">4.8%</span></div>
-        <div class="mg-driver"><span class="mk" title="MECHA_SRV">MECHA_SRV</span><div class="mtrack"><div class="mfill po" style="width:62.9%"></div></div><span class="mv">$339K</span><span class="mpct">4.5%</span></div>
-        <div class="mg-total"><span>Total 2025 PO</span><strong>$7.6M</strong></div>
-      </div>
-      <div class="op-panel">
-        <div class="ptitle">2025 GR · Top 5 Mat Groups</div>
-        <div class="mg-driver"><span class="mk" title="NO MATERIAL">NO MATERIAL</span><div class="mtrack"><div class="mfill gr" style="width:95.0%"></div></div><span class="mv">$820K</span><span class="mpct">16.0%</span></div>
-        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill gr" style="width:27.9%"></div></div><span class="mv">$240K</span><span class="mpct">4.7%</span></div>
-        <div class="mg-driver"><span class="mk" title="AER_TRSP">AER_TRSP</span><div class="mtrack"><div class="mfill gr" style="width:23.8%"></div></div><span class="mv">$210K</span><span class="mpct">4.0%</span></div>
-        <div class="mg-driver"><span class="mk" title="HDLG_LFTG">HDLG_LFTG</span><div class="mtrack"><div class="mfill gr" style="width:22.6%"></div></div><span class="mv">$200K</span><span class="mpct">3.8%</span></div>
-        <div class="mg-driver"><span class="mk" title="MECHA_SRV">MECHA_SRV</span><div class="mtrack"><div class="mfill gr" style="width:22.6%"></div></div><span class="mv">$190K</span><span class="mpct">3.8%</span></div>
-        <div class="mg-total"><span>Total 2025 GR</span><strong>$5.1M</strong></div>
-      </div>
-      <div class="op-panel">
-        <div class="ptitle">2025 IO · Top 5 Mat Groups <span style="color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;">(proxy — 42% line coverage)</span></div>
-        <div class="mg-driver"><span class="mk" title="NO MATERIAL">NO MATERIAL</span><div class="mtrack"><div class="mfill io" style="width:95.0%"></div></div><span class="mv">$196K</span><span class="mpct">11.1%</span></div>
-        <div class="mg-driver"><span class="mk" title="DRIL_PMP">DRIL_PMP</span><div class="mtrack"><div class="mfill io" style="width:85.6%"></div></div><span class="mv">$175K</span><span class="mpct">10.0%</span></div>
-        <div class="mg-driver"><span class="mk" title="HDLG_LFTG">HDLG_LFTG</span><div class="mtrack"><div class="mfill io" style="width:77.9%"></div></div><span class="mv">$161K</span><span class="mpct">9.1%</span></div>
-        <div class="mg-driver"><span class="mk" title="PPE">PPE</span><div class="mtrack"><div class="mfill io" style="width:74.5%"></div></div><span class="mv">$154K</span><span class="mpct">8.7%</span></div>
-        <div class="mg-driver"><span class="mk" title="WELL_CPL">WELL_CPL</span><div class="mtrack"><div class="mfill io" style="width:71.0%"></div></div><span class="mv">$146K</span><span class="mpct">8.3%</span></div>
-        <div class="mg-total"><span>Total 2025 IO</span><strong>$1.8M</strong></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================= 16 · MIDIR ONE-PAGER ========================= -->
-  <section class="slide onepager" data-title="MIDIR">
-    <div class="op-header reveal">
-      <div><span class="op-rig-name">MIDIR</span><span class="op-rig-type land">Land Rig</span></div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
-    </div>
-    <div class="op-kpi-row reveal d1">
-      <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
-      <div class="op-kpi"><div class="lbl">NPT</div><div class="v red">6.9%</div><div class="sub">Above peer benchmark</div></div>
-      <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$13.6M</div><div class="sub">$40K/day · 339.8 bill. days</div></div>
-      <div class="op-kpi"><div class="lbl">Rig Direct Margin</div><div class="v red">−10.7%</div><div class="sub">2024: 7.2% · Δ <span style="color:var(--bad);">−17.9pp</span></div></div>
-      <div class="op-kpi"><div class="lbl">Staff Cost %</div><div class="v red">51.9%</div><div class="sub">$7.1M · ~72 FTE</div></div>
-      <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$21K</div><div class="sub">PO/GR 0.82× · ME2N 2025</div></div>
-    </div>
-    <div class="op-body reveal d2">
-      <div class="op-panel">
-        <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
-        <div class="prow"><span class="pk">Revenue</span><div class="pv-group"><span class="pv">$13,593</span><span class="pv-prev">2024: $11,650 · <span style="color:var(--good);">+16.7%</span></span></div></div>
-        <div class="prow"><span class="pk">Workforce cost</span><div class="pv-group"><span class="pv red">$7,054 (51.9%)</span><span class="pv-prev">2024: $7,980 (68.5%) · <span style="color:var(--good);">−11.6% · −16.6pp</span></span></div></div>
-        <div class="prow"><span class="pk">Rig Direct Margin (norm.)</span><div class="pv-group"><span class="pv red">−$1,449 (−10.7%)</span><span class="pv-prev">2024: $844 (7.2%) · <span style="color:var(--bad);">sign flip · −17.9pp</span></span></div></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 Real Spent · GR</span><div class="pv-group"><span class="pv">$7,071 (52.0%)</span><span class="pv-prev">2024: $2,540 (21.8%) · <span style="color:var(--bad);">+178% · +30.2pp</span></span></div></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 New POs</span><div class="pv-group"><span class="pv">$7.7M</span><span class="pv-prev">2024: $10.4M · <span style="color:var(--good);">−26% YoY</span></span></div></div>
-        <div class="prow"><span class="pk">PO ÷ GR coherence</span><div class="pv-group"><span class="pv green"><strong>1.08×</strong></span><span class="pv-prev">ordering in sync with consumption</span></div></div>
-        <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.55rem;"><span class="pk">Inventory (end-2025)</span><div class="pv-group"><span class="pv amber">$5.0M</span></div></div>
-        <div class="prow no-prev"><span class="pk">Dead stock %</span><div class="pv-group"><span class="pv amber">40%</span></div></div>
-        <div class="prow no-prev"><span class="pk">FY25 CAPEX / Rev</span><div class="pv-group"><span class="pv red">11.0%</span></div></div>
-        <div class="prow no-prev"><span class="pk">5Y CAPEX / Rev (2021–25)</span><div class="pv-group"><span class="pv">8.2%</span></div></div>
-      </div>
-      <div class="op-panel">
-        <div class="ptitle">NPT Equipment Drivers · 2025 · Top 5</div>
-        <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:49.1%"></div></div><span class="dpct">49.1%</span></div>
-        <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:12.5%"></div></div><span class="dpct">12.5%</span></div>
-        <div class="npt-driver"><span class="dk">Drawworks</span><div class="dtrack"><div class="dfill" style="width:11.6%"></div></div><span class="dpct">11.6%</span></div>
-        <div class="npt-driver"><span class="dk">Pump</span><div class="dtrack"><div class="dfill" style="width:9.7%"></div></div><span class="dpct">9.7%</span></div>
-        <div class="npt-driver"><span class="dk">Miscel</span><div class="dtrack"><div class="dfill" style="width:9.1%"></div></div><span class="dpct">9.1%</span></div>
-        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">604 hrs · 25.2 days · 6.9%</div>
-          <div style="font-size:0.82rem;color:var(--text2);margin-top:0.3rem;">TDS alone = 49% of NPT. Top-drive overhaul is the single highest-impact intervention.</div>
-        </div>
-      </div>
-    </div>
-    <div class="op-body-3 reveal d3">
-      <div class="op-panel">
-        <div class="ptitle">2025 PO · Top 5 Mat Groups</div>
-        <div class="mg-driver"><span class="mk" title="MAIN_RTAL">MAIN_RTAL</span><div class="mtrack"><div class="mfill po" style="width:95.0%"></div></div><span class="mv">$895K</span><span class="mpct">11.4%</span></div>
-        <div class="mg-driver"><span class="mk" title="DRIL_CTRL">DRIL_CTRL</span><div class="mtrack"><div class="mfill po" style="width:80.8%"></div></div><span class="mv">$760K</span><span class="mpct">9.7%</span></div>
-        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill po" style="width:77.5%"></div></div><span class="mv">$731K</span><span class="mpct">9.3%</span></div>
-        <div class="mg-driver"><span class="mk" title="TEL_SRV">TEL_SRV</span><div class="mtrack"><div class="mfill po" style="width:46.7%"></div></div><span class="mv">$442K</span><span class="mpct">5.6%</span></div>
-        <div class="mg-driver"><span class="mk" title="DRIL_TUB">DRIL_TUB</span><div class="mtrack"><div class="mfill po" style="width:44.2%"></div></div><span class="mv">$416K</span><span class="mpct">5.3%</span></div>
-        <div class="mg-total"><span>Total 2025 PO</span><strong>$7.7M</strong></div>
-      </div>
-      <div class="op-panel">
-        <div class="ptitle">2025 GR · Top 5 Mat Groups</div>
-        <div class="mg-driver"><span class="mk" title="MAIN_RTAL">MAIN_RTAL</span><div class="mtrack"><div class="mfill gr" style="width:95.0%"></div></div><span class="mv">$740K</span><span class="mpct">11.8%</span></div>
-        <div class="mg-driver"><span class="mk" title="DRIL_HDLG">DRIL_HDLG</span><div class="mtrack"><div class="mfill gr" style="width:78.9%"></div></div><span class="mv">$610K</span><span class="mpct">9.8%</span></div>
-        <div class="mg-driver"><span class="mk" title="TEL_SRV">TEL_SRV</span><div class="mtrack"><div class="mfill gr" style="width:68.4%"></div></div><span class="mv">$530K</span><span class="mpct">8.5%</span></div>
-        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill gr" style="width:49.1%"></div></div><span class="mv">$380K</span><span class="mpct">6.1%</span></div>
-        <div class="mg-driver"><span class="mk" title="WELDI_SRV">WELDI_SRV</span><div class="mtrack"><div class="mfill gr" style="width:40.3%"></div></div><span class="mv">$320K</span><span class="mpct">5.0%</span></div>
-        <div class="mg-total"><span>Total 2025 GR</span><strong>$6.3M</strong></div>
-      </div>
-      <div class="op-panel">
-        <div class="ptitle">2025 IO · Top 5 Mat Groups <span style="color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;">(proxy — 42% line coverage)</span></div>
-        <div class="mg-driver"><span class="mk" title="ROT_MACH">ROT_MACH</span><div class="mtrack"><div class="mfill io" style="width:95.0%"></div></div><span class="mv">$301K</span><span class="mpct">20.7%</span></div>
-        <div class="mg-driver"><span class="mk" title="DRIL_PMP">DRIL_PMP</span><div class="mtrack"><div class="mfill io" style="width:82.6%"></div></div><span class="mv">$262K</span><span class="mpct">18.0%</span></div>
-        <div class="mg-driver"><span class="mk" title="DRIL_TDS">DRIL_TDS</span><div class="mtrack"><div class="mfill io" style="width:64.7%"></div></div><span class="mv">$205K</span><span class="mpct">14.1%</span></div>
-        <div class="mg-driver"><span class="mk" title="DRIL_HDLG">DRIL_HDLG</span><div class="mtrack"><div class="mfill io" style="width:55.5%"></div></div><span class="mv">$176K</span><span class="mpct">12.1%</span></div>
-        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill io" style="width:25.7%"></div></div><span class="mv">$81K</span><span class="mpct">5.6%</span></div>
-        <div class="mg-total"><span>Total 2025 IO</span><strong>$1.5M</strong></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================= 17 · DRAVUS ONE-PAGER ========================= -->
-  <section class="slide onepager" data-title="DRAVUS">
-    <div class="op-header reveal">
-      <div><span class="op-rig-name">DRAVUS</span><span class="op-rig-type land">Land Rig</span></div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
-    </div>
-    <div class="op-kpi-row reveal d1">
-      <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
-      <div class="op-kpi"><div class="lbl">NPT</div><div class="v amber">3.3%</div><div class="sub">Near peer benchmark</div></div>
-      <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$14.1M</div><div class="sub">$40K/day · 353.1 bill. days</div></div>
-      <div class="op-kpi"><div class="lbl">Rig Direct Margin</div><div class="v amber">23.5%</div><div class="sub">2024: 33.8% · Δ <span style="color:var(--bad);">−10.3pp</span></div></div>
-      <div class="op-kpi"><div class="lbl">Staff Cost %</div><div class="v red">40.9%</div><div class="sub">$5.8M · ~66 FTE</div></div>
-      <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$21K</div><div class="sub">PO/GR 0.46× · ME2N 2025</div></div>
-    </div>
-    <div class="op-body reveal d2">
-      <div class="op-panel">
-        <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
-        <div class="prow"><span class="pk">Revenue</span><div class="pv-group"><span class="pv">$14,125</span><span class="pv-prev">2024: $12,395 · <span style="color:var(--good);">+13.9%</span></span></div></div>
-        <div class="prow"><span class="pk">Workforce cost</span><div class="pv-group"><span class="pv red">$5,779 (40.9%)</span><span class="pv-prev">2024: $5,627 (45.4%) · <span style="color:var(--good);">+2.7% · −4.5pp</span></span></div></div>
-        <div class="prow"><span class="pk">Rig Direct Margin (norm.)</span><div class="pv-group"><span class="pv amber">$3,325 (23.5%)</span><span class="pv-prev">2024: $4,188 (33.8%) · <span style="color:var(--bad);">−20.6% · −10.3pp</span></span></div></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 Real Spent · GR</span><div class="pv-group"><span class="pv">$4,200 (29.7%)</span><span class="pv-prev">2024: $2,946 (23.8%) · <span style="color:var(--bad);">+42.6% · +5.9pp</span></span></div></div>
-        <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:500;">2025 New POs</span><div class="pv-group"><span class="pv">$7.6M</span><span class="pv-prev">2024: $8.0M · <span style="color:var(--text2);">−5% YoY</span></span></div></div>
-        <div class="prow"><span class="pk">PO ÷ GR coherence</span><div class="pv-group"><span class="pv red"><strong>1.81×</strong></span><span class="pv-prev">OVER-ORDERING 81% above consumption — building inventory</span></div></div>
-        <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.55rem;"><span class="pk">Inventory (end-2025)</span><div class="pv-group"><span class="pv amber">TBD — Cameroon base</span></div></div>
-        <div class="prow no-prev"><span class="pk">Dead stock %</span><div class="pv-group"><span class="pv amber">TBD</span></div></div>
-        <div class="prow no-prev"><span class="pk">FY25 CAPEX / Rev</span><div class="pv-group"><span class="pv red">22.3%</span></div></div>
-        <div class="prow no-prev"><span class="pk">5Y CAPEX / Rev (2021–25)</span><div class="pv-group"><span class="pv red">12.5%</span></div></div>
-      </div>
-      <div class="op-panel">
-        <div class="ptitle">NPT Equipment Drivers · 2025 · Top 5</div>
-        <div class="npt-driver"><span class="dk">Miscel</span><div class="dtrack"><div class="dfill" style="width:32.9%"></div></div><span class="dpct">32.9%</span></div>
-        <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:26.7%"></div></div><span class="dpct">26.7%</span></div>
-        <div class="npt-driver"><span class="dk">Drawworks</span><div class="dtrack"><div class="dfill" style="width:10.1%"></div></div><span class="dpct">10.1%</span></div>
-        <div class="npt-driver"><span class="dk">Rig Floor</span><div class="dtrack"><div class="dfill" style="width:8.5%"></div></div><span class="dpct">8.5%</span></div>
-        <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:7.5%"></div></div><span class="dpct">7.5%</span></div>
-        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">285 hrs · 11.9 days · 3.3%</div>
-          <div style="font-size:0.82rem;color:var(--text2);margin-top:0.3rem;">TDS (27%) + Drawworks (10%) are operational. Lowest absolute NPT among land rigs.</div>
-        </div>
-      </div>
-    </div>
-    <div class="op-body-3 reveal d3">
-      <div class="op-panel">
-        <div class="ptitle">2025 PO · Top 5 Mat Groups</div>
-        <div class="mg-driver"><span class="mk" title="STO_RTAL">STO_RTAL</span><div class="mtrack"><div class="mfill po" style="width:95.0%"></div></div><span class="mv">$898K</span><span class="mpct">11.8%</span></div>
-        <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill po" style="width:87.8%"></div></div><span class="mv">$830K</span><span class="mpct">10.9%</span></div>
-        <div class="mg-driver"><span class="mk" title="MAIN_RTAL">MAIN_RTAL</span><div class="mtrack"><div class="mfill po" style="width:58.0%"></div></div><span class="mv">$551K</span><span class="mpct">7.2%</span></div>
-        <div class="mg-driver"><span class="mk" title="PIPING">PIPING</span><div class="mtrack"><div class="mfill po" style="width:55.6%"></div></div><span class="mv">$524K</span><span class="mpct">6.9%</span></div>
-        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill po" style="width:50.7%"></div></div><span class="mv">$479K</span><span class="mpct">6.3%</span></div>
-        <div class="mg-total"><span>Total 2025 PO</span><strong>$7.6M</strong></div>
-      </div>
-      <div class="op-panel">
-        <div class="ptitle">2025 GR · Top 5 Mat Groups</div>
-        <div class="mg-driver"><span class="mk" title="STO_RTAL">STO_RTAL</span><div class="mtrack"><div class="mfill gr" style="width:95.0%"></div></div><span class="mv">$640K</span><span class="mpct">9.8%</span></div>
-        <div class="mg-driver"><span class="mk" title="NO MATERIAL">NO MATERIAL</span><div class="mtrack"><div class="mfill gr" style="width:86.3%"></div></div><span class="mv">$580K</span><span class="mpct">8.9%</span></div>
-        <div class="mg-driver"><span class="mk" title="MAIN_RTAL">MAIN_RTAL</span><div class="mtrack"><div class="mfill gr" style="width:76.6%"></div></div><span class="mv">$510K</span><span class="mpct">7.9%</span></div>
-        <div class="mg-driver"><span class="mk" title="MECHA">MECHA</span><div class="mtrack"><div class="mfill gr" style="width:65.9%"></div></div><span class="mv">$440K</span><span class="mpct">6.8%</span></div>
-        <div class="mg-driver"><span class="mk" title="DRIL_TDS">DRIL_TDS</span><div class="mtrack"><div class="mfill gr" style="width:54.3%"></div></div><span class="mv">$360K</span><span class="mpct">5.6%</span></div>
-        <div class="mg-total"><span>Total 2025 GR</span><strong>$6.5M</strong></div>
-      </div>
-      <div class="op-panel">
-        <div class="ptitle">2025 IO · Top 5 Mat Groups <span style="color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;">(proxy — 42% line coverage)</span></div>
-        <div class="mg-driver"><span class="mk" title="ROT_MACH">ROT_MACH</span><div class="mtrack"><div class="mfill io" style="width:95.0%"></div></div><span class="mv">$123K</span><span class="mpct">11.8%</span></div>
-        <div class="mg-driver"><span class="mk" title="DRIL_PMP">DRIL_PMP</span><div class="mtrack"><div class="mfill io" style="width:92.6%"></div></div><span class="mv">$119K</span><span class="mpct">11.5%</span></div>
-        <div class="mg-driver"><span class="mk" title="DRIL_LOGG">DRIL_LOGG</span><div class="mtrack"><div class="mfill io" style="width:65.2%"></div></div><span class="mv">$83K</span><span class="mpct">8.1%</span></div>
-        <div class="mg-driver"><span class="mk" title="HDLG_LFTG">HDLG_LFTG</span><div class="mtrack"><div class="mfill io" style="width:62.0%"></div></div><span class="mv">$79K</span><span class="mpct">7.7%</span></div>
-        <div class="mg-driver"><span class="mk" title="NO MATERIAL">NO MATERIAL</span><div class="mtrack"><div class="mfill io" style="width:58.0%"></div></div><span class="mv">$74K</span><span class="mpct">7.2%</span></div>
-        <div class="mg-total"><span>Total 2025 IO</span><strong>$1.0M</strong></div>
-      </div>
-    </div>
-  </section>
-
-
-
-  <!-- ========================= 18 · PHASE 2 DIVIDER ========================= -->
-  <section class="slide divider-slide" data-title="Phase 2 · External Benchmarking">
-    <div class="eyebrow reveal" style="justify-content:center;">Phase 2 of 3</div>
-    <h1 class="reveal d1">External <em>Peer Benchmarking</em></h1>
-    <p class="reveal d2">Now compared against 9 listed peer contractors. Segment-matched per-rig benchmarks: dayrate · NPT · Rig Direct Margin · FTE · 5Y CAPEX intensity. Where Dixstone stands out on the cost-base and capital-deployment axes — the Outlier Map closes Phase 2.</p>
-  </section>
-
-  <!-- ========================= 19 · PEER FLEET PROFILE ========================= -->
-  <section class="slide" data-title="Peer Fleet Profile">
-    <div class="eyebrow reveal">19 · Peer Fleet Profile · FY 2025</div>
-    <h1 class="slide-title reveal">The peer set Dixstone benchmarks against —<br><em>9 listed contractors · ~1,200 rigs combined.</em></h1>
-    <p class="lede reveal d1">Dixstone's 7-rig fleet spans premium jackup, standard jackup, platform and land — so the peer set is deliberately broad: pure-play JU operators (Borr, Shelf, Velesto), pure-play land drillers (Helmerich &amp; Payne, Nabors, Precision), and blended-fleet contractors (ADES, ADNOC, Valaris). Comparison is segment-matched, not entity-level.</p>
-
-    <div class="mega-kpi reveal d2">
-      <div class="mk"><div class="mv">1,186</div><div class="ml">Total active rigs</div><div class="md">Peer set + Dixstone · FY 2025 year-end · Valaris JU + ARO only (floaters excluded for comparability)</div></div>
-      <div class="mk"><div class="mv">197</div><div class="ml">Jackup rigs</div><div class="md">ADES 50 · ADNOC 48 · Valaris JU+ARO 33 · Shelf 33 · Borr 24 · Velesto 6 · Dixstone 3</div></div>
-      <div class="mk"><div class="mv">0</div><div class="ml">Floaters in peer scope</div><div class="md">Peer set is jackup-comparable; Valaris floaters excluded per G-7 (kept Valaris jackups + ARO only)</div></div>
-      <div class="mk"><div class="mv">920</div><div class="ml">Land rigs</div><div class="md">H&amp;P 360 · Nabors 242 · Precision 184 · ADNOC 92 · ADES 40 · Dixstone 2</div></div>
-    </div>
-
-    <div class="reveal d3" style="overflow-x:auto;margin-top:0.4rem;">
-      <table class="bench-table">
-        <thead>
-          <tr>
-            <th>Contractor</th>
-            <th>Fleet type</th>
-            <th>Total Active</th>
-            <th>Jackups</th>
-            <th>Floaters</th>
-            <th>Land</th>
-            <th>Platform</th>
-            <th>Region</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="background:rgba(232,160,32,0.08);">
-            <td><span class="rig-name" style="color:var(--sigma);">DIXSTONE</span><span class="rig-type" style="color:var(--sigma);">Subject</span></td>
-            <td>Mixed</td>
-            <td class="val-amber">7</td>
-            <td>3</td>
-            <td>0</td>
-            <td>2</td>
-            <td>2</td>
-            <td>West Africa</td>
-          </tr>
-          <tr><td><span class="rig-name">Helmerich &amp; Payne</span><span class="rig-type" style="color:var(--platform);">Land + Platform</span></td><td>Land-heavy</td><td>367</td><td>0</td><td>0</td><td>360</td><td>7</td><td>US + Intl</td></tr>
-          <tr><td><span class="rig-name">Nabors Industries</span><span class="rig-type" style="color:var(--platform);">Land + Platform</span></td><td>Land-heavy</td><td>269</td><td>0</td><td>0</td><td>242</td><td>27</td><td>Global (incl. SANAD)</td></tr>
-          <tr><td><span class="rig-name">Precision Drilling</span><span class="rig-type" style="color:var(--land);">Land</span></td><td>Land-pure</td><td>184</td><td>0</td><td>0</td><td>184</td><td>0</td><td>Canada + US + Intl</td></tr>
-          <tr><td><span class="rig-name">ADNOC Drilling</span><span class="rig-type">Blended</span></td><td>Mixed</td><td>140</td><td>48</td><td>0</td><td>92</td><td>0</td><td>UAE</td></tr>
-          <tr><td><span class="rig-name">ADES Holding</span><span class="rig-type">Blended</span></td><td>JU + onshore</td><td>123</td><td>50</td><td>0</td><td>40</td><td>0</td><td>MENA + intl</td></tr>
-          <tr><td><span class="rig-name">Valaris</span><span class="rig-type" style="color:var(--standard);">JU + ARO only · floaters excluded</span></td><td>Jackups segment</td><td>33</td><td>33<span style="color:var(--muted);font-size:0.78em;"> (24 owned + 9 ARO JV)</span></td><td>0</td><td>0</td><td>0</td><td>Global</td></tr>
-          <tr><td><span class="rig-name">Shelf Drilling</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td><td>JU-pure</td><td>33</td><td>33</td><td>0</td><td>0</td><td>0</td><td>MENA + SE Asia</td></tr>
-          <tr><td><span class="rig-name">Borr Drilling</span><span class="rig-type" style="color:var(--premium);">Premium JU</span></td><td>JU-pure</td><td>24</td><td>24</td><td>0</td><td>0</td><td>0</td><td>Global</td></tr>
-          <tr><td><span class="rig-name">Velesto Energy</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td><td>JU-pure</td><td>6</td><td>6</td><td>0</td><td>0</td><td>0</td><td>SE Asia</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="src-band reveal d4">
-      <strong>Source · </strong>FY2025 10-K / 20-F / 40-F / annual reports · per-peer normalized fleet rows in <em>drilling_contractors_nonfinancial_metrics.xlsx</em> · <strong>Definitions · </strong>"Total Active" = year-end fleet under contract or actively marketed; H&amp;P 367 = total available (235 contracted); Nabors 269 = active marketed; Valaris 46 owned + 9 ARO JV (50%, Saudi Aramco) — Valaris floaters excluded per G-7 (jackup-comparable peer set).
-    </div>
-  </section>
-
-  <!-- ========================= 20 · MARKET CONTEXT ========================= -->
-  <section class="slide" data-title="Market Context">
-    <div class="eyebrow reveal">20 · Market Context</div>
-    <h1 class="slide-title reveal">A high-dayrate environment.<br>Utilisation is <em>tightening.</em></h1>
-
-    <div class="grid-4 reveal d1" style="margin-bottom:1.8rem;">
-      <div class="stat" style="background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.1rem 1.2rem;">
-        <span class="label">Premium JU · peer median</span>
-        <span class="val sigma">$130K<span style="font-size:0.6em;color:var(--muted);font-weight:400;">/day</span></span>
-        <span class="delta">+53% vs FY21 trough</span>
-      </div>
-      <div class="stat" style="background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.1rem 1.2rem;">
-        <span class="label">Jack-up utilisation</span>
-        <span class="val">78<span style="font-size:0.6em;color:var(--muted);font-weight:400;">%</span></span>
-        <span class="delta">Off 86% high of FY24</span>
-      </div>
-      <div class="stat" style="background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.1rem 1.2rem;">
-        <span class="label">Saudi demand</span>
-        <span class="val">60<span style="font-size:0.6em;color:var(--muted);font-weight:400;">%+</span></span>
-        <span class="delta">Of global JU backlog</span>
-      </div>
-      <div class="stat" style="background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.1rem 1.2rem;">
-        <span class="label">JU newbuilds in flight</span>
-        <span class="val">0</span>
-        <span class="delta">Structural tightening</span>
-      </div>
-    </div>
-
-    <div class="grid-2 reveal d2" style="gap:1.4rem;">
-      <div class="card accent">
-        <div class="corner"></div>
-        <span class="num-tag">Market signal</span>
-        <h3>Reliability is rising as a differentiator.</h3>
-        <p>With newbuild supply absent and dayrates at multi-year highs, operator uptime carries an increasing share of the competitive variance — alongside rate.</p>
-      </div>
-      <div class="card accent">
-        <div class="corner"></div>
-        <span class="num-tag">Dixstone position</span>
-        <h3>Fleet utilisation 97.5% — at or above every listed peer.</h3>
-        <p>Cycle is being captured in full. AXIMA reliability sits in the segment top quartile. Standard JU and land segments at 100%.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================= 21 · SEGMENT VIEW ========================= -->
-  <section class="slide" data-title="Segment View">
-    <div class="eyebrow reveal">21 · Dixstone vs Peers · Segment View · FY 2025</div>
-    <h1 class="slide-title reveal">Each rig benchmarked against<br><em>its direct peer set.</em></h1>
-
-    <div class="segment-block premium reveal d1">
-      <div class="segment-head">
-        <div class="lhs">
-          <span class="seg-pill">Premium Jack-Up</span>
-          <h3>AXIMA <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Borr · ADNOC · ADES · Valaris-JU · Velesto</span></h3>
-        </div>
-        <div class="read">Reliability leads the segment. RDM <strong>only −7.2pp from peer median</strong> — bridgeable via spare-parts discipline + cert/PM uplift.</div>
-      </div>
-      <div class="seg-grid">
-        <div class="seg-cell"><div class="metric">Dayrate</div><div class="dix"><span class="who">AXIMA</span><span class="val">$130K</span></div><div class="pp"><span class="who">Peer median</span><span class="val">$130K</span></div><div class="pp"><span class="who">Borr · top</span><span class="val">$150K</span></div></div>
-        <div class="seg-cell lead"><div class="metric">NPT</div><div class="dix"><span class="who">AXIMA</span><span class="val">2.7%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">3.0%</span></div><div class="pp"><span class="who">ADES · best</span><span class="val">1.5%</span></div></div>
-        <div class="seg-cell close"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">AXIMA</span><span class="val">39.5%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">46.7%</span></div><div class="pp"><span class="who">Gap vs median</span><span class="val">−7.2 pp</span></div></div>
-        <div class="seg-cell"><div class="metric">FTE / rig</div><div class="dix"><span class="who">AXIMA</span><span class="val">106</span></div><div class="pp"><span class="who">Jackup cap</span><span class="val">~96</span></div><div class="pp"><span class="who">Crew delta</span><span class="val">+10</span></div></div>
-        <div class="seg-cell"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">AXIMA · 2025</span><span class="val">6.1%</span></div><div class="pp"><span class="who">5Y avg (2021–25)</span><span class="val">4.6%</span></div><div class="pp"><span class="who">Δ vs 5Y</span><span class="val">+1.5 pp</span></div></div>
-      </div>
-    </div>
-
-    <div class="segment-block standard reveal d2">
-      <div class="segment-head">
-        <div class="lhs">
-          <span class="seg-pill">Standard Jack-Up</span>
-          <h3>BANBA &amp; NUADA <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Shelf · Valaris · ADES</span></h3>
-        </div>
-        <div class="read">Dayrate sits in the peer range. RDM <strong>only −6.6pp (BANBA) and −1.8pp (NUADA) from peer median</strong> — closing the NPT gap alone covers most of the delta. NUADA effectively at peer median already.</div>
-      </div>
-      <div class="seg-grid">
-        <div class="seg-cell lead"><div class="metric">Dayrate</div><div class="dix"><span class="who">BANBA · NUADA</span><span class="val">$100K</span></div><div class="pp"><span class="who">Shelf · FY25</span><span class="val">$83K</span></div><div class="pp"><span class="who">Valaris JU · FY25</span><span class="val">$138K</span></div></div>
-        <div class="seg-cell lag"><div class="metric">NPT</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">8.7% / 5.8%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">3.0%</span></div><div class="pp"><span class="who">Shelf · best</span><span class="val">0.6%</span></div></div>
-        <div class="seg-cell close"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">36.3% / 41.1%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">42.9%</span></div><div class="pp"><span class="who">Gap vs median</span><span class="val">−6.6 / −1.8 pp</span></div></div>
-        <div class="seg-cell lag"><div class="metric">FTE / rig</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">104 / 96</span></div><div class="pp"><span class="who">Peer median</span><span class="val">~85</span></div><div class="pp"><span class="who">Industry cap · best</span><span class="val">~75</span></div></div>
-        <div class="seg-cell"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">BANBA / NUADA · 2025</span><span class="val">3.6% / 2.6%</span></div><div class="pp"><span class="who">5Y avg (2021–25)</span><span class="val">3.4% / 6.0%</span></div><div class="pp"><span class="who">Δ vs 5Y</span><span class="val">+0.2 / −3.4 pp</span></div></div>
-      </div>
-    </div>
-
-    <div class="segment-block land reveal d3">
-      <div class="segment-head">
-        <div class="lhs">
-          <span class="seg-pill">Land Rigs</span>
-          <h3>MIDIR &amp; DRAVUS <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Helmerich &amp; Payne · Nabors · Precision</span></h3>
-        </div>
-        <div class="read">CAPEX intensity matches peers. Unit economics gap (payroll, expat) is the issue — not under-investment.</div>
-      </div>
-      <div class="seg-grid">
-        <div class="seg-cell"><div class="metric">Dayrate</div><div class="dix"><span class="who">MIDIR · DRAVUS</span><span class="val">$40K</span></div><div class="pp"><span class="who">HP / Nabors</span><span class="val">$25–35K</span></div><div class="pp"><span class="who">MENA premium</span><span class="val">applies</span></div></div>
-        <div class="seg-cell lag"><div class="metric">NPT</div><div class="dix"><span class="who">MIDIR / DRAVUS</span><span class="val">6.9% / 3.3%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">~3.5%</span></div><div class="pp"><span class="who">HP · best</span><span class="val">~2.0%</span></div></div>
-        <div class="seg-cell lag"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">MIDIR / DRAVUS</span><span class="val">−10.7% / 23.5%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">32.8%</span></div><div class="pp"><span class="who">Nabors · top</span><span class="val">39.9%</span></div></div>
-        <div class="seg-cell lag"><div class="metric">FTE / rig</div><div class="dix"><span class="who">MIDIR / DRAVUS</span><span class="val">72 / 66</span></div><div class="pp"><span class="who">Peer median</span><span class="val">~55</span></div><div class="pp"><span class="who">US-land · best</span><span class="val">~50</span></div></div>
-        <div class="seg-cell"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">MIDIR / DRAVUS · 2025</span><span class="val">11.0% / 22.3%</span></div><div class="pp"><span class="who">5Y avg (2021–25)</span><span class="val">8.2% / 12.5%</span></div><div class="pp"><span class="who">Δ vs 5Y</span><span class="val">+2.8 / +9.8 pp</span></div></div>
-      </div>
-    </div>
-
-    <div class="segment-block platform reveal d4">
-      <div class="segment-head">
-        <div class="lhs">
-          <span class="seg-pill">Platform Rig</span>
-          <h3>LUG <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Helmerich &amp; Payne · Nabors · Precision</span></h3>
-        </div>
-        <div class="read">NPT above peer benchmark; CAPEX deeply lags peers — combined cost of reliability erosion.</div>
-      </div>
-      <div class="seg-grid">
-        <div class="seg-cell"><div class="metric">Dayrate</div><div class="dix"><span class="who">LUG</span><span class="val">$70K</span></div><div class="pp"><span class="who">HP / Nabors</span><span class="val">$25–35K</span></div><div class="pp"><span class="who">Platform premium</span><span class="val">applies</span></div></div>
-        <div class="seg-cell lag"><div class="metric">NPT</div><div class="dix"><span class="who">LUG</span><span class="val">6.7%</span></div><div class="pp"><span class="who">HP · best</span><span class="val">~2.0%</span></div><div class="pp"><span class="who">Nabors</span><span class="val">~3.0%</span></div></div>
-        <div class="seg-cell lead"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">LUG</span><span class="val">37.1%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">32.8%</span></div><div class="pp"><span class="who">Nabors · top</span><span class="val">39.9%</span></div></div>
-        <div class="seg-cell"><div class="metric">FTE / rig</div><div class="dix"><span class="who">LUG</span><span class="val">~55</span></div><div class="pp"><span class="who">Land norm</span><span class="val">50–60</span></div><div class="pp"><span class="who">Delta</span><span class="val">modest</span></div></div>
-        <div class="seg-cell"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">LUG · 2025</span><span class="val">1.7%</span></div><div class="pp"><span class="who">5Y avg (2021–25)</span><span class="val">3.0%</span></div><div class="pp"><span class="who">Δ vs 5Y</span><span class="val">−1.3 pp</span></div></div>
-      </div>
-    </div>
-
-    <div style="margin-top:1.2rem;font-size:0.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:0.04em;line-height:1.55;max-width:1100px;">
-      <strong style="color:var(--text2);font-weight:500;">Rig Direct Margin normalized · methodology:</strong>
-      Revenue (dayrate only — excludes reimbursable, bareboat, management contracts) − Cost of Revenue normalized (direct rig opex; excludes D&amp;A, corporate SG&amp;A, R&amp;D, financial items, taxes; includes OPEX-reclassed-from-CAPEX). Industry precedent: H&amp;P's "Direct Margin" disclosure (10-K MD&amp;A). All peer values derived from FY2025 10-K / 20-F / 40-F / annual reports per normalization_rules.md.
-      <br><br>
-      <strong style="color:var(--text2);font-weight:500;">CAPEX / Rev · methodology:</strong>
-      Peer comparison intentionally omitted for CAPEX — a material share of Dixstone's capital outlays has been funded by sole-customer Perenco, making external peer benchmarks not directly comparable on a like-for-like basis. The 5-year average (sum CAPEX 2021–25 ÷ sum Theoretical Revenue 2021–25) is shown as the internal-only reference, smoothing single-year SPS-cycle lumpiness.
-    </div>
-  </section>
-
-
-  <!-- ========================= 22 · WHERE DIXSTONE STANDS ========================= -->
-  <section class="slide" data-title="Where Dixstone Stands">
-    <div class="eyebrow reveal">22 · Where Dixstone Stands</div>
-    <h1 class="slide-title reveal">A summary view <em>across the fleet.</em></h1>
-    <p class="lede reveal d1">Four observations from the FY25 segment-level benchmarking — one per business line, plus one on the balance sheet.</p>
-
-    <div class="grid-4 reveal d2">
-      <div class="card accent">
-        <div class="corner"></div>
-        <span class="num-tag">01 · AXIMA</span>
-        <h3>Best-in-segment reliability.</h3>
-        <p>2.7% NPT — top quartile against every premium-jackup peer. Operational asset, not yet priced in.</p>
-        <div class="metric-strip">NPT 2.7% · GM 39.5% · $130K/day</div>
-      </div>
-      <div class="card accent">
-        <div class="corner"></div>
-        <span class="num-tag">02 · BANBA &amp; NUADA</span>
-        <h3>Above-peer dayrate; below-peer NPT.</h3>
-        <p>$100K dayrate leads the standard-JU peer set. NPT (8.7% / 5.8%) lags Shelf's 0.6% — the operational gap.</p>
-        <div class="metric-strip">Dayrate $100K · NPT 5.8–8.7%</div>
-      </div>
-      <div class="card accent">
-        <div class="corner"></div>
-        <span class="num-tag">03 · MIDIR</span>
-        <h3>Loss-making at FY25 economics.</h3>
-        <p>−10.7% gross margin vs land peers at 29–40%. Cost structure (51.9% payroll, 103.9% O&amp;M) is the issue.</p>
-        <div class="metric-strip">GM −10.7% · Payroll 51.9% · O&amp;M 103.9%</div>
-      </div>
-      <div class="card accent">
-        <div class="corner"></div>
-        <span class="num-tag">04 · INVENTORY</span>
-        <h3>$22.5M dead-stock.</h3>
-        <p>54% of total inventory. Working-capital trap on a 12-month timeline — discrete and isolatable.</p>
-        <div class="metric-strip">Inventory $41.5M · 324 vendors</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================= 23 · OUTLIER MAP ========================= -->
-  <section class="slide" data-title="Outlier Map">
-    <div class="eyebrow reveal">23 · Internal vs Peers · Outlier Map · FY 2025</div>
-    <h1 class="slide-title reveal">Where Dixstone is a peer-set outlier —<br><em>four structural positions worth flagging.</em></h1>
-    <p class="lede reveal d1">Six per-rig metrics normalised to comparable per-rig basis across the 9-peer set. Inventory, capital intensity and crew-per-rig sit at the extremes; revenue per rig sits comfortably above peer median; CAPEX is structurally below.</p>
-
-    <div class="mega-kpi reveal d2">
-      <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">$5.93M</div><div class="ml">Inventory / rig · <strong style="color:var(--bad);">HIGHEST</strong></div><div class="md">vs peer median $1.99M — Dixstone holds ~3× peer benchmark</div></div>
-      <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">2.5×</div><div class="ml">Inventory turnover · <strong style="color:var(--bad);">LOWEST</strong></div><div class="md">COGS ÷ Inventory · vs peer range 3–25× · indicates ~145 days of operating cost held in stores</div></div>
-      <div class="mk" style="border-left-color:var(--good);"><div class="mv" style="color:var(--good);">$22.6M</div><div class="ml">Revenue / rig · above median</div><div class="md">vs peer median ~$15M — premium dayrate captured</div></div>
-    </div>
-
-    <div class="reveal d3" style="overflow-x:auto;margin-top:0.4rem;">
-      <table class="bench-table">
-        <thead>
-          <tr><th>Metric</th><th>Dixstone</th><th>ADES</th><th>ADNOC</th><th>H&amp;P</th><th>Nabors</th><th>Precision</th><th>Borr</th><th>Shelf</th><th>Velesto</th><th>Position</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="rig-name">Inventory · $/rig</span><span class="rig-type">FY25 BS / fleet</span></td>
-            <td class="val-red"><strong>$5.93M</strong></td><td>$2.05M</td><td>$1.99M</td><td>$1.38M</td><td>$0.35M</td><td>$0.19M</td><td>n/a</td><td>n/a</td><td>$3.95M</td>
-            <td class="val-red">🔴 Highest</td>
-          </tr>
-          <tr>
-            <td><span class="rig-name">Inventory turnover</span><span class="rig-type">COGS ÷ Inv</span></td>
-            <td class="val-red"><strong>2.5×</strong></td><td>2.8×</td><td>9.4×</td><td>7.9×</td><td class="val-green">20.4×</td><td class="val-green">25.3×</td><td>n/a</td><td>n/a</td><td>4.6×</td>
-            <td class="val-red">🔴 Lowest</td>
-          </tr>
-          <tr>
-            <td><span class="rig-name">Headcount / rig</span><span class="rig-type">Employees ÷ fleet</span></td>
-            <td class="val-amber"><strong>~85</strong></td><td>65</td><td>n/a</td><td>67</td><td>52</td><td>27</td><td>85</td><td>117</td><td>108</td>
-            <td class="val-amber">🟡 Top of pack</td>
-          </tr>
-          <tr>
-            <td><span class="rig-name">Land FTE / rig</span><span class="rig-type">MIDIR · DRAVUS</span></td>
-            <td class="val-red"><strong>72 / 66</strong></td><td>—</td><td>—</td><td class="val-green">~50</td><td class="val-green">~50</td><td class="val-green">~27</td><td>—</td><td>—</td><td>—</td>
-            <td class="val-red">🔴 Highest</td>
-          </tr>
-          <tr>
-            <td><span class="rig-name">Revenue / rig</span><span class="rig-type">FY25 Theoretical</span></td>
-            <td class="val-green"><strong>$22.6M</strong></td><td>$14.5M</td><td>$35.0M</td><td>$15.9M</td><td>$11.9M</td><td>$7.2M</td><td>$37.8M</td><td>$14.8M</td><td>$35.5M</td>
-            <td class="val-green">🟢 Above median</td>
-          </tr>
-          <tr>
-            <td><span class="rig-name">5Y CAPEX / Rev</span><span class="rig-type">2021–2025</span></td>
-            <td class="val-red"><strong>3–13%</strong></td><td>26%</td><td>26%</td><td>12%</td><td>17%</td><td>11%</td><td>22%</td><td>20%</td><td>19%</td>
-            <td class="val-red">🔴 Lowest</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="grid-2 reveal d4" style="margin-top:1.3rem;gap:1rem;">
-      <div class="card accent">
-        <span class="num-tag">Concentration of risk</span>
-        <h3>Three of the four outliers point to working-capital lock-up.</h3>
-        <p>Inventory $/rig (3× peer), inventory turnover (3× slower than peer median on COGS basis · ~145 days of operating cost in stores vs 14–80 days for peers), and land FTE/rig (1.5× the peer norm) all describe the same underlying pattern — capital and headcount tied up beyond what operating need justifies. Combined working-capital opportunity sits well above the $10–15M dead-stock release already quantified.</p>
-      </div>
-      <div class="card">
-        <span class="num-tag">What's NOT a problem</span>
-        <h3>Revenue capture per rig is healthy.</h3>
-        <p>Dixstone earns $22.6M per rig vs peer median ~$15M — premium dayrates are being achieved. The issue is on the cost-base side (inventory, headcount, OPEX intensity) and the capital-deployment side (under-investment in CAPEX). The revenue side is not the gap.</p>
-      </div>
-    </div>
-
-    <div class="src-band reveal d4">
-      <strong>Source · </strong>Per-peer normalised BS (Inventory) and IS (Revenue, Cost of Revenue normalized) from FY2025 10-K / 20-F / 40-F · Fleet counts from non-financial Excel · Dixstone from rev-13 P&amp;L and MB52 end-2025 · <strong>Inventory turnover</strong> = Cost of Revenue normalized ÷ end-period Inventory (textbook formulation; uses COGS not Revenue to neutralise margin differences across peers) · <strong>Peer median · </strong>excludes Borr / Shelf / Valaris (expense-as-incurred inventory policy → no BS line) · <strong>Caveat · </strong>inventory turnover is a generic working-capital metric, not a standard drilling-industry KPI (IADC publishes none) — used here as a directional indicator of capital tied up in stores · headcount comparison uses total employees ÷ active rigs; some peers may include corporate/shore staff inflating the per-rig ratio.
-    </div>
-  </section>
-
-  <!-- ========================= 24 · CAUSAL CHAIN — UNDER-CAPEX → CERT → NPT + OPEX ========================= -->
-  <section class="slide" data-title="Causal Chain · CAPEX → Cert → NPT + OPEX">
-    <div class="eyebrow reveal">24 · Why the Outlier Position Matters · CAPEX → Cert → NPT + OPEX</div>
-    <h1 class="slide-title reveal">Under-investment in CAPEX is a <em>plausible structural driver</em><br>of the elevated NPT and inflated spare-parts OPEX seen on most rigs.</h1>
-    <p class="lede reveal d1">The four diagnostic threads in this deck — bottom-quartile CAPEX, Cat IV recertification surfaced as the LUG audit's only Critical finding, NPT running 2–3× peer median on four of six rigs, and spare-parts cost climbing +3 to +12pp YoY on the underperformers — fit a single causal chain. Worth scrutinising as a hypothesis before sizing recovery actions.</p>
-
-    <div class="mega-kpi reveal d2">
-      <div class="mk"><div class="mv">3–13%</div><div class="ml">Dixstone 5Y CAPEX / Rev</div><div class="md">Bottom of peer set · vs 11–26% for listed contractors (Outlier Map)</div></div>
-      <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">5.8–8.7%</div><div class="ml">NPT% · 4 of 6 rigs</div><div class="md">BANBA · NUADA · LUG · MIDIR · DRAVUS · vs peer median 3.0% · ADES best 1.5%</div></div>
-      <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">+$5M</div><div class="ml">Spare-parts cost YoY · 2024→2025</div><div class="md">AXIMA +6.1pp · MIDIR +11.7pp · DRAVUS +3.4pp of revenue · RDM Evolution slide 18</div></div>
-    </div>
-
-    <div class="grid-3 reveal d3" style="margin-top:1.4rem;gap:1rem;">
-      <div class="card accent">
-        <span class="num-tag">Step 1 · Under-CAPEX</span>
-        <h3>Lowest sustaining CAPEX in the peer set.</h3>
-        <p>5Y fleet CAPEX/Revenue band 3–13% sits below every listed peer in the comparison set (peers 11–26%). Land rigs MIDIR (8.2%) and DRAVUS (12.5%) are the exception — and that's a separate over-spend question (slide 23). Across the Premium and Standard JU rigs, sustaining-CAPEX runs <strong>below</strong> the level peers maintain to keep equipment in cycle. Deferred recertifications and component replacements are a logical consequence.</p>
-      </div>
-      <div class="card accent" style="border-left-color:var(--bad);">
-        <span class="num-tag" style="color:var(--bad);">Step 2 · Out-of-Cert Equipment</span>
-        <h3>LUG audit raised Cat IV as the only Critical item.</h3>
-        <p>The LUG operational audit surfaced <strong>Cat IV recertification</strong> as the single Critical finding — paired with home-made Excel PM trackers and discarded task sheets. The fleet-wide asset register / certification ownership gap is not isolated to LUG; the deck flags it as a role-definition issue across the Drilling Assets Manager scope. Equipment running past its certification window is the natural consequence of sustained under-investment.</p>
-      </div>
-      <div class="card accent" style="border-left-color:var(--bad);">
-        <span class="num-tag" style="color:var(--bad);">Step 3 · NPT + OPEX Inflation</span>
-        <h3>Failures shift onto run-time and the spare-parts bill.</h3>
-        <p>Out-of-cert equipment fails more often → NPT climbs (4 of 6 rigs at 5.8–8.7%, vs peer median 3.0%). Unplanned failures get patched with unscheduled spare-parts buys → spare-parts cost jumped +3–12pp of revenue YoY across the three underperforming rigs. Engineering cost doubled fleet-wide. <strong>Same dollars, wrong line</strong>: CAPEX saved becomes OPEX paid, plus the revenue forgone to NPT.</p>
-      </div>
-    </div>
-
-    <div class="grid-2 reveal d4" style="margin-top:1rem;gap:1rem;">
-      <div class="card">
-        <span class="num-tag">Supporting evidence — already in deck</span>
-        <h3>Four threads converge on the same hypothesis.</h3>
-        <ul style="margin:0.4rem 0 0 1rem;padding:0;line-height:1.55;font-size:0.92rem;">
-          <li><strong>Slide 36 (Outlier Map)</strong> — Dixstone 5Y CAPEX/Rev lowest in peer set (3–13% vs 11–26%)</li>
-          <li><strong>Slide 39 (Pillars · Pillar 2)</strong> — Cat IV recertification = single Critical audit finding; PM record-keeping informal</li>
-          <li><strong>One-pagers (slides 25–30)</strong> — NPT 5.8–8.7% on BANBA/NUADA/LUG/MIDIR/DRAVUS vs peer median 3.0%</li>
-          <li><strong>Slide 18 (RDM Evolution)</strong> — Spare-parts cost +3 to +12pp YoY on AXIMA, MIDIR, DRAVUS; Engineering cost doubled fleet-wide</li>
-        </ul>
-      </div>
-      <div class="card">
-        <span class="num-tag">Caveats — what would falsify this</span>
-        <h3>The hypothesis is testable, not proven.</h3>
-        <ul style="margin:0.4rem 0 0 1rem;padding:0;line-height:1.55;font-size:0.92rem;">
-          <li>Per-equipment cert status by rig is not yet in the deck — only the LUG audit surfaces it. A fleet-wide cert register pull would confirm or refute the scale.</li>
-          <li>If the 2025 spare-parts spike is genuine catch-up CAPEX-reclassed-to-OPEX (planned), not unplanned, the OPEX line will normalise in 2026 — that's also testable from the 2026 budget vs PM schedule.</li>
-          <li>NPT codes need to be decomposed: a substantial share could be third-party / mud / well-related rather than rig-equipment-related. The per-rig NPT-driver bars on the one-pagers suggest equipment is the dominant category, but a code-level audit is needed before committing to CAPEX as the lever.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="src-band reveal d4">
-      <strong>Source · </strong>Synthesis of slides 18 (RDM Evolution) · 22 (5Y Cumulative P&amp;L + CAPEX) · 23 (Land-Rig Over-CAPEX) · 25–30 (Rig One-Pagers · NPT panels) · 36 (Outlier Map) · 39 (Pillars · Cat IV finding) · <strong>Causal claim · </strong>presented as the most plausible structural explanation for the pattern, not an audited conclusion — confirmation requires a fleet-wide equipment certification status pull and an NPT-code decomposition.
     </div>
   </section>
 

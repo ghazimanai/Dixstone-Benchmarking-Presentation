@@ -330,6 +330,23 @@
   @media (max-width:520px){.deck-switcher{gap:0.15rem;padding:0.2rem;}.deck-switcher a{font-size:7.5px;padding:0.35rem 0.45rem;}}
   html[data-theme="light"] .deck-switcher{background:rgba(255,255,255,0.94);box-shadow:0 4px 16px rgba(0,0,0,0.12);}
   html[data-theme="light"] .deck-switcher a.active{color:#fff;}
+
+  /* Executive-summary — punchy minimal slides (big, legible, few words) */
+  .es-statement{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2.4rem,5vw,4.2rem);line-height:1.06;letter-spacing:-0.025em;color:var(--text);margin:0 0 2rem 0;max-width:1500px;}
+  .es-statement em{font-style:normal;color:var(--sigma);}
+  .es-figs{display:flex;gap:clamp(2rem,5vw,4.5rem);flex-wrap:wrap;margin:0.5rem 0 2rem;}
+  .es-fig{display:flex;flex-direction:column;gap:0.5rem;}
+  .es-fig .v{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2.4rem,4.5vw,3.8rem);line-height:1;letter-spacing:-0.01em;color:var(--sigma);}
+  .es-fig .v.good{color:var(--good);}
+  .es-fig .v.bad{color:var(--bad);}
+  .es-fig .v.plain{color:var(--text);}
+  .es-fig .l{font-family:'JetBrains Mono',monospace;font-size:clamp(0.72rem,0.9vw,0.85rem);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+  .es-sub{font-family:'Inter',sans-serif;font-size:clamp(1.1rem,1.6vw,1.5rem);color:var(--text2);font-weight:300;max-width:1200px;line-height:1.4;margin:0;}
+  .es-points{list-style:none;padding:0;margin:0 0 2rem;display:flex;flex-direction:column;gap:clamp(0.8rem,1.5vw,1.3rem);}
+  .es-points li{display:flex;align-items:center;gap:1.1rem;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(1.4rem,2.4vw,2.2rem);color:var(--text);letter-spacing:-0.01em;}
+  .es-points li::before{content:'';width:14px;height:14px;border-radius:3px;background:var(--sigma);flex:none;}
+  .es-mono-row{display:flex;gap:1.2rem;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:clamp(0.8rem,1vw,0.95rem);letter-spacing:0.14em;text-transform:uppercase;color:var(--sigma);margin-top:1.5rem;}
+  .es-mono-row span{border:1px solid var(--border);border-radius:4px;padding:0.6rem 1.1rem;}
 </style>
 </head>
 <body>
@@ -352,304 +369,61 @@
 
 <main class="deck" id="deck">
 
-  <!-- ========================= 1 · PROCESS ========================= -->
-  <section class="slide" data-title="Methodology">
-    <div class="eyebrow reveal">01 · Peer Benchmarking Methodology</div>
-    <h1 class="slide-title reveal">How we established the peer benchmark —<br><em>a collaborative, segment-matched approach.</em></h1>
-    <p class="lede reveal d1">Developed <strong style="color:var(--text);font-weight:500;">collaboratively with the Dixstone team</strong> across two phases — Phase 1 internal diagnostic (SAP-direct, per rig; reviewed with the Dixstone General Manager and drilling team), Phase 2 external peer benchmark (9 listed contractors mapped to Dixstone's segment mix). The methodology is <strong style="color:var(--text);font-weight:500;">segment-matched and multi-dimensional</strong>: premium jackups vs premium jackups, standard jackups vs standard jackups, land rigs vs land rigs — combining audited financials, operational performance, workforce density, and capital intensity into one apples-to-apples view. Not generic industry averages.</p>
-
-    <div class="framework reveal d2">
-      <div class="pillar">
-        <div class="icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h7 M14 12h7 M7 8l-4 4 4 4 M17 8l4 4-4 4"/></svg></div>
-        <h4>Collaborative · two phases</h4>
-        <p>Built alongside the Dixstone team. <strong style="color:var(--text);font-weight:500;">Phase 1</strong> — internal diagnostic, bottom-up from Dixstone's SAP exports (MB52 inventory, MB51 movements, ME2N purchase orders), per rig. <strong style="color:var(--text);font-weight:500;">Phase 2</strong> — external peer benchmark, 9 listed contractors. Both phases reviewed with Dixstone leadership ahead of this synthesis.</p>
-        <div class="stat-tag">Phase 1 + Phase 2 · GM-reviewed</div>
-      </div>
-      <div class="pillar">
-        <div class="icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18 M5 21h14 M3 8h6 M15 8l6 0 M3 8l-1 7c0 1.5 1.5 2.5 4 2.5s4-1 4-2.5l-1-7 M21 8l1 7c0 1.5-1.5 2.5-4 2.5s-4-1-4-2.5l1-7"/></svg></div>
-        <h4>Apples-to-apples · segment matched</h4>
-        <p>Each rig benchmarked against its <strong style="color:var(--text);font-weight:500;">direct peer set</strong>, not the industry at large. Premium JU (AXIMA) vs Borr · ADNOC · ADES · Valaris-JU · Velesto. Standard JU (BANBA, NUADA) vs Shelf · Valaris · ADES. Land (MIDIR, DRAVUS) vs Helmerich &amp; Payne · Nabors · Precision. Platform (LUG) vs comparable HP/Nabors operations.</p>
-        <div class="stat-tag">4 segments · direct peer sets</div>
-      </div>
-      <div class="pillar">
-        <div class="icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l9 5-9 5-9-5 9-5 M3 12l9 5 9-5 M3 17l9 5 9-5"/></svg></div>
-        <h4>Multi-dimensional · 18 KPIs</h4>
-        <p>Combines audited financial filings (10-K, 10-Q, 20-F from 11 regulators), operational performance (NPT, utilisation, dayrate), workforce density (FTE per rig), and capital intensity (CAPEX / revenue) into a single comparable view. <strong style="color:var(--text);font-weight:500;">DFA-1</strong> — Sigma's agentic AI Drilling Financial Analyst — fills inference gaps where direct disclosure is absent, validated against Sigma's hands-on drilling experience.</p>
-        <div class="stat-tag">Financial · operational · workforce · CAPEX</div>
-      </div>
-    </div>
-
-    <div class="brief-row reveal d3">
-      <div class="brief-q">
-        <div class="lbl">Question 01 · Position</div>
-        <h3>Where does Dixstone stand vs the peer set?</h3>
-        <p>A segment-aware view — premium jack-up, standard jack-up, platform, land — drawing on primary filings from 9 listed peers across 5 fiscal years. 18 KPIs, identical formulas across every peer and FY.</p>
-      </div>
-      <div class="brief-q">
-        <div class="lbl">Question 02 · Action</div>
-        <h3>What are the most impactful actions?</h3>
-        <p>Four observations with quantified $-impact, ranked by what materially moves the FY26 P&amp;L and working-capital position. Internal data is SAP-direct (MB52, MB51, ME2N) per rig.</p>
-      </div>
-    </div>
+  <!-- 1 -->
+  <section class="slide" data-title="Approach">
+    <div class="eyebrow reveal">01 · The Approach</div>
+    <h1 class="es-statement reveal">Benchmarked <em>apples-to-apples</em> —<br>built with your team.</h1>
+    <p class="es-sub reveal d1">9 listed peers, segment-matched: jackups vs jackups, land vs land.</p>
+    <div class="es-mono-row reveal d2"><span>Audited filings</span><span>Operational performance</span><span>Direct peer set</span></div>
   </section>
 
-  <!-- ========================= 2 · INTERNAL FINDINGS ========================= -->
-  <section class="slide" data-title="Internal Findings">
-    <div class="eyebrow reveal">02 · Where Dixstone Is Winning · And Where Headroom Sits</div>
-    <h1 class="slide-title reveal">From $10.3M to $53.5M in five years —<br><em>a 5× transformation, with measured headroom remaining.</em></h1>
-    <p class="lede reveal d1">Fleet Adjusted Rig Direct Margin has grown 5× since FY21 on rising dayrates, peer-best utilisation, and disciplined operational execution. AXIMA reliability leads the premium-JU segment; NUADA sits within striking distance of the peer-median benchmark. At 33.7% of theoretical revenue, Dixstone has 11pp of headroom to the peer median of 44.8% — a credible ~$15M cost-compression opportunity over 24–36 months, concentrated in specific operational levers.</p>
-
-    <div class="trajectory reveal d2">
-      <div>
-        <div class="traj-label">Adj RDM · 5-year trajectory</div>
-        <div style="margin-top:0.6rem;font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--muted);max-width:280px;line-height:1.5;">Fleet Adjusted Rig Direct Margin · FY21 → FY25</div>
-      </div>
-      <div class="traj-bars" style="padding:18px 0;">
-        <div class="bar" style="height:14%;"><div class="lbl-val">$10.3M</div><div class="lbl-yr">FY21</div></div>
-        <div class="bar" style="height:35%;"><div class="lbl-val">$26.4M</div><div class="lbl-yr">FY22</div></div>
-        <div class="bar" style="height:42%;"><div class="lbl-val">$30.6M</div><div class="lbl-yr">FY23</div></div>
-        <div class="bar" style="height:79%;"><div class="lbl-val">$44.8M</div><div class="lbl-yr">FY24</div></div>
-        <div class="bar" style="height:100%;"><div class="lbl-val">$53.5M</div><div class="lbl-yr">FY25</div></div>
-      </div>
-      <div class="traj-summary">
-        <div class="val">33.7%</div>
-        <div class="sub">FY25 Adj RDM</div>
-        <div class="sub" style="color:var(--text2);margin-top:0.2rem;">on $158M theoretical revenue</div>
-      </div>
+  <!-- 2 -->
+  <section class="slide" data-title="Where We Stand">
+    <div class="eyebrow reveal">02 · Where Dixstone Stands</div>
+    <h1 class="es-statement reveal"><em>5&times;</em> margin growth in four years.</h1>
+    <div class="es-figs reveal d1">
+      <div class="es-fig"><span class="v">$53.5M</span><span class="l">Adj RDM &middot; 5&times; since FY21</span></div>
+      <div class="es-fig"><span class="v good">97.5%</span><span class="l">Utilisation &middot; peer-best</span></div>
+      <div class="es-fig"><span class="v plain">33.7%</span><span class="l">Adj RDM today</span></div>
     </div>
-
-    <div class="reveal d2" style="margin-bottom:1.2rem;background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:0.85rem 1.2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--sigma);font-weight:500;">Fleet age profile · as at 2026</div>
-      <div style="display:flex;gap:1.1rem;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--text2);">
-        <span><strong style="color:var(--text);font-weight:500;">AXIMA</strong> · 2008 · <span style="color:var(--text2);">18y</span></span>
-        <span><strong style="color:var(--text);font-weight:500;">BANBA</strong> · 1984 · <span style="color:var(--bad);">42y</span></span>
-        <span><strong style="color:var(--text);font-weight:500;">NUADA</strong> · 1979 · <span style="color:var(--bad);">47y</span></span>
-        <span><strong style="color:var(--text);font-weight:500;">LUG</strong> · 1998 · <span style="color:var(--text2);">28y</span></span>
-        <span><strong style="color:var(--text);font-weight:500;">MIDIR</strong> · 2011 · <span style="color:var(--good);">15y</span></span>
-        <span><strong style="color:var(--text);font-weight:500;">DRAVUS</strong> · 2015 · <span style="color:var(--good);">11y</span></span>
-      </div>
-    </div>
-
-    <div class="grid-4 reveal d3">
-      <div class="card accent">
-        <div class="corner"></div>
-        <span class="num-tag">WIN · Fleet Utilisation</span>
-        <h3>Cycle captured in full — 97.5% utilisation.</h3>
-        <p>At or above every listed peer. Standard JU and land segments at 100%. Cycle being captured efficiently across the fleet.</p>
-        <div class="metric-strip">Dixstone 97.5% · Peer range 46–86%</div>
-      </div>
-      <div class="card accent">
-        <div class="corner"></div>
-        <span class="num-tag">WIN · Premium JU · AXIMA (18y)</span>
-        <h3>Top-quartile reliability — 2.7% NPT.</h3>
-        <p>Best-in-segment vs Borr · ADNOC · ADES · Valaris-JU — on an 18-year-old asset where Borr's premium fleet averages ~10 years. Reliability is now a commercial differentiator in a tightening JU market.</p>
-        <div class="metric-strip">NPT 2.7% · Peer median 3.0% · Top quartile</div>
-      </div>
-      <div class="card accent">
-        <div class="corner"></div>
-        <span class="num-tag">WIN · Standard JU · NUADA (47y)</span>
-        <h3>At peer benchmark — 41.1% RDM at 47 years old.</h3>
-        <p>Only 1.8pp from peer median 42.9% — on a rig built in 1979. $100K dayrate beats Shelf $83K. Peer-near margin on a 47-year-old asset is a remarkable internal benchmark.</p>
-        <div class="metric-strip">RDM 41.1% · Dayrate $100K · Built 1979</div>
-      </div>
-      <div class="card accent">
-        <div class="corner"></div>
-        <span class="num-tag">HEADROOM · Path to Peer Median</span>
-        <h3>11pp opportunity ≈ $15M cost compression.</h3>
-        <p>33.7% → 44.8% RDM over 24–36 months via four specific levers: forward PO control, age-adjusted land right-sizing, jackup NPT recovery, CAPEX rebalance. Detail on slide 4.</p>
-        <div class="metric-strip">$15M opportunity · 4 levers · 24–36 mo</div>
-      </div>
-    </div>
+    <p class="es-sub reveal d2">Strong fundamentals &mdash; with 11 points of headroom to the peer median.</p>
   </section>
 
-  <!-- ========================= 3 · EXTERNAL FINDINGS ========================= -->
-  <section class="slide" data-title="External Findings">
-    <div class="eyebrow reveal">03 · How Dixstone Compares · Peer Benchmark</div>
-    <h1 class="slide-title reveal">A high-dayrate environment.<br>Dixstone is <em>capturing the cycle in full —</em> with measured headroom on unit economics.</h1>
-
-    <div class="grid-4 reveal d1" style="margin-bottom:1.2rem;">
-      <div class="stat" style="background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:0.95rem 1.1rem;">
-        <span class="label">Premium JU · peer median</span>
-        <span class="val sigma">$130K<span style="font-size:0.55em;color:var(--muted);font-weight:400;">/day</span></span>
-        <span class="delta">+53% vs FY21 trough</span>
-      </div>
-      <div class="stat" style="background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:0.95rem 1.1rem;">
-        <span class="label">Dixstone fleet utilisation</span>
-        <span class="val sigma">97.5<span style="font-size:0.55em;color:var(--muted);font-weight:400;">%</span></span>
-        <span class="delta">At or above every listed peer</span>
-      </div>
-      <div class="stat" style="background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:0.95rem 1.1rem;">
-        <span class="label">Saudi share of global JU backlog</span>
-        <span class="val">60<span style="font-size:0.55em;color:var(--muted);font-weight:400;">%+</span></span>
-        <span class="delta">Structural anchor</span>
-      </div>
-      <div class="stat" style="background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:0.95rem 1.1rem;">
-        <span class="label">Peer-median Adj RDM target</span>
-        <span class="val">44.8<span style="font-size:0.55em;color:var(--muted);font-weight:400;">%</span></span>
-        <span class="delta">Dixstone gap: −11pp</span>
-      </div>
+  <!-- 3 -->
+  <section class="slide" data-title="Versus Peers">
+    <div class="eyebrow reveal">03 · Versus Peers</div>
+    <h1 class="es-statement reveal">Capturing the cycle.<br><em>Lagging on cost.</em></h1>
+    <div class="es-figs reveal d1">
+      <div class="es-fig"><span class="v good">97.5%</span><span class="l">Utilisation &middot; at or above every peer</span></div>
+      <div class="es-fig"><span class="v bad">&minus;11pp</span><span class="l">RDM 33.7% vs peer 44.8%</span></div>
+      <div class="es-fig"><span class="v bad">3&times;</span><span class="l">Inventory vs peer benchmark</span></div>
     </div>
-
-    <div class="segment-block premium reveal d2">
-      <div class="segment-head">
-        <div class="lhs">
-          <span class="seg-pill">Premium Jack-Up</span>
-          <h3>AXIMA <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Borr · ADNOC · ADES · Valaris-JU · Velesto</span></h3>
-        </div>
-        <div class="read">Reliability leads the segment. Margin gap is the cost story, not the rate story.</div>
-      </div>
-      <div class="seg-grid">
-        <div class="seg-cell"><div class="metric">Dayrate</div><div class="dix"><span class="who">AXIMA</span><span class="val">$130K</span></div><div class="pp"><span class="who">Peer median</span><span class="val">$130K</span></div><div class="pp"><span class="who">Borr · top</span><span class="val">$150K</span></div></div>
-        <div class="seg-cell lead"><div class="metric">NPT</div><div class="dix"><span class="who">AXIMA</span><span class="val">2.7%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">3.0%</span></div><div class="pp"><span class="who">ADES · best</span><span class="val">1.5%</span></div></div>
-        <div class="seg-cell lag"><div class="metric">Adj RDM</div><div class="dix"><span class="who">AXIMA</span><span class="val">39.5%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">46.7%</span></div><div class="pp"><span class="who">Gap</span><span class="val">−7.2pp</span></div></div>
-        <div class="seg-cell"><div class="metric">FTE / rig</div><div class="dix"><span class="who">AXIMA</span><span class="val">106</span></div><div class="pp"><span class="who">Industry cap</span><span class="val">~96</span></div><div class="pp"><span class="who">Crew delta</span><span class="val">+10</span></div></div>
-        <div class="seg-cell"><div class="metric">CAPEX / Rev (5Y)</div><div class="dix"><span class="who">AXIMA</span><span class="val">4.6%</span></div><div class="pp"><span class="who">Norm</span><span class="val">7–9%</span></div><div class="pp"><span class="who">Under-investing</span><span class="val"></span></div></div>
-      </div>
-    </div>
-
-    <div class="segment-block standard reveal d3">
-      <div class="segment-head">
-        <div class="lhs">
-          <span class="seg-pill">Standard Jack-Up</span>
-          <h3>BANBA &amp; NUADA <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Shelf · Valaris · ADES</span></h3>
-        </div>
-        <div class="read">Dayrate beats peers. NPT is the operational lever. NUADA closest to peer median.</div>
-      </div>
-      <div class="seg-grid">
-        <div class="seg-cell lead"><div class="metric">Dayrate</div><div class="dix"><span class="who">BANBA·NUADA</span><span class="val">$100K</span></div><div class="pp"><span class="who">Shelf</span><span class="val">$83K</span></div><div class="pp"><span class="who">Valaris avg</span><span class="val">$138K</span></div></div>
-        <div class="seg-cell lag"><div class="metric">NPT</div><div class="dix"><span class="who">BANBA</span><span class="val">8.7%</span></div><div class="pp"><span class="who">NUADA</span><span class="val">5.8%</span></div><div class="pp"><span class="who">Shelf · best</span><span class="val">0.6%</span></div></div>
-        <div class="seg-cell"><div class="metric">Adj RDM</div><div class="dix"><span class="who">BANBA</span><span class="val">36.3%</span></div><div class="pp"><span class="who">NUADA</span><span class="val">41.1%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">42.9%</span></div></div>
-        <div class="seg-cell"><div class="metric">FTE / rig</div><div class="dix"><span class="who">BANBA · NUADA</span><span class="val">104 · 96</span></div><div class="pp"><span class="who">Peer median</span><span class="val">~85</span></div><div class="pp"><span class="who">Industry best</span><span class="val">~75</span></div></div>
-        <div class="seg-cell lead"><div class="metric">Utilisation</div><div class="dix"><span class="who">BANBA·NUADA</span><span class="val">100%</span></div><div class="pp"><span class="who">Shelf</span><span class="val">75%</span></div><div class="pp"><span class="who">Valaris</span><span class="val">~85%</span></div></div>
-      </div>
-    </div>
-
-    <div class="segment-block land reveal d4">
-      <div class="segment-head">
-        <div class="lhs">
-          <span class="seg-pill">Land Rigs</span>
-          <h3>MIDIR &amp; DRAVUS <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Helmerich &amp; Payne · Nabors · Precision</span></h3>
-        </div>
-        <div class="read">100% utilisation despite vintage fleet. Peer set (HP / Nabors / Precision) operates modern &lt;10-year US-land rigs — fair benchmark adjusts for fleet age and OEM-discontinued spares burden.</div>
-      </div>
-      <div class="seg-grid">
-        <div class="seg-cell"><div class="metric">Dayrate</div><div class="dix"><span class="who">MIDIR·DRAVUS</span><span class="val">$40K</span></div><div class="pp"><span class="who">HP / Nabors</span><span class="val">$25–35K</span></div><div class="pp"><span class="who">MENA premium</span><span class="val">applies</span></div></div>
-        <div class="seg-cell lag"><div class="metric">Adj RDM · MIDIR</div><div class="dix"><span class="who">MIDIR</span><span class="val">−10.7%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">32.8%</span></div><div class="pp"><span class="who">Nabors · top</span><span class="val">39.9%</span></div></div>
-        <div class="seg-cell lag"><div class="metric">Adj RDM · DRAVUS</div><div class="dix"><span class="who">DRAVUS</span><span class="val">23.5%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">32.8%</span></div><div class="pp"><span class="who">YoY</span><span class="val">−10.3pp</span></div></div>
-        <div class="seg-cell lag"><div class="metric">FTE / rig</div><div class="dix"><span class="who">MIDIR · DRAVUS</span><span class="val">72 · 66</span></div><div class="pp"><span class="who">Peer median</span><span class="val">~55</span></div><div class="pp"><span class="who">US-land best</span><span class="val">~50</span></div></div>
-        <div class="seg-cell lead"><div class="metric">Utilisation</div><div class="dix"><span class="who">MIDIR·DRAVUS</span><span class="val">100%</span></div><div class="pp"><span class="who">HP</span><span class="val">66%</span></div><div class="pp"><span class="who">Precision</span><span class="val">46%</span></div></div>
-      </div>
-    </div>
-
-    <div style="margin-top:1.2rem;background:var(--bg-card);border:1px solid var(--border2);border-left:3px solid var(--premium);border-radius:6px;padding:1rem 1.3rem;font-size:0.88rem;color:var(--text2);line-height:1.6;max-width:1100px;" class="reveal">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--premium);font-weight:500;display:block;margin-bottom:0.4rem;">Fair-comparison note · Fleet age inverts the expected pattern</span>
-      The vintage assets sit on the <strong style="color:var(--text);font-weight:500;">jackup side</strong> — BANBA (1984 · 42y) and NUADA (1979 · 47y) are at or beyond typical economic life for jackups; AXIMA (2008 · 18y) is mid-life premium JU vs peers averaging ~10 years. Land rigs are relatively young — <strong style="color:var(--text);font-weight:500;">MIDIR (2011 · 15y) and DRAVUS (2015 · 11y)</strong> sit well within mid-life for land assets, so a direct peer comparison applies. Above-benchmark performance on the aged jackups is the bigger context; the land-rig gaps are structural rather than age-driven.
-    </div>
+    <p class="es-sub reveal d2">Rate and uptime are world-class. The gap is unit economics.</p>
   </section>
 
-  <!-- ========================= 4 · RECOMMENDATIONS ========================= -->
-  <section class="slide" data-title="Opportunities">
-    <div class="eyebrow reveal">04 · Four Opportunities to FY26</div>
-    <h1 class="slide-title reveal">Building on the trajectory and wins —<br><em>$15–22M of Year-1 opportunity value.</em></h1>
-    <p class="lede reveal d1">Each opportunity is segment-matched, quantified, age-aware where it matters (the jackup fleet is materially older than peer fleets — BANBA 42y, NUADA 47y — while land rigs are younger than US-land peers), and tied to a specific operational lever. Two improve the balance sheet; two structurally improve the P&amp;L. Combined Year-1 value: $5–10M of one-time release and reclassification plus $9–12M of recurring annual P&amp;L improvement — a credible path to peer-median margin over 24–36 months.</p>
-
-    <div class="grid-2 reveal d2" style="gap:1rem;">
-      <div class="insight-card">
-        <div class="ic-eyebrow">01 · Working Capital · Forward PO Control + Categorised Dead Stock</div>
-        <h3>Control the forward flow; categorise existing stock before releasing it.</h3>
-        <p class="body">West Africa logistics make wholesale disposal unrealistic — a single Class-A critical spare prevents weeks of $100K/day NPT, a 100× insurance ratio against the carry cost. <strong style="color:var(--text);font-weight:500;">The structural lever is forward:</strong> consumption-driven PO discipline at order (past-consumption check at 6M/12M/36M, cross-plant SAP visibility, country-level min/max) avoiding $2–4M/yr of new over-stocking. For the existing $22.5M pile, a 90-day A/B/C/D criticality categorisation by OEM status, regional sourceability, and cross-rig fungibility leads to a measured $2–4M selective release (D-class via regional operator resale and OEM buyback). Capital items currently miscoded on the inventory line ($3–6M — engines, BOP-grade components) reclass to the asset register.</p>
-        <div class="stat-strip"><span><strong>$2–4M</strong>selective release · 12 mo</span><span><strong>$3–6M</strong>reclass to assets</span><span><strong>$2–4M/yr</strong>forward avoidance</span></div>
-      </div>
-
-      <div class="insight-card">
-        <div class="ic-eyebrow">02 · Land · Right-Sizing on Young Assets</div>
-        <h3>Right-size MIDIR &amp; DRAVUS crewing toward peer benchmark.</h3>
-        <p class="body">MIDIR 72 FTE on a 15-year-old rig; DRAVUS 66 FTE on an 11-year-old rig. US-land peers (HP / Nabors / Precision) run 50–55 FTE on modern fleets of comparable vintage. <strong style="color:var(--text);font-weight:500;">Fleet age is not the explanation</strong> — the gap is structural. Combination of expat-ratio review, shore-overhead reallocation, and crew-rotation model — recovers ~$3M/yr to fleet RDM.</p>
-        <div class="stat-strip"><span><strong>~$3M/yr</strong>P&amp;L impact</span><span><strong>12 mo</strong>horizon</span><span><strong>Strategic</strong>decision</span></div>
-      </div>
-
-      <div class="insight-card">
-        <div class="ic-eyebrow">03 · NPT Recovery · Vintage Jackups</div>
-        <h3>Close BANBA &amp; NUADA NPT to an age-realistic target.</h3>
-        <p class="body">BANBA (42y) at 8.7% NPT and NUADA (47y) at 5.8% — peer median 3.0% is measured on much younger jackup fleets, so <strong style="color:var(--text);font-weight:500;">an age-realistic target is 4–5%, not peer-best</strong>. Sustaining-CAPEX lift on Cat IV recerts, CMMS rollout (MM Fusion), OEM-anchored PM. Each percentage point of NPT recovered ≈ $1M/yr at $100K dayrate.</p>
-        <div class="stat-strip"><span><strong>$3–4M/yr</strong>revenue recovery</span><span><strong>9–12 mo</strong>horizon</span><span><strong>Age-realistic</strong>target</span></div>
-      </div>
-
-      <div class="insight-card">
-        <div class="ic-eyebrow">04 · CAPEX · Reallocate Toward Aged Jackups</div>
-        <h3>Lift jackup sustaining CAPEX; scrutinise land spend on young assets.</h3>
-        <p class="body">Premium &amp; standard JU under-investing (4–6% vs 7–9% norm) — <strong style="color:var(--text);font-weight:500;">acutely concerning given BANBA (42y) and NUADA (47y) need sustaining capital to remain operational</strong>. Conversely, MIDIR (15y) and DRAVUS (11y) running CAPEX at 8–22% on mid-life land assets is harder to justify on age grounds. A six-week line-item diagnostic on land spend, then redirect ~$1.5M/yr from land toward jackup sustaining where the assets are aging.</p>
-        <div class="stat-strip"><span><strong>~$1.5M/yr</strong>directed lift</span><span><strong>6 wk</strong>diagnostic</span><span><strong>Age-aware</strong>allocation</span></div>
-      </div>
-    </div>
-
-    <div class="impact-total reveal d3">
-      <div>
-        <div class="lbl">Cumulative Year-1 impact</div>
-        <div class="val">$15–22M</div>
-      </div>
-      <div style="display:flex;gap:2rem;flex-wrap:wrap;">
-        <div class="stat"><span class="label">One-time release + reclass</span><span class="val sigma" style="font-size:1.3rem;">$5–10M</span></div>
-        <div class="stat"><span class="label">Recurring P&amp;L improvement</span><span class="val sigma" style="font-size:1.3rem;">$9–12M/yr</span></div>
-        <div class="stat"><span class="label">Path to peer-median RDM</span><span class="val sigma" style="font-size:1.3rem;">33.7% → 44.8%</span></div>
-      </div>
-    </div>
-
-    <div class="reveal d4" style="margin-top:1.3rem;background:var(--bg-card);border:1px solid var(--border2);border-left:3px solid var(--bad);border-radius:6px;padding:1rem 1.3rem;font-size:0.88rem;color:var(--text2);line-height:1.6;max-width:1100px;">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--bad);font-weight:500;display:block;margin-bottom:0.4rem;">Strategic flag · FY27+ board discussion</span>
-      <strong style="color:var(--text);font-weight:500;">BANBA (built 1984 · 42y) and NUADA (built 1979 · 47y) sit at or beyond typical economic life for jackups.</strong> Sustaining-CAPEX and SPS (Special Periodical Survey) costs compound non-linearly past age 35. Fleet-succession planning — whether to continue extending these hulls, acquire second-hand premium replacements, or commission newbuilds — sits outside this Year-1 P&amp;L analysis but is the strategic decision facing the board in the FY27+ window. The Year-1 opportunities above are designed to maximise economic value from the current fleet while that decision is taken.
-    </div>
+  <!-- 4 -->
+  <section class="slide" data-title="The Prize">
+    <div class="eyebrow reveal">04 · The Prize</div>
+    <h1 class="es-statement reveal"><em>$15&ndash;22M</em> in Year&nbsp;1.</h1>
+    <ul class="es-points reveal d1">
+      <li>Forward PO control + dead-stock cleanup</li>
+      <li>Right-size land crews</li>
+      <li>Recover jackup uptime</li>
+      <li>Rebalance CAPEX to the ageing jackups</li>
+    </ul>
+    <p class="es-sub reveal d2">A credible path from 33.7% to the 44.8% peer median.</p>
   </section>
 
-  <!-- ========================= 5 · NEXT STEPS ========================= -->
-  <section class="slide" data-title="Execution &amp; Enablement">
-    <div class="eyebrow reveal">05 · Execution &amp; Enablement</div>
-    <h1 class="slide-title reveal">From insight to execution —<br><em>and the tools to sustain it.</em></h1>
-    <p class="lede reveal d1">This review is a baseline, not an endpoint. The four opportunities are delivered through three operational programmes — and embedded for the long term through two performance dashboards that put live financial and peer-benchmark visibility in the hands of the General Manager and rig managers, every week.</p>
-
-    <div class="grid-2 reveal d2" style="gap:1rem;margin-bottom:1.3rem;">
-      <div class="insight-card">
-        <div class="ic-eyebrow">Enablement · Live Peer Benchmarking</div>
-        <h3>Peer benchmarking as a live capability — not a one-time study.</h3>
-        <p class="body">Dixstone maps its 18 KPIs against the segment-matched peer set <strong style="color:var(--text);font-weight:500;">continuously</strong>, refreshed as peers file. Leadership sees exactly where each rig stands against its direct competitors — and where the gaps are moving — without commissioning a new review each time. The FY26 baseline established here becomes the live scorecard.</p>
-        <div class="stat-strip"><span><strong>Live</strong>vs one-time</span><span><strong>18 KPIs</strong>segment-matched</span><span><strong>Auto-refresh</strong>on peer filings</span></div>
-      </div>
-      <div class="insight-card">
-        <div class="ic-eyebrow">Enablement · Operational Drill-Down</div>
-        <h3>Company-to-rig financial &amp; drilling visibility, weekly.</h3>
-        <p class="body">Per-rig drill-down for the GM, rig managers, and SCM to review every week: <strong style="color:var(--text);font-weight:500;">PO commitments, issue-out, goods receipts, inventory position, and NPT against target</strong> — financial performance sitting alongside drilling performance, rig by rig. The tooling that lets the team manage proactively, rather than discover variances after the quarter closes.</p>
-        <div class="stat-strip"><span><strong>Weekly</strong>GM + rig cadence</span><span><strong>PO · issue-out · GR · NPT</strong></span><span><strong>Rig-level</strong>drill-down</span></div>
-      </div>
-    </div>
-
-    <ol class="insight-list reveal d3" style="max-width:1100px;">
-      <li>
-        <div class="num">01</div>
-        <div>
-          <h4>Working-capital programme · staged, 0–18 months</h4>
-          <p>Forward PO control first, then A/B/C/D categorisation of the $22.5M dead-stock pool, then selective D-class release and capital reclassification. Owner: SCM + Finance jointly.</p>
-        </div>
-      </li>
-      <li>
-        <div class="num">02</div>
-        <div>
-          <h4>MIDIR &amp; DRAVUS workforce review · 8 weeks</h4>
-          <p>Three-option structured review toward peer benchmark 52–55 FTE — crew restructure, contract reprice, or reassignment. Per-option financial model. Board-ready by end of Q3.</p>
-        </div>
-      </li>
-      <li>
-        <div class="num">03</div>
-        <div>
-          <h4>Jackup reliability programme · 9–12 months</h4>
-          <p>CMMS rollout (MM Fusion), OEM-anchored PM, Cat IV recerts on critical rotating equipment. Target: BANBA &amp; NUADA NPT toward an age-realistic 4–5% by FY26 Q4.</p>
-        </div>
-      </li>
-    </ol>
-
-    <div class="appendix-cta reveal d4">
-      <div class="lhs"><strong>Want the detail behind every number?</strong> The full appendix deck — internal P&amp;L by rig, supply-chain coherence, CAPEX clusters, per-rig one-pagers, external peer benchmarking — is available as the appendix to this executive summary.</div>
-      <a href="index.html" target="_blank" rel="noopener">Open full appendix →</a>
-    </div>
+  <!-- 5 -->
+  <section class="slide" data-title="What's Next">
+    <div class="eyebrow reveal">05 · From Insight to Action</div>
+    <h1 class="es-statement reveal">Make it a <em>habit</em>, not a report.</h1>
+    <ul class="es-points reveal d1">
+      <li>Live peer-benchmark dashboard</li>
+      <li>Weekly rig-by-rig P&amp;L drill-down</li>
+    </ul>
+    <p class="es-sub reveal d2">The full detail lives in the complete presentation.</p>
+    <div class="es-mono-row reveal d3"><a href="index.html" style="text-decoration:none;color:var(--sigma);">Open the complete presentation &rarr;</a></div>
   </section>
 
 </main>

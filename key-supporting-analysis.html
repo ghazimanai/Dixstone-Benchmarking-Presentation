@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>
+  (function(){
+    var t = localStorage.getItem('dixstone-theme');
+    document.documentElement.setAttribute('data-theme', t || 'dark');
+  })();
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dixstone · Key Supporting Analysis · Strategic Peer Benchmarking Review</title>
+<meta name="description" content="Sigma Energy · curated supporting analysis behind the Dixstone Strategic Peer Benchmarking Review.">
+<meta name="author" content="Sigma Energy">
+<meta name="theme-color" content="#06080d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --bg:#06080d; --bg2:#0d1119; --bg3:#141a26; --bg-card:#0f141d;
+    --border:rgba(232,160,32,0.18); --border2:rgba(200,210,230,0.08); --border3:rgba(200,210,230,0.14);
+    --sigma:#e8a020; --sigma2:#f4b840; --sigma3:#c98815; --sigma-soft:rgba(232,160,32,0.12);
+    --text:#f0f3f9; --text2:#c8cdd8; --muted:#8b94a6; --muted2:#5d6677;
+    --good:#5dbf8a; --bad:#ff6b80; --info:#5eb3ff;
+    --premium:#e8a020; --standard:#5eb3ff; --land:#a895d6; --platform:#7bc5a8;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;min-height:100%;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:400;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  body{
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232,160,32,0.06), transparent 60%),
+      var(--bg);
+    min-height:100vh;
+  }
+  html[data-theme="light"]{
+    --bg:#f7f8fa; --bg2:#fff; --bg3:#eef0f4; --bg-card:#fff;
+    --border:rgba(201,136,21,0.30); --border2:rgba(15,20,29,0.10); --border3:rgba(15,20,29,0.16);
+    --text:#0f141d; --text2:#3a4250; --muted:#5d6677; --muted2:#8b94a6;
+    --sigma-soft:rgba(232,160,32,0.16);
+  }
+  html[data-theme="light"] body{background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232,160,32,0.08), transparent 60%), var(--bg);}
+
+  .wrap{max-width:1100px;margin:0 auto;padding:7rem 2rem 4rem;}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--sigma);font-weight:500;margin-bottom:1.2rem;}
+  h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,4.4vw,3.2rem);font-weight:600;line-height:1.08;letter-spacing:-0.02em;margin:0 0 1.2rem;color:var(--text);}
+  h1 em{color:var(--sigma);font-style:normal;}
+  .lede{font-size:1.05rem;color:var(--text2);max-width:760px;margin:0 0 2.5rem;}
+  .note{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--muted);border:1px dashed var(--border);border-radius:8px;padding:1rem 1.2rem;margin:0 0 2.5rem;max-width:760px;line-height:1.6;}
+  .note strong{color:var(--sigma);}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem;}
+  .cand{background:var(--bg-card);border:1px solid var(--border2);border-radius:8px;padding:1.2rem 1.3rem;transition:border-color 0.15s,transform 0.15s;}
+  .cand:hover{border-color:var(--border);transform:translateY(-2px);}
+  .cand .tag{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--sigma);font-weight:500;margin-bottom:0.5rem;display:block;}
+  .cand h3{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;margin:0 0 0.4rem;color:var(--text);}
+  .cand p{font-size:0.86rem;color:var(--text2);margin:0;}
+  .cand a{color:var(--info);text-decoration:none;font-size:0.8rem;font-family:'JetBrains Mono',monospace;}
+  .cand a:hover{text-decoration:underline;}
+
+  .section-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:2.5rem 0 1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border2);}
+
+  /* theme toggle */
+  .theme-toggle{position:fixed;top:1.2rem;right:1.5rem;z-index:55;height:38px;padding:0 14px 0 12px;border-radius:999px;background:rgba(13,17,25,0.82);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--border);color:var(--text);cursor:pointer;display:flex;align-items:center;gap:0.5rem;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;font-weight:500;box-shadow:0 4px 16px rgba(0,0,0,0.22);}
+  .theme-toggle:hover{color:var(--sigma);border-color:var(--sigma);}
+  .theme-toggle svg{width:16px;height:16px;}
+  .theme-toggle .ico-sun{display:none;} .theme-toggle .ico-moon{display:block;}
+  html[data-theme="light"] .theme-toggle{background:rgba(255,255,255,0.92);}
+  html[data-theme="light"] .theme-toggle .ico-sun{display:block;} html[data-theme="light"] .theme-toggle .ico-moon{display:none;}
+
+  /* ===== 3-way deck switcher ===== */
+  .deck-switcher{position:fixed;top:1.2rem;left:50%;transform:translateX(-50%);z-index:70;display:flex;gap:0.3rem;background:rgba(13,17,25,0.88);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:999px;padding:0.3rem;box-shadow:0 4px 18px rgba(0,0,0,0.28);}
+  .deck-switcher a{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:0.5rem 0.9rem;border-radius:999px;transition:all 0.15s ease;white-space:nowrap;font-weight:500;}
+  .deck-switcher a:hover{color:var(--text);background:var(--sigma-soft);}
+  .deck-switcher a.active{color:#06080d;background:var(--sigma);}
+  @media (max-width:820px){.deck-switcher a{font-size:8.5px;padding:0.4rem 0.6rem;letter-spacing:0.04em;}}
+  @media (max-width:520px){.deck-switcher{gap:0.15rem;padding:0.2rem;}.deck-switcher a{font-size:7.5px;padding:0.35rem 0.45rem;}}
+  html[data-theme="light"] .deck-switcher{background:rgba(255,255,255,0.94);box-shadow:0 4px 16px rgba(0,0,0,0.12);}
+  html[data-theme="light"] .deck-switcher a.active{color:#fff;}
+</style>
+</head>
+<body>
+<nav class="deck-switcher" aria-label="Deck version switcher">
+  <a href="executive-summary.html">Executive Summary</a>
+  <a href="key-supporting-analysis.html" class="active">Key Supporting Analysis</a>
+  <a href="index.html">Complete Presentation</a>
+</nav>
+
+<div class="wrap">
+  <div class="eyebrow">Sigma Energy · Dixstone Strategic Peer Benchmarking Review</div>
+  <h1>Key Supporting Analysis —<br><em>the middle layer between summary and full deck.</em></h1>
+  <p class="lede">A curated subset of the most decision-relevant slides from the complete presentation — the analysis a CFO or GM would want in the room without sitting through all 52 slides. Sits between the 5-slide Executive Summary and the full Complete Presentation.</p>
+
+  <div class="note">
+    <strong>Collaborative workspace.</strong> This page is a scaffold. Adolph (GitHub access) and the Sigma team can curate the final slide selection here — either by embedding specific slides from <code>index.html</code> or by building standalone supporting visuals. The candidate slides below are the strongest support for the headline findings. Edit this file in the repo to populate.
+  </div>
+
+  <div class="section-label">Candidate slides · supply chain &amp; spending discipline</div>
+  <div class="grid">
+    <div class="cand"><span class="tag">Slide 11</span><h3>Which Rigs Are Over-Spending</h3><p>PO vs GR coherence — DRAVUS the sole over-spender at 1.81×. <a href="index.html#slide-11">Open in full deck →</a></p></div>
+    <div class="cand"><span class="tag">Slide 05</span><h3>Equivalent PO OPEX GR · Fleet Trajectory</h3><p>$43.4M fleet GR · +47% YoY · MIDIR the concentrated risk. <a href="index.html#slide-5">Open →</a></p></div>
+    <div class="cand"><span class="tag">Slide 12–13</span><h3>Inventory vs Brackets · Dead Stock</h3><p>$27M above best-practice ceiling · $22.5M dead stock. <a href="index.html#slide-12">Open →</a></p></div>
+  </div>
+
+  <div class="section-label">Candidate slides · profitability &amp; the target state</div>
+  <div class="grid">
+    <div class="cand"><span class="tag">Slide 17</span><h3>Fleet P&amp;L Trajectory 2021–2025</h3><p>Adj RDM 12.9% → 33.7% · workforce intensity the driver. <a href="index.html#slide-17">Open →</a></p></div>
+    <div class="cand"><span class="tag">Slide 18</span><h3>RDM Evolution per Rig</h3><p>Every rig's trajectory · AXIMA −8.2pp · LUG +34.4pp. <a href="index.html#slide-18">Open →</a></p></div>
+    <div class="cand"><span class="tag">Slide 25</span><h3>Target State · 44.8% RDM at 2% NPT</h3><p>Reverse-engineered per-rig daily PO/GR ceiling. <a href="index.html#slide-25">Open →</a></p></div>
+  </div>
+
+  <div class="section-label">Candidate slides · peer benchmarking &amp; recommendations</div>
+  <div class="grid">
+    <div class="cand"><span class="tag">Slide 35</span><h3>Dixstone vs Peers · Segment View</h3><p>Each rig benchmarked against its direct peer set. <a href="index.html#slide-35">Open →</a></p></div>
+    <div class="cand"><span class="tag">Slide 37</span><h3>Outlier Map</h3><p>Where Dixstone is a peer-set outlier — four structural positions. <a href="index.html#slide-37">Open →</a></p></div>
+    <div class="cand"><span class="tag">Slide 47</span><h3>Size of the Prize</h3><p>$14–18M/yr margin uplift + $15–23M working-capital release. <a href="index.html#slide-47">Open →</a></p></div>
+  </div>
+</div>
+
+<button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark / light theme" title="Toggle theme">
+  <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2 M12 20v2 M4.93 4.93l1.41 1.41 M17.66 17.66l1.41 1.41 M2 12h2 M20 12h2 M4.93 19.07l1.41-1.41 M17.66 6.34l1.41-1.41"/></svg>
+  <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+</button>
+
+<script>
+  const tt = document.getElementById('theme-toggle');
+  tt.addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', cur);
+    localStorage.setItem('dixstone-theme', cur);
+  });
+</script>
+</body>
+</html>

@@ -357,6 +357,12 @@
   .op-kpi .sub{font-size:0.75rem;color:var(--muted);margin-top:0.2rem;font-family:'JetBrains Mono',monospace;}
   .op-body{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;}
   @media (max-width:900px){.op-body{grid-template-columns:1fr;}}
+  /* Rig one-pager dropdown selector */
+  .op-selector{display:flex;align-items:center;gap:1rem;margin-bottom:1.1rem;flex-wrap:wrap;}
+  .op-selector .op-sel-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:500;}
+  .op-selector select{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;color:var(--sigma);background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:0.4rem 0.9rem;cursor:pointer;}
+  .op-selector select:focus{outline:none;border-color:var(--sigma);}
+  .op-selector .op-sel-hint{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted2);}
   .op-panel{background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.1rem 1.3rem;}
   .op-panel .ptitle{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--sigma);font-weight:500;margin-bottom:0.8rem;}
   /* P&L panel: 4-col grid — label | 2025 | 2024 | Δ — with a column header + two dividers */
@@ -1344,20 +1350,20 @@
       <strong>Source · </strong>Phase 1 internal diagnostics — Dixstone_P&amp;L tab · SAP ME2N (PO) / MB51 (GR) / MB52 (inventory) · LUG operational audit Q4 2025 · org chart review · <strong>Peer medians · </strong>shown for context here, detailed segment benchmarking follows in Phase 2.
     </div>
   </section>
-  <!-- ========================= 10 · RIG ONE-PAGERS DIVIDER ========================= -->
-  <section class="slide divider-slide" data-title="Rig One-Pagers">
-    <div class="eyebrow reveal" style="justify-content:center;">Rig Deep-Dive</div>
-    <h1 class="reveal d1">Rig <em>One-Pagers</em></h1>
-    <p class="reveal d2">One slide per rig — operating KPIs, P&amp;L snapshot, NPT equipment drivers, and 2025 top-5 material groups for PO / GR / IO. Six rigs: AXIMA · BANBA · NUADA · LUG · MIDIR · DRAVUS.</p>
-  </section>
-
-  <!-- ========================= 11 · AXIMA ONE-PAGER ========================= -->
-  <section class="slide onepager" data-title="AXIMA">
-    <div class="op-header reveal">
+  <!-- ========================= 10 · RIG ONE-PAGERS (DROPDOWN) ========================= -->
+  <section class="slide onepager" data-title="Rig One-Pager">
+    <div class="op-selector reveal">
+      <span class="op-sel-label">Rig One-Pager · FY 2025 — pick a rig</span>
+      <select id="rig-select" onchange="showRig(this.value)" aria-label="Select rig"><option value="AXIMA">AXIMA · Premium Jack-Up</option><option value="BANBA">BANBA · Standard Jack-Up</option><option value="NUADA">NUADA · Standard Jack-Up</option><option value="LUG">LUG · Platform</option><option value="MIDIR">MIDIR · Land Rig</option><option value="DRAVUS">DRAVUS · Land Rig</option></select>
+      <span class="op-sel-hint">6 rigs · one shown at a time</span>
+    </div>
+    <div class="rigpanels">
+      <div class="rigpanel" data-rig="AXIMA">
+<div class="op-header">
       <div><span class="op-rig-name">AXIMA</span><span class="op-rig-type premium">Premium Jack-Up</span></div>
       <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
     </div>
-    <div class="op-kpi-row reveal d1">
+    <div class="op-kpi-row">
       <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v amber">84.9%</div><div class="sub">310 / 365 days</div></div>
       <div class="op-kpi"><div class="lbl">NPT</div><div class="v amber">2.7%</div><div class="sub">Top-quartile peer</div></div>
       <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$39.2M</div><div class="sub">$130K/day · 301.6 bill. days</div></div>
@@ -1365,7 +1371,7 @@
       <div class="op-kpi"><div class="lbl">Staff Cost %</div><div class="v amber">31.7%</div><div class="sub">$12.4M · 106 FTE</div></div>
       <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$37K</div><div class="sub">PO/GR 0.92× · ME2N 2025</div></div>
     </div>
-    <div class="op-body reveal d2">
+    <div class="op-body">
       <div class="op-panel">
         <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
         <div class="pl-dual">
@@ -1396,7 +1402,7 @@
         </div>
       </div>
     </div>
-    <div class="op-body-3 reveal d3">
+    <div class="op-body-3">
       <div class="op-panel">
         <div class="ptitle">2025 PO · Top 5 Mat Groups</div>
         <div class="mg-driver"><span class="mk" title="DRIL_HDLG">DRIL_HDLG</span><div class="mtrack"><div class="mfill po" style="width:95.0%"></div></div><span class="mv">$1.13M</span><span class="mpct">9.9%</span></div>
@@ -1425,15 +1431,13 @@
         <div class="mg-total"><span>Total 2025 IO</span><strong>$7.3M</strong></div>
       </div>
     </div>
-  </section>
-
-  <!-- ========================= 12 · BANBA ONE-PAGER ========================= -->
-  <section class="slide onepager" data-title="BANBA">
-    <div class="op-header reveal">
+      </div>
+      <div class="rigpanel" data-rig="BANBA" style="display:none;">
+<div class="op-header">
       <div><span class="op-rig-name">BANBA</span><span class="op-rig-type standard">Standard Jack-Up</span></div>
       <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
     </div>
-    <div class="op-kpi-row reveal d1">
+    <div class="op-kpi-row">
       <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
       <div class="op-kpi"><div class="lbl">NPT</div><div class="v red">8.7%</div><div class="sub">Lagging peer median</div></div>
       <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$33.3M</div><div class="sub">$100K/day · 333.2 bill. days</div></div>
@@ -1441,7 +1445,7 @@
       <div class="op-kpi"><div class="lbl">Staff Cost %</div><div class="v amber">33.7%</div><div class="sub">$11.2M · ~104 FTE</div></div>
       <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$28K</div><div class="sub">PO/GR 1.08× · ME2N 2025</div></div>
     </div>
-    <div class="op-body reveal d2">
+    <div class="op-body">
       <div class="op-panel">
         <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
         <div class="pl-dual">
@@ -1472,7 +1476,7 @@
         </div>
       </div>
     </div>
-    <div class="op-body-3 reveal d3">
+    <div class="op-body-3">
       <div class="op-panel">
         <div class="ptitle">2025 PO · Top 5 Mat Groups</div>
         <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill po" style="width:95.0%"></div></div><span class="mv">$1.01M</span><span class="mpct">10.0%</span></div>
@@ -1501,15 +1505,13 @@
         <div class="mg-total"><span>Total 2025 IO</span><strong>$2.6M</strong></div>
       </div>
     </div>
-  </section>
-
-  <!-- ========================= 13 · NUADA ONE-PAGER ========================= -->
-  <section class="slide onepager" data-title="NUADA">
-    <div class="op-header reveal">
+      </div>
+      <div class="rigpanel" data-rig="NUADA" style="display:none;">
+<div class="op-header">
       <div><span class="op-rig-name">NUADA</span><span class="op-rig-type standard">Standard Jack-Up</span></div>
       <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
     </div>
-    <div class="op-kpi-row reveal d1">
+    <div class="op-kpi-row">
       <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
       <div class="op-kpi"><div class="lbl">NPT</div><div class="v red">5.8%</div><div class="sub">Lagging peer median</div></div>
       <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$34.4M</div><div class="sub">$100K/day · 343.7 bill. days</div></div>
@@ -1517,7 +1519,7 @@
       <div class="op-kpi"><div class="lbl">Staff Cost %</div><div class="v green">30.0%</div><div class="sub">$10.3M · ~90 FTE</div></div>
       <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v green">$12K</div><div class="sub">PO/GR 0.33× · ME2N 2025</div></div>
     </div>
-    <div class="op-body reveal d2">
+    <div class="op-body">
       <div class="op-panel">
         <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
         <div class="pl-dual">
@@ -1548,7 +1550,7 @@
         </div>
       </div>
     </div>
-    <div class="op-body-3 reveal d3">
+    <div class="op-body-3">
       <div class="op-panel">
         <div class="ptitle">2025 PO · Top 5 Mat Groups</div>
         <div class="mg-driver"><span class="mk" title="STRUC_SRV">STRUC_SRV</span><div class="mtrack"><div class="mfill po" style="width:95.0%"></div></div><span class="mv">$1.65M</span><span class="mpct">37.2%</span></div>
@@ -1577,15 +1579,13 @@
         <div class="mg-total"><span>Total 2025 IO</span><strong>$4.2M</strong></div>
       </div>
     </div>
-  </section>
-
-  <!-- ========================= 14 · LUG ONE-PAGER ========================= -->
-  <section class="slide onepager" data-title="LUG">
-    <div class="op-header reveal">
+      </div>
+      <div class="rigpanel" data-rig="LUG" style="display:none;">
+<div class="op-header">
       <div><span class="op-rig-name">LUG</span><span class="op-rig-type platform">Platform Rig</span></div>
       <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
     </div>
-    <div class="op-kpi-row reveal d1">
+    <div class="op-kpi-row">
       <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
       <div class="op-kpi"><div class="lbl">NPT</div><div class="v red">6.7%</div><div class="sub">Above peer benchmark</div></div>
       <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$23.8M</div><div class="sub">$70K/day · 340.5 bill. days</div></div>
@@ -1593,7 +1593,7 @@
       <div class="op-kpi"><div class="lbl">Staff Cost %</div><div class="v amber">32.0%</div><div class="sub">$7.6M · ~55 FTE</div></div>
       <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$21K</div><div class="sub">PO/GR 1.16× · ME2N 2025</div></div>
     </div>
-    <div class="op-body reveal d2">
+    <div class="op-body">
       <div class="op-panel">
         <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
         <div class="pl-dual">
@@ -1624,7 +1624,7 @@
         </div>
       </div>
     </div>
-    <div class="op-body-3 reveal d3">
+    <div class="op-body-3">
       <div class="op-panel">
         <div class="ptitle">2025 PO · Top 5 Mat Groups</div>
         <div class="mg-driver"><span class="mk" title="ELEC">ELEC</span><div class="mtrack"><div class="mfill po" style="width:95.0%"></div></div><span class="mv">$511K</span><span class="mpct">6.8%</span></div>
@@ -1653,15 +1653,13 @@
         <div class="mg-total"><span>Total 2025 IO</span><strong>$1.8M</strong></div>
       </div>
     </div>
-  </section>
-
-  <!-- ========================= 15 · MIDIR ONE-PAGER ========================= -->
-  <section class="slide onepager" data-title="MIDIR">
-    <div class="op-header reveal">
+      </div>
+      <div class="rigpanel" data-rig="MIDIR" style="display:none;">
+<div class="op-header">
       <div><span class="op-rig-name">MIDIR</span><span class="op-rig-type land">Land Rig</span></div>
       <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
     </div>
-    <div class="op-kpi-row reveal d1">
+    <div class="op-kpi-row">
       <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
       <div class="op-kpi"><div class="lbl">NPT</div><div class="v red">6.9%</div><div class="sub">Above peer benchmark</div></div>
       <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$13.6M</div><div class="sub">$40K/day · 339.8 bill. days</div></div>
@@ -1669,7 +1667,7 @@
       <div class="op-kpi"><div class="lbl">Staff Cost %</div><div class="v red">51.9%</div><div class="sub">$7.1M · ~72 FTE</div></div>
       <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$21K</div><div class="sub">PO/GR 0.82× · ME2N 2025</div></div>
     </div>
-    <div class="op-body reveal d2">
+    <div class="op-body">
       <div class="op-panel">
         <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
         <div class="pl-dual">
@@ -1700,7 +1698,7 @@
         </div>
       </div>
     </div>
-    <div class="op-body-3 reveal d3">
+    <div class="op-body-3">
       <div class="op-panel">
         <div class="ptitle">2025 PO · Top 5 Mat Groups</div>
         <div class="mg-driver"><span class="mk" title="MAIN_RTAL">MAIN_RTAL</span><div class="mtrack"><div class="mfill po" style="width:95.0%"></div></div><span class="mv">$895K</span><span class="mpct">11.4%</span></div>
@@ -1729,15 +1727,13 @@
         <div class="mg-total"><span>Total 2025 IO</span><strong>$1.5M</strong></div>
       </div>
     </div>
-  </section>
-
-  <!-- ========================= 16 · DRAVUS ONE-PAGER ========================= -->
-  <section class="slide onepager" data-title="DRAVUS">
-    <div class="op-header reveal">
+      </div>
+      <div class="rigpanel" data-rig="DRAVUS" style="display:none;">
+<div class="op-header">
       <div><span class="op-rig-name">DRAVUS</span><span class="op-rig-type land">Land Rig</span></div>
       <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
     </div>
-    <div class="op-kpi-row reveal d1">
+    <div class="op-kpi-row">
       <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
       <div class="op-kpi"><div class="lbl">NPT</div><div class="v amber">3.3%</div><div class="sub">Near peer benchmark</div></div>
       <div class="op-kpi"><div class="lbl">Revenue</div><div class="v">$14.1M</div><div class="sub">$40K/day · 353.1 bill. days</div></div>
@@ -1745,7 +1741,7 @@
       <div class="op-kpi"><div class="lbl">Staff Cost %</div><div class="v red">40.9%</div><div class="sub">$5.8M · ~66 FTE</div></div>
       <div class="op-kpi"><div class="lbl">Daily PO</div><div class="v red">$21K</div><div class="sub">PO/GR 0.46× · ME2N 2025</div></div>
     </div>
-    <div class="op-body reveal d2">
+    <div class="op-body">
       <div class="op-panel">
         <div class="ptitle">P&amp;L Snapshot · USD '000s</div>
         <div class="pl-dual">
@@ -1776,7 +1772,7 @@
         </div>
       </div>
     </div>
-    <div class="op-body-3 reveal d3">
+    <div class="op-body-3">
       <div class="op-panel">
         <div class="ptitle">2025 PO · Top 5 Mat Groups</div>
         <div class="mg-driver"><span class="mk" title="STO_RTAL">STO_RTAL</span><div class="mtrack"><div class="mfill po" style="width:95.0%"></div></div><span class="mv">$898K</span><span class="mpct">11.8%</span></div>
@@ -1805,20 +1801,19 @@
         <div class="mg-total"><span>Total 2025 IO</span><strong>$1.0M</strong></div>
       </div>
     </div>
+      </div>
+    </div>
   </section>
-
-
-
-  <!-- ========================= 17 · PHASE 2 DIVIDER ========================= -->
+  <!-- ========================= 11 · PHASE 2 DIVIDER ========================= -->
   <section class="slide divider-slide" data-title="Phase 2 · External Benchmarking">
     <div class="eyebrow reveal" style="justify-content:center;">Phase 2 of 3</div>
     <h1 class="reveal d1">External <em>Peer Benchmarking</em></h1>
     <p class="reveal d2">Now compared against 9 listed peer contractors. Segment-matched per-rig benchmarks: dayrate · NPT · Rig Direct Margin · FTE · 5Y CAPEX intensity. Where Dixstone stands out on the cost-base and capital-deployment axes — the Outlier Map closes Phase 2.</p>
   </section>
 
-  <!-- ========================= 18 · PEER FLEET PROFILE ========================= -->
+  <!-- ========================= 12 · PEER FLEET PROFILE ========================= -->
   <section class="slide" data-title="Peer Fleet Profile">
-    <div class="eyebrow reveal">18 · Peer Fleet Profile · FY 2025</div>
+    <div class="eyebrow reveal">12 · Peer Fleet Profile · FY 2025</div>
     <h1 class="slide-title reveal">The peer set Dixstone benchmarks against —<br><em>9 listed contractors · ~1,200 rigs combined.</em></h1>
     <p class="lede reveal d1">Dixstone's 7-rig fleet spans premium jackup, standard jackup, platform and land — so the peer set is deliberately broad: pure-play JU operators (Borr, Shelf, Velesto), pure-play land drillers (Helmerich &amp; Payne, Nabors, Precision), and blended-fleet contractors (ADES, ADNOC, Valaris). Comparison is segment-matched, not entity-level.</p>
 
@@ -1872,9 +1867,9 @@
     </div>
   </section>
 
-  <!-- ========================= 19 · SEGMENT VIEW ========================= -->
+  <!-- ========================= 13 · SEGMENT VIEW ========================= -->
   <section class="slide" data-title="Segment View">
-    <div class="eyebrow reveal">19 · Dixstone vs Peers · Segment View · FY 2025</div>
+    <div class="eyebrow reveal">13 · Dixstone vs Peers · Segment View · FY 2025</div>
     <h1 class="slide-title reveal">Each rig benchmarked against<br><em>its direct peer set.</em></h1>
 
     <div class="segment-block premium reveal d1">
@@ -1955,9 +1950,9 @@
   </section>
 
 
-  <!-- ========================= 20 · INTERNAL vs PEERS — HOW DIXSTONE COMPARES ========================= -->
+  <!-- ========================= 14 · INTERNAL vs PEERS — HOW DIXSTONE COMPARES ========================= -->
   <section class="slide" data-title="How Dixstone Compares to Peers">
-    <div class="eyebrow reveal">20 · Internal vs Peers · How Dixstone Compares · FY 2025</div>
+    <div class="eyebrow reveal">14 · Internal vs Peers · How Dixstone Compares · FY 2025</div>
     <h1 class="slide-title reveal">Jackups within striking distance, land rigs structurally below —<br><em>and working capital the fleet-wide drag.</em></h1>
     <p class="lede reveal d1">Dixstone benchmarked against the 9-peer listed set. The two jackup-segment lines sit close to industry; the land segment sits well below; and on the balance sheet Dixstone is a clear outlier — inventory, crew and capital deployment all at the extremes.</p>
 
@@ -2014,9 +2009,9 @@
       <strong>Source · </strong>FY2025 peer 10-K / 20-F / 40-F (per-rig normalised) · Dixstone P&amp;L + MB52 end-2025 · <strong>Peer medians · </strong>Premium/Standard JU 44.8% · Land 32.8% · <strong>Note · </strong>inventory turnover = COGS ÷ end-period inventory; Borr/Shelf/Valaris excluded from inventory rows (expense-as-incurred policy → no BS line).
     </div>
   </section>
-  <!-- ========================= 21 · CAUSAL CHAIN — UNDER-CAPEX → CERT → NPT + OPEX ========================= -->
+  <!-- ========================= 15 · CAUSAL CHAIN — UNDER-CAPEX → CERT → NPT + OPEX ========================= -->
   <section class="slide" data-title="Causal Chain · CAPEX → Cert → NPT + OPEX">
-    <div class="eyebrow reveal">21 · Why the Outlier Position Matters · CAPEX → Cert → NPT + OPEX</div>
+    <div class="eyebrow reveal">15 · Why the Outlier Position Matters · CAPEX → Cert → NPT + OPEX</div>
     <h1 class="slide-title reveal">Under-investment in CAPEX is a <em>plausible structural driver</em><br>of the elevated NPT and inflated spare-parts OPEX seen on most rigs.</h1>
     <p class="lede reveal d1">The four diagnostic threads in this deck — bottom-quartile CAPEX, Cat IV recertification surfaced as the LUG audit's only Critical finding, NPT running 2–3× peer median on four of six rigs, and spare-parts cost climbing +3 to +12pp YoY on the underperformers — fit a single causal chain. Worth scrutinising as a hypothesis before sizing recovery actions.</p>
 
@@ -2071,16 +2066,16 @@
     </div>
   </section>
 
-  <!-- ========================= 22 · PHASE 3 DIVIDER ========================= -->
+  <!-- ========================= 16 · PHASE 3 DIVIDER ========================= -->
   <section class="slide divider-slide" data-title="Phase 3 · Recommendations">
     <div class="eyebrow reveal" style="justify-content:center;">Phase 3 of 3</div>
     <h1 class="reveal d1">Recommendations &amp;<br><em>Roadmap</em></h1>
     <p class="reveal d2">Three pillars surface from the diagnostics. Each pillar has measurable evidence and concrete actions — sequenced as quick wins (weeks) and structural fixes (months). Five impactful actions and a five-step execution plan close the deck.</p>
   </section>
 
-  <!-- ========================= 23 · TARGET STATE · 44.8% RDM AT 2-4% NPT ========================= -->
+  <!-- ========================= 17 · TARGET STATE · 44.8% RDM AT 2-4% NPT ========================= -->
   <section class="slide" data-title="Target State · 44.8% RDM at 2–4% NPT">
-    <div class="eyebrow reveal">23 · Target State · 44.8% RDM at 2–4% NPT — Per-Rig Reverse-Engineered Math</div>
+    <div class="eyebrow reveal">17 · Target State · 44.8% RDM at 2–4% NPT — Per-Rig Reverse-Engineered Math</div>
     <h1 class="slide-title reveal">Interim target: <em>44.8% RDM at 2–4% NPT · peer median</em> —<br>profitability is the <em>intersection</em>, not NPT or spending alone.</h1>
     <p class="lede reveal d1">A 44.8% margin (peer median of Borr 44.8% · Shelf 44.9% · ADNOC 46.7%) cannot be reached by NPT improvement alone (cost-base too high on every rig) or by spending compression alone (NPT lost revenue too large on most). The target is the intersection. This slide reverse-engineers the math per rig: revenue at target NPT (2% for AXIMA · 4% for the rest), cost ceiling for 44.8% RDM, current cost, and the resulting <strong>daily PO/GR ceiling</strong>. Tangible numbers Dixstone management can hold each rig to. 44.8% is the Premium/Standard JU peer median (Borr 44.8% · Shelf 44.9% · ADNOC 46.7% · Velesto 49.0% · ADES 60.7%) — the segment-matched benchmark to hit.</p>
 
@@ -2213,9 +2208,9 @@
     </div>
   </section>
 
-  <!-- ========================= 24 · PHASE 3 · AREAS OF IMPROVEMENT — PILLARS ========================= -->
+  <!-- ========================= 18 · PHASE 3 · AREAS OF IMPROVEMENT — PILLARS ========================= -->
   <section class="slide" data-title="Areas of Improvement · Pillars">
-    <div class="eyebrow reveal">24 · Areas of Improvement · Three Pillars</div>
+    <div class="eyebrow reveal">18 · Areas of Improvement · Three Pillars</div>
     <h1 class="slide-title reveal">Three workstreams emerged —<br><em>each with measurable evidence and concrete actions.</em></h1>
     <p class="lede reveal d1">Three pillars surfaced from the LUG audit and the inventory diagnostics. Each pillar has measurable evidence already documented in this deck and concrete actions to address it.</p>
 
@@ -2245,9 +2240,9 @@
     </div>
   </section>
 
-  <!-- ========================= 25 · AOI · SUPPLY CHAIN DETAIL ========================= -->
+  <!-- ========================= 19 · AOI · SUPPLY CHAIN DETAIL ========================= -->
   <section class="slide" data-title="AOI · Supply Chain Detail">
-    <div class="eyebrow reveal">25 · Supply Chain · Three Pillars of Improvement</div>
+    <div class="eyebrow reveal">19 · Supply Chain · Three Pillars of Improvement</div>
     <h1 class="slide-title reveal">The supply-chain fix rests on three pillars —<br><em>get it into SAP · free up the warehouse · standardise &amp; train.</em></h1>
     <p class="lede reveal d1">The process gaps surfaced in the LUG audit consolidate into three workstreams. Each is concrete and self-contained; together they close the over-stocking, dead-stock and visibility problems behind Phase 1's working-capital findings.</p>
 
@@ -2295,9 +2290,9 @@
     </div>
   </section>
 
-  <!-- ========================= 26 · AOI · MAINTENANCE DETAIL ========================= -->
+  <!-- ========================= 20 · AOI · MAINTENANCE DETAIL ========================= -->
   <section class="slide" data-title="AOI · Maintenance Detail">
-    <div class="eyebrow reveal">26 · Maintenance · Two Pillars of Improvement</div>
+    <div class="eyebrow reveal">20 · Maintenance · Two Pillars of Improvement</div>
     <h1 class="slide-title reveal">Maintenance rests on two pillars —<br><em>build the CMMS foundation, then manage it proactively.</em></h1>
     <p class="lede reveal d1">Today maintenance runs on a rig-local Excel tracker (88 equipment lines, no history) and a reactive, fire-fighting cadence. Fixing it means first putting the system in place, then layering the managerial discipline that turns it into planned — eventually predictive — maintenance.</p>
 
@@ -2331,9 +2326,9 @@
     </div>
   </section>
 
-  <!-- ========================= 27 · AOI · ASSETS DETAIL ========================= -->
+  <!-- ========================= 21 · AOI · ASSETS DETAIL ========================= -->
   <section class="slide" data-title="AOI · Assets Detail">
-    <div class="eyebrow reveal">27 · Assets · Two Pillars of Improvement</div>
+    <div class="eyebrow reveal">21 · Assets · Two Pillars of Improvement</div>
     <h1 class="slide-title reveal">Track every asset and certify it —<br><em>a live Cat III / Cat IV certification tracker on a clean, accurate asset register.</em></h1>
     <p class="lede reveal d1">Two interlocking pillars. The certification tracker is the priority — expired Cat III / Cat IV equipment is a proven source of NPT and incidents. But it only works on top of an accurate asset register where every item is logged, tracked and follows its history as it moves.</p>
 
@@ -2369,9 +2364,9 @@
     </div>
   </section>
 
-  <!-- ========================= 28 · REC · WORKFORCE OPTIMISATION ========================= -->
+  <!-- ========================= 22 · REC · WORKFORCE OPTIMISATION ========================= -->
   <section class="slide" data-title="Recommendation · Workforce Optimisation">
-    <div class="eyebrow reveal">28 · Recommendation · Workforce Optimisation — Close the Land-Rig FTE Gap</div>
+    <div class="eyebrow reveal">22 · Recommendation · Workforce Optimisation — Close the Land-Rig FTE Gap</div>
     <h1 class="slide-title reveal">Right-size land-rig manning from <em>72/66 FTE</em> toward the<br><em>~50 peer benchmark</em> — releases ~$3M / year on land segment.</h1>
     <p class="lede reveal d1">Outlier Map (slide 36) identified <strong>72 FTE on MIDIR and 66 on DRAVUS</strong> vs ~50 FTE on H&amp;P/Nabors land rigs and 27 on Precision. That gap maps directly to MIDIR's 68.5% workforce intensity (2024) — the single biggest reason it tipped loss-making. The same gap exists on DRAVUS at lower magnitude.</p>
 
@@ -2415,9 +2410,9 @@
     </div>
   </section>
 
-  <!-- ========================= 29 · REC · SEGMENT RECOVERY PLANS ========================= -->
+  <!-- ========================= 23 · REC · SEGMENT RECOVERY PLANS ========================= -->
   <section class="slide" data-title="Recommendation · Segment Recovery Plans">
-    <div class="eyebrow reveal">29 · Recommendation · Per-Segment Recovery Plans</div>
+    <div class="eyebrow reveal">23 · Recommendation · Per-Segment Recovery Plans</div>
     <h1 class="slide-title reveal">Four segments · four distinct recovery profiles —<br><em>each with peer-anchored RDM target and named levers.</em></h1>
     <p class="lede reveal d1">Fleet 33.7% RDM masks rig-level divergence. Each segment has a distinct gap to peer best and a distinct cost-driver profile, addressed through the category-level levers — NPT campaigns, parts-purchasing rationalisation (min/max + historical-PO review), cert/PM discipline and, on land, cost restructure. Recovery plans must be segment-matched, not fleet-uniform.</p>
 
@@ -2469,9 +2464,9 @@
     </div>
   </section>
 
-  <!-- ========================= 30 · AOI · ROADMAP ========================= -->
+  <!-- ========================= 24 · AOI · ROADMAP ========================= -->
   <section class="slide" data-title="AOI · Roadmap">
-    <div class="eyebrow reveal">30 · Areas of Improvement · Roadmap — Quick Wins vs Structural Fixes</div>
+    <div class="eyebrow reveal">24 · Areas of Improvement · Roadmap — Quick Wins vs Structural Fixes</div>
     <h1 class="slide-title reveal">Initiatives by horizon and dependency —<br><em>quick wins launch in weeks · structural fixes in months.</em></h1>
     <p class="lede reveal d1">Quick wins need no system rollout and can launch within weeks. Structural fixes require platform deployment, training and policy.</p>
 
@@ -2508,9 +2503,9 @@
       <strong>Source · </strong>LUG audit + inventory diagnostics + workforce review · <strong>Quick-win threshold · </strong>can be executed with current systems and current org; no software rollout · <strong>Structural fixes · </strong>require platform / role / policy changes.
     </div>
   </section>
-  <!-- ========================= 31 · IMPACTFUL ACTIONS ========================= -->
+  <!-- ========================= 25 · IMPACTFUL ACTIONS ========================= -->
   <section class="slide" data-title="Impactful Actions">
-    <div class="eyebrow reveal">31 · The Five Impactful Actions</div>
+    <div class="eyebrow reveal">25 · The Five Impactful Actions</div>
     <h1 class="slide-title reveal">Where the data points to <em>actionable impact.</em></h1>
 
     <div class="grid-2 reveal d1" style="gap:1.2rem;">
@@ -2553,9 +2548,9 @@
     </div>
   </section>
 
-  <!-- ========================= 32 · NEXT STEPS ========================= -->
+  <!-- ========================= 26 · NEXT STEPS ========================= -->
   <section class="slide" data-title="Next Steps">
-    <div class="eyebrow reveal">32 · Next Steps</div>
+    <div class="eyebrow reveal">26 · Next Steps</div>
     <h1 class="slide-title reveal">From <em>insight</em> to <em>execution.</em></h1>
 
     <ol class="insight-list reveal d1" style="max-width:1050px;">
@@ -2688,6 +2683,13 @@
   });
 </script>
 
+<script>
+  function showRig(rig){
+    document.querySelectorAll('.rigpanel').forEach(function(el){
+      el.style.display = (el.getAttribute('data-rig') === rig) ? 'block' : 'none';
+    });
+  }
+</script>
 </body>
 </html>
 <script async data-explicit-opt-in="true" data-deployment-id="dpl_9cbWgZu9sTwwxKXMvkjEdJVUKqGw" src="https://vercel.live/_next-live/feedback/feedback.js"></script>

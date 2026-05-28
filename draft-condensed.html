@@ -247,14 +247,14 @@
   /* Segment blocks */
   .segment-block{
     background:var(--bg-card);border:1px solid var(--border2);border-radius:8px;
-    padding:1.2rem 1.5rem;margin-bottom:0.9rem;position:relative;border-left-width:3px;
+    padding:1.4rem 1.7rem;margin-bottom:1.1rem;position:relative;border-left-width:4px;
   }
   .segment-block.premium{border-left-color:var(--premium);}
   .segment-block.standard{border-left-color:var(--standard);}
   .segment-block.land{border-left-color:var(--land);}
   .segment-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:1rem;margin-bottom:0.8rem;padding-bottom:0.7rem;border-bottom:1px solid var(--border2);}
   .segment-head .lhs{display:flex;align-items:baseline;gap:0.9rem;flex-wrap:wrap;}
-  .segment-head h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;margin:0;color:var(--text);letter-spacing:-0.01em;}
+  .segment-head h3{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:600;margin:0;color:var(--text);letter-spacing:-0.01em;}
   .segment-head .seg-pill{
     font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.12em;text-transform:uppercase;font-weight:400;
     padding:3px 9px;border-radius:3px;background:rgba(232,160,32,0.10);color:var(--sigma);border:1px solid var(--border);
@@ -263,16 +263,16 @@
   .segment-block.land .seg-pill{background:rgba(168,149,214,0.10);color:var(--land);border-color:rgba(168,149,214,0.30);}
   .segment-block.platform{border-left-color:var(--platform);}
   .segment-block.platform .seg-pill{background:rgba(123,197,168,0.10);color:var(--platform);border-color:rgba(123,197,168,0.30);}
-  .segment-head .read{font-size:1.056rem;color:var(--text2);font-weight:400;line-height:1.5;max-width:580px;}
-  .seg-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0.7rem;}
+  .segment-head .read{font-size:1.2rem;color:var(--text2);font-weight:400;line-height:1.5;max-width:640px;}
+  .seg-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0.85rem;}
   @media (max-width:1100px){.seg-grid{grid-template-columns:repeat(3,1fr);}}
   @media (max-width:700px){.seg-grid{grid-template-columns:repeat(2,1fr);}}
-  .seg-cell{background:var(--bg2);border:1px solid var(--border2);border-radius:5px;padding:0.7rem 0.85rem;display:flex;flex-direction:column;gap:0.3rem;}
-  .seg-cell .metric{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:12.3px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;font-weight:400;line-height:1.3;min-height:24px;}
+  .seg-cell{background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:0.9rem 1.05rem;display:flex;flex-direction:column;gap:0.4rem;}
+  .seg-cell .metric{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.6px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;font-weight:400;line-height:1.3;min-height:26px;}
   .seg-cell .dix{display:flex;justify-content:space-between;align-items:baseline;}
-  .seg-cell .dix .who{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:12.3px;color:var(--sigma);letter-spacing:0.05em;text-transform:uppercase;font-weight:400;}
-  .seg-cell .dix .val{font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:600;color:var(--sigma);font-feature-settings:"tnum";letter-spacing:-0.01em;line-height:1;}
-  .seg-cell .pp{display:flex;justify-content:space-between;align-items:baseline;font-size:0.9rem;color:var(--text2);margin-top:0.15rem;font-family:'JetBrains Mono',monospace;font-weight:400;}
+  .seg-cell .dix .who{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.6px;color:var(--sigma);letter-spacing:0.05em;text-transform:uppercase;font-weight:400;}
+  .seg-cell .dix .val{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:600;color:var(--sigma);font-feature-settings:"tnum";letter-spacing:-0.01em;line-height:1;}
+  .seg-cell .pp{display:flex;justify-content:space-between;align-items:baseline;font-size:1rem;color:var(--text2);margin-top:0.2rem;font-family:'JetBrains Mono',monospace;font-weight:400;}
   .seg-cell .pp .who{color:var(--muted);}
   .seg-cell .pp .val{color:var(--text2);font-weight:400;}
   .seg-cell.lead .val{color:var(--good) !important;}
@@ -1904,7 +1904,7 @@
   <!-- ========================= 13 · SEGMENT VIEW ========================= -->
   <section class="slide" data-title="Segment View">
     <div class="eyebrow reveal">Dixstone vs Peers · Segment View · FY 2025</div>
-    <h1 class="slide-title reveal">Each rig vs<br><em>its direct peer set.</em></h1>
+    <h1 class="slide-title reveal" style="white-space:nowrap;">Each rig vs <em>its direct peer set.</em></h1>
 
     <div class="segment-block premium reveal d1">
       <div class="segment-head">

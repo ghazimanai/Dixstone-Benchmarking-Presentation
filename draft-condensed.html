@@ -247,14 +247,14 @@
   /* Segment blocks */
   .segment-block{
     background:var(--bg-card);border:1px solid var(--border2);border-radius:8px;
-    padding:1.4rem 1.7rem;margin-bottom:1.1rem;position:relative;border-left-width:4px;
+    padding:1.6rem 1.9rem;margin-bottom:1.25rem;position:relative;border-left-width:5px;
   }
   .segment-block.premium{border-left-color:var(--premium);}
   .segment-block.standard{border-left-color:var(--standard);}
   .segment-block.land{border-left-color:var(--land);}
   .segment-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:1rem;margin-bottom:0.8rem;padding-bottom:0.7rem;border-bottom:1px solid var(--border2);}
   .segment-head .lhs{display:flex;align-items:baseline;gap:0.9rem;flex-wrap:wrap;}
-  .segment-head h3{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:600;margin:0;color:var(--text);letter-spacing:-0.01em;}
+  .segment-head h3{font-family:'Space Grotesk',sans-serif;font-size:1.55rem;font-weight:600;margin:0;color:var(--text);letter-spacing:-0.01em;}
   .segment-head .seg-pill{
     font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.12em;text-transform:uppercase;font-weight:400;
     padding:3px 9px;border-radius:3px;background:rgba(232,160,32,0.10);color:var(--sigma);border:1px solid var(--border);
@@ -263,16 +263,16 @@
   .segment-block.land .seg-pill{background:rgba(168,149,214,0.10);color:var(--land);border-color:rgba(168,149,214,0.30);}
   .segment-block.platform{border-left-color:var(--platform);}
   .segment-block.platform .seg-pill{background:rgba(123,197,168,0.10);color:var(--platform);border-color:rgba(123,197,168,0.30);}
-  .segment-head .read{font-size:1.2rem;color:var(--text2);font-weight:400;line-height:1.5;max-width:640px;}
-  .seg-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0.85rem;}
+  .segment-head .read{font-size:1.3rem;color:var(--text2);font-weight:400;line-height:1.5;max-width:720px;}
+  .seg-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;}
   @media (max-width:1100px){.seg-grid{grid-template-columns:repeat(3,1fr);}}
   @media (max-width:700px){.seg-grid{grid-template-columns:repeat(2,1fr);}}
-  .seg-cell{background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:0.9rem 1.05rem;display:flex;flex-direction:column;gap:0.4rem;}
-  .seg-cell .metric{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.6px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;font-weight:400;line-height:1.3;min-height:26px;}
+  .seg-cell{background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:1.05rem 1.2rem;display:flex;flex-direction:column;gap:0.45rem;}
+  .seg-cell .metric{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.5px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;font-weight:400;line-height:1.3;min-height:28px;}
   .seg-cell .dix{display:flex;justify-content:space-between;align-items:baseline;}
-  .seg-cell .dix .who{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.6px;color:var(--sigma);letter-spacing:0.05em;text-transform:uppercase;font-weight:400;}
-  .seg-cell .dix .val{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:600;color:var(--sigma);font-feature-settings:"tnum";letter-spacing:-0.01em;line-height:1;}
-  .seg-cell .pp{display:flex;justify-content:space-between;align-items:baseline;font-size:1rem;color:var(--text2);margin-top:0.2rem;font-family:'JetBrains Mono',monospace;font-weight:400;}
+  .seg-cell .dix .who{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.5px;color:var(--sigma);letter-spacing:0.05em;text-transform:uppercase;font-weight:400;}
+  .seg-cell .dix .val{font-family:'Space Grotesk',sans-serif;font-size:1.85rem;font-weight:600;color:var(--sigma);font-feature-settings:"tnum";letter-spacing:-0.01em;line-height:1;}
+  .seg-cell .pp{display:flex;justify-content:space-between;align-items:baseline;font-size:1.1rem;color:var(--text2);margin-top:0.25rem;font-family:'JetBrains Mono',monospace;font-weight:400;}
   .seg-cell .pp .who{color:var(--muted);}
   .seg-cell .pp .val{color:var(--text2);font-weight:400;}
   .seg-cell.lead .val{color:var(--good) !important;}
@@ -1918,7 +1918,7 @@
           <span class="seg-pill">Premium Jack-Up</span>
           <h3>AXIMA <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Borr · ADNOC · ADES · Valaris-JU · Velesto</span></h3>
         </div>
-        <div class="read">Reliability leads the segment. RDM <strong>only −7.2pp from peer median</strong> — bridgeable via spare-parts discipline + cert/PM uplift.</div>
+        <div class="read">RDM <strong>only −7.2pp from peer median</strong> — bridgeable via spares + cert/PM.</div>
       </div>
       <div class="seg-grid">
         <div class="seg-cell"><div class="metric">Dayrate</div><div class="dix"><span class="who">AXIMA</span><span class="val">$130K</span></div><div class="pp"><span class="who">Peer median</span><span class="val">$130K</span></div><div class="pp"><span class="who">Borr · top</span><span class="val">$150K</span></div></div>
@@ -1935,7 +1935,7 @@
           <span class="seg-pill">Standard Jack-Up</span>
           <h3>BANBA &amp; NUADA <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Shelf · Valaris · ADES</span></h3>
         </div>
-        <div class="read">RDM <strong>only −6.6pp (BANBA) and −1.8pp (NUADA) from peer median</strong> — closing the NPT gap alone covers most of the delta. NUADA effectively at peer median already.</div>
+        <div class="read">RDM <strong>only −6.6 / −1.8pp from peer median</strong> — closing NPT bridges most of the gap.</div>
       </div>
       <div class="seg-grid">
         <div class="seg-cell lead"><div class="metric">Dayrate</div><div class="dix"><span class="who">BANBA · NUADA</span><span class="val">$100K</span></div><div class="pp"><span class="who">Shelf · FY25</span><span class="val">$83K</span></div><div class="pp"><span class="who">Valaris JU · FY25</span><span class="val">$138K</span></div></div>
@@ -1952,7 +1952,7 @@
           <span class="seg-pill">Land Rigs</span>
           <h3>MIDIR &amp; DRAVUS <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Helmerich &amp; Payne · Nabors · Precision</span></h3>
         </div>
-        <div class="read">CAPEX intensity matches peers. Unit economics gap (payroll, expat) is the issue — not under-investment.</div>
+        <div class="read"><strong>Payroll &amp; expat</strong> drive the gap — not CAPEX.</div>
       </div>
       <div class="seg-grid">
         <div class="seg-cell"><div class="metric">Dayrate</div><div class="dix"><span class="who">MIDIR · DRAVUS</span><span class="val">$40K</span></div><div class="pp"><span class="who">HP / Nabors</span><span class="val">$25–35K</span></div><div class="pp"><span class="who">MENA premium</span><span class="val">applies</span></div></div>
@@ -1969,7 +1969,7 @@
           <span class="seg-pill">Platform Rig</span>
           <h3>LUG <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Helmerich &amp; Payne · Nabors · Precision</span></h3>
         </div>
-        <div class="read">NPT above peer benchmark; CAPEX deeply lags peers — combined cost of reliability erosion.</div>
+        <div class="read"><strong>NPT high and CAPEX deeply below peers</strong> — reliability erosion.</div>
       </div>
       <div class="seg-grid">
         <div class="seg-cell"><div class="metric">Dayrate</div><div class="dix"><span class="who">LUG</span><span class="val">$70K</span></div><div class="pp"><span class="who">HP / Nabors</span><span class="val">$25–35K</span></div><div class="pp"><span class="who">Platform premium</span><span class="val">applies</span></div></div>

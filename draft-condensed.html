@@ -416,9 +416,8 @@
   .op-panel .prow.no-prev .pv{grid-column:2;}
   /* two subtle vertical dividers separating 2025 | 2024 | Δ, spanning the dual block + header */
   .op-panel .pl-dual{position:relative;}
-  .op-panel .pl-dual::before{content:'';position:absolute;top:0;bottom:0;right:170px;width:1px;background:rgba(232,160,32,0.5);pointer-events:none;}
-  .op-panel .pl-dual::after{content:'';position:absolute;top:0;bottom:0;right:78px;width:1px;background:rgba(232,160,32,0.5);pointer-events:none;}
-  html[data-theme="light"] .op-panel .pl-dual::before,html[data-theme="light"] .op-panel .pl-dual::after{background:rgba(201,136,21,0.5);}
+  .op-panel .pl-dual::before{content:'';position:absolute;top:0;bottom:0;right:170px;width:1px;background:var(--border2);pointer-events:none;}
+  .op-panel .pl-dual::after{content:'';position:absolute;top:0;bottom:0;right:78px;width:1px;background:var(--border2);pointer-events:none;}
   /* Light theme separator — keep visible against light background */
   /* Material-group breakdown row — 3 stacked panels under existing 2-panel */
   .op-body-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem;}

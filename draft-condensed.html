@@ -391,6 +391,13 @@
   .op-selector select{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;color:var(--sigma);background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:0.4rem 0.9rem;cursor:pointer;}
   .op-selector select:focus{outline:none;border-color:var(--sigma);}
   .op-selector .op-sel-hint{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted2);}
+  .op-tabs{display:flex;flex-wrap:wrap;gap:0.5rem;}
+  .op-tab{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;color:var(--text2);background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:0.45rem 0.9rem;cursor:pointer;display:inline-flex;align-items:baseline;gap:0.5rem;transition:border-color .15s,color .15s,background .15s;}
+  .op-tab .ty{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);}
+  .op-tab:hover{border-color:var(--sigma);color:var(--text);}
+  .op-tab.active{border-color:var(--sigma);color:var(--sigma);background:rgba(232,160,32,0.10);}
+  .op-tab.active .ty{color:var(--sigma);}
+  .op-tab:focus-visible{outline:none;border-color:var(--sigma);}
   .op-panel{background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.1rem 1.3rem;}
   .op-panel .ptitle{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.16em;text-transform:uppercase;color:var(--sigma);font-weight:400;margin-bottom:0.8rem;}
   /* P&L panel: 4-col grid — label | 2025 | 2024 | Δ — with a column header + two dividers */
@@ -1308,9 +1315,15 @@
   <section class="slide onepager" data-title="Rig One-Pager">
     <div class="eyebrow reveal">Rig One-Pagers · FY 2025</div>
     <div class="op-selector reveal">
-      <span class="op-sel-label">Rig One-Pager · FY 2025 — pick a rig</span>
-      <select id="rig-select" onchange="showRig(this.value)" aria-label="Select rig"><option value="AXIMA">AXIMA · Premium Jack-Up</option><option value="BANBA">BANBA · Standard Jack-Up</option><option value="NUADA">NUADA · Standard Jack-Up</option><option value="LUG">LUG · Platform</option><option value="MIDIR">MIDIR · Land Rig</option><option value="DRAVUS">DRAVUS · Land Rig</option></select>
-      <span class="op-sel-hint">6 rigs · one shown at a time</span>
+      <span class="op-sel-label">Pick a rig</span>
+      <div class="op-tabs" role="tablist" aria-label="Select rig">
+        <button type="button" class="op-tab active" data-rig="AXIMA" onclick="showRig('AXIMA')">AXIMA <span class="ty">Premium Jack-Up</span></button>
+        <button type="button" class="op-tab" data-rig="BANBA" onclick="showRig('BANBA')">BANBA <span class="ty">Standard Jack-Up</span></button>
+        <button type="button" class="op-tab" data-rig="NUADA" onclick="showRig('NUADA')">NUADA <span class="ty">Standard Jack-Up</span></button>
+        <button type="button" class="op-tab" data-rig="LUG" onclick="showRig('LUG')">LUG <span class="ty">Platform</span></button>
+        <button type="button" class="op-tab" data-rig="MIDIR" onclick="showRig('MIDIR')">MIDIR <span class="ty">Land Rig</span></button>
+        <button type="button" class="op-tab" data-rig="DRAVUS" onclick="showRig('DRAVUS')">DRAVUS <span class="ty">Land Rig</span></button>
+      </div>
     </div>
     <div class="rigpanels">
       <div class="rigpanel" data-rig="AXIMA">
@@ -2414,6 +2427,9 @@
   function showRig(rig){
     document.querySelectorAll('.rigpanel').forEach(function(el){
       el.style.display = (el.getAttribute('data-rig') === rig) ? 'block' : 'none';
+    });
+    document.querySelectorAll('.op-tab').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-rig') === rig);
     });
   }
 </script>

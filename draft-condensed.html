@@ -495,12 +495,20 @@
   .org-panel.future .gap{color:var(--good);font-style:normal;}
 
   /* NPT driver bar */
-  .npt-driver{display:flex;align-items:center;gap:0.8rem;padding:0.4rem 0;border-bottom:1px solid var(--border2);}
+  .npt-driver{display:flex;align-items:center;gap:0.9rem;padding:0.6rem 0;border-bottom:1px solid var(--border2);}
   .npt-driver:last-child{border-bottom:none;}
-  .npt-driver .dk{font-size:1.18rem;color:var(--text2);min-width:150px;}
-  .npt-driver .dtrack{flex:1;height:9px;background:var(--bg3);border-radius:3px;overflow:hidden;}
+  .npt-driver .dk{font-size:1.22rem;color:var(--text2);min-width:160px;}
+  .npt-driver .dtrack{flex:1;height:12px;background:var(--bg3);border-radius:3px;overflow:hidden;}
   .npt-driver .dfill{height:100%;border-radius:3px;background:var(--bad);}
-  .npt-driver .dpct{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:1.08rem;color:var(--bad);min-width:50px;text-align:right;}
+  .npt-driver .dpct{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:1.14rem;color:var(--bad);min-width:54px;text-align:right;}
+  /* NPT total stat row — three big metric boxes */
+  .npt-total{margin-top:1.1rem;padding-top:0.9rem;border-top:1px solid var(--border2);}
+  .npt-total-label{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:12.5px;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase;margin-bottom:0.75rem;}
+  .npt-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0.65rem;margin-bottom:0.9rem;}
+  .npt-stat{background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:0.75rem 0.9rem;}
+  .npt-stat .v{font-family:'Space Grotesk',sans-serif;font-size:2.1rem;font-weight:600;color:var(--sigma);line-height:1;letter-spacing:-0.02em;}
+  .npt-stat .l{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.5px;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase;margin-top:0.45rem;}
+  .npt-total-note{font-size:1.08rem;color:var(--text2);line-height:1.45;}
 
   @media print{
     @page{size:A4 landscape;margin:0;}
@@ -1362,10 +1370,14 @@
         <div class="npt-driver"><span class="dk">Rig Crew</span><div class="dtrack"><div class="dfill" style="width:15.4%"></div></div><span class="dpct">15.4%</span></div>
         <div class="npt-driver"><span class="dk">Miscel</span><div class="dtrack"><div class="dfill" style="width:6.5%"></div></div><span class="dpct">6.5%</span></div>
         <div class="npt-driver"><span class="dk">Rig Floor</span><div class="dtrack"><div class="dfill" style="width:3.8%"></div></div><span class="dpct">3.8%</span></div>
-        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
-          <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.7px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">201.25 hrs · 8.4 days · 2.7%</div>
-          <div style="font-size:0.984rem;color:var(--text2);margin-top:0.3rem;">Lowest total NPT hours in fleet. BOP (52%) + TDS PM are the primary interventions.</div>
+        <div class="npt-total">
+          <div class="npt-total-label">2025 NPT (Total)</div>
+          <div class="npt-stats">
+            <div class="npt-stat"><div class="v">201.25</div><div class="l">Hours</div></div>
+            <div class="npt-stat"><div class="v">8.4</div><div class="l">Days</div></div>
+            <div class="npt-stat"><div class="v">2.7%</div><div class="l">of Revenue</div></div>
+          </div>
+          <div class="npt-total-note">Lowest total NPT hours in fleet. BOP (52%) + TDS PM are the primary interventions.</div>
         </div>
       </div>
     </div>
@@ -1436,10 +1448,14 @@
         <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:10.6%"></div></div><span class="dpct">10.6%</span></div>
         <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:2.4%"></div></div><span class="dpct">2.4%</span></div>
         <div class="npt-driver"><span class="dk">Pump</span><div class="dtrack"><div class="dfill" style="width:1.3%"></div></div><span class="dpct">1.3%</span></div>
-        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
-          <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.7px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">763 hrs · 31.8 days · 8.7%</div>
-          <div style="font-size:0.984rem;color:var(--text2);margin-top:0.3rem;">Power Generation + BOP shared culprit with NUADA. Root-cause programme recommended.</div>
+        <div class="npt-total">
+          <div class="npt-total-label">2025 NPT (Total)</div>
+          <div class="npt-stats">
+            <div class="npt-stat"><div class="v">763</div><div class="l">Hours</div></div>
+            <div class="npt-stat"><div class="v">31.8</div><div class="l">Days</div></div>
+            <div class="npt-stat"><div class="v">8.7%</div><div class="l">of Revenue</div></div>
+          </div>
+          <div class="npt-total-note">Power Generation + BOP shared culprit with NUADA. Root-cause programme recommended.</div>
         </div>
       </div>
     </div>
@@ -1510,10 +1526,14 @@
         <div class="npt-driver"><span class="dk">Miscel</span><div class="dtrack"><div class="dfill" style="width:17.9%"></div></div><span class="dpct">17.9%</span></div>
         <div class="npt-driver"><span class="dk">TDS</span><div class="dtrack"><div class="dfill" style="width:3.4%"></div></div><span class="dpct">3.4%</span></div>
         <div class="npt-driver"><span class="dk">Pump</span><div class="dtrack"><div class="dfill" style="width:3.4%"></div></div><span class="dpct">3.4%</span></div>
-        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
-          <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.7px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">510.25 hrs · 21.3 days · 5.8%</div>
-          <div style="font-size:0.984rem;color:var(--text2);margin-top:0.3rem;">Power Generation now dominant — joint programme with BANBA targeting shared root causes.</div>
+        <div class="npt-total">
+          <div class="npt-total-label">2025 NPT (Total)</div>
+          <div class="npt-stats">
+            <div class="npt-stat"><div class="v">510.25</div><div class="l">Hours</div></div>
+            <div class="npt-stat"><div class="v">21.3</div><div class="l">Days</div></div>
+            <div class="npt-stat"><div class="v">5.8%</div><div class="l">of Revenue</div></div>
+          </div>
+          <div class="npt-total-note">Power Generation now dominant — joint programme with BANBA targeting shared root causes.</div>
         </div>
       </div>
     </div>
@@ -1584,10 +1604,14 @@
         <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:11.4%"></div></div><span class="dpct">11.4%</span></div>
         <div class="npt-driver"><span class="dk">PowGen</span><div class="dtrack"><div class="dfill" style="width:9.3%"></div></div><span class="dpct">9.3%</span></div>
         <div class="npt-driver"><span class="dk">Drawworks</span><div class="dtrack"><div class="dfill" style="width:7.5%"></div></div><span class="dpct">7.5%</span></div>
-        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
-          <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.7px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">588.25 hrs · 24.5 days · 6.7%</div>
-          <div style="font-size:0.984rem;color:var(--text2);margin-top:0.3rem;">TDS (34%) + Pump (25%) are the two operational levers — top-drive overhaul + pump PM cycle.</div>
+        <div class="npt-total">
+          <div class="npt-total-label">2025 NPT (Total)</div>
+          <div class="npt-stats">
+            <div class="npt-stat"><div class="v">588.25</div><div class="l">Hours</div></div>
+            <div class="npt-stat"><div class="v">24.5</div><div class="l">Days</div></div>
+            <div class="npt-stat"><div class="v">6.7%</div><div class="l">of Revenue</div></div>
+          </div>
+          <div class="npt-total-note">TDS (34%) + Pump (25%) are the two operational levers — top-drive overhaul + pump PM cycle.</div>
         </div>
       </div>
     </div>
@@ -1658,10 +1682,14 @@
         <div class="npt-driver"><span class="dk">Drawworks</span><div class="dtrack"><div class="dfill" style="width:11.6%"></div></div><span class="dpct">11.6%</span></div>
         <div class="npt-driver"><span class="dk">Pump</span><div class="dtrack"><div class="dfill" style="width:9.7%"></div></div><span class="dpct">9.7%</span></div>
         <div class="npt-driver"><span class="dk">Miscel</span><div class="dtrack"><div class="dfill" style="width:9.1%"></div></div><span class="dpct">9.1%</span></div>
-        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
-          <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.7px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">604 hrs · 25.2 days · 6.9%</div>
-          <div style="font-size:0.984rem;color:var(--text2);margin-top:0.3rem;">TDS alone = 49% of NPT. Top-drive overhaul is the single highest-impact intervention.</div>
+        <div class="npt-total">
+          <div class="npt-total-label">2025 NPT (Total)</div>
+          <div class="npt-stats">
+            <div class="npt-stat"><div class="v">604</div><div class="l">Hours</div></div>
+            <div class="npt-stat"><div class="v">25.2</div><div class="l">Days</div></div>
+            <div class="npt-stat"><div class="v">6.9%</div><div class="l">of Revenue</div></div>
+          </div>
+          <div class="npt-total-note">TDS alone = 49% of NPT. Top-drive overhaul is the single highest-impact intervention.</div>
         </div>
       </div>
     </div>
@@ -1732,10 +1760,14 @@
         <div class="npt-driver"><span class="dk">Drawworks</span><div class="dtrack"><div class="dfill" style="width:10.1%"></div></div><span class="dpct">10.1%</span></div>
         <div class="npt-driver"><span class="dk">Rig Floor</span><div class="dtrack"><div class="dfill" style="width:8.5%"></div></div><span class="dpct">8.5%</span></div>
         <div class="npt-driver"><span class="dk">BOP</span><div class="dtrack"><div class="dfill" style="width:7.5%"></div></div><span class="dpct">7.5%</span></div>
-        <div style="margin-top:0.8rem;padding-top:0.7rem;border-top:1px solid var(--border2);">
-          <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.7px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">2025 NPT (Total)</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--sigma);">285 hrs · 11.9 days · 3.3%</div>
-          <div style="font-size:0.984rem;color:var(--text2);margin-top:0.3rem;">TDS (27%) + Drawworks (10%) are operational. Lowest absolute NPT among land rigs.</div>
+        <div class="npt-total">
+          <div class="npt-total-label">2025 NPT (Total)</div>
+          <div class="npt-stats">
+            <div class="npt-stat"><div class="v">285</div><div class="l">Hours</div></div>
+            <div class="npt-stat"><div class="v">11.9</div><div class="l">Days</div></div>
+            <div class="npt-stat"><div class="v">3.3%</div><div class="l">of Revenue</div></div>
+          </div>
+          <div class="npt-total-note">TDS (27%) + Drawworks (10%) are operational. Lowest absolute NPT among land rigs.</div>
         </div>
       </div>
     </div>

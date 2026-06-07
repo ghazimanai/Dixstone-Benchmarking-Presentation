@@ -981,6 +981,7 @@
         <div class="ic-eyebrow">01 · GATHER</div>
         <h3>Your data + rig audits</h3>
         <p class="body">Five years from SAP — financials, procurement, inventory — plus your drilling team's inputs on day rates, NPT, OPEX &amp; CAPEX, and on-site audits of several rigs.</p>
+        <p class="body" style="margin-top:0.5rem;color:var(--bad);"><strong>Note:</strong> data was scattered, incomplete and inconsistent — significant cleanup required before analysis could begin.</p>
       </div>
       <div class="insight-card">
         <div class="ic-eyebrow">02 · MEASURE</div>
@@ -1172,41 +1173,30 @@
   </section>
   <!-- ========================= 8 · CAPEX · INTENSITY, EFFICIENCY & PAYBACK ========================= -->
   <section class="slide" data-title="CAPEX · Intensity, Efficiency &amp; Payback">
-    <div class="eyebrow reveal">CAPEX · Capital Intensity, Efficiency &amp; 5-Year Payback</div>
-    <h1 class="slide-title reveal">Jackups run low CAPEX —<br><em>land-rigs near peer average, but not reflected in performance.</em></h1>
+    <div class="eyebrow reveal">CAPEX · Industry-Peer Benchmarks · FY 2025</div>
+    <h1 class="slide-title reveal">CAPEX targets from <em>industry peers</em> —<br>offshore and onshore medians.</h1>
+
     <div class="mega-kpi reveal d2">
-      <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">21.42%</div><div class="ml">Jackup peer-median CAPEX/Rev</div><div class="md">Dixstone JUs at 3–6% (AXIMA 4.6% · BANBA 3.4% · NUADA 6.0%) — ~¼ of peers · <strong>well below peers</strong></div></div>
-      <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">14.48%</div><div class="ml">Land peer-median CAPEX/Rev</div><div class="md">Dixstone land 8–12% (MIDIR 8.2% · DRAVUS 12.5%) — below peer median too</div></div>
-      <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">5.4%</div><div class="ml">Fleet 5Y CAPEX/Rev</div><div class="md">$30.4M on $563M revenue · vs an 11–26% peer range · structural under-investment across the cycle</div></div>
+      <div class="mk" style="border-left-color:var(--sigma);"><div class="mv" style="color:var(--sigma);">~22%</div><div class="ml">Offshore (Jackup) · peer median CAPEX/Rev</div><div class="md">Median of ADES, ADNOC, Borr, Shelf, Velesto (5Y 2021–25)</div></div>
+      <div class="mk" style="border-left-color:var(--sigma);"><div class="mv" style="color:var(--sigma);">~12%</div><div class="ml">Onshore (Land) · peer median CAPEX/Rev</div><div class="md">Median of H&amp;P, Nabors, Precision (5Y 2021–25)</div></div>
     </div>
 
-    <div class="reveal d3" style="overflow-x:auto;margin-top:1rem;">
-      <table class="bench-table" style="font-size:1.008rem;">
+    <div class="reveal d3" style="overflow-x:auto;margin-top:1.2rem;">
+      <table class="bench-table" style="font-size:1.1rem;">
         <thead>
-          <tr><th>Rig</th><th>2025 CAPEX/Rev</th><th>5Y CAPEX/Rev</th><th>5Y CAPEX $</th><th>5Y Adj RDM %</th><th>Capital posture</th></tr>
+          <tr><th>Segment</th><th>Peer</th><th>5Y CAPEX / Rev</th></tr>
         </thead>
         <tbody>
-          <tr><td><span class="rig-name">AXIMA</span><span class="rig-type" style="color:var(--premium);">Premium JU</span></td>
-            <td>6.1%</td><td class="val-green">4.6%</td><td>$5.6M</td><td class="val-green">42.3%</td>
-            <td class="val-amber">Is the spend covering all Cat IV recerts?</td></tr>
-          <tr><td><span class="rig-name">BANBA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td>
-            <td class="val-red">3.6%</td><td class="val-red">3.4%</td><td>$4.3M</td><td>25.6%</td>
-            <td class="val-amber">Is it covering all regulatory recertifications?</td></tr>
-          <tr><td><span class="rig-name">NUADA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td>
-            <td class="val-red">2.6%</td><td>6.0%</td><td>$7.0M</td><td>28.0%</td>
-            <td class="val-amber">Divesting · sub-3% last 2 yrs</td></tr>
-          <tr><td><span class="rig-name">LUG</span><span class="rig-type" style="color:var(--platform);">Platform</span></td>
-            <td class="val-red">1.7%</td><td class="val-red">3.0%</td><td>$2.8M</td><td>30.9%</td>
-            <td class="val-amber">Divesting · steady decline to 1.7%</td></tr>
-          <tr><td><span class="rig-name">MIDIR</span><span class="rig-type" style="color:var(--land);">Land</span></td>
-            <td class="val-red">11.0%</td><td>8.2%</td><td>$4.9M</td><td class="val-red">−2.0%</td>
-            <td class="val-red">Peer-range CAPEX · negative payback</td></tr>
-          <tr><td><span class="rig-name">DRAVUS</span><span class="rig-type" style="color:var(--land);">Land</span></td>
-            <td class="val-red">22.3%</td><td class="val-red">12.5%</td><td>$5.8M</td><td>23.2%</td>
-            <td class="val-red">Peer-range CAPEX · weak 1.8× payback</td></tr>
-          <tr style="background:rgba(232,160,32,0.08);font-weight:600;border-top:2px solid var(--border3);">
-            <td><strong>Fleet</strong></td><td>6.0%</td><td><strong>5.4%</strong></td><td><strong>$30.4M</strong></td><td class="val-red"><strong>27.5%</strong></td>
-            <td>—</td></tr>
+          <tr><td rowspan="6"><span class="rig-name">Offshore — Jackup</span></td><td>ADES</td><td>26%</td></tr>
+          <tr><td>ADNOC</td><td>26%</td></tr>
+          <tr><td>Borr</td><td>22%</td></tr>
+          <tr><td>Shelf</td><td>20%</td></tr>
+          <tr><td>Velesto</td><td>19%</td></tr>
+          <tr style="background:rgba(232,160,32,0.10);font-weight:600;"><td><strong>Median</strong></td><td class="val-amber"><strong>~22%</strong></td></tr>
+          <tr><td rowspan="4" style="border-top:2px solid var(--border3);"><span class="rig-name">Onshore — Land</span></td><td style="border-top:2px solid var(--border3);">Nabors</td><td style="border-top:2px solid var(--border3);">17%</td></tr>
+          <tr><td>H&amp;P</td><td>12%</td></tr>
+          <tr><td>Precision</td><td>11%</td></tr>
+          <tr style="background:rgba(232,160,32,0.10);font-weight:600;"><td><strong>Median</strong></td><td class="val-amber"><strong>~12%</strong></td></tr>
         </tbody>
       </table>
     </div>
@@ -1297,7 +1287,7 @@
             <td class="val-red">Land rig at jackup-scale inventory</td></tr>
           <tr><td><span class="rig-name">DRAVUS</span><span class="rig-type" style="color:var(--land);">Land</span></td>
             <td class="val-red"><strong>$3.7M</strong></td><td>$0.4–0.6M</td><td class="val-red">~6×</td><td class="val-red">73% · $2.7M</td>
-            <td class="val-red">Cameroon base · now in count</td></tr>
+            <td class="val-red">High inventory — 73% dormant</td></tr>
           <tr><td><span class="rig-name">HARIMA</span><span class="rig-type" style="color:var(--platform);">Platform</span></td>
             <td>$1.1M</td><td>$0.3–0.6M</td><td class="val-amber">~2×</td><td class="val-red">73% · $0.8M</td>
             <td>Smallest holding · mostly dormant</td></tr>
@@ -1836,8 +1826,8 @@
       </div>
       <div class="insight-card">
         <div class="ic-eyebrow">05 · ORGANISATION</div>
-        <h3>Drilling HQ structure — strengthening opportunity.</h3>
-        <p class="body">An opportunity to strengthen Supply Chain, Assets and Maintenance competencies at drilling HQ — building on the existing team to support a 7-rig steady-state fleet.</p>
+        <h3>Drilling HQ team is understaffed.</h3>
+        <p class="body">Additional resources needed in Supply Chain, Assets and Maintenance — either internal capacity or external company assistance on supply-chain support and preventive maintenance.</p>
       </div>
       <div class="insight-card">
         <div class="ic-eyebrow">06 · ROOT CAUSE</div>
@@ -1907,10 +1897,10 @@
     </div>
 </section>
 
-  <!-- ========================= 13 · SEGMENT VIEW ========================= -->
-  <section class="slide" data-title="Segment View">
-    <div class="eyebrow reveal">Dixstone vs Peers · Segment View · FY 2025</div>
-    <h1 class="slide-title reveal" style="white-space:nowrap;">Each rig vs <em>its direct peer set.</em></h1>
+  <!-- ========================= 13a · SEGMENT VIEW · PREMIUM JACKUP ========================= -->
+  <section class="slide" data-title="Segment View · Premium Jackup">
+    <div class="eyebrow reveal">Premium Jackup · AXIMA vs peers · FY 2025</div>
+    <h1 class="slide-title reveal" style="white-space:nowrap;">Premium Jackup — <em>AXIMA vs direct peer set.</em></h1>
 
     <div class="segment-block premium reveal d1">
       <div class="segment-head">
@@ -1925,11 +1915,17 @@
         <div class="seg-cell lead"><div class="metric">NPT</div><div class="dix"><span class="who">AXIMA</span><span class="val">2.7%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">3.0%</span></div><div class="pp"><span class="who">ADES · best</span><span class="val">1.5%</span></div></div>
         <div class="seg-cell close"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">AXIMA</span><span class="val">39.5%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">46.7%</span></div><div class="pp"><span class="who">Gap vs median</span><span class="val">−7.2 pp</span></div></div>
         <div class="seg-cell"><div class="metric">FTE / rig</div><div class="dix"><span class="who">AXIMA</span><span class="val">106</span></div><div class="pp"><span class="who">Premium peer</span><span class="val">100</span></div><div class="pp"><span class="who">Crew delta</span><span class="val">+6</span></div></div>
-        <div class="seg-cell"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">AXIMA · 2025</span><span class="val">6.1%</span></div><div class="pp"><span class="who">5Y avg (2021–25)</span><span class="val">4.6%</span></div><div class="pp"><span class="who">Δ vs 5Y</span><span class="val">+1.5 pp</span></div></div>
+        <div class="seg-cell"><div class="metric">CAPEX / Rev · peer target</div><div class="dix"><span class="who">Offshore peers</span><span class="val">~22%</span></div><div class="pp"><span class="who">5Y median</span><span class="val">ADES · ADNOC · Borr · Shelf · Velesto</span></div></div>
       </div>
     </div>
+  </section>
 
-    <div class="segment-block standard reveal d2">
+  <!-- ========================= 13b · SEGMENT VIEW · STANDARD JACKUP ========================= -->
+  <section class="slide" data-title="Segment View · Standard Jackup">
+    <div class="eyebrow reveal">Standard Jackup · BANBA &amp; NUADA vs peers · FY 2025</div>
+    <h1 class="slide-title reveal" style="white-space:nowrap;">Standard Jackup — <em>BANBA &amp; NUADA vs direct peer set.</em></h1>
+
+    <div class="segment-block standard reveal d1">
       <div class="segment-head">
         <div class="lhs">
           <span class="seg-pill">Standard Jack-Up</span>
@@ -1942,11 +1938,17 @@
         <div class="seg-cell lag"><div class="metric">NPT</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">8.7% / 5.8%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">3.0%</span></div><div class="pp"><span class="who">Shelf · best</span><span class="val">0.6%</span></div></div>
         <div class="seg-cell close"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">36.3% / 41.1%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">42.9%</span></div><div class="pp"><span class="who">Gap vs median</span><span class="val">−6.6 / −1.8 pp</span></div></div>
         <div class="seg-cell lag"><div class="metric">FTE / rig</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">104 / 96</span></div><div class="pp"><span class="who">Standard peer</span><span class="val">95</span></div><div class="pp"><span class="who">Crew delta</span><span class="val">+9 / +1</span></div></div>
-        <div class="seg-cell"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">BANBA / NUADA · 2025</span><span class="val">3.6% / 2.6%</span></div><div class="pp"><span class="who">5Y avg (2021–25)</span><span class="val">3.4% / 6.0%</span></div><div class="pp"><span class="who">Δ vs 5Y</span><span class="val">+0.2 / −3.4 pp</span></div></div>
+        <div class="seg-cell"><div class="metric">CAPEX / Rev · peer target</div><div class="dix"><span class="who">Offshore peers</span><span class="val">~22%</span></div><div class="pp"><span class="who">5Y median</span><span class="val">ADES · ADNOC · Borr · Shelf · Velesto</span></div></div>
       </div>
     </div>
+  </section>
 
-    <div class="segment-block land reveal d3">
+  <!-- ========================= 13c · SEGMENT VIEW · LAND RIGS ========================= -->
+  <section class="slide" data-title="Segment View · Land Rigs">
+    <div class="eyebrow reveal">Land Rigs · MIDIR &amp; DRAVUS vs peers · FY 2025</div>
+    <h1 class="slide-title reveal" style="white-space:nowrap;">Land Rigs — <em>MIDIR &amp; DRAVUS vs direct peer set.</em></h1>
+
+    <div class="segment-block land reveal d1">
       <div class="segment-head">
         <div class="lhs">
           <span class="seg-pill">Land Rigs</span>
@@ -1959,11 +1961,17 @@
         <div class="seg-cell lag"><div class="metric">NPT</div><div class="dix"><span class="who">MIDIR / DRAVUS</span><span class="val">6.9% / 3.3%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">~3.5%</span></div><div class="pp"><span class="who">HP · best</span><span class="val">~2.0%</span></div></div>
         <div class="seg-cell lag"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">MIDIR / DRAVUS</span><span class="val">−10.7% / 23.5%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">32.8%</span></div><div class="pp"><span class="who">Nabors · top</span><span class="val">39.9%</span></div></div>
         <div class="seg-cell lag"><div class="metric">FTE / rig</div><div class="dix"><span class="who">MIDIR / DRAVUS</span><span class="val">72 / 66</span></div><div class="pp"><span class="who">Land peer norm</span><span class="val">~60</span></div><div class="pp"><span class="who">US-land · best</span><span class="val">~50</span></div></div>
-        <div class="seg-cell"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">MIDIR / DRAVUS · 2025</span><span class="val">11.0% / 22.3%</span></div><div class="pp"><span class="who">5Y avg (2021–25)</span><span class="val">8.2% / 12.5%</span></div><div class="pp"><span class="who">Δ vs 5Y</span><span class="val">+2.8 / +9.8 pp</span></div></div>
+        <div class="seg-cell"><div class="metric">CAPEX / Rev · peer target</div><div class="dix"><span class="who">Onshore peers</span><span class="val">~12%</span></div><div class="pp"><span class="who">5Y median</span><span class="val">H&amp;P · Nabors · Precision</span></div></div>
       </div>
     </div>
+  </section>
 
-    <div class="segment-block platform reveal d4">
+  <!-- ========================= 13d · SEGMENT VIEW · PLATFORM RIG ========================= -->
+  <section class="slide" data-title="Segment View · Platform">
+    <div class="eyebrow reveal">Platform Rig · LUG vs peers · FY 2025</div>
+    <h1 class="slide-title reveal" style="white-space:nowrap;">Platform Rig — <em>LUG vs direct peer set.</em></h1>
+
+    <div class="segment-block platform reveal d1">
       <div class="segment-head">
         <div class="lhs">
           <span class="seg-pill">Platform Rig</span>
@@ -1975,8 +1983,8 @@
         <div class="seg-cell"><div class="metric">Dayrate</div><div class="dix"><span class="who">LUG</span><span class="val">$70K</span></div><div class="pp"><span class="who">HP / Nabors</span><span class="val">$25–35K</span></div><div class="pp"><span class="who">Platform premium</span><span class="val">applies</span></div></div>
         <div class="seg-cell lag"><div class="metric">NPT</div><div class="dix"><span class="who">LUG</span><span class="val">6.7%</span></div><div class="pp"><span class="who">HP · best</span><span class="val">~2.0%</span></div><div class="pp"><span class="who">Nabors</span><span class="val">~3.0%</span></div></div>
         <div class="seg-cell lead"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">LUG</span><span class="val">37.1%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">32.8%</span></div><div class="pp"><span class="who">Nabors · top</span><span class="val">39.9%</span></div></div>
-        <div class="seg-cell"><div class="metric">FTE / rig</div><div class="dix"><span class="who">LUG</span><span class="val">~55</span></div><div class="pp"><span class="who">Land norm</span><span class="val">50–60</span></div><div class="pp"><span class="who">Delta</span><span class="val">modest</span></div></div>
-        <div class="seg-cell"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">LUG · 2025</span><span class="val">1.7%</span></div><div class="pp"><span class="who">5Y avg (2021–25)</span><span class="val">3.0%</span></div><div class="pp"><span class="who">Δ vs 5Y</span><span class="val">−1.3 pp</span></div></div>
+        <div class="seg-cell"><div class="metric">FTE / rig</div><div class="dix"><span class="who">LUG</span><span class="val">~55</span></div><div class="pp"><span class="who">Land peer norm</span><span class="val">~60</span></div><div class="pp"><span class="who">Delta</span><span class="val">at peer</span></div></div>
+        <div class="seg-cell"><div class="metric">CAPEX / Rev · peer target</div><div class="dix"><span class="who">Onshore peers</span><span class="val">~12%</span></div><div class="pp"><span class="who">5Y median</span><span class="val">H&amp;P · Nabors · Precision</span></div></div>
       </div>
     </div>
   </section>
@@ -2156,8 +2164,8 @@
       <div class="insight-card">
         <div class="ic-eyebrow">03 · MAJOR</div>
         <h3>Systems &amp; Organisation</h3>
-        <p class="body">Build the structure and visibility to run a 7-rig fleet. <strong>Strengthen Supply Chain, Maintenance and Assets competency through clear procedures</strong> — not necessarily new hires — give managers a <strong>weekly dashboard to review rig performance</strong>, and run a <strong>strategic review of the land rigs' internal management</strong>.</p>
-        <div class="stat-strip"><span><strong>Procedures</strong>SC · Maintenance · Assets</span><span><strong>Weekly dashboard</strong>rig-performance review</span><span><strong>Land rigs</strong>internal-management review</span></div>
+        <p class="body">HQ drilling team is understaffed for a 7-rig fleet. Bring in <strong>additional resources in Supply Chain, Maintenance and Assets</strong> — internal hires and/or <strong>external company assistance on supply chain and preventive maintenance</strong> — plus a <strong>weekly dashboard for rig-performance review</strong> and a strategic review of the land rigs' management.</p>
+        <div class="stat-strip"><span><strong>HQ resources</strong>SC · Maintenance · Assets</span><span><strong>External support</strong>SC + preventive maintenance</span><span><strong>Weekly dashboard</strong>rig-performance review</span></div>
       </div>
     </div>
 </section>

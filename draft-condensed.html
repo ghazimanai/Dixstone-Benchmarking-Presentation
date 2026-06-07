@@ -1012,6 +1012,46 @@
     <div class="eyebrow reveal" style="justify-content:center;">Phase 1 of 3</div>
     <h1 class="reveal d1">Internal <em>Diagnostics</em></h1>  </section>
 
+  <!-- ========================= 4b · DATA FOUNDATION · GATHERING CHALLENGES ========================= -->
+  <section class="slide" data-title="Data Foundation · Challenges">
+    <div class="eyebrow reveal">Data Foundation · Challenges Encountered During Diagnostics</div>
+    <h1 class="slide-title reveal">Data is <em>scattered across systems</em> —<br>limited visibility for rig and operations managers.</h1>
+    <p class="lede reveal d1">Pulling a coherent fleet picture took significant effort. The same gaps that slowed the analysis are what prevent managers from having day-to-day visibility on rig performance, procurement and inventory.</p>
+
+    <div class="grid-3 reveal d2" style="gap:1.1rem;margin-top:1.2rem;">
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow" style="color:var(--bad);">01 · SCATTERED SYSTEMS</div>
+        <h3>Multiple disconnected platforms.</h3>
+        <p class="body">SAP, MM10 and ad-hoc Excel trackers running in parallel — no single source of truth across procurement, inventory and operations.</p>
+      </div>
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow" style="color:var(--bad);">02 · TWO SAP ENVIRONMENTS</div>
+        <h3>Parallel SAP environments.</h3>
+        <p class="body">Two SAP instances in use simultaneously — adds reconciliation overhead and breaks continuity across the data set.</p>
+      </div>
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow" style="color:var(--bad);">03 · INCOMPLETE EXTRACTS</div>
+        <h3>SAP extracts missing critical fields.</h3>
+        <p class="body">Several extracts pulled were incomplete — missing material codes, rig allocation, dates or amounts. Each required manual completion and cross-check.</p>
+      </div>
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow" style="color:var(--bad);">04 · NO MOVEMENT HISTORY</div>
+        <h3>No historical values on movements.</h3>
+        <p class="body">Inventory movements lack historical valuation — issue-outs, transfers and re-pricing cannot be reconstructed reliably across years.</p>
+      </div>
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow" style="color:var(--bad);">05 · NO MGMT DASHBOARDS</div>
+        <h3>No dashboards for rig &amp; operations managers.</h3>
+        <p class="body">Rig and operations managers have no consolidated view of GR, PO, issue-out, OPEX, NPT or overdue PMs — visibility built per-request, not on-demand.</p>
+      </div>
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow" style="color:var(--bad);">06 · MANUAL PO TRACKING</div>
+        <h3>Rig managers track POs manually.</h3>
+        <p class="body">Rig Managers copy-paste POs into local Excel trackers to follow their own commitments — there is no automated PO status feed from SAP.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ========================= 5 · PER-RIG P&L ========================= -->
   <section class="slide" data-title="2025 Per-Rig P&amp;L">
     <div class="eyebrow reveal">Per-Rig Profit &amp; Loss · FY 2025 · USD '000s</div>

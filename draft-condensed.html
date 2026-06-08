@@ -1128,62 +1128,126 @@
 
     <div class="op-panel reveal d2" style="margin-top:1.5rem;">
       <div class="ptitle">Crew vs peer benchmark &middot; per rig &middot; FY 2025</div>
-      <p style="font-size:0.9rem;color:var(--muted);margin-top:0.2rem;margin-bottom:0.9rem;">Grey segment = crew within peer benchmark &middot; coloured segment = crew above peer &middot; vertical line marks the peer position (Premium JU 100, Standard JU 95, Platform &amp; Land 60).</p>
-      <div style="margin-top:0.5rem;">
-        <div style="display:grid;grid-template-columns:160px 1fr 80px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
-          <span><span class="rig-name">MIDIR</span><div style="font-size:0.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">72 vs peer 60</div></span>
-          <div style="position:relative;height:18px;background:var(--bg3);border-radius:3px;">
-            <div style="position:absolute;left:0;width:60%;height:100%;background:rgba(15,20,29,0.18);border-radius:3px 0 0 3px;"></div>
-            <div style="position:absolute;left:60%;top:-4px;bottom:-4px;width:2px;background:var(--text);opacity:0.55;"></div>
-            <div style="position:absolute;left:60%;width:30%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:0 3px 3px 0;"></div>
-          </div>
-          <span class="val-red" style="font-weight:600;font-size:1.15rem;text-align:right;">20%</span>
+      <p style="font-size:0.9rem;color:var(--muted);margin-top:0.2rem;margin-bottom:0.9rem;">Two bars per rig: <strong style="color:var(--text2);">peer benchmark</strong> (lighter) and <strong style="color:var(--text2);">actual crew</strong> (longer). Same FTE scale across all rigs; the visible gap between the two bars is the overmanning.</p>
+
+      <!-- FTE axis -->
+      <div style="display:grid;grid-template-columns:130px 1fr 70px;gap:1rem;font-size:0.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;font-family:'JetBrains Mono',monospace;padding-bottom:0.35rem;border-bottom:1px solid var(--border2);">
+        <span></span>
+        <div style="position:relative;">
+          <span style="position:absolute;left:0;">0</span>
+          <span style="position:absolute;left:45.5%;transform:translateX(-50%);">50 FTE</span>
+          <span style="position:absolute;left:91%;transform:translateX(-50%);">100</span>
+          <span style="position:absolute;right:0;">110</span>
         </div>
-        <div style="display:grid;grid-template-columns:160px 1fr 80px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
-          <span><span class="rig-name">LUG</span><div style="font-size:0.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">66 vs peer 60</div></span>
-          <div style="position:relative;height:18px;background:var(--bg3);border-radius:3px;">
-            <div style="position:absolute;left:0;width:60%;height:100%;background:rgba(15,20,29,0.18);border-radius:3px 0 0 3px;"></div>
-            <div style="position:absolute;left:60%;top:-4px;bottom:-4px;width:2px;background:var(--text);opacity:0.55;"></div>
-            <div style="position:absolute;left:60%;width:15%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:0 3px 3px 0;"></div>
+        <span style="text-align:right;">% over</span>
+      </div>
+
+      <!-- MIDIR -->
+      <div style="display:grid;grid-template-columns:130px 1fr 70px;gap:1rem;align-items:center;padding:0.7rem 0;border-bottom:1px solid var(--border2);">
+        <span><span class="rig-name">MIDIR</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Land</div></span>
+        <div>
+          <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);">
+            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;">Peer</span>
+            <div style="position:relative;height:11px;background:var(--bg3);border-radius:2px;"><div style="position:absolute;left:0;width:54.5%;height:100%;background:rgba(15,20,29,0.30);border-radius:2px;"></div></div>
+            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text2);">60</span>
           </div>
-          <span class="val-red" style="font-weight:600;font-size:1.15rem;text-align:right;">10%</span>
-        </div>
-        <div style="display:grid;grid-template-columns:160px 1fr 80px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
-          <span><span class="rig-name">DRAVUS</span><div style="font-size:0.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">66 vs peer 60</div></span>
-          <div style="position:relative;height:18px;background:var(--bg3);border-radius:3px;">
-            <div style="position:absolute;left:0;width:60%;height:100%;background:rgba(15,20,29,0.18);border-radius:3px 0 0 3px;"></div>
-            <div style="position:absolute;left:60%;top:-4px;bottom:-4px;width:2px;background:var(--text);opacity:0.55;"></div>
-            <div style="position:absolute;left:60%;width:15%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:0 3px 3px 0;"></div>
+          <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);margin-top:5px;">
+            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2);">Crew</span>
+            <div style="position:relative;height:13px;background:var(--bg3);border-radius:2px;"><div style="position:absolute;left:0;width:65.5%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:2px;"></div></div>
+            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:600;">72</span>
           </div>
-          <span class="val-red" style="font-weight:600;font-size:1.15rem;text-align:right;">10%</span>
         </div>
-        <div style="display:grid;grid-template-columns:160px 1fr 80px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
-          <span><span class="rig-name">BANBA</span><div style="font-size:0.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">104 vs peer 95</div></span>
-          <div style="position:relative;height:18px;background:var(--bg3);border-radius:3px;">
-            <div style="position:absolute;left:0;width:60%;height:100%;background:rgba(15,20,29,0.18);border-radius:3px 0 0 3px;"></div>
-            <div style="position:absolute;left:60%;top:-4px;bottom:-4px;width:2px;background:var(--text);opacity:0.55;"></div>
-            <div style="position:absolute;left:60%;width:13.5%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
+        <span class="val-red" style="font-weight:600;font-size:1.15rem;text-align:right;">20%</span>
+      </div>
+
+      <!-- LUG -->
+      <div style="display:grid;grid-template-columns:130px 1fr 70px;gap:1rem;align-items:center;padding:0.7rem 0;border-bottom:1px solid var(--border2);">
+        <span><span class="rig-name">LUG</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Platform</div></span>
+        <div>
+          <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);">
+            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;">Peer</span>
+            <div style="position:relative;height:11px;background:var(--bg3);border-radius:2px;"><div style="position:absolute;left:0;width:54.5%;height:100%;background:rgba(15,20,29,0.30);border-radius:2px;"></div></div>
+            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text2);">60</span>
           </div>
-          <span class="val-amber" style="font-weight:600;font-size:1.15rem;text-align:right;">9%</span>
-        </div>
-        <div style="display:grid;grid-template-columns:160px 1fr 80px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
-          <span><span class="rig-name">AXIMA</span><div style="font-size:0.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">106 vs peer 100</div></span>
-          <div style="position:relative;height:18px;background:var(--bg3);border-radius:3px;">
-            <div style="position:absolute;left:0;width:60%;height:100%;background:rgba(15,20,29,0.18);border-radius:3px 0 0 3px;"></div>
-            <div style="position:absolute;left:60%;top:-4px;bottom:-4px;width:2px;background:var(--text);opacity:0.55;"></div>
-            <div style="position:absolute;left:60%;width:9%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
+          <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);margin-top:5px;">
+            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2);">Crew</span>
+            <div style="position:relative;height:13px;background:var(--bg3);border-radius:2px;"><div style="position:absolute;left:0;width:60%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:2px;"></div></div>
+            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:600;">66</span>
           </div>
-          <span class="val-amber" style="font-weight:600;font-size:1.15rem;text-align:right;">6%</span>
         </div>
-        <div style="display:grid;grid-template-columns:160px 1fr 80px;gap:1rem;align-items:center;padding:0.55rem 0;">
-          <span><span class="rig-name">NUADA</span><div style="font-size:0.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">96 vs peer 95</div></span>
-          <div style="position:relative;height:18px;background:var(--bg3);border-radius:3px;">
-            <div style="position:absolute;left:0;width:60%;height:100%;background:rgba(15,20,29,0.18);border-radius:3px 0 0 3px;"></div>
-            <div style="position:absolute;left:60%;top:-4px;bottom:-4px;width:2px;background:var(--text);opacity:0.55;"></div>
-            <div style="position:absolute;left:60%;width:1.5%;height:100%;background:linear-gradient(90deg,#1f7a4c,#155e3a);border-radius:0 3px 3px 0;"></div>
+        <span class="val-red" style="font-weight:600;font-size:1.15rem;text-align:right;">10%</span>
+      </div>
+
+      <!-- DRAVUS -->
+      <div style="display:grid;grid-template-columns:130px 1fr 70px;gap:1rem;align-items:center;padding:0.7rem 0;border-bottom:1px solid var(--border2);">
+        <span><span class="rig-name">DRAVUS</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Land</div></span>
+        <div>
+          <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);">
+            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;">Peer</span>
+            <div style="position:relative;height:11px;background:var(--bg3);border-radius:2px;"><div style="position:absolute;left:0;width:54.5%;height:100%;background:rgba(15,20,29,0.30);border-radius:2px;"></div></div>
+            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text2);">60</span>
           </div>
-          <span class="val-green" style="font-weight:600;font-size:1.15rem;text-align:right;">1%</span>
+          <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);margin-top:5px;">
+            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2);">Crew</span>
+            <div style="position:relative;height:13px;background:var(--bg3);border-radius:2px;"><div style="position:absolute;left:0;width:60%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:2px;"></div></div>
+            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:600;">66</span>
+          </div>
         </div>
+        <span class="val-red" style="font-weight:600;font-size:1.15rem;text-align:right;">10%</span>
+      </div>
+
+      <!-- BANBA -->
+      <div style="display:grid;grid-template-columns:130px 1fr 70px;gap:1rem;align-items:center;padding:0.7rem 0;border-bottom:1px solid var(--border2);">
+        <span><span class="rig-name">BANBA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Standard JU</div></span>
+        <div>
+          <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);">
+            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;">Peer</span>
+            <div style="position:relative;height:11px;background:var(--bg3);border-radius:2px;"><div style="position:absolute;left:0;width:86.4%;height:100%;background:rgba(15,20,29,0.30);border-radius:2px;"></div></div>
+            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text2);">95</span>
+          </div>
+          <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);margin-top:5px;">
+            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2);">Crew</span>
+            <div style="position:relative;height:13px;background:var(--bg3);border-radius:2px;"><div style="position:absolute;left:0;width:94.5%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:2px;"></div></div>
+            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:600;">104</span>
+          </div>
+        </div>
+        <span class="val-amber" style="font-weight:600;font-size:1.15rem;text-align:right;">9%</span>
+      </div>
+
+      <!-- AXIMA -->
+      <div style="display:grid;grid-template-columns:130px 1fr 70px;gap:1rem;align-items:center;padding:0.7rem 0;border-bottom:1px solid var(--border2);">
+        <span><span class="rig-name">AXIMA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Premium JU</div></span>
+        <div>
+          <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);">
+            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;">Peer</span>
+            <div style="position:relative;height:11px;background:var(--bg3);border-radius:2px;"><div style="position:absolute;left:0;width:90.9%;height:100%;background:rgba(15,20,29,0.30);border-radius:2px;"></div></div>
+            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text2);">100</span>
+          </div>
+          <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);margin-top:5px;">
+            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2);">Crew</span>
+            <div style="position:relative;height:13px;background:var(--bg3);border-radius:2px;"><div style="position:absolute;left:0;width:96.4%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:2px;"></div></div>
+            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:600;">106</span>
+          </div>
+        </div>
+        <span class="val-amber" style="font-weight:600;font-size:1.15rem;text-align:right;">6%</span>
+      </div>
+
+      <!-- NUADA -->
+      <div style="display:grid;grid-template-columns:130px 1fr 70px;gap:1rem;align-items:center;padding:0.7rem 0;">
+        <span><span class="rig-name">NUADA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Standard JU</div></span>
+        <div>
+          <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);">
+            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;">Peer</span>
+            <div style="position:relative;height:11px;background:var(--bg3);border-radius:2px;"><div style="position:absolute;left:0;width:86.4%;height:100%;background:rgba(15,20,29,0.30);border-radius:2px;"></div></div>
+            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text2);">95</span>
+          </div>
+          <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);margin-top:5px;">
+            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2);">Crew</span>
+            <div style="position:relative;height:13px;background:var(--bg3);border-radius:2px;"><div style="position:absolute;left:0;width:87.3%;height:100%;background:linear-gradient(90deg,#1f7a4c,#155e3a);border-radius:2px;"></div></div>
+            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:600;">96</span>
+          </div>
+        </div>
+        <span class="val-green" style="font-weight:600;font-size:1.15rem;text-align:right;">1%</span>
       </div>
     </div>
 

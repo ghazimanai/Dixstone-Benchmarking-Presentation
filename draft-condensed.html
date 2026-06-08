@@ -247,14 +247,14 @@
   /* Segment blocks */
   .segment-block{
     background:var(--bg-card);border:1px solid var(--border2);border-radius:8px;
-    padding:1.2rem 1.5rem;margin-bottom:0.9rem;position:relative;border-left-width:3px;
+    padding:1.85rem 2.15rem;margin-bottom:1.4rem;position:relative;border-left-width:6px;
   }
   .segment-block.premium{border-left-color:var(--premium);}
   .segment-block.standard{border-left-color:var(--standard);}
   .segment-block.land{border-left-color:var(--land);}
   .segment-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:1rem;margin-bottom:0.8rem;padding-bottom:0.7rem;border-bottom:1px solid var(--border2);}
   .segment-head .lhs{display:flex;align-items:baseline;gap:0.9rem;flex-wrap:wrap;}
-  .segment-head h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;margin:0;color:var(--text);letter-spacing:-0.01em;}
+  .segment-head h3{font-family:'Space Grotesk',sans-serif;font-size:1.75rem;font-weight:600;margin:0;color:var(--text);letter-spacing:-0.01em;}
   .segment-head .seg-pill{
     font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.12em;text-transform:uppercase;font-weight:400;
     padding:3px 9px;border-radius:3px;background:rgba(232,160,32,0.10);color:var(--sigma);border:1px solid var(--border);
@@ -263,16 +263,16 @@
   .segment-block.land .seg-pill{background:rgba(168,149,214,0.10);color:var(--land);border-color:rgba(168,149,214,0.30);}
   .segment-block.platform{border-left-color:var(--platform);}
   .segment-block.platform .seg-pill{background:rgba(123,197,168,0.10);color:var(--platform);border-color:rgba(123,197,168,0.30);}
-  .segment-head .read{font-size:1.056rem;color:var(--text2);font-weight:400;line-height:1.5;max-width:580px;}
-  .seg-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0.7rem;}
+  .segment-head .read{font-size:1.45rem;color:var(--text2);font-weight:400;line-height:1.5;max-width:780px;}
+  .seg-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.1rem;}
   @media (max-width:1100px){.seg-grid{grid-template-columns:repeat(3,1fr);}}
   @media (max-width:700px){.seg-grid{grid-template-columns:repeat(2,1fr);}}
-  .seg-cell{background:var(--bg2);border:1px solid var(--border2);border-radius:5px;padding:0.7rem 0.85rem;display:flex;flex-direction:column;gap:0.3rem;}
-  .seg-cell .metric{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:12.3px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;font-weight:400;line-height:1.3;min-height:24px;}
+  .seg-cell{background:var(--bg2);border:1px solid var(--border2);border-radius:7px;padding:1.2rem 1.4rem;display:flex;flex-direction:column;gap:0.55rem;}
+  .seg-cell .metric{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:16px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;font-weight:400;line-height:1.3;min-height:30px;}
   .seg-cell .dix{display:flex;justify-content:space-between;align-items:baseline;}
-  .seg-cell .dix .who{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:12.3px;color:var(--sigma);letter-spacing:0.05em;text-transform:uppercase;font-weight:400;}
-  .seg-cell .dix .val{font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:600;color:var(--sigma);font-feature-settings:"tnum";letter-spacing:-0.01em;line-height:1;}
-  .seg-cell .pp{display:flex;justify-content:space-between;align-items:baseline;font-size:0.9rem;color:var(--text2);margin-top:0.15rem;font-family:'JetBrains Mono',monospace;font-weight:400;}
+  .seg-cell .dix .who{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:16px;color:var(--sigma);letter-spacing:0.05em;text-transform:uppercase;font-weight:400;}
+  .seg-cell .dix .val{font-family:'Space Grotesk',sans-serif;font-size:2.15rem;font-weight:600;color:var(--sigma);font-feature-settings:"tnum";letter-spacing:-0.01em;line-height:1;}
+  .seg-cell .pp{display:flex;justify-content:space-between;align-items:baseline;font-size:1.2rem;color:var(--text2);margin-top:0.3rem;font-family:'JetBrains Mono',monospace;font-weight:400;}
   .seg-cell .pp .who{color:var(--muted);}
   .seg-cell .pp .val{color:var(--text2);font-weight:400;}
   .seg-cell.lead .val{color:var(--good) !important;}
@@ -979,8 +979,9 @@
     <div class="grid-3 reveal d2" style="gap:1.2rem;margin-top:1.1rem;">
       <div class="insight-card">
         <div class="ic-eyebrow">01 · GATHER</div>
-        <h3>Your data</h3>
-        <p class="body">Five years from SAP — financials, procurement, inventory — plus your drilling team's inputs on day rates, NPT, OPEX &amp; CAPEX etc.</p>
+        <h3>Your data + rig audits</h3>
+        <p class="body">Five years from SAP — financials, procurement, inventory — plus your drilling team's inputs on day rates, NPT, OPEX &amp; CAPEX, and on-site audits of several rigs.</p>
+        <p class="body" style="margin-top:0.5rem;color:var(--bad);"><strong>Note:</strong> data was scattered, incomplete and inconsistent — significant cleanup required before analysis could begin.</p>
       </div>
       <div class="insight-card">
         <div class="ic-eyebrow">02 · MEASURE</div>
@@ -1013,6 +1014,46 @@
     <div class="eyebrow reveal" style="justify-content:center;">Phase 1 of 3</div>
     <h1 class="reveal d1">Internal <em>Diagnostics</em></h1>  </section>
 
+  <!-- ========================= 4b · DATA FOUNDATION · GATHERING CHALLENGES ========================= -->
+  <section class="slide" data-title="Data Foundation · Challenges">
+    <div class="eyebrow reveal">Data Foundation · Challenges Encountered During Diagnostics</div>
+    <h1 class="slide-title reveal">Data is <em>scattered across systems</em> —<br>limited visibility for rig and operations managers.</h1>
+    <p class="lede reveal d1">Pulling a coherent fleet picture took significant effort. The same gaps that slowed the analysis are what prevent managers from having day-to-day visibility on rig performance, procurement and inventory.</p>
+
+    <div class="grid-3 reveal d2" style="gap:1.1rem;margin-top:1.2rem;">
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow" style="color:var(--bad);">01 · SCATTERED SYSTEMS</div>
+        <h3>Multiple disconnected platforms.</h3>
+        <p class="body">SAP, MM10 and ad-hoc Excel trackers running in parallel — no single source of truth across procurement, inventory and operations.</p>
+      </div>
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow" style="color:var(--bad);">02 · TWO SAP ENVIRONMENTS</div>
+        <h3>Parallel SAP environments.</h3>
+        <p class="body">Two SAP instances in use simultaneously — adds reconciliation overhead and breaks continuity across the data set.</p>
+      </div>
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow" style="color:var(--bad);">03 · INCOMPLETE EXTRACTS</div>
+        <h3>SAP extracts missing critical fields.</h3>
+        <p class="body">Several extracts pulled were incomplete — missing material codes, rig allocation, dates or amounts. Each required manual completion and cross-check.</p>
+      </div>
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow" style="color:var(--bad);">04 · NO MOVEMENT HISTORY</div>
+        <h3>No historical values on movements.</h3>
+        <p class="body">Inventory movements lack historical valuation — issue-outs, transfers and re-pricing cannot be reconstructed reliably across years.</p>
+      </div>
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow" style="color:var(--bad);">05 · NO MGMT DASHBOARDS</div>
+        <h3>No dashboards for rig &amp; operations managers.</h3>
+        <p class="body">Rig and operations managers have no consolidated view of GR, PO, issue-out, OPEX, NPT or overdue PMs — visibility built per-request, not on-demand.</p>
+      </div>
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow" style="color:var(--bad);">06 · MANUAL PO TRACKING</div>
+        <h3>Rig managers track POs manually.</h3>
+        <p class="body">Rig Managers copy-paste POs into local Excel trackers to follow their own commitments — there is no automated PO status feed from SAP.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ========================= 5 · PER-RIG P&L ========================= -->
   <section class="slide" data-title="2025 Per-Rig P&amp;L">
     <div class="eyebrow reveal">Per-Rig Profit &amp; Loss · FY 2025 · USD '000s</div>
@@ -1029,20 +1070,14 @@
           <tr><th>P&amp;L Line</th><th>AXIMA</th><th>BANBA</th><th>NUADA</th><th>LUG</th><th>MIDIR</th><th>DRAVUS</th><th>Fleet</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>Theoretical Revenue</strong></td><td>$39.2M</td><td>$33.3M</td><td>$34.4M</td><td>$23.8M</td><td>$13.6M</td><td>$14.1M</td><td><strong>$158.5M</strong></td></tr>
+          <tr><td>Theoretical Day Rate</td><td>$130K</td><td>$100K</td><td>$100K</td><td>$70K</td><td>$40K</td><td>$40K</td><td>—</td></tr>
+          <tr><td>Operating Days</td><td>310</td><td>365</td><td>365</td><td>365</td><td>365</td><td>365</td><td>2,135</td></tr>
+          <tr><td>NPT Days</td><td>8.4 · 2.7%</td><td class="val-red">31.8 · 8.7%</td><td>21.3 · 5.8%</td><td>24.5 · 6.7%</td><td class="val-red">25.2 · 6.9%</td><td>11.9 · 3.3%</td><td>123.1 · 5.8%</td></tr>
+          <tr><td>Billable Operating Days</td><td>301.6</td><td>333.2</td><td>343.7</td><td>340.5</td><td>339.8</td><td>353.1</td><td>2,012</td></tr>
+          <tr style="border-top:2px solid var(--border3);"><td><strong>Theoretical Revenue</strong></td><td><strong>$39.2M</strong></td><td><strong>$33.3M</strong></td><td><strong>$34.4M</strong></td><td><strong>$23.8M</strong></td><td><strong>$13.6M</strong></td><td><strong>$14.1M</strong></td><td><strong>$158.5M</strong></td></tr>
           <tr><td>Workforce &amp; Labor</td><td class="val-amber">($12.4M) 31.7%</td><td class="val-amber">($11.2M) 33.7%</td><td>($10.3M) 30.0%</td><td class="val-amber">($7.6M) 32.0%</td><td class="val-red">($7.1M) 51.9%</td><td class="val-red">($5.8M) 40.9%</td><td>($54.4M) 34.3%</td></tr>
           <tr><td>Spare Parts</td><td class="val-amber">($5.9M) 15.1%</td><td>($3.7M) 11.2%</td><td>($3.4M) 10.0%</td><td>($3.1M) 12.9%</td><td class="val-red">($3.5M) 25.5%</td><td class="val-red">($3.3M) 23.1%</td><td>($22.9M) 14.5%</td></tr>
-          <tr><td>Services for Ops</td><td>($1.4M) 3.6%</td><td>($1.6M) 4.7%</td><td>($2.1M) 6.1%</td><td>($0.8M) 3.5%</td><td class="val-red">($1.8M) 12.9%</td><td class="val-red">($1.4M) 10.1%</td><td>($9.1M) 5.7%</td></tr>
-          <tr><td>Logistics</td><td>($0.1M) 0.2%</td><td>($0.0M) 0.1%</td><td>($0.0M) 0.1%</td><td>($0.0M) 0.0%</td><td>($0.3M) 2.2%</td><td class="val-red">($0.6M) 4.6%</td><td>($1.1M) 0.7%</td></tr>
-          <tr><td>Engineering</td><td>($2.7M) 6.9%</td><td>($2.4M) 7.4%</td><td>($0.6M) 1.9%</td><td>($1.6M) 6.5%</td><td>($1.1M) 8.0%</td><td>($0.8M) 5.4%</td><td>($9.2M) 5.8%</td></tr>
-          <tr><td>General Services</td><td>($1.8M) 4.5%</td><td>($1.3M) 4.0%</td><td>($1.1M) 3.1%</td><td>($0.9M) 3.9%</td><td class="val-amber">($1.3M) 9.8%</td><td>($0.8M) 5.8%</td><td>($7.3M) 4.6%</td></tr>
-          <tr><td>Goods Transport</td><td>($0.6M) 1.5%</td><td>($0.7M) 2.2%</td><td>($1.4M) 3.9%</td><td>($0.3M) 1.4%</td><td>($0.6M) 4.6%</td><td>($0.4M) 2.8%</td><td>($4.0M) 2.5%</td></tr>
-          <tr><td>Taxes</td><td>$0.0M</td><td>($0.1M) 0.4%</td><td>$0.0M</td><td>($0.2M) 0.8%</td><td>$0.0M</td><td>$0.0M</td><td>($0.4M) 0.2%</td></tr>
-          <tr style="border-top:2px solid var(--border3);"><td><strong>Running OPEX</strong></td><td>($24.9M) 63.5%</td><td>($21.2M) 63.6%</td><td>($19.0M) 55.2%</td><td>($14.6M) 61.1%</td><td class="val-red">($15.6M) 114.9%</td><td class="val-red">($13.1M) 92.9%</td><td>($108.4M) 68.4%</td></tr>
-          <tr><td>Extraordinary</td><td>($1.2M) 3.0%</td><td>($1.2M) 3.6%</td><td>($2.2M) 6.3%</td><td>($0.8M) 3.5%</td><td>($0.9M) 6.7%</td><td>($0.8M) 5.9%</td><td>($7.1M) 4.5%</td></tr>
-          <tr><td><strong>Cost of Revenue (raw)</strong></td><td>($26.1M)</td><td>($22.4M)</td><td>($21.1M)</td><td>($15.4M)</td><td class="val-red">($16.5M)</td><td class="val-red">($13.9M)</td><td><strong>($115.5M)</strong></td></tr>
-          <tr><td>Rig Direct Margin (raw)</td><td>$13.1M · 33.5%</td><td>$10.9M · 32.7%</td><td>$13.3M · 38.6%</td><td>$8.4M · 35.4%</td><td class="val-red">($2.9M) ·−21.7%</td><td>$0.2M · 1.3%</td><td>$43.0M · 27.1%</td></tr>
-          <tr><td>+ OPEX→CAPEX reclass</td><td>$2.4M</td><td>$1.2M</td><td>$0.9M</td><td>$0.4M</td><td>$1.5M</td><td>$3.1M</td><td>$10.5M</td></tr>
+          <tr style="border-top:2px solid var(--border3);"><td>+ OPEX→CAPEX reclass</td><td>$2.4M · 6.1%</td><td>$1.2M · 3.6%</td><td>$0.9M · 2.6%</td><td>$0.4M · 1.7%</td><td>$1.5M · 11.0%</td><td>$3.1M · 22.3%</td><td>$10.5M · 6.6%</td></tr>
           <tr style="background:rgba(232,160,32,0.06);font-weight:600;">
             <td><strong>Adjusted RDM</strong></td>
             <td class="val-green">$15.5M · 39.5%</td>
@@ -1112,8 +1147,8 @@
     <div class="reveal d2" style="overflow-x:auto;margin-top:0.6rem;">
       <table class="bench-table" style="font-size:1.032rem;">
         <thead>
-          <tr><th rowspan="2">Rig</th><th colspan="3" style="border-left:2px solid var(--border3);">Workforce · % of revenue</th><th colspan="3" style="border-left:2px solid var(--border3);">Spare Parts · % of revenue</th></tr>
-          <tr><th style="border-left:2px solid var(--border3);">2025</th><th>2024</th><th>Δ pp</th><th style="border-left:2px solid var(--border3);">2025</th><th>2024</th><th>Δ pp</th></tr>
+          <tr><th rowspan="2">Rig</th><th colspan="3" style="border-left:2px solid var(--border3);text-align:right;">Workforce · % of revenue</th><th colspan="3" style="border-left:2px solid var(--border3);text-align:right;">Spare Parts · % of revenue</th></tr>
+          <tr><th style="border-left:2px solid var(--border3);text-align:right;">2025</th><th style="text-align:right;">2024</th><th style="text-align:right;">Δ pp</th><th style="border-left:2px solid var(--border3);text-align:right;">2025</th><th style="text-align:right;">2024</th><th style="text-align:right;">Δ pp</th></tr>
         </thead>
         <tbody>
           <tr><td><span class="rig-name">AXIMA</span><span class="rig-type" style="color:var(--premium);">Premium JU</span></td>
@@ -1159,9 +1194,9 @@
           <tr><td><span class="rig-name">AXIMA</span></td><td><span class="rig-type" style="color:var(--premium);">Premium JU</span></td><td>106</td><td>100</td><td class="val-amber">+6</td><td>9.6%</td><td class="val-amber">Modest overmanning</td></tr>
           <tr><td><span class="rig-name">NUADA</span></td><td><span class="rig-type" style="color:var(--standard);">Standard JU</span></td><td>96</td><td>95</td><td class="val-green">+1</td><td>13.9%</td><td class="val-green">At peer · expat mix normal for JU</td></tr>
           <tr><td><span class="rig-name">BANBA</span></td><td><span class="rig-type" style="color:var(--standard);">Standard JU</span></td><td>104</td><td>95</td><td class="val-amber">+9</td><td>11.5%</td><td class="val-amber">Modest overmanning</td></tr>
-          <tr><td><span class="rig-name">LUG</span></td><td><span class="rig-type" style="color:var(--platform);">Platform</span></td><td>66</td><td>66</td><td class="val-green">at peer</td><td>9.8%</td><td class="val-green">In line</td></tr>
-          <tr><td><span class="rig-name">MIDIR</span></td><td><span class="rig-type" style="color:var(--land);">Land</span></td><td>72</td><td>66</td><td class="val-red">+6</td><td class="val-red">16.2%</td><td class="val-red">⚠ Overmanning + expat overload</td></tr>
-          <tr><td><span class="rig-name">DRAVUS</span></td><td><span class="rig-type" style="color:var(--land);">Land</span></td><td>66</td><td>66</td><td class="val-green">at peer</td><td class="val-red">10.5%</td><td class="val-red">⚠ Expat overload</td></tr>
+          <tr><td><span class="rig-name">LUG</span></td><td><span class="rig-type" style="color:var(--platform);">Platform</span></td><td>66</td><td>60</td><td class="val-amber">+6</td><td>9.8%</td><td class="val-amber">Modest overmanning</td></tr>
+          <tr><td><span class="rig-name">MIDIR</span></td><td><span class="rig-type" style="color:var(--land);">Land</span></td><td>72</td><td>60</td><td class="val-red">+12</td><td class="val-red">16.2%</td><td class="val-red">⚠ Overmanning + expat overload</td></tr>
+          <tr><td><span class="rig-name">DRAVUS</span></td><td><span class="rig-type" style="color:var(--land);">Land</span></td><td>66</td><td>60</td><td class="val-amber">+6</td><td class="val-red">10.5%</td><td class="val-red">⚠ Modest overmanning + expat overload</td></tr>
         </tbody>
       </table>
     </div>
@@ -1172,43 +1207,82 @@
       <div class="card accent"><span class="num-tag">Org evolution · 7-rig steady state</span><h3>Build dedicated Supply Chain, Assets &amp; Maintenance competencies.</h3><p>Strengthen three functional competencies the fleet currently lacks: <strong>Supply Chain</strong> (ME2N/MB51/MB52, GR/IR, country-base strategy), <strong>Assets</strong> (register, transfers, certification) and <strong>Maintenance</strong> (CMMS, PM compliance, OEM routines). Today these skills are bundled / procurement sits under Finance.</p></div>
     </div>
   </section>
-  <!-- ========================= 8 · CAPEX · INTENSITY, EFFICIENCY & PAYBACK ========================= -->
-  <section class="slide" data-title="CAPEX · Intensity, Efficiency &amp; Payback">
-    <div class="eyebrow reveal">CAPEX · Capital Intensity, Efficiency &amp; 5-Year Payback</div>
-    <h1 class="slide-title reveal">Jackups run low CAPEX —<br><em>land-rigs near peer average, but not reflected in performance.</em></h1>
-    <div class="mega-kpi reveal d2">
-      <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">21.42%</div><div class="ml">Jackup peer-median CAPEX/Rev</div><div class="md">Dixstone JUs at 3–6% (AXIMA 4.6% · BANBA 3.4% · NUADA 6.0%) — ~¼ of peers · <strong>well below peers</strong></div></div>
-      <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">14.48%</div><div class="ml">Land peer-median CAPEX/Rev</div><div class="md">Dixstone land 8–12% (MIDIR 8.2% · DRAVUS 12.5%) — below peer median too</div></div>
-      <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">5.4%</div><div class="ml">Fleet 5Y CAPEX/Rev</div><div class="md">$30.4M on $563M revenue · vs an 11–26% peer range · structural under-investment across the cycle</div></div>
+  <!-- ========================= 9b · HQ SUPPORT · UNDERMANNING ========================= -->
+  <section class="slide" data-title="HQ Support Personnel · Undermanning">
+    <div class="eyebrow reveal">Shore &amp; HQ Support Personnel · Required vs Current</div>
+    <h1 class="slide-title reveal">Dixstone shore &amp; HQ support is <em>~14% below peer benchmark</em> —<br>~72 today vs the ~84 a 6-rig fleet should carry.</h1>
+    <p class="lede reveal d1">Listed peers run <strong>~14 support personnel per rig</strong> (shore + HQ combined). <strong>Shelf Drilling 13.9</strong> (FY24 — 500 support / 36 rigs) · <strong>Borr Drilling 13.8</strong> (FY25 — 332 support / 24 rigs). Applied to Dixstone's 6-rig 2026 fleet, the target is <strong>14 × 6 = 84</strong> — Dixstone today is ~72.</p>
+
+    <div class="mega-kpi reveal d2" style="margin-top:1.1rem;">
+      <div class="mk" style="border-left-color:var(--sigma);">
+        <div class="mv" style="color:var(--sigma);">84</div>
+        <div class="ml">Target — 2026 shore &amp; HQ support</div>
+        <div class="md">14 × 6 active rigs (post-NUADA retirement)</div>
+      </div>
+      <div class="mk" style="border-left-color:var(--bad);">
+        <div class="mv" style="color:var(--bad);">~72</div>
+        <div class="ml">Dixstone today — comparable scope</div>
+        <div class="md">~12 below target · scope-matched to peer "shore + HQ"</div>
+      </div>
+      <div class="mk" style="border-left-color:var(--bad);">
+        <div class="mv" style="color:var(--bad);">&gt;10%</div>
+        <div class="ml">Gap vs peer benchmark</div>
+        <div class="md">Smaller fleets typically carry &gt;14/rig (fixed overhead) — gap likely understates the shortfall at HQ</div>
+      </div>
     </div>
 
-    <div class="reveal d3" style="overflow-x:auto;margin-top:1rem;">
-      <table class="bench-table" style="font-size:1.008rem;">
+    <div class="reveal d3" style="overflow-x:auto;margin-top:1.1rem;">
+      <table class="bench-table" style="font-size:1rem;">
         <thead>
-          <tr><th>Rig</th><th>2025 CAPEX/Rev</th><th>5Y CAPEX/Rev</th><th>5Y CAPEX $</th><th>5Y Adj RDM %</th><th>Capital posture</th></tr>
+          <tr><th>Peer benchmark</th><th>Rigs</th><th>Total support (shore + HQ)</th><th>Support / rig</th></tr>
         </thead>
         <tbody>
-          <tr><td><span class="rig-name">AXIMA</span><span class="rig-type" style="color:var(--premium);">Premium JU</span></td>
-            <td>6.1%</td><td class="val-green">4.6%</td><td>$5.6M</td><td class="val-green">42.3%</td>
-            <td class="val-amber">Is the spend covering all Cat IV recerts?</td></tr>
-          <tr><td><span class="rig-name">BANBA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td>
-            <td class="val-red">3.6%</td><td class="val-red">3.4%</td><td>$4.3M</td><td>25.6%</td>
-            <td class="val-amber">Is it covering all regulatory recertifications?</td></tr>
-          <tr><td><span class="rig-name">NUADA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td>
-            <td class="val-red">2.6%</td><td>6.0%</td><td>$7.0M</td><td>28.0%</td>
-            <td class="val-amber">Divesting · sub-3% last 2 yrs</td></tr>
-          <tr><td><span class="rig-name">LUG</span><span class="rig-type" style="color:var(--platform);">Platform</span></td>
-            <td class="val-red">1.7%</td><td class="val-red">3.0%</td><td>$2.8M</td><td>30.9%</td>
-            <td class="val-amber">Divesting · steady decline to 1.7%</td></tr>
-          <tr><td><span class="rig-name">MIDIR</span><span class="rig-type" style="color:var(--land);">Land</span></td>
-            <td class="val-red">11.0%</td><td>8.2%</td><td>$4.9M</td><td class="val-red">−2.0%</td>
-            <td class="val-red">Peer-range CAPEX · negative payback</td></tr>
-          <tr><td><span class="rig-name">DRAVUS</span><span class="rig-type" style="color:var(--land);">Land</span></td>
-            <td class="val-red">22.3%</td><td class="val-red">12.5%</td><td>$5.8M</td><td>23.2%</td>
-            <td class="val-red">Peer-range CAPEX · weak 1.8× payback</td></tr>
-          <tr style="background:rgba(232,160,32,0.08);font-weight:600;border-top:2px solid var(--border3);">
-            <td><strong>Fleet</strong></td><td>6.0%</td><td><strong>5.4%</strong></td><td><strong>$30.4M</strong></td><td class="val-red"><strong>27.5%</strong></td>
-            <td>—</td></tr>
+          <tr><td><span class="rig-name">Shelf Drilling</span><span class="rig-type">FY24</span></td><td>36</td><td>500</td><td class="val-amber"><strong>13.9</strong></td></tr>
+          <tr><td><span class="rig-name">Borr Drilling</span><span class="rig-type">FY25</span></td><td>24</td><td>332</td><td class="val-amber"><strong>13.8</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2 reveal d3" style="margin-top:1.3rem;gap:1rem;">
+      <div class="card accent" style="border-left-color:var(--bad);">
+        <span class="num-tag" style="color:var(--bad);">Implication · undermanning</span>
+        <h3>Gap is concentrated at HQ — and worsens at small fleet scale.</h3>
+        <p>Small-fleet contractors typically carry <strong>more than 14 support / rig</strong> because shore &amp; HQ overhead is largely fixed. The ~12-person gap shows up most acutely in <strong>Supply Chain</strong>, <strong>Assets</strong> and <strong>Maintenance</strong> management at HQ — the same disciplines that surface as recurring root causes in the diagnostics.</p>
+      </div>
+      <div class="card accent" style="border-left-color:var(--bad);">
+        <span class="num-tag" style="color:var(--bad);">Path forward · resources</span>
+        <h3>Close the gap with internal hires and external assistance.</h3>
+        <p>Bring in <strong>Supply Chain management support</strong> and <strong>external company assistance on supply chain and preventive maintenance</strong> — coverage first, internal build-out over time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= 8 · CAPEX · INTENSITY, EFFICIENCY & PAYBACK ========================= -->
+  <section class="slide" data-title="CAPEX · Intensity, Efficiency &amp; Payback">
+    <div class="eyebrow reveal">CAPEX · Industry-Peer Benchmarks · FY 2025</div>
+    <h1 class="slide-title reveal">CAPEX targets from <em>industry peers</em> —<br>offshore and onshore medians.</h1>
+
+    <div class="mega-kpi reveal d2">
+      <div class="mk" style="border-left-color:var(--sigma);"><div class="mv" style="color:var(--sigma);">~22%</div><div class="ml">Offshore (Jackup) · peer median CAPEX/Rev</div><div class="md">Median of ADES, ADNOC, Borr, Shelf, Velesto (5Y 2021–25)</div></div>
+      <div class="mk" style="border-left-color:var(--sigma);"><div class="mv" style="color:var(--sigma);">~12%</div><div class="ml">Onshore (Land) · peer median CAPEX/Rev</div><div class="md">Median of H&amp;P, Nabors, Precision (5Y 2021–25)</div></div>
+    </div>
+
+    <div class="reveal d3" style="overflow-x:auto;margin-top:1.2rem;">
+      <table class="bench-table" style="font-size:1.1rem;">
+        <thead>
+          <tr><th>Segment</th><th>Peer</th><th>5Y CAPEX / Rev</th></tr>
+        </thead>
+        <tbody>
+          <tr><td rowspan="6"><span class="rig-name">Offshore — Jackup</span></td><td style="text-align:right;">ADES</td><td>26%</td></tr>
+          <tr><td style="text-align:right;">ADNOC</td><td style="text-align:right;">26%</td></tr>
+          <tr><td style="text-align:right;">Borr</td><td style="text-align:right;">22%</td></tr>
+          <tr><td style="text-align:right;">Shelf</td><td style="text-align:right;">20%</td></tr>
+          <tr><td style="text-align:right;">Velesto</td><td style="text-align:right;">19%</td></tr>
+          <tr style="background:rgba(232,160,32,0.10);font-weight:600;"><td style="text-align:right;"><strong>Median</strong></td><td class="val-amber" style="text-align:right;"><strong>~22%</strong></td></tr>
+          <tr><td rowspan="4" style="border-top:2px solid var(--border3);"><span class="rig-name">Onshore — Land</span></td><td style="border-top:2px solid var(--border3);text-align:right;">Nabors</td><td style="border-top:2px solid var(--border3);text-align:right;">17%</td></tr>
+          <tr><td style="text-align:right;">H&amp;P</td><td style="text-align:right;">12%</td></tr>
+          <tr><td style="text-align:right;">Precision</td><td style="text-align:right;">11%</td></tr>
+          <tr style="background:rgba(232,160,32,0.10);font-weight:600;"><td style="text-align:right;"><strong>Median</strong></td><td class="val-amber" style="text-align:right;"><strong>~12%</strong></td></tr>
         </tbody>
       </table>
     </div>
@@ -1230,37 +1304,37 @@
     <div class="reveal d3" style="overflow-x:auto;margin-top:1.1rem;">
       <table class="bench-table" style="font-size:0.984rem;">
         <thead>
-          <tr><th>Rig</th><th>GR · real spent</th><th>GR/day</th><th>GR % of rev</th><th>PO · ordered</th><th>PO/day</th><th>PO ÷ GR (2025 · 2024)</th><th>Verdict</th></tr>
+          <tr><th>Rig</th><th>GR · real spent</th><th>GR/day</th><th>PO · ordered</th><th>PO/day</th><th>PO ÷ GR</th><th>Verdict</th></tr>
         </thead>
         <tbody>
           <tr><td><span class="rig-name">AXIMA</span><span class="rig-type" style="color:var(--premium);">Premium JU</span></td>
-            <td>$10.1M</td><td>$32.5k</td><td>25.8%</td><td>$11.5M</td><td>$37.1k</td>
-            <td class="val-amber"><strong>1.14×</strong> · 1.61×</td>
-            <td>Ordering 14% ahead · improving</td></tr>
+            <td>$10.1M</td><td>$32.5k</td><td>$11.5M</td><td>$37.1k</td>
+            <td class="val-amber"><strong>1.14×</strong></td>
+            <td>Ordering 14% ahead</td></tr>
           <tr><td><span class="rig-name">BANBA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td>
-            <td>$8.8M</td><td>$24.0k</td><td>26.3%</td><td>$10.1M</td><td>$27.7k</td>
-            <td class="val-amber"><strong>1.15×</strong> · 1.81×</td>
-            <td>Ordering 15% ahead · improving</td></tr>
+            <td>$8.8M</td><td>$24.0k</td><td>$10.1M</td><td>$27.7k</td>
+            <td class="val-amber"><strong>1.15×</strong></td>
+            <td>Ordering 15% ahead</td></tr>
           <tr><td><span class="rig-name">NUADA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td>
-            <td>$7.8M</td><td>$21.2k</td><td>22.6%</td><td>$4.4M</td><td>$12.1k</td>
-            <td class="val-green"><strong>0.56×</strong> · 1.84×</td>
+            <td>$7.8M</td><td>$21.2k</td><td>$4.4M</td><td>$12.1k</td>
+            <td class="val-green"><strong>0.56×</strong></td>
             <td class="val-green">Drawing down $12.3M stock</td></tr>
           <tr><td><span class="rig-name">LUG</span><span class="rig-type" style="color:var(--platform);">Platform</span></td>
-            <td>$6.5M</td><td>$17.9k</td><td>27.4%</td><td>$7.6M</td><td>$20.8k</td>
-            <td class="val-amber"><strong>1.17×</strong> · 1.18×</td>
+            <td>$6.5M</td><td>$17.9k</td><td>$7.6M</td><td>$20.8k</td>
+            <td class="val-amber"><strong>1.17×</strong></td>
             <td>Stable · slightly ahead</td></tr>
           <tr><td><span class="rig-name">MIDIR</span><span class="rig-type" style="color:var(--land);">Land</span></td>
-            <td class="val-red">$7.1M</td><td class="val-red">$19.4k</td><td class="val-red"><strong>52.0%</strong></td><td>$7.7M</td><td>$21.1k</td>
-            <td class="val-green"><strong>1.08×</strong> · 4.16×</td>
+            <td class="val-red">$7.1M</td><td class="val-red">$19.4k</td><td>$7.7M</td><td>$21.1k</td>
+            <td class="val-green"><strong>1.08×</strong></td>
             <td class="val-red">GR intensity is the problem, not ordering</td></tr>
           <tr><td><span class="rig-name">DRAVUS</span><span class="rig-type" style="color:var(--land);">Land</span></td>
-            <td>$4.2M</td><td>$11.5k</td><td>29.7%</td><td>$7.6M</td><td>$20.8k</td>
-            <td class="val-red"><strong>1.81×</strong> · 2.72×</td>
+            <td>$4.2M</td><td>$11.5k</td><td>$7.6M</td><td>$20.8k</td>
+            <td class="val-red"><strong>1.81×</strong></td>
             <td class="val-red">Over-ordering 81% · only outlier</td></tr>
           <tr style="background:rgba(232,160,32,0.08);font-weight:600;border-top:2px solid var(--border3);">
             <td><strong>FLEET</strong></td>
-            <td><strong>$43.4M</strong></td><td>—</td><td><strong>27.4%</strong></td><td><strong>$48.9M</strong></td><td>—</td>
-            <td class="val-green"><strong>1.13×</strong> · 2.00×</td>
+            <td><strong>$43.4M</strong></td><td>—</td><td><strong>$48.9M</strong></td><td>—</td>
+            <td class="val-green"><strong>1.13×</strong></td>
             <td>Discipline tightened · DRAVUS sole outlier</td></tr>
         </tbody>
       </table>
@@ -1273,44 +1347,40 @@
     <div class="mega-kpi reveal d2">
       <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">~3×</div><div class="ml">Inventory vs recommended level</div><div class="md">$45.2M held vs ~$12M best-practice · 2–10× per rig (MIDIR ~10×, LUG ~9×, NUADA ~4×, BANBA ~3×)</div></div>
       <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">56%</div><div class="ml">Of inventory is dead stock</div><div class="md">$25.2M with no movement in 3 years · $20.8M still dead at 5-year threshold</div></div>
-      <div class="mk" style="border-left-color:var(--good);"><div class="mv" style="color:var(--good);">$10–15M</div><div class="ml">Cash release · 12 months</div><div class="md">Bond-yard auction · SKU scrap policy · cross-rig pooling</div></div>
+      <div class="mk" style="border-left-color:var(--good);"><div class="mv" style="color:var(--good);">$10–15M</div><div class="ml">Rig Warehouse Release · 12 months</div><div class="md">E&amp;O scrap · cross-rig pooling</div></div>
     </div>
 
     <div class="reveal d3" style="overflow-x:auto;margin-top:1.1rem;">
       <table class="bench-table" style="font-size:1.032rem;">
         <thead>
-          <tr><th>Rig</th><th>Inventory $</th><th>Best-practice bracket</th><th>× over ceiling</th><th>Dead stock (3Y)</th><th>Read</th></tr>
+          <tr><th>Rig</th><th>Inventory $</th><th>Best-practice bracket</th><th>× over ceiling</th><th>Dead stock (3Y)</th></tr>
         </thead>
         <tbody>
           <tr><td><span class="rig-name">NUADA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td>
-            <td class="val-red"><strong>$12.3M</strong></td><td>$2.5–3.0M</td><td class="val-red">~4×</td><td class="val-red">58% · $7.1M</td>
-            <td class="val-red">Largest holding + largest dead pile</td></tr>
+            <td class="val-red"><strong>$12.3M</strong></td><td>$2.5–3.0M</td><td class="val-red">~4×</td><td class="val-red">58% · $7.1M</td></tr>
           <tr><td><span class="rig-name">BANBA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td>
-            <td class="val-red"><strong>$9.0M</strong></td><td>$2.5–3.0M</td><td class="val-red">~3×</td><td class="val-red">59% · $5.3M</td>
-            <td class="val-red">$6.0M over bracket · highest dead %</td></tr>
+            <td class="val-red"><strong>$9.0M</strong></td><td>$2.5–3.0M</td><td class="val-red">~3×</td><td class="val-red">59% · $5.3M</td></tr>
           <tr><td><span class="rig-name">AXIMA</span><span class="rig-type" style="color:var(--premium);">Premium JU</span></td>
-            <td>$5.0M</td><td>$2.5–3.5M</td><td class="val-amber">1.4×</td><td class="val-amber">40% · $2.0M</td>
-            <td>Cleanest of the jackups</td></tr>
+            <td>$5.0M</td><td>$2.5–3.5M</td><td class="val-amber">1.4×</td><td class="val-amber">40% · $2.0M</td></tr>
           <tr><td><span class="rig-name">LUG</span><span class="rig-type" style="color:var(--platform);">Platform</span></td>
-            <td class="val-red"><strong>$5.3M</strong></td><td>$0.4–0.6M</td><td class="val-red">~9×</td><td class="val-red">60% · $3.2M</td>
-            <td class="val-red">Worst ratio vs bracket in fleet</td></tr>
+            <td class="val-red"><strong>$5.3M</strong></td><td>$0.4–0.6M</td><td class="val-red">~9×</td><td class="val-red">60% · $3.2M</td></tr>
           <tr><td><span class="rig-name">MIDIR</span><span class="rig-type" style="color:var(--land);">Land</span></td>
-            <td>$6.0M</td><td>$0.4–0.6M</td><td class="val-red">~10×</td><td class="val-amber">38% · $2.3M</td>
-            <td class="val-red">Land rig at jackup-scale inventory</td></tr>
+            <td>$6.0M</td><td>$0.4–0.6M</td><td class="val-red">~10×</td><td class="val-amber">38% · $2.3M</td></tr>
           <tr><td><span class="rig-name">DRAVUS</span><span class="rig-type" style="color:var(--land);">Land</span></td>
-            <td class="val-red"><strong>$3.7M</strong></td><td>$0.4–0.6M</td><td class="val-red">~6×</td><td class="val-red">73% · $2.7M</td>
-            <td class="val-red">Cameroon base · now in count</td></tr>
+            <td class="val-red"><strong>$3.7M</strong></td><td>$0.4–0.6M</td><td class="val-red">~6×</td><td class="val-red">73% · $2.7M</td></tr>
           <tr><td><span class="rig-name">HARIMA</span><span class="rig-type" style="color:var(--platform);">Platform</span></td>
-            <td>$1.1M</td><td>$0.3–0.6M</td><td class="val-amber">~2×</td><td class="val-red">73% · $0.8M</td>
-            <td>Smallest holding · mostly dormant</td></tr>
+            <td>$1.1M</td><td>$0.3–0.6M</td><td class="val-amber">~2×</td><td class="val-red">73% · $0.8M</td></tr>
           <tr><td><span class="rig-name">Gabon Base</span><span class="rig-type">Central · to split JU rigs</span></td>
-            <td>$2.7M</td><td>—</td><td>—</td><td class="val-red">65% · $1.8M</td>
-            <td>JU spares pool · pending allocation</td></tr>
+            <td>$2.7M</td><td>—</td><td>—</td><td class="val-red">65% · $1.8M</td></tr>
           <tr style="background:rgba(232,160,32,0.08);font-weight:600;border-top:2px solid var(--border3);">
-            <td><strong>Fleet</strong></td><td><strong>$45.2M</strong></td><td>—</td><td class="val-red"><strong>+$33M</strong></td><td class="val-red"><strong>56% · $25.2M</strong></td>
-            <td>$10–15M releasable in 12 months</td></tr>
+            <td><strong>Fleet</strong></td><td><strong>$45.2M</strong></td><td>—</td><td class="val-red"><strong>+$33M</strong></td><td class="val-red"><strong>56% · $25.2M</strong></td></tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="reveal d4" style="margin-top:0.9rem;font-size:0.9rem;color:var(--muted);font-style:italic;line-height:1.5;">
+      <strong style="color:var(--text2);font-style:normal;">Disclaimer · </strong>
+      Inventory values are based on a <strong style="font-style:normal;">partial mapping of unit prices from purchase-order history</strong> (MB52 lines re-priced via ME2N). Coverage is incomplete and the figures should be read as a <strong style="font-style:normal;">directional indicator of magnitude</strong>, not an accurate audited valuation.
     </div>
 </section>
   <!-- ========================= 10 · RIG ONE-PAGERS (DROPDOWN) ========================= -->
@@ -1347,6 +1417,7 @@
         <div class="pl-dual">
         <div class="prow phead"><span class="pk"></span><span class="ph">2025</span><span class="ph">2024</span><span class="ph">Δ 24→25</span></div>
         <div class="prow"><span class="pk">Revenue</span><span class="pv">$39,210</span><span class="pv2">$44,245</span><span class="pvd" style="color:var(--bad);">−11.4%</span></div>
+        <div class="prow"><span class="pk">Spare parts cost</span><span class="pv red">$5,921 (15.1%)</span><span class="pv2">$4,026 (9.1%)</span><span class="pvd" style="color:var(--bad);">+6.0pp</span></div>
         <div class="prow"><span class="pk">Workforce cost</span><span class="pv amber">$12,415 (31.7%)</span><span class="pv2">$13,318 (30.1%)</span><span class="pvd" style="color:var(--bad);">+1.6pp</span></div>
         <div class="prow"><span class="pk">Rig Direct Margin</span><span class="pv green">$15,504 (39.5%)</span><span class="pv2">$21,105 (47.7%)</span><span class="pvd" style="color:var(--bad);">−8.2pp</span></div>
         <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:400;">GR · real spent</span><span class="pv">$10,066 (25.8%)</span><span class="pv2">$7,176 (16.2%)</span><span class="pvd" style="color:var(--bad);">+9.6pp</span></div>
@@ -1355,8 +1426,6 @@
         </div>
         <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.5rem;"><span class="pk">Inventory (end-2025)</span><span class="pv">$5.0M</span></div>
         <div class="prow no-prev"><span class="pk">Dead stock %</span><span class="pv amber">40%</span></div>
-        <div class="prow no-prev"><span class="pk">FY25 CAPEX / Rev</span><span class="pv red">6.1%</span></div>
-        <div class="prow no-prev"><span class="pk">5Y CAPEX / Rev (2021–25)</span><span class="pv red">4.6%</span></div>
       </div>
       <div class="op-panel">
         <div class="ptitle">NPT Equipment Drivers · 2025 · Top 5</div>
@@ -1370,7 +1439,7 @@
           <div class="npt-stats">
             <div class="npt-stat"><div class="v">201.25</div><div class="l">Hours</div></div>
             <div class="npt-stat"><div class="v">8.4</div><div class="l">Days</div></div>
-            <div class="npt-stat"><div class="v">2.7%</div><div class="l">of Revenue</div></div>
+            <div class="npt-stat"><div class="v">2.7%</div><div class="l">NPT %</div></div>
           </div>
           <div class="npt-total-note">Lowest total NPT hours in fleet. BOP (52%) + TDS PM are the primary interventions.</div>
         </div>
@@ -1425,6 +1494,7 @@
         <div class="pl-dual">
         <div class="prow phead"><span class="pk"></span><span class="ph">2025</span><span class="ph">2024</span><span class="ph">Δ 24→25</span></div>
         <div class="prow"><span class="pk">Revenue</span><span class="pv">$33,321</span><span class="pv2">$23,418</span><span class="pvd" style="color:var(--good);">+42.3%</span></div>
+        <div class="prow"><span class="pk">Spare parts cost</span><span class="pv amber">$3,732 (11.2%)</span><span class="pv2">$5,082 (21.7%)</span><span class="pvd" style="color:var(--good);">−10.5pp</span></div>
         <div class="prow"><span class="pk">Workforce cost</span><span class="pv amber">$11,236 (33.7%)</span><span class="pv2">$8,829 (37.7%)</span><span class="pvd" style="color:var(--good);">−4.0pp</span></div>
         <div class="prow"><span class="pk">Rig Direct Margin</span><span class="pv amber">$12,098 (36.3%)</span><span class="pv2">$6,012 (25.7%)</span><span class="pvd" style="color:var(--good);">+10.6pp</span></div>
         <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:400;">GR · real spent</span><span class="pv">$8,762 (26.3%)</span><span class="pv2">$7,222 (30.8%)</span><span class="pvd" style="color:var(--good);">−4.5pp</span></div>
@@ -1433,8 +1503,6 @@
         </div>
         <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.5rem;"><span class="pk">Inventory (end-2025)</span><span class="pv red">$9.0M</span></div>
         <div class="prow no-prev"><span class="pk">Dead stock %</span><span class="pv red">59%</span></div>
-        <div class="prow no-prev"><span class="pk">FY25 CAPEX / Rev</span><span class="pv red">3.6%</span></div>
-        <div class="prow no-prev"><span class="pk">5Y CAPEX / Rev (2021–25)</span><span class="pv red">3.4%</span></div>
       </div>
       <div class="op-panel">
         <div class="ptitle">NPT Equipment Drivers · 2025 · Top 5</div>
@@ -1448,7 +1516,7 @@
           <div class="npt-stats">
             <div class="npt-stat"><div class="v">763</div><div class="l">Hours</div></div>
             <div class="npt-stat"><div class="v">31.8</div><div class="l">Days</div></div>
-            <div class="npt-stat"><div class="v">8.7%</div><div class="l">of Revenue</div></div>
+            <div class="npt-stat"><div class="v">8.7%</div><div class="l">NPT %</div></div>
           </div>
           <div class="npt-total-note">Power Generation + BOP shared culprit with NUADA. Root-cause programme recommended.</div>
         </div>
@@ -1503,6 +1571,7 @@
         <div class="pl-dual">
         <div class="prow phead"><span class="pk"></span><span class="ph">2025</span><span class="ph">2024</span><span class="ph">Δ 24→25</span></div>
         <div class="prow"><span class="pk">Revenue</span><span class="pv">$34,374</span><span class="pv2">$30,112</span><span class="pvd" style="color:var(--good);">+14.2%</span></div>
+        <div class="prow"><span class="pk">Spare parts cost</span><span class="pv green">$3,437 (10.0%)</span><span class="pv2">$5,119 (17.0%)</span><span class="pvd" style="color:var(--good);">−7.0pp</span></div>
         <div class="prow"><span class="pk">Workforce cost</span><span class="pv green">$10,309 (30.0%)</span><span class="pv2">$10,088 (33.5%)</span><span class="pvd" style="color:var(--good);">−3.5pp</span></div>
         <div class="prow"><span class="pk">Rig Direct Margin</span><span class="pv green">$14,141 (41.1%)</span><span class="pv2">$11,966 (39.7%)</span><span class="pvd" style="color:var(--good);">+1.4pp</span></div>
         <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:400;">GR · real spent</span><span class="pv">$7,752 (22.6%)</span><span class="pv2">$6,694 (22.2%)</span><span class="pvd" style="color:var(--text2);">+0.4pp</span></div>
@@ -1511,8 +1580,6 @@
         </div>
         <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.5rem;"><span class="pk">Inventory (end-2025)</span><span class="pv red">$12.3M</span></div>
         <div class="prow no-prev"><span class="pk">Dead stock %</span><span class="pv red">58%</span></div>
-        <div class="prow no-prev"><span class="pk">FY25 CAPEX / Rev</span><span class="pv red">2.6%</span></div>
-        <div class="prow no-prev"><span class="pk">5Y CAPEX / Rev (2021–25)</span><span class="pv">6.0%</span></div>
       </div>
       <div class="op-panel">
         <div class="ptitle">NPT Equipment Drivers · 2025 · Top 5</div>
@@ -1526,7 +1593,7 @@
           <div class="npt-stats">
             <div class="npt-stat"><div class="v">510.25</div><div class="l">Hours</div></div>
             <div class="npt-stat"><div class="v">21.3</div><div class="l">Days</div></div>
-            <div class="npt-stat"><div class="v">5.8%</div><div class="l">of Revenue</div></div>
+            <div class="npt-stat"><div class="v">5.8%</div><div class="l">NPT %</div></div>
           </div>
           <div class="npt-total-note">Power Generation now dominant — joint programme with BANBA targeting shared root causes.</div>
         </div>
@@ -1581,6 +1648,7 @@
         <div class="pl-dual">
         <div class="prow phead"><span class="pk"></span><span class="ph">2025</span><span class="ph">2024</span><span class="ph">Δ 24→25</span></div>
         <div class="prow"><span class="pk">Revenue</span><span class="pv">$23,834</span><span class="pv2">$12,895</span><span class="pvd" style="color:var(--good);">+84.8%</span></div>
+        <div class="prow"><span class="pk">Spare parts cost</span><span class="pv amber">$3,075 (12.9%)</span><span class="pv2">$1,509 (11.7%)</span><span class="pvd" style="color:var(--bad);">+1.2pp</span></div>
         <div class="prow"><span class="pk">Workforce cost</span><span class="pv amber">$7,637 (32.0%)</span><span class="pv2">$6,177 (47.9%)</span><span class="pvd" style="color:var(--good);">−15.9pp</span></div>
         <div class="prow"><span class="pk">Rig Direct Margin</span><span class="pv amber">$8,842 (37.1%)</span><span class="pv2">$344 (2.7%)</span><span class="pvd" style="color:var(--good);">+34.4pp</span></div>
         <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:400;">GR · real spent</span><span class="pv">$6,518 (27.4%)</span><span class="pv2">$3,371 (26.1%)</span><span class="pvd" style="color:var(--text2);">+1.3pp</span></div>
@@ -1589,8 +1657,6 @@
         </div>
         <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.5rem;"><span class="pk">Inventory (end-2025)</span><span class="pv red">$5.3M</span></div>
         <div class="prow no-prev"><span class="pk">Dead stock %</span><span class="pv red">60%</span></div>
-        <div class="prow no-prev"><span class="pk">FY25 CAPEX / Rev</span><span class="pv red">1.7%</span></div>
-        <div class="prow no-prev"><span class="pk">5Y CAPEX / Rev (2021–25)</span><span class="pv red">3.0%</span></div>
       </div>
       <div class="op-panel">
         <div class="ptitle">NPT Equipment Drivers · 2025 · Top 5</div>
@@ -1604,7 +1670,7 @@
           <div class="npt-stats">
             <div class="npt-stat"><div class="v">588.25</div><div class="l">Hours</div></div>
             <div class="npt-stat"><div class="v">24.5</div><div class="l">Days</div></div>
-            <div class="npt-stat"><div class="v">6.7%</div><div class="l">of Revenue</div></div>
+            <div class="npt-stat"><div class="v">6.7%</div><div class="l">NPT %</div></div>
           </div>
           <div class="npt-total-note">TDS (34%) + Pump (25%) are the two operational levers — top-drive overhaul + pump PM cycle.</div>
         </div>
@@ -1659,6 +1725,7 @@
         <div class="pl-dual">
         <div class="prow phead"><span class="pk"></span><span class="ph">2025</span><span class="ph">2024</span><span class="ph">Δ 24→25</span></div>
         <div class="prow"><span class="pk">Revenue</span><span class="pv">$13,593</span><span class="pv2">$11,650</span><span class="pvd" style="color:var(--good);">+16.7%</span></div>
+        <div class="prow"><span class="pk">Spare parts cost</span><span class="pv red">$3,466 (25.5%)</span><span class="pv2">$1,608 (13.8%)</span><span class="pvd" style="color:var(--bad);">+11.7pp</span></div>
         <div class="prow"><span class="pk">Workforce cost</span><span class="pv red">$7,054 (51.9%)</span><span class="pv2">$7,980 (68.5%)</span><span class="pvd" style="color:var(--good);">−16.6pp</span></div>
         <div class="prow"><span class="pk">Rig Direct Margin</span><span class="pv red">−$1,449 (−10.7%)</span><span class="pv2">$844 (7.2%)</span><span class="pvd" style="color:var(--bad);">−17.9pp</span></div>
         <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:400;">GR · real spent</span><span class="pv">$7,071 (52.0%)</span><span class="pv2">$2,540 (21.8%)</span><span class="pvd" style="color:var(--bad);">+30.2pp</span></div>
@@ -1667,8 +1734,6 @@
         </div>
         <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.5rem;"><span class="pk">Inventory (end-2025)</span><span class="pv amber">$6.0M</span></div>
         <div class="prow no-prev"><span class="pk">Dead stock %</span><span class="pv amber">38%</span></div>
-        <div class="prow no-prev"><span class="pk">FY25 CAPEX / Rev</span><span class="pv red">11.0%</span></div>
-        <div class="prow no-prev"><span class="pk">5Y CAPEX / Rev (2021–25)</span><span class="pv">8.2%</span></div>
       </div>
       <div class="op-panel">
         <div class="ptitle">NPT Equipment Drivers · 2025 · Top 5</div>
@@ -1682,7 +1747,7 @@
           <div class="npt-stats">
             <div class="npt-stat"><div class="v">604</div><div class="l">Hours</div></div>
             <div class="npt-stat"><div class="v">25.2</div><div class="l">Days</div></div>
-            <div class="npt-stat"><div class="v">6.9%</div><div class="l">of Revenue</div></div>
+            <div class="npt-stat"><div class="v">6.9%</div><div class="l">NPT %</div></div>
           </div>
           <div class="npt-total-note">TDS alone = 49% of NPT. Top-drive overhaul is the single highest-impact intervention.</div>
         </div>
@@ -1737,6 +1802,7 @@
         <div class="pl-dual">
         <div class="prow phead"><span class="pk"></span><span class="ph">2025</span><span class="ph">2024</span><span class="ph">Δ 24→25</span></div>
         <div class="prow"><span class="pk">Revenue</span><span class="pv">$14,125</span><span class="pv2">$12,395</span><span class="pvd" style="color:var(--good);">+13.9%</span></div>
+        <div class="prow"><span class="pk">Spare parts cost</span><span class="pv red">$3,263 (23.1%)</span><span class="pv2">$2,454 (19.8%)</span><span class="pvd" style="color:var(--bad);">+3.3pp</span></div>
         <div class="prow"><span class="pk">Workforce cost</span><span class="pv red">$5,779 (40.9%)</span><span class="pv2">$5,627 (45.4%)</span><span class="pvd" style="color:var(--good);">−4.5pp</span></div>
         <div class="prow"><span class="pk">Rig Direct Margin</span><span class="pv amber">$3,325 (23.5%)</span><span class="pv2">$4,188 (33.8%)</span><span class="pvd" style="color:var(--bad);">−10.3pp</span></div>
         <div class="prow"><span class="pk" style="color:var(--sigma);font-weight:400;">GR · real spent</span><span class="pv">$4,200 (29.7%)</span><span class="pv2">$2,946 (23.8%)</span><span class="pvd" style="color:var(--bad);">+5.9pp</span></div>
@@ -1745,8 +1811,6 @@
         </div>
         <div class="prow no-prev" style="border-top:1px dashed var(--border3);margin-top:0.3rem;padding-top:0.5rem;"><span class="pk">Inventory (end-2025)</span><span class="pv red">$3.7M</span></div>
         <div class="prow no-prev"><span class="pk">Dead stock %</span><span class="pv red">73%</span></div>
-        <div class="prow no-prev"><span class="pk">FY25 CAPEX / Rev</span><span class="pv red">22.3%</span></div>
-        <div class="prow no-prev"><span class="pk">5Y CAPEX / Rev (2021–25)</span><span class="pv red">12.5%</span></div>
       </div>
       <div class="op-panel">
         <div class="ptitle">NPT Equipment Drivers · 2025 · Top 5</div>
@@ -1760,7 +1824,7 @@
           <div class="npt-stats">
             <div class="npt-stat"><div class="v">285</div><div class="l">Hours</div></div>
             <div class="npt-stat"><div class="v">11.9</div><div class="l">Days</div></div>
-            <div class="npt-stat"><div class="v">3.3%</div><div class="l">of Revenue</div></div>
+            <div class="npt-stat"><div class="v">3.3%</div><div class="l">NPT %</div></div>
           </div>
           <div class="npt-total-note">TDS (27%) + Drawworks (10%) are operational. Lowest absolute NPT among land rigs.</div>
         </div>
@@ -1832,13 +1896,13 @@
       </div>
       <div class="insight-card">
         <div class="ic-eyebrow">05 · ORGANISATION</div>
-        <h3>Lack of structure at drilling HQ.</h3>
-        <p class="body">No dedicated Supply Chain, Assets or Maintenance management — a single Buyer under Finance, maintenance bundled into Tech Support.</p>
+        <h3>Drilling HQ team is understaffed.</h3>
+        <p class="body">Additional resources needed in Supply Chain, Assets and Maintenance — either internal capacity or external company assistance on supply-chain support and preventive maintenance.</p>
       </div>
       <div class="insight-card">
         <div class="ic-eyebrow">06 · ROOT CAUSE</div>
         <h3>Process &amp; systems gaps drive the symptoms.</h3>
-        <p class="body">Lack of material-management structure (SAP), no asset-recertification tracking, and no preventive-maintenance management systems or procedures.</p>
+        <p class="body">Lack of material-management structure (SAP), lack of asset-recertification tracking, lack of preventive-maintenance management systems and procedures, and absence of weekly and monthly performance dashboards.</p>
       </div>
     </div>
 </section>
@@ -1852,14 +1916,20 @@
     <div class="eyebrow reveal">Peer Fleet Profile · FY 2025</div>
     <h1 class="slide-title reveal">The peer set —<br><em>9 listed contractors, ~1,200 rigs.</em></h1>
     <div class="mega-kpi reveal d2">
-      <div class="mk"><div class="mv">1,186</div><div class="ml">Total active rigs</div><div class="md">Peer set + Dixstone · FY 2025 year-end · Valaris JU + ARO only (floaters excluded for comparability)</div></div>
       <div class="mk"><div class="mv">197</div><div class="ml">Jackup rigs</div><div class="md">ADES 50 · ADNOC 48 · Valaris JU+ARO 33 · Shelf 33 · Borr 24 · Velesto 6 · Dixstone 3</div></div>
-      <div class="mk"><div class="mv">0</div><div class="ml">Floaters in peer scope</div><div class="md">Peer set is jackup-comparable; Valaris floaters excluded per G-7 (kept Valaris jackups + ARO only)</div></div>
       <div class="mk"><div class="mv">920</div><div class="ml">Land rigs</div><div class="md">H&amp;P 360 · Nabors 242 · Precision 184 · ADNOC 92 · ADES 40 · Dixstone 2</div></div>
+      <div class="mk"><div class="mv">0</div><div class="ml">Floaters in peer scope</div><div class="md">Peer set is jackup-comparable; Valaris floaters excluded per G-7 (kept Valaris jackups + ARO only)</div></div>
     </div>
 
+    <style>
+      .peer-fleet-table tbody td{font-size:1.35rem !important;padding:0.55rem 0.9rem !important;}
+      .peer-fleet-table tbody td:not(:first-child){font-size:1.4rem !important;}
+      .peer-fleet-table thead th{font-size:16px !important;padding:0.55rem 0.9rem !important;}
+      .peer-fleet-table .rig-name{font-size:1.28rem !important;}
+      .peer-fleet-table .rig-type{font-size:12.5px !important;}
+    </style>
     <div class="reveal d3" style="overflow-x:auto;margin-top:0.4rem;">
-      <table class="bench-table">
+      <table class="bench-table peer-fleet-table">
         <thead>
           <tr>
             <th>Contractor</th>
@@ -1897,10 +1967,10 @@
     </div>
 </section>
 
-  <!-- ========================= 13 · SEGMENT VIEW ========================= -->
-  <section class="slide" data-title="Segment View">
-    <div class="eyebrow reveal">Dixstone vs Peers · Segment View · FY 2025</div>
-    <h1 class="slide-title reveal">Each rig vs<br><em>its direct peer set.</em></h1>
+  <!-- ========================= 13a · SEGMENT VIEW · PREMIUM JACKUP ========================= -->
+  <section class="slide" data-title="Segment View · Premium Jackup">
+    <div class="eyebrow reveal">Premium Jackup · AXIMA vs peers · FY 2025</div>
+    <h1 class="slide-title reveal" style="white-space:nowrap;">Premium Jackup — <em>AXIMA vs direct peer set.</em></h1>
 
     <div class="segment-block premium reveal d1">
       <div class="segment-head">
@@ -1908,65 +1978,83 @@
           <span class="seg-pill">Premium Jack-Up</span>
           <h3>AXIMA <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Borr · ADNOC · ADES · Valaris-JU · Velesto</span></h3>
         </div>
-        <div class="read">Reliability leads the segment. RDM <strong>only −7.2pp from peer median</strong> — bridgeable via spare-parts discipline + cert/PM uplift.</div>
+        <div class="read">RDM <strong>only −7.2pp from peer median</strong> — bridgeable via spares + cert/PM.</div>
       </div>
       <div class="seg-grid">
         <div class="seg-cell"><div class="metric">Dayrate</div><div class="dix"><span class="who">AXIMA</span><span class="val">$130K</span></div><div class="pp"><span class="who">Peer median</span><span class="val">$130K</span></div><div class="pp"><span class="who">Borr · top</span><span class="val">$150K</span></div></div>
         <div class="seg-cell lead"><div class="metric">NPT</div><div class="dix"><span class="who">AXIMA</span><span class="val">2.7%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">3.0%</span></div><div class="pp"><span class="who">ADES · best</span><span class="val">1.5%</span></div></div>
         <div class="seg-cell close"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">AXIMA</span><span class="val">39.5%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">46.7%</span></div><div class="pp"><span class="who">Gap vs median</span><span class="val">−7.2 pp</span></div></div>
         <div class="seg-cell"><div class="metric">FTE / rig</div><div class="dix"><span class="who">AXIMA</span><span class="val">106</span></div><div class="pp"><span class="who">Premium peer</span><span class="val">100</span></div><div class="pp"><span class="who">Crew delta</span><span class="val">+6</span></div></div>
-        <div class="seg-cell"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">AXIMA · 2025</span><span class="val">6.1%</span></div><div class="pp"><span class="who">5Y avg (2021–25)</span><span class="val">4.6%</span></div><div class="pp"><span class="who">Δ vs 5Y</span><span class="val">+1.5 pp</span></div></div>
+        <div class="seg-cell"><div class="metric">CAPEX / Rev · peer target</div><div class="dix"><span class="who">Offshore peers</span><span class="val">~22%</span></div><div class="pp"><span class="who">5Y median</span><span class="val">ADES · ADNOC · Borr · Shelf · Velesto</span></div></div>
       </div>
     </div>
+  </section>
 
-    <div class="segment-block standard reveal d2">
+  <!-- ========================= 13b · SEGMENT VIEW · STANDARD JACKUP ========================= -->
+  <section class="slide" data-title="Segment View · Standard Jackup">
+    <div class="eyebrow reveal">Standard Jackup · BANBA &amp; NUADA vs peers · FY 2025</div>
+    <h1 class="slide-title reveal" style="white-space:nowrap;">Standard Jackup — <em>BANBA &amp; NUADA vs direct peer set.</em></h1>
+
+    <div class="segment-block standard reveal d1">
       <div class="segment-head">
         <div class="lhs">
           <span class="seg-pill">Standard Jack-Up</span>
           <h3>BANBA &amp; NUADA <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Shelf · Valaris · ADES</span></h3>
         </div>
-        <div class="read">RDM <strong>only −6.6pp (BANBA) and −1.8pp (NUADA) from peer median</strong> — closing the NPT gap alone covers most of the delta. NUADA effectively at peer median already.</div>
+        <div class="read">RDM <strong>only −6.6 / −1.8pp from peer median</strong> — closing NPT bridges most of the gap.</div>
       </div>
       <div class="seg-grid">
         <div class="seg-cell lead"><div class="metric">Dayrate</div><div class="dix"><span class="who">BANBA · NUADA</span><span class="val">$100K</span></div><div class="pp"><span class="who">Shelf · FY25</span><span class="val">$83K</span></div><div class="pp"><span class="who">Valaris JU · FY25</span><span class="val">$138K</span></div></div>
         <div class="seg-cell lag"><div class="metric">NPT</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">8.7% / 5.8%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">3.0%</span></div><div class="pp"><span class="who">Shelf · best</span><span class="val">0.6%</span></div></div>
         <div class="seg-cell close"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">36.3% / 41.1%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">42.9%</span></div><div class="pp"><span class="who">Gap vs median</span><span class="val">−6.6 / −1.8 pp</span></div></div>
         <div class="seg-cell lag"><div class="metric">FTE / rig</div><div class="dix"><span class="who">BANBA / NUADA</span><span class="val">104 / 96</span></div><div class="pp"><span class="who">Standard peer</span><span class="val">95</span></div><div class="pp"><span class="who">Crew delta</span><span class="val">+9 / +1</span></div></div>
-        <div class="seg-cell"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">BANBA / NUADA · 2025</span><span class="val">3.6% / 2.6%</span></div><div class="pp"><span class="who">5Y avg (2021–25)</span><span class="val">3.4% / 6.0%</span></div><div class="pp"><span class="who">Δ vs 5Y</span><span class="val">+0.2 / −3.4 pp</span></div></div>
+        <div class="seg-cell"><div class="metric">CAPEX / Rev · peer target</div><div class="dix"><span class="who">Offshore peers</span><span class="val">~22%</span></div><div class="pp"><span class="who">5Y median</span><span class="val">ADES · ADNOC · Borr · Shelf · Velesto</span></div></div>
       </div>
     </div>
+  </section>
 
-    <div class="segment-block land reveal d3">
+  <!-- ========================= 13c · SEGMENT VIEW · LAND RIGS ========================= -->
+  <section class="slide" data-title="Segment View · Land Rigs">
+    <div class="eyebrow reveal">Land Rigs · MIDIR &amp; DRAVUS vs peers · FY 2025</div>
+    <h1 class="slide-title reveal" style="white-space:nowrap;">Land Rigs — <em>MIDIR &amp; DRAVUS vs direct peer set.</em></h1>
+
+    <div class="segment-block land reveal d1">
       <div class="segment-head">
         <div class="lhs">
           <span class="seg-pill">Land Rigs</span>
           <h3>MIDIR &amp; DRAVUS <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Helmerich &amp; Payne · Nabors · Precision</span></h3>
         </div>
-        <div class="read">CAPEX intensity matches peers. Unit economics gap (payroll, expat) is the issue — not under-investment.</div>
+        <div class="read"><strong>Payroll &amp; expat</strong> drive the gap — not CAPEX.</div>
       </div>
       <div class="seg-grid">
         <div class="seg-cell"><div class="metric">Dayrate</div><div class="dix"><span class="who">MIDIR · DRAVUS</span><span class="val">$40K</span></div><div class="pp"><span class="who">HP / Nabors</span><span class="val">$25–35K</span></div><div class="pp"><span class="who">MENA premium</span><span class="val">applies</span></div></div>
         <div class="seg-cell lag"><div class="metric">NPT</div><div class="dix"><span class="who">MIDIR / DRAVUS</span><span class="val">6.9% / 3.3%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">~3.5%</span></div><div class="pp"><span class="who">HP · best</span><span class="val">~2.0%</span></div></div>
         <div class="seg-cell lag"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">MIDIR / DRAVUS</span><span class="val">−10.7% / 23.5%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">32.8%</span></div><div class="pp"><span class="who">Nabors · top</span><span class="val">39.9%</span></div></div>
-        <div class="seg-cell lag"><div class="metric">FTE / rig</div><div class="dix"><span class="who">MIDIR / DRAVUS</span><span class="val">72 / 66</span></div><div class="pp"><span class="who">Peer median</span><span class="val">~55</span></div><div class="pp"><span class="who">US-land · best</span><span class="val">~50</span></div></div>
-        <div class="seg-cell"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">MIDIR / DRAVUS · 2025</span><span class="val">11.0% / 22.3%</span></div><div class="pp"><span class="who">5Y avg (2021–25)</span><span class="val">8.2% / 12.5%</span></div><div class="pp"><span class="who">Δ vs 5Y</span><span class="val">+2.8 / +9.8 pp</span></div></div>
+        <div class="seg-cell lag"><div class="metric">FTE / rig</div><div class="dix"><span class="who">MIDIR / DRAVUS</span><span class="val">72 / 66</span></div><div class="pp"><span class="who">Land peer norm</span><span class="val">~60</span></div><div class="pp"><span class="who">US-land · best</span><span class="val">~50</span></div></div>
+        <div class="seg-cell"><div class="metric">CAPEX / Rev · peer target</div><div class="dix"><span class="who">Onshore peers</span><span class="val">~12%</span></div><div class="pp"><span class="who">5Y median</span><span class="val">H&amp;P · Nabors · Precision</span></div></div>
       </div>
     </div>
+  </section>
 
-    <div class="segment-block platform reveal d4">
+  <!-- ========================= 13d · SEGMENT VIEW · PLATFORM RIG ========================= -->
+  <section class="slide" data-title="Segment View · Platform">
+    <div class="eyebrow reveal">Platform Rig · LUG vs peers · FY 2025</div>
+    <h1 class="slide-title reveal" style="white-space:nowrap;">Platform Rig — <em>LUG vs direct peer set.</em></h1>
+
+    <div class="segment-block platform reveal d1">
       <div class="segment-head">
         <div class="lhs">
           <span class="seg-pill">Platform Rig</span>
           <h3>LUG <span style="color:var(--muted);font-weight:400;font-size:0.85em;">vs Helmerich &amp; Payne · Nabors · Precision</span></h3>
         </div>
-        <div class="read">NPT above peer benchmark; CAPEX deeply lags peers — combined cost of reliability erosion.</div>
+        <div class="read"><strong>NPT high and CAPEX deeply below peers</strong> — reliability erosion.</div>
       </div>
       <div class="seg-grid">
         <div class="seg-cell"><div class="metric">Dayrate</div><div class="dix"><span class="who">LUG</span><span class="val">$70K</span></div><div class="pp"><span class="who">HP / Nabors</span><span class="val">$25–35K</span></div><div class="pp"><span class="who">Platform premium</span><span class="val">applies</span></div></div>
         <div class="seg-cell lag"><div class="metric">NPT</div><div class="dix"><span class="who">LUG</span><span class="val">6.7%</span></div><div class="pp"><span class="who">HP · best</span><span class="val">~2.0%</span></div><div class="pp"><span class="who">Nabors</span><span class="val">~3.0%</span></div></div>
         <div class="seg-cell lead"><div class="metric">Rig Direct Margin</div><div class="dix"><span class="who">LUG</span><span class="val">37.1%</span></div><div class="pp"><span class="who">Peer median</span><span class="val">32.8%</span></div><div class="pp"><span class="who">Nabors · top</span><span class="val">39.9%</span></div></div>
-        <div class="seg-cell"><div class="metric">FTE / rig</div><div class="dix"><span class="who">LUG</span><span class="val">~55</span></div><div class="pp"><span class="who">Land norm</span><span class="val">50–60</span></div><div class="pp"><span class="who">Delta</span><span class="val">modest</span></div></div>
-        <div class="seg-cell"><div class="metric">CAPEX / Rev</div><div class="dix"><span class="who">LUG · 2025</span><span class="val">1.7%</span></div><div class="pp"><span class="who">5Y avg (2021–25)</span><span class="val">3.0%</span></div><div class="pp"><span class="who">Δ vs 5Y</span><span class="val">−1.3 pp</span></div></div>
+        <div class="seg-cell"><div class="metric">FTE / rig</div><div class="dix"><span class="who">LUG</span><span class="val">~55</span></div><div class="pp"><span class="who">Land peer norm</span><span class="val">~60</span></div><div class="pp"><span class="who">Delta</span><span class="val">at peer</span></div></div>
+        <div class="seg-cell"><div class="metric">CAPEX / Rev · peer target</div><div class="dix"><span class="who">Onshore peers</span><span class="val">~12%</span></div><div class="pp"><span class="who">5Y median</span><span class="val">H&amp;P · Nabors · Precision</span></div></div>
       </div>
     </div>
   </section>
@@ -1984,29 +2072,23 @@
     </div>
 
     <div class="reveal d3" style="overflow-x:auto;margin-top:0.9rem;">
-      <table class="bench-table" style="font-size:0.984rem;">
+      <table class="bench-table" style="font-size:1.04rem;">
         <thead>
-          <tr><th>Metric · per rig</th><th>Dixstone</th><th>ADES</th><th>ADNOC</th><th>H&amp;P</th><th>Nabors</th><th>Precision</th><th>Borr</th><th>Shelf</th><th>Velesto</th><th>Position</th></tr>
+          <tr><th>Metric · per rig</th><th>Dixstone</th><th>Industry / Peer best practice</th><th>Position</th></tr>
         </thead>
         <tbody>
           <tr><td><span class="rig-name">Inventory · $/rig</span></td>
-            <td class="val-red"><strong>$6.46M</strong></td><td>$2.05M</td><td>$1.99M</td><td>$1.38M</td><td>$0.35M</td><td>$0.19M</td><td>n/a</td><td>n/a</td><td>$3.95M</td>
+            <td class="val-red"><strong>$6.46M</strong></td><td>$2.05M</td>
             <td class="val-red">🔴 Highest</td></tr>
-          <tr><td><span class="rig-name">FTE / Premium Jackup</span><span class="rig-type">AXIMA · peer ~100</span></td>
-            <td class="val-amber"><strong>106</strong></td><td>65</td><td>n/a</td><td>—</td><td>—</td><td>—</td><td>85</td><td>117</td><td>108</td>
+          <tr><td><span class="rig-name">FTE / Premium Jackup</span><span class="rig-type">AXIMA</span></td>
+            <td class="val-amber"><strong>106</strong></td><td>100</td>
             <td class="val-amber">🟡 Slightly high</td></tr>
-          <tr><td><span class="rig-name">FTE / Standard Jackup</span><span class="rig-type">BANBA · NUADA · peer ~95</span></td>
-            <td class="val-amber"><strong>104 / 96</strong></td><td>65</td><td>n/a</td><td>—</td><td>—</td><td>—</td><td>85</td><td>117</td><td>108</td>
+          <tr><td><span class="rig-name">FTE / Standard Jackup</span><span class="rig-type">BANBA · NUADA</span></td>
+            <td class="val-amber"><strong>104 / 96</strong></td><td>95</td>
             <td class="val-amber">🟡 BANBA high</td></tr>
           <tr><td><span class="rig-name">FTE / Land rig</span><span class="rig-type">MIDIR · DRAVUS · LUG</span></td>
-            <td class="val-red"><strong>72 / 66 / 55</strong></td><td>—</td><td>—</td><td class="val-green">~50</td><td class="val-green">~50</td><td class="val-green">~27</td><td>—</td><td>—</td><td>—</td>
+            <td class="val-red"><strong>72 / 66 / 55</strong></td><td>60</td>
             <td class="val-red">🔴 Highest</td></tr>
-          <tr><td><span class="rig-name">5Y CAPEX / Rev · Jackup</span><span class="rig-type">2021–2025</span></td>
-            <td class="val-red"><strong>3–6%</strong></td><td>26%</td><td>26%</td><td>—</td><td>—</td><td>—</td><td>22%</td><td>20%</td><td>19%</td>
-            <td class="val-red">🔴 Lowest</td></tr>
-          <tr><td><span class="rig-name">5Y CAPEX / Rev · Land</span><span class="rig-type">MIDIR · DRAVUS · LUG</span></td>
-            <td class="val-amber"><strong>3–13%</strong></td><td>—</td><td>—</td><td>12%</td><td>17%</td><td>11%</td><td>—</td><td>—</td><td>—</td>
-            <td class="val-amber">🟡 Mixed vs peers</td></tr>
         </tbody>
       </table>
     </div>
@@ -2014,47 +2096,46 @@
     <div class="grid-3 reveal d4" style="margin-top:1.2rem;gap:1rem;">
       <div class="card accent" style="border-left-color:var(--good);">
         <span class="num-tag" style="color:var(--good);">Jackups vs peers · close</span>
-        <h3>Best-in-segment reliability, dayrate ahead — NPT the only gap.</h3>
-        <p><strong>AXIMA</strong> 2.7% NPT is top-quartile vs every premium-JU peer. <strong>BANBA &amp; NUADA</strong> lead the standard-JU peer set on dayrate ($100K) but lag on NPT (8.7% / 5.8% vs Shelf 0.6%). RDM only 4–8pp below the 44.8% peer median — closing NPT largely bridges it.</p>
+        <h3>Reliability leads — NPT the only gap.</h3>
+        <p>AXIMA top-quartile NPT. RDM only 4–8pp below the 44.8% peer median — closing NPT bridges it.</p>
       </div>
       <div class="card accent" style="border-left-color:var(--bad);">
         <span class="num-tag" style="color:var(--bad);">Land vs peers · below</span>
         <h3>MIDIR loss-making; cost structure, not dayrate.</h3>
-        <p><strong>MIDIR</strong> −10.7% gross margin vs land peers at 29–40%, driven by 51.9% payroll + 103.9% O&amp;M. <strong>DRAVUS</strong> 23.5% vs the 32.8% land peer median. Both carry land FTE/rig (72 / 66) well above the ~27–50 peer norm — the structural cost gap.</p>
+        <p>Land FTE 72 / 66 well above the ~60 peer norm — the structural cost gap.</p>
       </div>
       <div class="card accent" style="border-left-color:var(--bad);">
         <span class="num-tag" style="color:var(--bad);">Balance sheet vs peers · outlier</span>
         <h3>Working capital tied up well beyond the peer set.</h3>
-        <p>Inventory $6.46M/rig (~3× peer median) · turnover 2.5× (slowest in the set) · $25.2M dead stock (56% of inventory). Meanwhile 5Y CAPEX/Rev sits below every peer — capital tied up in stores while sustaining reinvestment lags.</p>
+        <p>Inventory $6.46M/rig (~3× peers) · $25.2M dead stock.</p>
       </div>
     </div>
 </section>
-  <!-- ========================= 15 · CAUSAL CHAIN — UNDER-CAPEX → CERT → NPT + OPEX ========================= -->
-  <section class="slide" data-title="Causal Chain · CAPEX → Cert → NPT + OPEX">
-    <div class="eyebrow reveal">Why the Outlier Position Matters · CAPEX → Cert → NPT + OPEX</div>
-    <h1 class="slide-title reveal">Low CAPEX could be <em>contributing to elevated NPT</em> —<br>inflated inventory driving up OPEX.</h1>
+  <!-- ========================= 15 · CAUSAL CHAIN — CERT → NPT → OPEX ========================= -->
+  <section class="slide" data-title="Causal Chain · Cert → NPT → OPEX">
+    <div class="eyebrow reveal">Why the Outlier Position Matters · Cert → NPT → OPEX</div>
+    <h1 class="slide-title reveal">Out-of-cert equipment drives <em>elevated NPT</em> —<br>and inflates the spare-parts bill.</h1>
 
     <div class="mega-kpi reveal d2">
-      <div class="mk"><div class="mv">3–13%</div><div class="ml">Dixstone 5Y CAPEX / Rev</div><div class="md">Bottom of peer set · vs 11–26% for listed contractors</div></div>
       <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">5.8–8.7%</div><div class="ml">NPT% · 4 of 6 rigs</div><div class="md">BANBA · NUADA · LUG · MIDIR · DRAVUS · vs peer median 3.0% · ADES best 1.5%</div></div>
-      <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">+$5M</div><div class="ml">Spare-parts cost YoY · 2024→2025</div><div class="md">AXIMA +6.1pp · MIDIR +11.7pp · DRAVUS +3.4pp of revenue · see RDM Evolution</div></div>
+      <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">+$5M</div><div class="ml">Spare-parts cost YoY · 2024→2025</div><div class="md">AXIMA +6.1pp · MIDIR +11.7pp · DRAVUS +3.4pp of revenue</div></div>
     </div>
 
     <div class="grid-3 reveal d3" style="margin-top:1.4rem;gap:1rem;">
-      <div class="card accent">
-        <span class="num-tag">Step 1 · Under-CAPEX</span>
-        <h3>Lowest sustaining CAPEX in the peer set.</h3>
-        <p>Jackup 5Y CAPEX/Rev runs 3–6% — below every listed peer (11–26%). Sustained low investment defers recertifications and component replacement.</p>
+      <div class="card accent" style="border-left-color:var(--bad);">
+        <span class="num-tag" style="color:var(--bad);">Step 1 · Cert &amp; PM gaps</span>
+        <h3>Fleet-wide asset-register and cert-ownership gap.</h3>
+        <p>The LUG audit surfaced <strong>Cat IV recertification</strong> as its only Critical finding — with informal Excel PM trackers and incomplete records. No fleet-level visibility on what is overdue.</p>
       </div>
       <div class="card accent" style="border-left-color:var(--bad);">
-        <span class="num-tag" style="color:var(--bad);">Step 2 · Out-of-Cert Equipment</span>
-        <h3>LUG audit raised Cat IV as the only Critical item.</h3>
-        <p>The LUG audit surfaced <strong>Cat IV recertification</strong> as its only Critical finding — with informal Excel PM trackers. A fleet-wide asset-register and cert-ownership gap.</p>
+        <span class="num-tag" style="color:var(--bad);">Step 2 · Out-of-cert equipment</span>
+        <h3>Equipment runs past its certification window.</h3>
+        <p>Without a live tracker, Cat III / Cat IV inspections slip. Major equipment — BOP, TDS, drawworks, cranes — operates beyond its recert date and becomes a reliability hazard.</p>
       </div>
       <div class="card accent" style="border-left-color:var(--bad);">
-        <span class="num-tag" style="color:var(--bad);">Step 3 · NPT + OPEX Inflation</span>
+        <span class="num-tag" style="color:var(--bad);">Step 3 · NPT + OPEX inflation</span>
         <h3>Failures shift onto run-time and the spare-parts bill.</h3>
-        <p>Out-of-cert equipment fails more often — easily creating higher NPT and inflated spare-parts OPEX. <strong>Same dollars, wrong line</strong>: CAPEX saved becomes OPEX paid, plus revenue forgone to NPT.</p>
+        <p>Out-of-cert equipment fails more often — driving higher NPT and inflated unplanned spare-parts spend. Same dollars, wrong line: revenue forgone to NPT, plus the unplanned OPEX patching it.</p>
       </div>
     </div>
 </section>
@@ -2146,8 +2227,8 @@
       <div class="insight-card">
         <div class="ic-eyebrow">03 · MAJOR</div>
         <h3>Systems &amp; Organisation</h3>
-        <p class="body">Build the structure and visibility to run a 7-rig fleet. <strong>Strengthen Supply Chain, Maintenance and Assets competency through clear procedures</strong> — not necessarily new hires — give managers a <strong>weekly dashboard to review rig performance</strong>, and run a <strong>strategic review of the land rigs' internal management</strong>.</p>
-        <div class="stat-strip"><span><strong>Procedures</strong>SC · Maintenance · Assets</span><span><strong>Weekly dashboard</strong>rig-performance review</span><span><strong>Land rigs</strong>internal-management review</span></div>
+        <p class="body">HQ drilling team is understaffed for a 7-rig fleet. Bring in <strong>additional resources in Supply Chain, Maintenance and Assets</strong> — internal hires and/or <strong>external company assistance on supply chain and preventive maintenance</strong> — plus a <strong>weekly dashboard for rig-performance review</strong> and a strategic review of the land rigs' management.</p>
+        <div class="stat-strip"><span><strong>HQ resources</strong>SC · Maintenance · Assets</span><span><strong>External support</strong>SC + preventive maintenance</span><span><strong>Weekly dashboard</strong>rig-performance review</span></div>
       </div>
     </div>
 </section>
@@ -2253,7 +2334,7 @@
   <!-- ========================= 22 · REC · LAND RIGS STRATEGIC REVIEW ========================= -->
   <section class="slide" data-title="Land Rigs · Strategic Review">
     <div class="eyebrow reveal">Recommendation · Land Rigs — Strategic Business-Model Review</div>
-    <h1 class="slide-title reveal">MIDIR &amp; DRAVUS need a <em>business-model review</em> —<br>not just a manning cut.</h1>
+    <h1 class="slide-title reveal">MIDIR &amp; DRAVUS need a <em>business-model review</em>.</h1>
     <p class="lede reveal d1">The land segment is loss-making (MIDIR) or sub-par (DRAVUS) despite peer-level CAPEX. The problem is structural — manning, cost base, rig spec and capital all need to be on the table. A complete overhaul, not a line-by-line trim.</p>
 
     <div class="grid-2 reveal d2" style="margin-top:1.4rem;gap:1rem;">
@@ -2288,25 +2369,24 @@
         <div class="ohead">QUICK WINS · 4–12 weeks</div>
         <h4>Process &amp; discipline</h4>
         <ul>
-          <li>① Lock warehouses + issue-out log books</li>
-          <li>② Daily SAP issue-outs · central audit</li>
-          <li>③ Consumption check before every PO</li>
-          <li>④ Rig-level performance dashboards</li>
-          <li>⑤ Cat IV status tracker + recert campaign</li>
-          <li>⑥ Mandatory PM record retention</li>
+          <li>① Daily SAP issue-outs · central audit</li>
+          <li>② Consumption check and min/max before every PO</li>
+          <li>③ Rig-level weekly performance dashboards and management call</li>
+          <li>④ Cat III/IV certification tracker + recert campaign</li>
+          <li>⑤ Mandatory PM record retention</li>
+          <li>⑥ Asset-register re-baseline</li>
         </ul>
       </div>
       <div class="org-panel future">
         <div class="ohead">STRUCTURAL FIXES · 3–12 months</div>
         <h4>Platform &amp; organisation</h4>
         <ul>
-          <li>① Strengthen SC · Maintenance · Assets via procedures (not new hires)</li>
+          <li>① Strengthen SC, Maintenance &amp; Assets via processes</li>
           <li>② MR-to-PO cycle in SAP</li>
           <li>③ Inventory min/max + dead stock to central warehouse</li>
-          <li>④ SC playbook + country-level material coding</li>
-          <li>⑤ CMMS rollout with OEM-based PM tasks</li>
-          <li>⑥ Cat III/IV certification tracker + asset-register re-baseline</li>
-          <li>⑦ Land-rig strategic business-model review</li>
+          <li>④ CMMS rollout with OEM-based PM tasks</li>
+          <li>⑤ Fleet-wide KPI dashboard platform (BI tool)</li>
+          <li>⑥ Land-rig strategic business-model review</li>
         </ul>
       </div>
     </div>

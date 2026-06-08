@@ -1,0 +1,1664 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<script>
+  /* Apply saved theme before render — prevents flash of wrong theme */
+  (function(){
+    var t = localStorage.getItem('dixstone-dashboard-theme');
+    document.documentElement.setAttribute('data-theme', t || 'light');
+  })();
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dixstone · Weekly Performance · Sigma AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#06080d; --bg2:#0d1119; --bg3:#141a26; --bg-card:#0f141d;
+  --border:rgba(232,160,32,0.18); --border2:rgba(200,210,230,0.08); --border3:rgba(200,210,230,0.18);
+  --sigma:#e8a020; --sigma2:#f4b840; --sigma-soft:rgba(232,160,32,0.10);
+  --text:#f0f3f9; --text2:#c8cdd8; --muted:#8b94a6; --muted2:#5d6677;
+  --good:#5dbf8a; --bad:#ff6b80; --info:#5eb3ff; --warn:#ff8c42;
+  --good-soft:rgba(93,191,138,0.12); --bad-soft:rgba(255,107,128,0.12); --warn-soft:rgba(255,140,66,0.14);
+  --po:#5eb3ff; --gr:#5dbf8a; --io:#a895d6;
+}
+html[data-theme="light"]{
+  /* Warm off-white palette · no gold · navy accent */
+  --bg:#e9edf3;             /* page bg — soft blue-gray, not stark */
+  --bg2:#f4f6fa;            /* slightly off card bg */
+  --bg3:#dde3eb;            /* track / inner */
+  --bg-card:#f7f9fc;        /* off-white card, not pure white */
+  --border:rgba(30,58,95,0.22);
+  --border2:rgba(15,20,29,0.1); --border3:rgba(15,20,29,0.2);
+  --sigma:#1e3a5f;          /* deep navy — replaces gold */
+  --sigma2:#152a45;         /* darker navy */
+  --sigma-soft:rgba(30,58,95,0.07);
+  --text:#0a0e15; --text2:#3a4150; --muted:#6b7280; --muted2:#9aa3af;
+  --good:#1f7a4c; --bad:#c41e3a; --info:#0f70b7; --warn:#d65a14;
+  --good-soft:rgba(31,122,76,0.08); --bad-soft:rgba(196,30,58,0.08); --warn-soft:rgba(214,90,20,0.1);
+  --premium:#475569;        /* slate — replaces gold for premium pill */
+  --jackup:#1976d2; --land:#6b4f9b; --platform:#2d8366;
+  --po:#1976d2; --gr:#1f7a4c; --io:#6b4f9b;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:400;line-height:1.5;-webkit-font-smoothing:antialiased;}
+body{
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232,160,32,0.05), transparent 60%),
+    var(--bg);
+  background-attachment:fixed;min-height:100vh;
+}
+html[data-theme="light"] body{
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(30,58,95,0.04), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(15,112,183,0.03), transparent 50%),
+    var(--bg);
+  background-attachment:fixed;
+}
+
+/* LIGHT-MODE OVERRIDES — replace gold tints with navy tints */
+html[data-theme="light"] .rig-head .type-pill.premium{background:rgba(71,85,105,0.12);color:var(--premium);border:1px solid rgba(71,85,105,0.3);}
+html[data-theme="light"] .mega.hero{background:linear-gradient(180deg,rgba(30,58,95,0.05),var(--bg2));border:1px solid var(--border);}
+html[data-theme="light"] .kpi.hero{background:linear-gradient(180deg,rgba(30,58,95,0.05),var(--bg2));border:1px solid var(--border);}
+html[data-theme="light"] .headline{background:linear-gradient(180deg,rgba(30,58,95,0.04),var(--bg2));border-color:var(--border);}
+html[data-theme="light"] .headline .ico{background:rgba(30,58,95,0.12);color:var(--sigma);}
+html[data-theme="light"] .panel,
+html[data-theme="light"] .mat-panel,
+html[data-theme="light"] .kpi{box-shadow:0 1px 2px rgba(15,20,29,0.04),0 4px 12px rgba(15,20,29,0.04);}
+
+/* HEADER */
+.app-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(6,8,13,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border2);padding:0.5rem 2vw;
+}
+html[data-theme="light"] .app-header{background:rgba(233,237,243,0.92);}
+.app-header-row{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:0.8rem;}
+.brand-mark{width:30px;height:30px;border-radius:6px;background:linear-gradient(135deg,var(--sigma),var(--sigma2));display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;color:#ffffff;font-size:1rem;}
+html[data-theme="dark"] .brand-mark{color:#06080d;}
+.brand-text{display:flex;flex-direction:column;line-height:1.1;}
+.brand-text .name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.05rem;letter-spacing:-0.01em;}
+.brand-text .sub{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;}
+.header-spacer{flex:1;}
+.header-meta{display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;}
+.refresh-pill{display:flex;align-items:center;gap:0.45rem;font-family:'JetBrains Mono',monospace;font-size:0.74rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;padding:0.42rem 0.8rem;border:1px solid var(--border2);border-radius:20px;}
+.refresh-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--good);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.theme-toggle{background:transparent;border:1px solid var(--border2);color:var(--text2);font-family:'JetBrains Mono',monospace;font-size:0.74rem;letter-spacing:0.05em;padding:0.42rem 0.85rem;border-radius:20px;cursor:pointer;text-transform:uppercase;display:flex;align-items:center;gap:0.45rem;}
+.theme-toggle:hover{border-color:var(--border);color:var(--sigma);}
+.theme-toggle svg{width:13px;height:13px;}
+.theme-toggle .ico-sun{display:none;}
+.theme-toggle .ico-moon{display:inline-block;}
+.theme-toggle .lbl-dark{display:none;}
+.theme-toggle .lbl-light{display:inline;}
+html[data-theme="light"] .theme-toggle .ico-sun{display:inline-block;}
+html[data-theme="light"] .theme-toggle .ico-moon{display:none;}
+html[data-theme="light"] .theme-toggle .lbl-dark{display:inline;}
+html[data-theme="light"] .theme-toggle .lbl-light{display:none;}
+
+/* TAB NAV — TWO ROWS */
+.nav-wrapper{position:sticky;top:46px;z-index:40;background:var(--bg2);border-bottom:1px solid var(--border2);}
+html[data-theme="light"] .nav-wrapper{background:var(--bg2);}
+.nav-row{padding:0 2vw;display:flex;gap:0;align-items:center;overflow-x:auto;}
+.nav-row.domain{border-bottom:1px solid var(--border2);}
+.nav-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted2);letter-spacing:0.18em;text-transform:uppercase;font-weight:500;padding:0.55rem 0.8rem 0.55rem 0;white-space:nowrap;}
+.tab{
+  background:transparent;border:0;border-bottom:2px solid transparent;
+  padding:0.65rem 1.1rem;font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:500;color:var(--muted);
+  cursor:pointer;white-space:nowrap;letter-spacing:0.005em;
+  transition:color 0.2s ease, border-color 0.2s ease;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.tab .type{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;font-weight:500;}
+.tab:hover{color:var(--text2);}
+.tab.active{color:var(--sigma);border-bottom-color:var(--sigma);font-weight:600;}
+.tab.active .type{color:var(--sigma);opacity:0.8;}
+.tab .lead-dot{width:7px;height:7px;border-radius:50%;background:var(--sigma);box-shadow:0 0 6px var(--sigma);}
+.tab .status-dot{width:7px;height:7px;border-radius:50%;}
+.tab .status-dot.good{background:var(--good);}
+.tab .status-dot.warn{background:var(--warn);}
+.tab .status-dot.bad{background:var(--bad);box-shadow:0 0 6px rgba(255,107,128,0.6);}
+
+.chip-row{padding:0.4rem 2vw;display:flex;gap:0.4rem;align-items:center;overflow-x:auto;}
+.chip{
+  background:transparent;border:1px solid var(--border2);
+  padding:0.42rem 0.95rem;border-radius:20px;
+  font-family:'Space Grotesk',sans-serif;font-size:0.9rem;font-weight:500;color:var(--text2);
+  cursor:pointer;white-space:nowrap;
+  display:flex;align-items:center;gap:0.45rem;
+  transition:border-color 0.2s, color 0.2s, background 0.2s;
+}
+.chip:hover{border-color:var(--border3);color:var(--text);}
+.chip.active{background:var(--sigma);border-color:var(--sigma);color:#06080d;}
+.chip.active .type, .chip.active .status-dot{color:#06080d !important;opacity:0.7;}
+html[data-theme="light"] .chip.active{color:#ffffff;}
+html[data-theme="light"] .chip.active .type, html[data-theme="light"] .chip.active .status-dot{color:#ffffff !important;opacity:0.85;}
+.chip .type{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;font-weight:500;}
+.chip .status-dot{width:6px;height:6px;border-radius:50%;}
+.chip .status-dot.good{background:var(--good);}
+.chip .status-dot.warn{background:var(--warn);}
+.chip .status-dot.bad{background:var(--bad);box-shadow:0 0 6px rgba(255,107,128,0.6);}
+.chip.fleet-chip{border-color:var(--border);color:var(--sigma);font-weight:600;}
+.chip.fleet-chip.active{background:var(--sigma);color:#06080d;border-color:var(--sigma);}
+html[data-theme="light"] .chip.fleet-chip.active{color:#ffffff;}
+html[data-theme="light"] .chip.fleet-chip{color:var(--sigma);}
+
+/* MAIN — flex column to fill viewport */
+html,body{height:100%;}
+.page{padding:0.7rem 1.6vw 0.9rem;max-width:1800px;margin:0 auto;min-height:calc(100vh - 130px);display:flex;flex-direction:column;}
+.section{display:none;flex:1;}
+.section.active{display:flex;flex-direction:column;animation:fadeIn 0.25s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+/* RIG HEADER — readable */
+.rig-head{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding-bottom:0.6rem;border-bottom:1px solid var(--border2);margin-bottom:0.85rem;}
+.rig-head h1{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin:0;letter-spacing:-0.02em;color:var(--text);line-height:1;}
+.rig-head .type-pill{display:inline-block;padding:5px 14px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;}
+.rig-head .type-pill.premium{background:rgba(232,160,32,0.15);color:var(--sigma);border:1px solid var(--border);}
+.rig-head .type-pill.jackup{background:rgba(94,179,255,0.15);color:var(--info);border:1px solid rgba(94,179,255,0.3);}
+.rig-head .type-pill.land{background:rgba(168,149,214,0.18);color:#b8a3e0;border:1px solid rgba(168,149,214,0.35);}
+.rig-head .type-pill.platform{background:rgba(123,197,168,0.18);color:#9dd3b8;border:1px solid rgba(123,197,168,0.35);}
+.rig-head-spacer{flex:1;}
+.rig-head .meta{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;}
+.rig-head .status-banner{padding:0.55rem 1.1rem;border-radius:6px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.95rem;display:flex;align-items:center;gap:0.55rem;}
+.rig-head .status-banner .icon{width:10px;height:10px;border-radius:50%;}
+.rig-head .status-banner.good{background:var(--good-soft);color:var(--good);border:1px solid rgba(93,191,138,0.3);}
+.rig-head .status-banner.good .icon{background:var(--good);box-shadow:0 0 8px rgba(93,191,138,0.5);}
+.rig-head .status-banner.warn{background:var(--warn-soft);color:var(--warn);border:1px solid rgba(244,184,64,0.3);}
+.rig-head .status-banner.warn .icon{background:var(--warn);box-shadow:0 0 8px rgba(244,184,64,0.5);}
+.rig-head .status-banner.bad{background:var(--bad-soft);color:var(--bad);border:1px solid rgba(255,107,128,0.35);}
+.rig-head .status-banner.bad .icon{background:var(--bad);box-shadow:0 0 10px rgba(255,107,128,0.6);animation:pulseBad 2s ease-in-out infinite;}
+@keyframes pulseBad{0%,100%{box-shadow:0 0 6px rgba(255,107,128,0.4);}50%{box-shadow:0 0 14px rgba(255,107,128,0.8);}}
+
+/* KPI STRIP (6 cards) — balanced */
+.kpi-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:0.6rem;margin-bottom:0.7rem;flex:0 0 auto;}
+@media (max-width:1200px){.kpi-strip{grid-template-columns:repeat(3,1fr);}}
+@media (max-width:700px){.kpi-strip{grid-template-columns:repeat(2,1fr);}}
+.kpi{background:linear-gradient(180deg,var(--bg-card),var(--bg2));border:1px solid var(--border2);border-radius:8px;padding:0.85rem 1rem;}
+.kpi .lbl{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.45rem;font-weight:500;}
+.kpi .val{font-family:'Space Grotesk',sans-serif;font-size:2.1rem;font-weight:700;color:var(--text);letter-spacing:-0.02em;line-height:1;}
+.kpi .val.good{color:var(--good);} .kpi .val.warn{color:var(--warn);} .kpi .val.bad{color:var(--bad);}
+.kpi .sub{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--muted);margin-top:0.45rem;line-height:1.4;letter-spacing:0.02em;}
+.kpi-meter{margin-top:0.55rem;}
+.kpi-bar{height:7px;background:var(--bg3);border-radius:3px;overflow:hidden;border:1px solid var(--border2);position:relative;}
+.kpi-bar-fill{height:100%;border-radius:2px;transition:width 0.6s ease;}
+.kpi-bar-fill.good{background:linear-gradient(90deg,var(--good),#8ed4ad);}
+.kpi-bar-fill.warn{background:linear-gradient(90deg,var(--warn),#ffaf7e);}
+.kpi-bar-fill.bad{background:linear-gradient(90deg,var(--bad),#ff95a4);}
+.kpi-target-line{
+  font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--muted);
+  margin-top:0.4rem;line-height:1.35;letter-spacing:0.02em;
+  display:flex;justify-content:space-between;align-items:baseline;gap:0.4rem;
+}
+.kpi-target-line .actual{color:var(--text2);}
+.kpi-target-line .target{color:var(--text2);}
+.kpi-target-line .target.good{color:var(--good);}
+.kpi-target-line .target.warn{color:var(--warn);}
+.kpi-target-line .target.bad{color:var(--bad);}
+
+/* TWO-COLUMN LAYOUT — main content + DFA narrative sidebar */
+.below-kpi{display:grid;grid-template-columns:1fr 360px;gap:0.7rem;flex:1 1 0;min-height:0;}
+@media (max-width:1400px){.below-kpi{grid-template-columns:1fr 320px;}}
+@media (max-width:1200px){.below-kpi{grid-template-columns:1fr;}}
+.content-main{display:flex;flex-direction:column;gap:0.7rem;min-width:0;min-height:0;}
+
+/* DFA NARRATIVE PANEL */
+.dfa-panel{
+  display:flex;flex-direction:column;
+  background:linear-gradient(180deg,var(--sigma-soft),var(--bg2));
+  border:1px solid var(--border);border-radius:8px;
+  padding:0.95rem 1.1rem;min-height:0;overflow:hidden;
+}
+.dfa-header{display:flex;align-items:center;gap:0.7rem;padding-bottom:0.7rem;border-bottom:1px solid var(--border2);margin-bottom:0.7rem;flex:0 0 auto;}
+.dfa-mark{
+  width:36px;height:36px;border-radius:7px;
+  background:linear-gradient(135deg,var(--sigma),var(--sigma2));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.74rem;
+  color:#fff;letter-spacing:0.04em;flex:0 0 auto;
+}
+html[data-theme="dark"] .dfa-mark{color:#06080d;}
+.dfa-title .dfa-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.95rem;color:var(--text);letter-spacing:-0.01em;line-height:1.15;}
+.dfa-title .dfa-sub{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;}
+.dfa-body{flex:1 1 0;display:flex;flex-direction:column;gap:0.75rem;min-height:0;overflow-y:auto;overflow-x:hidden;padding-right:0.4rem;margin-right:-0.4rem;}
+.dfa-body::-webkit-scrollbar{width:5px;}
+.dfa-body::-webkit-scrollbar-track{background:transparent;}
+.dfa-body::-webkit-scrollbar-thumb{background:var(--border3);border-radius:3px;}
+.dfa-body::-webkit-scrollbar-thumb:hover{background:var(--sigma);}
+.dfa-headline{}
+.dfa-headline-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--sigma);letter-spacing:0.18em;text-transform:uppercase;font-weight:500;margin-bottom:0.3rem;}
+.dfa-headline h3{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;color:var(--text);margin:0;line-height:1.25;letter-spacing:-0.01em;}
+.dfa-section .dfa-section-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:0.16em;text-transform:uppercase;font-weight:500;margin-bottom:0.3rem;}
+.dfa-section p{font-size:0.86rem;color:var(--text2);margin:0;line-height:1.5;}
+.dfa-section p strong{color:var(--text);font-weight:500;}
+.dfa-section.dfa-action{background:var(--sigma-soft);border-left:3px solid var(--sigma);padding:0.55rem 0.75rem;border-radius:0 4px 4px 0;}
+.dfa-section.dfa-action .dfa-section-label{color:var(--sigma);}
+.dfa-footer{margin-top:auto;padding-top:0.6rem;border-top:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;gap:0.7rem;flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--muted);letter-spacing:0.05em;}
+.dfa-disclaimer{color:var(--warn);font-weight:500;font-size:0.62rem;letter-spacing:0.06em;line-height:1.4;flex:1;}
+.dfa-version{color:var(--muted2);white-space:nowrap;font-size:0.6rem;}
+
+/* MAIN GRID (P&L + NPT) — flex-grow */
+.main-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;flex:1.35 1 0;min-height:0;}
+@media (max-width:1100px){.main-grid{grid-template-columns:1fr;}}
+.panel{background:linear-gradient(180deg,var(--bg-card),var(--bg2));border:1px solid var(--border2);border-radius:8px;padding:1rem 1.15rem;display:flex;flex-direction:column;}
+.panel-head{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--sigma);letter-spacing:0.16em;text-transform:uppercase;font-weight:500;margin-bottom:0.75rem;display:flex;justify-content:space-between;align-items:baseline;flex:0 0 auto;}
+.panel-head .right{color:var(--muted);font-weight:400;}
+
+/* P&L TABLE — fills panel */
+.pl-row{display:grid;grid-template-columns:1.5fr 0.9fr 1.5fr;gap:0.6rem;align-items:baseline;padding:0.5rem 0;border-bottom:1px dashed var(--border2);font-size:0.95rem;flex:1 1 0;min-height:0;}
+.pl-row:last-child{border-bottom:0;}
+.pl-row .label{color:var(--text2);}
+.pl-row .label.accent{color:var(--sigma);font-weight:500;}
+.pl-row .val{font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:500;text-align:right;font-size:0.95rem;}
+.pl-row .val.good{color:var(--good);}
+.pl-row .val.warn{color:var(--warn);}
+.pl-row .val.bad{color:var(--bad);}
+.pl-row .compare{font-family:'JetBrains Mono',monospace;color:var(--muted);font-size:0.82rem;display:flex;gap:0.6rem;align-items:baseline;border-left:1px dashed var(--border2);padding-left:0.6rem;line-height:1.3;}
+.pl-row .compare .delta{font-weight:500;}
+.pl-row .compare .delta.up{color:var(--bad);}
+.pl-row .compare .delta.down{color:var(--good);}
+.pl-row .compare .delta.warn{color:var(--warn);}
+.pl-row .compare .pp{color:var(--bad);}
+.pl-row .compare .pp.down{color:var(--good);}
+.pl-row .compare .pp.warn{color:var(--warn);}
+.pl-row.section-divider{border-bottom:1px solid var(--border3);padding-top:0.5rem;}
+.pl-row.no-compare{grid-template-columns:1.5fr 0.9fr;}
+
+/* NPT BARS — fills panel */
+.npt-row{display:grid;grid-template-columns:110px 1fr 60px;align-items:center;gap:0.8rem;padding:0.7rem 0;font-size:0.98rem;flex:1 1 0;min-height:0;}
+.npt-row .lbl{color:var(--text2);font-weight:500;}
+.npt-bar{height:16px;background:var(--bg3);border-radius:3px;overflow:hidden;border:1px solid var(--border2);}
+.npt-fill{height:100%;background:linear-gradient(90deg,var(--bad),#ff95a4);border-radius:2px;}
+.npt-row .num{font-family:'JetBrains Mono',monospace;font-size:0.95rem;color:var(--bad);text-align:right;font-weight:500;}
+.npt-summary{margin-top:auto;padding-top:0.85rem;border-top:1px solid var(--border2);flex:0 0 auto;}
+.npt-summary .label{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--muted);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:0.4rem;}
+.npt-summary .big{font-family:'Space Grotesk',sans-serif;font-size:1.55rem;font-weight:700;color:var(--sigma);letter-spacing:-0.01em;line-height:1.15;}
+.npt-summary .commentary{font-size:0.95rem;color:var(--text2);margin-top:0.45rem;line-height:1.45;}
+
+/* MAT GROUPS (3 panels) — flex-grow + fill */
+.mat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.7rem;flex:1 1 0;min-height:0;}
+@media (max-width:1200px){.mat-grid{grid-template-columns:1fr;}}
+.mat-panel{background:linear-gradient(180deg,var(--bg-card),var(--bg2));border:1px solid var(--border2);border-radius:8px;padding:0.95rem 1.1rem;display:flex;flex-direction:column;}
+.mat-row{display:grid;grid-template-columns:140px 1fr 88px 50px;align-items:center;gap:0.6rem;padding:0.55rem 0;font-size:0.92rem;flex:1 1 0;min-height:0;}
+.mat-row .lbl{font-family:'Inter',sans-serif;color:var(--text2);letter-spacing:0;font-size:0.92rem;font-weight:500;line-height:1.2;text-transform:none;}
+.mat-bar{height:12px;background:var(--bg3);border-radius:2px;overflow:hidden;border:1px solid var(--border2);}
+.mat-fill{height:100%;border-radius:1px;}
+.mat-fill.po{background:linear-gradient(90deg,var(--po),#8ec8ff);}
+.mat-fill.gr{background:linear-gradient(90deg,var(--gr),#8ed4ad);}
+.mat-fill.io{background:linear-gradient(90deg,var(--io),#c9b8e8);}
+.mat-row .num{font-family:'JetBrains Mono',monospace;color:var(--text);text-align:right;font-weight:500;font-size:0.92rem;}
+.mat-row .pct{font-family:'JetBrains Mono',monospace;color:var(--muted);text-align:right;font-size:0.84rem;}
+.mat-total{margin-top:auto;padding-top:0.7rem;border-top:1px solid var(--border2);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;flex:0 0 auto;}
+.mat-total .num{color:var(--sigma);font-weight:600;font-size:0.96rem;}
+
+/* FLEET VIEW (minimalist) */
+.mega-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-bottom:1.5rem;}
+@media (max-width:1100px){.mega-grid{grid-template-columns:repeat(2,1fr);}}
+.mega{background:linear-gradient(180deg,var(--bg-card),var(--bg2));border:1px solid var(--border2);border-radius:10px;padding:1.4rem 1.4rem;}
+.mega.hero{background:linear-gradient(180deg,rgba(232,160,32,0.06),var(--bg2));border:1px solid var(--border);}
+.mega.bad{background:linear-gradient(180deg,rgba(255,107,128,0.07),var(--bg2));border:1px solid rgba(255,107,128,0.32);}
+.mega.warn{background:linear-gradient(180deg,rgba(244,184,64,0.06),var(--bg2));border:1px solid rgba(244,184,64,0.28);}
+.mega.good{background:linear-gradient(180deg,rgba(93,191,138,0.06),var(--bg2));border:1px solid rgba(93,191,138,0.28);}
+.mega .lbl{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--muted);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:0.5rem;font-weight:500;}
+.mega .val{font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;color:var(--text);letter-spacing:-0.03em;line-height:1;}
+.mega .val.bad{color:var(--bad);} .mega .val.warn{color:var(--warn);} .mega .val.good{color:var(--good);}
+.mega .val .unit{font-size:1.1rem;font-weight:400;color:var(--muted);}
+.mega .delta{font-family:'JetBrains Mono',monospace;font-size:0.74rem;margin-top:0.6rem;color:var(--muted);letter-spacing:0.02em;}
+.mega .delta.up{color:var(--good);} .mega .delta.down{color:var(--bad);} .mega .delta.warn{color:var(--warn);}
+
+.headline{margin:1.5rem 0;padding:1.6rem 1.8rem;border-radius:10px;border:1px solid var(--border);background:linear-gradient(180deg,rgba(232,160,32,0.04),var(--bg2));display:flex;gap:1.4rem;align-items:flex-start;}
+.headline.bad{background:linear-gradient(180deg,rgba(255,107,128,0.06),var(--bg2));border-color:rgba(255,107,128,0.35);}
+.headline.warn{background:linear-gradient(180deg,rgba(244,184,64,0.05),var(--bg2));border-color:rgba(244,184,64,0.32);}
+.headline.good{background:linear-gradient(180deg,rgba(93,191,138,0.05),var(--bg2));border-color:rgba(93,191,138,0.3);}
+.headline .ico{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.2rem;flex-shrink:0;background:rgba(232,160,32,0.18);color:var(--sigma);}
+.headline.bad .ico{background:rgba(255,107,128,0.18);color:var(--bad);}
+.headline.warn .ico{background:rgba(244,184,64,0.2);color:var(--warn);}
+.headline.good .ico{background:rgba(93,191,138,0.18);color:var(--good);}
+.headline .text h3{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;margin:0 0 0.4rem 0;letter-spacing:-0.01em;color:var(--text);}
+.headline .text p{margin:0;color:var(--text2);font-size:0.94rem;line-height:1.55;}
+.headline .text p strong{color:var(--text);font-weight:500;}
+
+.bar-row{display:grid;grid-template-columns:130px 1fr 120px;align-items:center;gap:0.9rem;padding:0.55rem 0;font-size:0.86rem;}
+.bar-row .lbl{color:var(--text2);font-weight:500;}
+.bar-row .lbl .sub{display:block;font-size:0.68rem;color:var(--muted);font-weight:400;font-family:'JetBrains Mono',monospace;letter-spacing:0.04em;margin-top:1px;}
+.bar-track{height:18px;background:var(--bg3);border-radius:3px;overflow:hidden;border:1px solid var(--border2);position:relative;}
+.bar-fill{height:100%;border-radius:2px;}
+.bar-fill.good{background:linear-gradient(90deg,var(--good),#8ed4ad);}
+.bar-fill.warn{background:linear-gradient(90deg,var(--warn),#ffd28e);}
+.bar-fill.bad{background:linear-gradient(90deg,var(--bad),#ff95a4);}
+.bar-fill.info{background:linear-gradient(90deg,var(--info),#8ec8ff);}
+.bar-row .num{font-family:'JetBrains Mono',monospace;font-size:0.88rem;color:var(--text);text-align:right;font-weight:500;}
+.bar-track .marker{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--text);opacity:0.55;}
+
+.foot{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border2);font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);letter-spacing:0.04em;line-height:1.65;}
+.foot strong{color:var(--sigma);font-weight:500;}
+
+/* THREE THINGS */
+.three-things{display:grid;grid-template-columns:repeat(3,1fr);gap:0.9rem;margin-bottom:1.5rem;}
+@media (max-width:1000px){.three-things{grid-template-columns:1fr;}}
+.thing{background:linear-gradient(180deg,var(--bg-card),var(--bg2));border:1px solid var(--border2);border-left:3px solid var(--sigma);border-radius:8px;padding:1.1rem 1.2rem;}
+.thing.bad{border-left-color:var(--bad);}
+.thing.warn{border-left-color:var(--warn);}
+.thing.good{border-left-color:var(--good);}
+.thing .num{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--sigma);letter-spacing:0.18em;text-transform:uppercase;font-weight:500;margin-bottom:0.4rem;}
+.thing.bad .num{color:var(--bad);} .thing.warn .num{color:var(--warn);} .thing.good .num{color:var(--good);}
+.thing h4{font-family:'Space Grotesk',sans-serif;font-size:0.96rem;font-weight:600;margin:0 0 0.35rem 0;color:var(--text);letter-spacing:-0.01em;}
+.thing p{margin:0;font-size:0.84rem;color:var(--text2);line-height:1.5;}
+.thing p strong{color:var(--text);font-weight:500;}
+
+.rig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0.7rem;margin-bottom:1.4rem;}
+@media (max-width:1300px){.rig-grid{grid-template-columns:repeat(3,1fr);}}
+@media (max-width:700px){.rig-grid{grid-template-columns:repeat(2,1fr);}}
+.rig-card{background:linear-gradient(180deg,var(--bg-card),var(--bg2));border:1px solid var(--border2);border-radius:8px;padding:0.95rem 1rem;cursor:pointer;transition:transform 0.18s,border-color 0.18s;position:relative;}
+.rig-card:hover{transform:translateY(-2px);border-color:var(--border);}
+.rig-card.bad{border-color:rgba(255,107,128,0.4);}
+.rig-card.warn{border-color:rgba(244,184,64,0.32);}
+.rig-card.good{border-color:rgba(93,191,138,0.28);}
+.rig-card .rig-name{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;color:var(--text);}
+.rig-card .rig-type{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-top:2px;}
+.rig-card .rig-rdm{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;letter-spacing:-0.02em;margin-top:0.5rem;line-height:1;}
+.rig-card .rig-rdm.bad{color:var(--bad);} .rig-card .rig-rdm.warn{color:var(--warn);} .rig-card .rig-rdm.good{color:var(--good);}
+.rig-card .rig-lbl{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.15rem;}
+.rig-card .verdict{margin-top:0.55rem;padding-top:0.45rem;border-top:1px solid var(--border2);font-size:0.74rem;color:var(--text2);line-height:1.4;}
+.rig-card .status-tag{position:absolute;top:0.85rem;right:0.85rem;width:7px;height:7px;border-radius:50%;}
+.rig-card .status-tag.good{background:var(--good);}
+.rig-card .status-tag.warn{background:var(--warn);}
+.rig-card .status-tag.bad{background:var(--bad);box-shadow:0 0 6px rgba(255,107,128,0.6);}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="app-header-row">
+    <div class="brand">
+      <div class="brand-mark">S</div>
+      <div class="brand-text">
+        <span class="name">Dixstone &middot; Weekly Performance</span>
+        <span class="sub">Sigma AI &middot; FY26 W23</span>
+      </div>
+    </div>
+    <div class="header-spacer"></div>
+    <div class="header-meta">
+      <div class="refresh-pill"><span class="dot"></span> Data refreshed &middot; Wed 03 Jun 2026 &middot; 06:00 UTC</div>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme (T)">
+        <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <span class="lbl-dark">Dark mode</span>
+        <span class="lbl-light">Light mode</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="nav-wrapper">
+  <div class="nav-row domain" id="domain-nav">
+    <span class="nav-label">Company performance</span>
+    <button class="tab" data-domain="executive"><span>Executive Summary</span></button>
+    <button class="tab" data-domain="operational"><span>Operations</span></button>
+    <button class="tab" data-domain="financial"><span>Finance</span></button>
+    <button class="tab" data-domain="supply-chain"><span>Supply Chain</span></button>
+    <button class="tab" data-domain="inventory"><span>Inventory</span></button>
+  </div>
+  <div class="chip-row" id="entity-nav">
+    <span class="nav-label">Fleet performance</span>
+    <button class="chip fleet-chip active" data-entity="fleet">Fleet roll-up</button>
+    <button class="chip" data-entity="axima"><span class="status-dot good"></span><span>Axima</span><span class="type">Premium JU</span></button>
+    <button class="chip" data-entity="banba"><span class="status-dot warn"></span><span>Banba</span><span class="type">Jack-up</span></button>
+    <button class="chip" data-entity="nuada"><span class="status-dot warn"></span><span>Nuada</span><span class="type">Jack-up</span></button>
+    <button class="chip" data-entity="lug"><span class="status-dot good"></span><span>Lug</span><span class="type">Platform</span></button>
+    <button class="chip" data-entity="midir"><span class="status-dot bad"></span><span>Midir</span><span class="type">Land</span></button>
+    <button class="chip" data-entity="dravus"><span class="status-dot warn"></span><span>Dravus</span><span class="type">Land</span></button>
+  </div>
+</div>
+
+<main class="page">
+
+<!-- ============================ FLEET ROLL-UP · AGGREGATE ONE-PAGER ============================ -->
+<section class="section active" id="section-fleet-rollup">
+  <div class="rig-head">
+    <h1>Fleet roll-up</h1>
+    <span class="type-pill premium">All 6 rigs &middot; FY 2025</span>
+    <span class="rig-head-spacer"></span>
+    <span class="meta">Sum of Axima &middot; Banba &middot; Nuada &middot; Lug &middot; Midir &middot; Dravus</span>
+    <div class="status-banner warn"><span class="icon"></span><span>Commercial position strong &middot; cost-structure gap &minus;10.9pp to peer &middot; 3 controllable levers</span></div>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi"><div class="lbl">Utilisation</div><div class="val good">97.1<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">2,128 / 2,190 rig-days</span><span class="target good">&#9650; &ge;95%</span></div></div></div>
+    <div class="kpi"><div class="lbl">NPT</div><div class="val warn">5.3<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:57%"></div></div>
+        <div class="kpi-target-line"><span class="actual">112.7 fleet days &middot; +2.3pp vs peer</span><span class="target warn">&#9660; &le;3.0%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Revenue</div><div class="val good">$158.5<span style="font-size:1.1rem;color:var(--muted);">M</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:93%"></div></div>
+        <div class="kpi-target-line"><span class="actual">+23.8% YoY &middot; 2&times; FY21</span><span class="target good">on plan</span></div></div></div>
+    <div class="kpi"><div class="lbl">Rig Direct Margin</div><div class="val warn">33.9<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:76%"></div></div>
+        <div class="kpi-target-line"><span class="actual">$53.7M &middot; $21M gap to peer</span><span class="target warn">&#9650; &ge;44.8%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Staff Cost %</div><div class="val warn">30.4<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:95%"></div></div>
+        <div class="kpi-target-line"><span class="actual">$48.2M &middot; 638 FTE</span><span class="target warn">&#9660; &le;32%</span></div></div></div>
+    <div class="kpi"><div class="lbl">PO / GR coherence</div><div class="val good">1.13<span style="font-size:1.1rem;color:var(--muted);">&times;</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">recovered from 2.0&times;</span><span class="target good">&#9670; 1.05&ndash;1.20&times;</span></div></div></div>
+  </div>
+
+  <div class="below-kpi">
+   <div class="content-main">
+    <div class="main-grid">
+      <div class="panel">
+        <div class="panel-head"><span>P&amp;L snapshot &middot; Fleet &middot; USD '000s</span><span class="right">&Delta; vs FY24</span></div>
+        <div class="pl-row"><div class="label">Revenue</div><div class="val">$158,500</div><div class="compare"><span class="delta up">+23.8%</span></div></div>
+        <div class="pl-row"><div class="label">Spare parts cost</div><div class="val warn">$31,700 (20.0%)</div><div class="compare"><span class="delta up">+34.2%</span> <span class="pp">+4.3pp</span></div></div>
+        <div class="pl-row"><div class="label">Workforce cost</div><div class="val warn">$48,184 (30.4%)</div><div class="compare"><span class="delta up">+11.2%</span> <span class="pp warn">+1.8pp</span></div></div>
+        <div class="pl-row"><div class="label">Rig Direct Margin (norm.)</div><div class="val warn">$53,732 (33.9%)</div><div class="compare"><span class="delta up">+15.7%</span> <span class="pp">+3.4pp</span></div></div>
+        <div class="pl-row section-divider"><div class="label accent">2025 Real Spent &middot; GR</div><div class="val">$53,250 (33.6%)</div><div class="compare"><span class="delta up">+28.4%</span> <span class="pp">+5.2pp</span></div></div>
+        <div class="pl-row"><div class="label accent">2025 New POs</div><div class="val">$60,200</div><div class="compare"><span class="delta up">+8.4% YoY</span></div></div>
+        <div class="pl-row"><div class="label">PO &divide; GR coherence</div><div class="val good">1.13&times;</div><div class="compare">in band &middot; recovered from 2.0&times;</div></div>
+        <div class="pl-row section-divider no-compare"><div class="label">Inventory (end-2025)</div><div class="val warn">$45.2M</div></div>
+        <div class="pl-row no-compare"><div class="label">Dead stock % (3yr+)</div><div class="val bad">56%</div></div>
+        <div class="pl-row no-compare"><div class="label">FY25 CAPEX / Rev</div><div class="val">5.3%</div></div>
+        <div class="pl-row no-compare"><div class="label">5Y CAPEX / Rev (2021&ndash;25)</div><div class="val">4.2%</div></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><span>NPT equipment drivers &middot; Fleet 2025 &middot; Top 5</span></div>
+        <div class="npt-row"><div class="lbl">BOP</div><div class="npt-bar"><div class="npt-fill" style="width:34%;"></div></div><div class="num">34.2%</div></div>
+        <div class="npt-row"><div class="lbl">Top Drive (TDS)</div><div class="npt-bar"><div class="npt-fill" style="width:28%;"></div></div><div class="num">27.8%</div></div>
+        <div class="npt-row"><div class="lbl">Rig Crew</div><div class="npt-bar"><div class="npt-fill" style="width:14%;"></div></div><div class="num">13.6%</div></div>
+        <div class="npt-row"><div class="lbl">Mud / Solids</div><div class="npt-bar"><div class="npt-fill" style="width:10%;"></div></div><div class="num">9.7%</div></div>
+        <div class="npt-row"><div class="lbl">Rig Floor</div><div class="npt-bar"><div class="npt-fill" style="width:7%;"></div></div><div class="num">7.2%</div></div>
+        <div class="npt-summary">
+          <div class="label">2025 NPT (fleet total)</div>
+          <div class="big">2,705 hrs &middot; 112.7 days &middot; 5.3% NPT</div>
+          <div class="commentary">BOP + TDS account for 62% of fleet NPT. Banba TDS &amp; Midir BOP are the two concentrated drivers; addressable through PM-compliance audit.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mat-grid">
+      <div class="mat-panel">
+        <div class="panel-head"><span>2025 PO &middot; Fleet Top 5 mat groups</span></div>
+        <div class="mat-row"><div class="lbl">Drilling handling</div><div class="mat-bar"><div class="mat-fill po" style="width:100%;"></div></div><div class="num">$5.48M</div><div class="pct">9.1%</div></div>
+        <div class="mat-row"><div class="lbl">Drilling control</div><div class="mat-bar"><div class="mat-fill po" style="width:88%;"></div></div><div class="num">$4.84M</div><div class="pct">8.0%</div></div>
+        <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill po" style="width:81%;"></div></div><div class="num">$4.42M</div><div class="pct">7.3%</div></div>
+        <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill po" style="width:65%;"></div></div><div class="num">$3.58M</div><div class="pct">5.9%</div></div>
+        <div class="mat-row"><div class="lbl">Top drive</div><div class="mat-bar"><div class="mat-fill po" style="width:59%;"></div></div><div class="num">$3.22M</div><div class="pct">5.3%</div></div>
+        <div class="mat-total"><span>Total 2025 PO</span><span class="num">$60.2M</span></div>
+      </div>
+      <div class="mat-panel">
+        <div class="panel-head"><span>2025 GR &middot; Fleet Top 5 mat groups</span></div>
+        <div class="mat-row"><div class="lbl">Services / freight</div><div class="mat-bar"><div class="mat-fill gr" style="width:100%;"></div></div><div class="num">$6.78M</div><div class="pct">12.7%</div></div>
+        <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill gr" style="width:58%;"></div></div><div class="num">$3.92M</div><div class="pct">7.4%</div></div>
+        <div class="mat-row"><div class="lbl">Drilling handling</div><div class="mat-bar"><div class="mat-fill gr" style="width:52%;"></div></div><div class="num">$3.52M</div><div class="pct">6.6%</div></div>
+        <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill gr" style="width:47%;"></div></div><div class="num">$3.18M</div><div class="pct">6.0%</div></div>
+        <div class="mat-row"><div class="lbl">Piping</div><div class="mat-bar"><div class="mat-fill gr" style="width:38%;"></div></div><div class="num">$2.62M</div><div class="pct">4.9%</div></div>
+        <div class="mat-total"><span>Total 2025 GR</span><span class="num">$53.3M</span></div>
+      </div>
+      <div class="mat-panel">
+        <div class="panel-head"><span>2025 IO &middot; Fleet Top 5 mat groups</span><span class="right">proxy &mdash; 38% line cov.</span></div>
+        <div class="mat-row"><div class="lbl">Safety / PPE</div><div class="mat-bar"><div class="mat-fill io" style="width:100%;"></div></div><div class="num">$5.18M</div><div class="pct">18.6%</div></div>
+        <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill io" style="width:60%;"></div></div><div class="num">$3.10M</div><div class="pct">11.1%</div></div>
+        <div class="mat-row"><div class="lbl">Drilling handling</div><div class="mat-bar"><div class="mat-fill io" style="width:50%;"></div></div><div class="num">$2.59M</div><div class="pct">9.3%</div></div>
+        <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill io" style="width:44%;"></div></div><div class="num">$2.29M</div><div class="pct">8.2%</div></div>
+        <div class="mat-row"><div class="lbl">Well completion</div><div class="mat-bar"><div class="mat-fill io" style="width:41%;"></div></div><div class="num">$2.10M</div><div class="pct">7.5%</div></div>
+        <div class="mat-total"><span>Total 2025 IO</span><span class="num">$27.9M</span></div>
+      </div>
+    </div>
+   </div>
+   <div class="dfa-panel">
+    <div class="dfa-header"><div class="dfa-mark">DFA</div><div class="dfa-title"><div class="dfa-name">Drilling Financial Analyst</div><div class="dfa-sub">Sigma AI &middot; Fleet narrative</div></div></div>
+    <div class="dfa-body">
+     <div class="dfa-headline"><div class="dfa-headline-label">Fleet read</div><h3>Sum of six rigs &mdash; commercial position is strong, $21M RDM gap concentrated in three controllable cost levers</h3></div>
+     <div class="dfa-section"><div class="dfa-section-label">Headline finding</div><p>Fleet revenue $158.5M (+23.8% YoY) and utilisation 97.1% both lead peer median. The <strong>$21M RDM gap (33.9% vs peer 44.8%) is concentrated in three structural cost levers</strong> &mdash; Midir workforce (&minus;$10.8M / yr), fleet inventory cleanup ($7.2M working-capital release), Dravus procurement drift (&minus;$4.5M avoided build). Combined: 81% of the gap, deliverable over 12 months.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">The non-obvious connection</div><p>Spare parts intensity at 20.0% of revenue (vs 15.7% prior year) reflects a fleet-wide maintenance-debt pattern, not a one-rig issue. Banba ran the signature first; Axima now shows the same OPEX profile two quarters out. <strong>BOP + TDS together account for 62% of fleet NPT</strong> &mdash; the equipment with the longest emergency lead times. PO/GR coherence has recovered fleet-wide to 1.13&times;, but Dravus sits at 1.81&times; (out-of-band).</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Six rigs at a glance &middot; RDM</div><p>Axima 39.5% &middot; Nuada 41.1% &middot; Banba 36.3% &middot; Lug 37.1% &middot; Dravus 23.5% &middot; Midir &minus;10.7%. Four rigs sit within reach of peer band; <strong>Midir and Dravus carry the structural gap</strong>. Click any rig chip above for the detailed one-pager.</p></div>
+     <div class="dfa-section dfa-action"><div class="dfa-section-label">Where to dig deeper</div><p>Open the <strong>Executive Summary</strong> tab for the curated board view (peer scorecard, three priorities, RDM trajectory, risks on the radar). Open <strong>Operations / Finance / Supply Chain / Inventory</strong> for the function-specific deep dives.</p></div>
+    </div>
+    <div class="dfa-footer"><span class="dfa-disclaimer">&#9888; AI-generated &middot; please cross-check before taking action</span><span class="dfa-version">DFA v2.4</span></div>
+   </div>
+  </div>
+</section>
+
+<!-- ============================ FLEET · EXECUTIVE ============================ -->
+<section class="section" id="section-fleet-executive">
+  <div class="rig-head">
+    <h1>Executive Summary</h1>
+    <span class="type-pill premium">All 6 rigs &middot; Board view</span>
+    <span class="rig-head-spacer"></span>
+    <span class="meta">FY 2025 LTM &middot; 4-domain roll-up</span>
+    <div class="status-banner warn"><span class="icon"></span><span>Commercial position strong &middot; cost-structure gap remains &middot; 3 levers in motion</span></div>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi"><div class="lbl">Rig Direct Margin</div><div class="val warn">33.9<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:76%"></div></div>
+        <div class="kpi-target-line"><span class="actual">$21M annual gap to peer</span><span class="target warn">▲ ≥44.8%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Revenue (FY25)</div><div class="val good">$158.5<span style="font-size:1.1rem;color:var(--muted);">M</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:93%"></div></div>
+        <div class="kpi-target-line"><span class="actual">+23.8% YoY &middot; 2× FY21</span><span class="target good">on plan</span></div></div></div>
+    <div class="kpi"><div class="lbl">Utilisation</div><div class="val good">97.1<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">vs peer band 78–92%</span><span class="target good">▲ ≥95%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Fleet NPT</div><div class="val warn">5.3<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:57%"></div></div>
+        <div class="kpi-target-line"><span class="actual">vs peer median 3.0%</span><span class="target warn">▼ ≤3.0%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Dead stock</div><div class="val bad">56<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill bad" style="width:25%"></div></div>
+        <div class="kpi-target-line"><span class="actual">$25.2M &middot; 3-year threshold</span><span class="target bad">▼ ≤15%</span></div></div></div>
+    <div class="kpi"><div class="lbl">PO / GR coherence</div><div class="val good">1.13<span style="font-size:1.1rem;color:var(--muted);">×</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">recovered from 2.0×</span><span class="target good">◆ 1.05–1.20×</span></div></div></div>
+  </div>
+
+  <div class="below-kpi">
+   <div class="content-main">
+    <div class="main-grid">
+      <div class="panel">
+        <div class="panel-head"><span>Where Dixstone stands &middot; vs 9-contractor peer set</span><span class="right">3 lead · 3 trail</span></div>
+        <div class="bar-row"><div class="lbl">Utilisation<span class="sub">Operations</span></div><div class="bar-track"><div class="bar-fill good" style="width:100%;"></div></div><div class="num" style="color:var(--good);">▲ Lead</div></div>
+        <div class="bar-row"><div class="lbl">Revenue growth<span class="sub">Finance</span></div><div class="bar-track"><div class="bar-fill good" style="width:90%;"></div></div><div class="num" style="color:var(--good);">▲ +23.8% YoY</div></div>
+        <div class="bar-row"><div class="lbl">PO / GR coherence<span class="sub">Supply Chain</span></div><div class="bar-track"><div class="bar-fill good" style="width:65%;"></div></div><div class="num" style="color:var(--good);">◆ In band</div></div>
+        <div class="bar-row"><div class="lbl">TRIR (safety)<span class="sub">Operations · HSE</span></div><div class="bar-track"><div class="bar-fill warn" style="width:83%;"></div></div><div class="num" style="color:var(--warn);">▼ Slight trail</div></div>
+        <div class="bar-row"><div class="lbl">Rig Direct Margin<span class="sub">Finance · hero metric</span></div><div class="bar-track"><div class="bar-fill warn" style="width:76%;"></div></div><div class="num" style="color:var(--warn);">▼ −10.9pp</div></div>
+        <div class="bar-row"><div class="lbl">Fleet NPT<span class="sub">Operations</span></div><div class="bar-track"><div class="bar-fill warn" style="width:57%;"></div></div><div class="num" style="color:var(--warn);">▼ +2.3pp</div></div>
+        <div class="bar-row"><div class="lbl">Dead stock<span class="sub">Inventory</span></div><div class="bar-track"><div class="bar-fill bad" style="width:25%;"></div></div><div class="num" style="color:var(--bad);">▼ 56% vs ≤15%</div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><span>Three priorities this cycle</span><span class="right">81% of the $21M gap</span></div>
+        <div class="bar-row" style="grid-template-columns:1fr 1.4fr 1fr;"><div class="lbl"><strong>1. Midir restructure</strong><span class="sub">Finance + Commercial · 6–9 mo</span></div><div class="bar-track"><div class="bar-fill bad" style="width:75%;"></div></div><div class="num" style="color:var(--bad);">+$10.8M / yr</div></div>
+        <div class="bar-row" style="grid-template-columns:1fr 1.4fr 1fr;"><div class="lbl"><strong>2. Inventory release</strong><span class="sub">Sigma value-add · 90 days</span></div><div class="bar-track"><div class="bar-fill warn" style="width:55%;"></div></div><div class="num" style="color:var(--warn);">+$7.2M cash</div></div>
+        <div class="bar-row" style="grid-template-columns:1fr 1.4fr 1fr;"><div class="lbl"><strong>3. Dravus PO audit</strong><span class="sub">Supply Chain · this quarter</span></div><div class="bar-track"><div class="bar-fill warn" style="width:35%;"></div></div><div class="num" style="color:var(--warn);">−$4.5M cost build</div></div>
+        <div class="bar-row" style="grid-template-columns:1fr 1.4fr 1fr;border-top:1px solid var(--border2);padding-top:0.7rem;margin-top:0.3rem;"><div class="lbl"><strong>Combined</strong><span class="sub">12-month delivery</span></div><div class="bar-track"><div class="bar-fill good" style="width:81%;"></div></div><div class="num" style="color:var(--good);">$22.5M total</div></div>
+      </div>
+    </div>
+
+    <div class="mat-grid">
+      <div class="mat-panel">
+        <div class="panel-head"><span>Six rigs at a glance</span><span class="right">RDM &middot; click chip to drill</span></div>
+        <div class="mat-row"><div class="lbl">Axima</div><div class="mat-bar"><div class="mat-fill po" style="width:79%;"></div></div><div class="num" style="color:var(--good);">39.5%</div><div class="pct">Premium JU</div></div>
+        <div class="mat-row"><div class="lbl">Nuada</div><div class="mat-bar"><div class="mat-fill po" style="width:82%;"></div></div><div class="num" style="color:var(--good);">41.1%</div><div class="pct">Jack-up</div></div>
+        <div class="mat-row"><div class="lbl">Banba</div><div class="mat-bar"><div class="mat-fill po" style="width:73%;"></div></div><div class="num" style="color:var(--good);">36.3%</div><div class="pct">Jack-up</div></div>
+        <div class="mat-row"><div class="lbl">Lug</div><div class="mat-bar"><div class="mat-fill po" style="width:74%;"></div></div><div class="num" style="color:var(--good);">37.1%</div><div class="pct">Platform</div></div>
+        <div class="mat-row"><div class="lbl">Dravus</div><div class="mat-bar"><div class="mat-fill po" style="width:47%;"></div></div><div class="num" style="color:var(--warn);">23.5%</div><div class="pct">Land</div></div>
+        <div class="mat-row"><div class="lbl">Midir</div><div class="mat-bar"><div class="mat-fill po" style="width:5%;background:linear-gradient(90deg,var(--bad),#ff95a4);"></div></div><div class="num" style="color:var(--bad);">−10.7%</div><div class="pct">Land</div></div>
+        <div class="mat-total"><span>Fleet weighted RDM</span><span class="num">33.9%</span></div>
+      </div>
+      <div class="mat-panel">
+        <div class="panel-head"><span>RDM trajectory &middot; last 4 quarters</span><span class="right">closing toward peer 44.8%</span></div>
+        <div class="mat-row"><div class="lbl">Q1 FY25</div><div class="mat-bar"><div class="mat-fill gr" style="width:68%;"></div></div><div class="num">30.5%</div><div class="pct">−14.3pp</div></div>
+        <div class="mat-row"><div class="lbl">Q2 FY25</div><div class="mat-bar"><div class="mat-fill gr" style="width:70%;"></div></div><div class="num">31.2%</div><div class="pct">−13.6pp</div></div>
+        <div class="mat-row"><div class="lbl">Q3 FY25</div><div class="mat-bar"><div class="mat-fill gr" style="width:73%;"></div></div><div class="num">32.6%</div><div class="pct">−12.2pp</div></div>
+        <div class="mat-row"><div class="lbl">Q4 FY25</div><div class="mat-bar"><div class="mat-fill gr" style="width:76%;"></div></div><div class="num" style="color:var(--good);">33.9%</div><div class="pct">−10.9pp</div></div>
+        <div class="mat-row"><div class="lbl">FY26 target</div><div class="mat-bar"><div class="mat-fill gr" style="width:100%;"></div></div><div class="num">44.8%</div><div class="pct">peer</div></div>
+        <div class="mat-total"><span>Trajectory &middot; last 4Q</span><span class="num" style="color:var(--good);">+3.4pp</span></div>
+      </div>
+      <div class="mat-panel">
+        <div class="panel-head"><span>Risks on the radar</span><span class="right">forward signal</span></div>
+        <div class="mat-row"><div class="lbl">Parts intensity</div><div class="mat-bar"><div class="mat-fill io" style="width:90%;"></div></div><div class="num" style="color:var(--bad);">27.4%</div><div class="pct">5-yr hi</div></div>
+        <div class="mat-row"><div class="lbl">Dravus PO/GR</div><div class="mat-bar"><div class="mat-fill io" style="width:90%;background:linear-gradient(90deg,var(--bad),#ff95a4);"></div></div><div class="num" style="color:var(--bad);">1.81×</div><div class="pct">out</div></div>
+        <div class="mat-row"><div class="lbl">TDS reliability</div><div class="mat-bar"><div class="mat-fill io" style="width:60%;background:linear-gradient(90deg,var(--warn),#ffaf7e);"></div></div><div class="num" style="color:var(--warn);">4 rigs</div><div class="pct">recur</div></div>
+        <div class="mat-row"><div class="lbl">Midir loss</div><div class="mat-bar"><div class="mat-fill io" style="width:95%;background:linear-gradient(90deg,var(--bad),#ff95a4);"></div></div><div class="num" style="color:var(--bad);">−10.7%</div><div class="pct">RDM</div></div>
+        <div class="mat-row"><div class="lbl">Single-source</div><div class="mat-bar"><div class="mat-fill io" style="width:55%;background:linear-gradient(90deg,var(--warn),#ffaf7e);"></div></div><div class="num" style="color:var(--warn);">42%</div><div class="pct">top-3</div></div>
+        <div class="mat-total"><span>5 risks &middot; 3 on action queue</span><span class="num">Watch</span></div>
+      </div>
+    </div>
+   </div>
+   <div class="dfa-panel">
+    <div class="dfa-header"><div class="dfa-mark">DFA</div><div class="dfa-title"><div class="dfa-name">Drilling Financial Analyst</div><div class="dfa-sub">Sigma AI &middot; Executive narrative</div></div></div>
+    <div class="dfa-body">
+     <div class="dfa-headline"><div class="dfa-headline-label">Executive read</div><h3>Commercial position is strong &mdash; the gap is cost-structure execution, concentrated in three controllable levers</h3></div>
+     <div class="dfa-section"><div class="dfa-section-label">Headline finding</div><p>Dixstone's <strong>operational metrics lead peer median</strong> (utilisation, backlog, PO/GR discipline, revenue growth). The <strong>$21M RDM gap is concentrated in three structural cost levers</strong> &mdash; Midir workforce ($10.8M / yr), fleet inventory cleanup ($8.2M working capital), Dravus procurement drift ($4.5M avoided build). Combined: 81% of the gap, deliverable over 12 months.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">The non-obvious connection</div><p>The four dashboards are <strong>tightly linked</strong>: Banba's operational NPT (Operations) traces to surplus inventory on Nuada (Inventory). Midir's loss-making P&amp;L (Finance) reflects a workforce + dayrate problem (Commercial). Dravus's procurement drift (Supply Chain) is the leading indicator of next Midir. <strong>Operational and balance-sheet levers are inseparable</strong>; treat as one programme.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Three decisions for this review</div><p><strong>1. Midir restructure mandate</strong> &mdash; commercial review first (2 weeks), then workforce adjustment if no commercial path emerges. <strong>2. Inventory release programme</strong> &mdash; approve reclassification + disposal pipeline ($7.2M in 90 days). <strong>3. Dravus PO audit gate</strong> &mdash; confirm intent with Drilling Manager; either reclassify $4.5M to project CAPEX, or initiate procurement controls.</p></div>
+     <div class="dfa-section dfa-action"><div class="dfa-section-label">Cost of delay</div><p>Parts-intensity at a <strong>5-year high (27.4%, +4.3pp YoY)</strong> is the forward warning signal. Quarterly cost of inaction: <strong>~0.7pp RDM gap widening (~$1.5M)</strong>. The Banba reliability pattern is now visible on Axima &mdash; second rig at risk if not addressed this quarter.</p></div>
+    </div>
+    <div class="dfa-footer"><span class="dfa-disclaimer">&#9888; AI-generated &middot; please cross-check before taking action</span><span class="dfa-version">DFA v2.4</span></div>
+   </div>
+  </div>
+</section>
+
+<!-- ============================ FLEET · INVENTORY ============================ -->
+<section class="section" id="section-fleet-inventory">
+  <div class="rig-head">
+    <h1>Inventory</h1>
+    <span class="type-pill premium">Fleet</span>
+    <span class="rig-head-spacer"></span>
+    <span class="meta">Working capital &middot; ABC×VED &middot; cash release &middot; W23</span>
+    <div class="status-banner warn"><span class="icon"></span><span>$41.3M held &middot; 56% dead &middot; $7.2M release in 90 days</span></div>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi"><div class="lbl">Total inventory</div><div class="val warn">$45.2<span style="font-size:1.1rem;color:var(--muted);">M</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:50%"></div></div>
+        <div class="kpi-target-line"><span class="actual">incl. HARIMA + Gabon Base</span><span class="target warn">▼ ≤$22M</span></div></div></div>
+    <div class="kpi"><div class="lbl">$ per rig (avg)</div><div class="val warn">$6.9<span style="font-size:1.1rem;color:var(--muted);">M</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:43%"></div></div>
+        <div class="kpi-target-line"><span class="actual">2–3× peer MRO band</span><span class="target warn">▼ ≤$3M</span></div></div></div>
+    <div class="kpi"><div class="lbl">Inventory turns</div><div class="val warn">0.93<span style="font-size:1.1rem;color:var(--muted);">×</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:62%"></div></div>
+        <div class="kpi-target-line"><span class="actual">offshore norm 0.8–1.5×</span><span class="target warn">▲ ≥1.5×</span></div></div></div>
+    <div class="kpi"><div class="lbl">Dead stock (3yr+)</div><div class="val bad">56<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill bad" style="width:25%"></div></div>
+        <div class="kpi-target-line"><span class="actual">$20.8M dormant 5yr+</span><span class="target bad">▼ ≤15%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Stockouts YTD (vital)</div><div class="val warn">5</div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:50%"></div></div>
+        <div class="kpi-target-line"><span class="actual">$267k NPT cost</span><span class="target warn">▼ ≤2</span></div></div></div>
+    <div class="kpi"><div class="lbl">Cash released (YTD)</div><div class="val good">$2.4<span style="font-size:1.1rem;color:var(--muted);">M</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:23%"></div></div>
+        <div class="kpi-target-line"><span class="actual">on glidepath</span><span class="target good">▲ $10–15M / 12mo</span></div></div></div>
+  </div>
+
+  <div class="below-kpi">
+   <div class="content-main">
+    <div class="main-grid">
+      <div class="panel">
+        <div class="panel-head"><span>$/rig vs operational bracket</span><span class="right">all rigs over bracket</span></div>
+        <div class="bar-row"><div class="lbl"><strong>Nuada</strong><span class="sub">JU · bracket $3.0M</span></div><div class="bar-track"><div class="bar-fill bad" style="width:100%;"></div></div><div class="num">$12.3M · 4.1×</div></div>
+        <div class="bar-row"><div class="lbl">Banba<span class="sub">JU · bracket $3.0M</span></div><div class="bar-track"><div class="bar-fill bad" style="width:73%;"></div></div><div class="num">$9.0M · 3.0×</div></div>
+        <div class="bar-row"><div class="lbl">Midir<span class="sub">Land · bracket $0.6M</span></div><div class="bar-track"><div class="bar-fill warn" style="width:49%;"></div></div><div class="num">$6.0M · 10×</div></div>
+        <div class="bar-row"><div class="lbl">Lug<span class="sub">Platform · bracket $0.6M</span></div><div class="bar-track"><div class="bar-fill warn" style="width:43%;"></div></div><div class="num">$5.3M · 9×</div></div>
+        <div class="bar-row"><div class="lbl">Axima<span class="sub">Premium JU · bracket $3.5M</span></div><div class="bar-track"><div class="bar-fill warn" style="width:40%;"></div></div><div class="num">$5.0M · 1.4×</div></div>
+        <div class="bar-row"><div class="lbl">Dravus<span class="sub">Land · bracket $0.6M</span></div><div class="bar-track"><div class="bar-fill warn" style="width:30%;"></div></div><div class="num">$3.7M · 6×</div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><span>Ageing breakdown &middot; fleet</span><span class="right">Dixstone deck convention</span></div>
+        <div class="bar-row"><div class="lbl">Dormant<span class="sub">5+ years no movement</span></div><div class="bar-track"><div class="bar-fill bad" style="width:100%;"></div></div><div class="num">$20.8M · 46%</div></div>
+        <div class="bar-row"><div class="lbl">Dead<span class="sub">3–5 years no movement</span></div><div class="bar-track"><div class="bar-fill bad" style="width:21%;"></div></div><div class="num">$4.4M · 10%</div></div>
+        <div class="bar-row"><div class="lbl">Working<span class="sub">12–36 months</span></div><div class="bar-track"><div class="bar-fill warn" style="width:31%;"></div></div><div class="num">$6.4M · 14%</div></div>
+        <div class="bar-row"><div class="lbl">Active<span class="sub">&lt;12 months</span></div><div class="bar-track"><div class="bar-fill good" style="width:65%;"></div></div><div class="num">$13.6M · 30%</div></div>
+        <div class="bar-row" style="border-top:1px solid var(--border2);padding-top:0.6rem;margin-top:0.3rem;"><div class="lbl"><strong>Release pipeline</strong><span class="sub">90-day target</span></div><div class="bar-track"><div class="bar-fill good" style="width:35%;"></div></div><div class="num" style="color:var(--good);">$7.2M</div></div>
+      </div>
+    </div>
+
+    <div class="mat-grid">
+      <div class="mat-panel">
+        <div class="panel-head"><span>Top mat groups by inventory $</span><span class="right">fleet · MB52 snapshot</span></div>
+        <div class="mat-row"><div class="lbl">Drill tubulars</div><div class="mat-bar"><div class="mat-fill io" style="width:100%;"></div></div><div class="num">$5.20M</div><div class="pct">12.6%</div></div>
+        <div class="mat-row"><div class="lbl">Drilling handling</div><div class="mat-bar"><div class="mat-fill io" style="width:81%;"></div></div><div class="num">$4.20M</div><div class="pct">10.2%</div></div>
+        <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill io" style="width:74%;"></div></div><div class="num">$3.84M</div><div class="pct">9.3%</div></div>
+        <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill io" style="width:62%;"></div></div><div class="num">$3.22M</div><div class="pct">7.8%</div></div>
+        <div class="mat-row"><div class="lbl">Top drive</div><div class="mat-bar"><div class="mat-fill io" style="width:54%;"></div></div><div class="num">$2.78M</div><div class="pct">6.7%</div></div>
+        <div class="mat-total"><span>Top 5 · 47% of total</span><span class="num">$19.2M</span></div>
+      </div>
+      <div class="mat-panel">
+        <div class="panel-head"><span>AI action queue · 90-day</span><span class="right">$ release</span></div>
+        <div class="mat-row"><div class="lbl">Reclassify</div><div class="mat-bar"><div class="mat-fill po" style="width:75%;"></div></div><div class="num">$4.2M</div><div class="pct">5 SKUs</div></div>
+        <div class="mat-row"><div class="lbl">Dispose</div><div class="mat-bar"><div class="mat-fill bad" style="width:50%;"></div></div><div class="num">$3.0M</div><div class="pct">6 lots</div></div>
+        <div class="mat-row"><div class="lbl">Cross-rig pool</div><div class="mat-bar"><div class="mat-fill info" style="width:25%;"></div></div><div class="num">$1.4M</div><div class="pct">7 grps</div></div>
+        <div class="mat-row"><div class="lbl">Reorder refresh</div><div class="mat-bar"><div class="mat-fill warn" style="width:12%;"></div></div><div class="num">−$0.6M</div><div class="pct">4 SKUs</div></div>
+        <div class="mat-row"><div class="lbl">Auction (Q3)</div><div class="mat-bar"><div class="mat-fill bad" style="width:18%;"></div></div><div class="num">$1.1M</div><div class="pct">scrap</div></div>
+        <div class="mat-total"><span>22 actions · $ potential</span><span class="num">$9.1M</span></div>
+      </div>
+      <div class="mat-panel">
+        <div class="panel-head"><span>Cash-release glidepath</span><span class="right">12-month target</span></div>
+        <div class="mat-row"><div class="lbl">Released YTD</div><div class="mat-bar"><div class="mat-fill good" style="width:23%;"></div></div><div class="num">$2.4M</div><div class="pct">23%</div></div>
+        <div class="mat-row"><div class="lbl">90-day pipeline</div><div class="mat-bar"><div class="mat-fill good" style="width:70%;"></div></div><div class="num">$7.2M</div><div class="pct">70%</div></div>
+        <div class="mat-row"><div class="lbl">12-mo low target</div><div class="mat-bar"><div class="mat-fill io" style="width:100%;"></div></div><div class="num">$10.0M</div><div class="pct">target</div></div>
+        <div class="mat-row"><div class="lbl">12-mo high target</div><div class="mat-bar"><div class="mat-fill io" style="width:100%;"></div></div><div class="num">$15.0M</div><div class="pct">stretch</div></div>
+        <div class="mat-row"><div class="lbl">DIO reduction</div><div class="mat-bar"><div class="mat-fill io" style="width:60%;"></div></div><div class="num">80 d</div><div class="pct">393→313</div></div>
+        <div class="mat-total"><span>On glidepath &middot; YTD pace</span><span class="num">+$104k / wk</span></div>
+      </div>
+    </div>
+   </div>
+   <div class="dfa-panel">
+    <div class="dfa-header"><div class="dfa-mark">DFA</div><div class="dfa-title"><div class="dfa-name">Drilling Financial Analyst</div><div class="dfa-sub">Sigma AI &middot; Inventory narrative</div></div></div>
+    <div class="dfa-body">
+     <div class="dfa-headline"><div class="dfa-headline-label">Executive read</div><h3>$7.2M cash release in 90 days &mdash; primarily through reclassification, not disposal</h3></div>
+     <div class="dfa-section"><div class="dfa-section-label">Headline finding</div><p>Fleet inventory <strong>$45.2M</strong> (incl. HARIMA Platform secondary + Gabon Base) sits at ~2× the peer-derived MRO band of ~$22M. Top-5 mat groups account for <strong>$19.2M (43%)</strong> — Drill tubulars, Drilling handling, Mechanical, Electrical, Top drive. <strong>Dead stock (3+ years no movement): $25.2M / 55.7%. Dormant (5+ years): $20.8M / 45.9%</strong>.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">The non-obvious connection</div><p>The biggest single lever is <strong>not disposal — it's reclassification</strong>. ~$4.2M of Nuada inventory is fleet-shared critical spares carried on Nuada's balance sheet (should be in Gabon Base pool). Capital items (~$1.8M — diesel engine, top-drive spares) belong on PP&amp;E. <strong>$6.0M of the $7.2M release is accounting / policy, not physical disposal</strong>.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Stockouts vs dead-stock paradox</div><p>56% dead stock alongside <strong>5 vital-SKU stockouts YTD ($267k NPT cost)</strong> — the fleet holds too much of what doesn't move and too little of what does. Reorder-point logic set against FY24 consumption profile rather than actual run-rate is the operational root cause.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Cross-rig pooling opportunity</div><p>7 SKU groups identified for cross-rig transfer: <strong>$1.4M release potential</strong>. The largest — TDS seal kits / PowGen brushes from Nuada surplus to Banba shortage — also closes ~60% of Banba's NPT stockout exposure. Inventory and operations are linked; treat as one programme.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">90-day delivery plan</div><p>Reclassification (Nuada→Gabon pool + capital items to PP&amp;E): <strong>$6.0M</strong>. Cross-rig pool execution: <strong>$1.4M</strong>. Disposal tranche 1 (cleared SKUs): <strong>$1.1M</strong>. Reorder refresh requires AFE +$0.6M for safety stock. <strong>Net 90-day release: $7.9M</strong>.</p></div>
+     <div class="dfa-section dfa-action"><div class="dfa-section-label">Recommended action &mdash; this review</div><p><strong>(1)</strong> Approve reclassification 90-day programme (Nuada pool + capital items). <strong>(2)</strong> Authorise Nuada→Banba cross-rig pool transfer. <strong>(3)</strong> Mandate vital-SKU reorder-point refresh ($220k AFE supplement).</p></div>
+    </div>
+    <div class="dfa-footer"><span class="dfa-disclaimer">⚠ AI-generated &middot; please cross-check before taking action</span><span class="dfa-version">DFA v2.4</span></div>
+   </div>
+  </div>
+</section>
+
+<!-- ============================ FLEET · OPERATIONS ============================ -->
+<section class="section" id="section-fleet-operational">
+  <div class="rig-head">
+    <h1>Operations</h1>
+    <span class="type-pill jackup">Fleet</span>
+    <span class="rig-head-spacer"></span>
+    <span class="meta">NPT &middot; reliability &middot; HSE &middot; FY26 W23</span>
+    <div class="status-banner warn"><span class="icon"></span><span>NPT 5.3% &middot; +2.3pp above peer median 3.0%</span></div>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi"><div class="lbl">Fleet NPT</div><div class="val warn">5.3<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:57%"></div></div>
+        <div class="kpi-target-line"><span class="actual">from IADC DDR</span><span class="target warn">▼ ≤3.0%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Utilisation</div><div class="val good">97.1<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">avg across 6 rigs</span><span class="target good">▲ ≥95%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Operating days (YTD)</div><div class="val good">3,184</div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:97%"></div></div>
+        <div class="kpi-target-line"><span class="actual">fleet · revenue days</span><span class="target good">▲ on plan</span></div></div></div>
+    <div class="kpi"><div class="lbl">LTIF (12-mo)</div><div class="val warn">0.06</div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:75%"></div></div>
+        <div class="kpi-target-line"><span class="actual">HSE registry</span><span class="target warn">▼ ≤0.04</span></div></div></div>
+    <div class="kpi"><div class="lbl">TRIR (12-mo)</div><div class="val warn">0.18</div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:83%"></div></div>
+        <div class="kpi-target-line"><span class="actual">IADC ISP basis</span><span class="target warn">▼ ≤0.15</span></div></div></div>
+    <div class="kpi"><div class="lbl">Days since last LTI</div><div class="val good">87</div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:92%"></div></div>
+        <div class="kpi-target-line"><span class="actual">fleet rolling</span><span class="target good">▲ ≥90 d</span></div></div></div>
+  </div>
+
+  <div class="below-kpi">
+   <div class="content-main">
+    <div class="main-grid">
+      <div class="panel">
+        <div class="panel-head"><span>Per-rig operational scorecard</span><span class="right">FY26 W23 &middot; rolling 4-week</span></div>
+        <div class="pl-row" style="grid-template-columns:1fr 0.7fr 0.7fr 0.7fr 0.7fr 0.9fr;border-bottom:1px solid var(--border3);"><div class="label" style="color:var(--muted);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;">Rig</div><div class="val" style="font-family:inherit;font-weight:400;color:var(--muted);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;">REVEFF</div><div class="val" style="font-family:inherit;font-weight:400;color:var(--muted);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;">NPT</div><div class="val" style="font-family:inherit;font-weight:400;color:var(--muted);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;">Util</div><div class="val" style="font-family:inherit;font-weight:400;color:var(--muted);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;">PM</div><div class="val" style="font-family:inherit;font-weight:400;color:var(--muted);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;text-align:right;">Status</div></div>
+        <div class="pl-row" style="grid-template-columns:1fr 0.7fr 0.7fr 0.7fr 0.7fr 0.9fr;"><div class="label">Axima</div><div class="val good">97.3%</div><div class="val good">2.7%</div><div class="val">84.9%</div><div class="val good">94%</div><div class="val good" style="text-align:right;font-size:0.74rem;">Reference</div></div>
+        <div class="pl-row" style="grid-template-columns:1fr 0.7fr 0.7fr 0.7fr 0.7fr 0.9fr;"><div class="label">Banba</div><div class="val bad">91.3%</div><div class="val bad">8.7%</div><div class="val">96.2%</div><div class="val warn">82%</div><div class="val bad" style="text-align:right;font-size:0.74rem;">NPT drift</div></div>
+        <div class="pl-row" style="grid-template-columns:1fr 0.7fr 0.7fr 0.7fr 0.7fr 0.9fr;"><div class="label">Nuada</div><div class="val warn">94.2%</div><div class="val warn">5.8%</div><div class="val">97.5%</div><div class="val warn">88%</div><div class="val warn" style="text-align:right;font-size:0.74rem;">PowGen risk</div></div>
+        <div class="pl-row" style="grid-template-columns:1fr 0.7fr 0.7fr 0.7fr 0.7fr 0.9fr;"><div class="label">Lug</div><div class="val warn">93.3%</div><div class="val warn">6.7%</div><div class="val">95.8%</div><div class="val good">92%</div><div class="val warn" style="text-align:right;font-size:0.74rem;">TDS drivers</div></div>
+        <div class="pl-row" style="grid-template-columns:1fr 0.7fr 0.7fr 0.7fr 0.7fr 0.9fr;"><div class="label">Midir</div><div class="val warn">93.1%</div><div class="val warn">6.9%</div><div class="val">98.1%</div><div class="val warn">87%</div><div class="val bad" style="text-align:right;font-size:0.74rem;">Structural</div></div>
+        <div class="pl-row" style="grid-template-columns:1fr 0.7fr 0.7fr 0.7fr 0.7fr 0.9fr;border-bottom:0;"><div class="label">Dravus</div><div class="val good">96.7%</div><div class="val good">3.3%</div><div class="val">98.7%</div><div class="val good">91%</div><div class="val good" style="text-align:right;font-size:0.74rem;">On track</div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><span>NPT decomposition by IADC code</span><span class="right">% of 2,726 NPT hours</span></div>
+        <div class="bar-row"><div class="lbl">Equipment<span class="sub">Top-drive, BOP, mud pump</span></div><div class="bar-track"><div class="bar-fill bad" style="width:76%;"></div></div><div class="num">38%</div></div>
+        <div class="bar-row"><div class="lbl">Top-drive (TDS)<span class="sub">Seals, IBOP, electrical</span></div><div class="bar-track"><div class="bar-fill warn" style="width:48%;"></div></div><div class="num">24%</div></div>
+        <div class="bar-row"><div class="lbl">PowGen<span class="sub">Alternators, switchgear</span></div><div class="bar-track"><div class="bar-fill warn" style="width:28%;"></div></div><div class="num">14%</div></div>
+        <div class="bar-row"><div class="lbl">Drawworks<span class="sub">Brake bands, hydraulics</span></div><div class="bar-track"><div class="bar-fill info" style="width:18%;"></div></div><div class="num">9%</div></div>
+        <div class="bar-row"><div class="lbl">Mud pumps<span class="sub">Fluid ends, valves</span></div><div class="bar-track"><div class="bar-fill info" style="width:16%;"></div></div><div class="num">8%</div></div>
+        <div class="bar-row"><div class="lbl">Other<span class="sub">Hole, weather, waiting</span></div><div class="bar-track"><div class="bar-fill" style="width:14%;"></div></div><div class="num">7%</div></div>
+      </div>
+    </div>
+
+    <div class="mat-grid">
+      <div class="mat-panel">
+        <div class="panel-head"><span>Top recurring NPT events</span><span class="right">YTD count · fleet</span></div>
+        <div class="mat-row"><div class="lbl">TDS seal failure</div><div class="mat-bar"><div class="mat-fill po" style="width:100%;"></div></div><div class="num">8</div><div class="pct">events</div></div>
+        <div class="mat-row"><div class="lbl">PowGen alt. brush</div><div class="mat-bar"><div class="mat-fill po" style="width:62%;"></div></div><div class="num">5</div><div class="pct">events</div></div>
+        <div class="mat-row"><div class="lbl">BOP solenoid</div><div class="mat-bar"><div class="mat-fill po" style="width:50%;"></div></div><div class="num">4</div><div class="pct">events</div></div>
+        <div class="mat-row"><div class="lbl">Mud-pump fluid end</div><div class="mat-bar"><div class="mat-fill po" style="width:38%;"></div></div><div class="num">3</div><div class="pct">events</div></div>
+        <div class="mat-row"><div class="lbl">Drawworks brake</div><div class="mat-bar"><div class="mat-fill po" style="width:25%;"></div></div><div class="num">2</div><div class="pct">events</div></div>
+        <div class="mat-total"><span>22 events · 113.6 NPT days</span><span class="num">YTD</span></div>
+      </div>
+      <div class="mat-panel">
+        <div class="panel-head"><span>HSE summary</span><span class="right">12-mo rolling · IADC ISP</span></div>
+        <div class="mat-row"><div class="lbl">TRIR</div><div class="mat-bar"><div class="mat-fill gr" style="width:83%;"></div></div><div class="num">0.18</div><div class="pct">≤0.15</div></div>
+        <div class="mat-row"><div class="lbl">LTIF</div><div class="mat-bar"><div class="mat-fill gr" style="width:75%;"></div></div><div class="num">0.06</div><div class="pct">≤0.04</div></div>
+        <div class="mat-row"><div class="lbl">Near-miss (4w)</div><div class="mat-bar"><div class="mat-fill gr" style="width:84%;"></div></div><div class="num">12</div><div class="pct">≥10</div></div>
+        <div class="mat-row"><div class="lbl">Days since LTI</div><div class="mat-bar"><div class="mat-fill gr" style="width:92%;"></div></div><div class="num">87</div><div class="pct">≥90</div></div>
+        <div class="mat-row"><div class="lbl">Safety drill rate</div><div class="mat-bar"><div class="mat-fill gr" style="width:96%;"></div></div><div class="num">96%</div><div class="pct">≥95%</div></div>
+        <div class="mat-total"><span>ME Water region · all rigs</span><span class="num">In band</span></div>
+      </div>
+      <div class="mat-panel">
+        <div class="panel-head"><span>Operational watchlist</span><span class="right">leading signals</span></div>
+        <div class="mat-row"><div class="lbl">Stockouts YTD</div><div class="mat-bar"><div class="mat-fill io" style="width:42%;"></div></div><div class="num">5</div><div class="pct">vital</div></div>
+        <div class="mat-row"><div class="lbl">Crew turnover</div><div class="mat-bar"><div class="mat-fill io" style="width:93%;"></div></div><div class="num">14%</div><div class="pct">≤15%</div></div>
+        <div class="mat-row"><div class="lbl">BOP test pass</div><div class="mat-bar"><div class="mat-fill io" style="width:100%;"></div></div><div class="num">100%</div><div class="pct">≥98%</div></div>
+        <div class="mat-row"><div class="lbl">Avg ops days/rig</div><div class="mat-bar"><div class="mat-fill io" style="width:97%;"></div></div><div class="num">354</div><div class="pct">/365</div></div>
+        <div class="mat-row"><div class="lbl">Open PO ageing</div><div class="mat-bar"><div class="mat-fill io" style="width:71%;"></div></div><div class="num">14%</div><div class="pct">≥30d</div></div>
+        <div class="mat-total"><span>Watchlist read</span><span class="num">Watch</span></div>
+      </div>
+    </div>
+   </div>
+   <div class="dfa-panel">
+    <div class="dfa-header"><div class="dfa-mark">DFA</div><div class="dfa-title"><div class="dfa-name">Drilling Financial Analyst</div><div class="dfa-sub">Sigma AI &middot; Operations narrative</div></div></div>
+    <div class="dfa-body">
+     <div class="dfa-headline"><div class="dfa-headline-label">Executive read</div><h3>TDS reliability is fleet-structural &mdash; four rigs share the same root cause</h3></div>
+     <div class="dfa-section"><div class="dfa-section-label">Headline finding</div><p>Equipment category accounts for <strong>38%</strong> of fleet NPT; <strong>top-drive specifically drives 24%</strong>. Banba (8.7% NPT), Lug (6.7%), Midir (6.9%) and Nuada (5.8%) all show TDS-driver concentrations. Axima and Dravus are the two rigs where TDS doesn't dominate the NPT mix.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">The non-obvious connection</div><p>The reliability variance is not equipment-age; both Axima (newest premium JU) and Lug (platform) run similar top-drive vintages. <strong>The recurring NPT-event pattern points to inconsistent PM practice across rigs</strong> — Lug's NPT (6.7%) is materially better than Banba's (8.7%) on the same equipment family.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Stockout-NPT linkage</div><p>5 vital-SKU stockouts YTD drove <strong>$267k in lost revenue</strong>. Every event traces to a reorder point set against FY24 consumption rather than current run-rate. Banba (TDS), Nuada (PowGen), and Midir (Drawworks) account for 4 of the 5 events.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Programme structure</div><p>A fleet-wide TDS reliability programme (codified PM standard, shared critical-spares pool, quarterly reliability review board) addresses all four affected rigs with a single investment. Modelled annual cost ~$0.6M, modelled NPT reduction ~3pp fleet-wide ≈ <strong>$4.2M/year revenue protected</strong>.</p></div>
+     <div class="dfa-section dfa-action"><div class="dfa-section-label">Recommended action &mdash; this quarter</div><p><strong>1.</strong> Approve fleet-wide TDS reliability programme. <strong>2.</strong> Authorise Nuada→Banba cross-rig pool transfer (addresses 60% of Banba stockout exposure). <strong>3.</strong> Refresh PM standard codified from Lug practice.</p></div>
+    </div>
+    <div class="dfa-footer"><span class="dfa-disclaimer">⚠ AI-generated &middot; please cross-check before taking action</span><span class="dfa-version">DFA v2.4</span></div>
+   </div>
+  </div>
+</section>
+
+<!-- ============================ FLEET · FINANCE ============================ -->
+<section class="section" id="section-fleet-financial">
+  <div class="rig-head">
+    <h1>Finance</h1>
+    <span class="type-pill jackup">Fleet</span>
+    <span class="rig-head-spacer"></span>
+    <span class="meta">Rig Direct Margin &middot; cost structure &middot; CAPEX &middot; W23</span>
+    <div class="status-banner warn"><span class="icon"></span><span>RDM 33.9% &middot; $21.3M annual gap to peer median</span></div>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi"><div class="lbl">Rig Direct Margin</div><div class="val warn">33.9<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:76%"></div></div>
+        <div class="kpi-target-line"><span class="actual">−10.9pp vs peer</span><span class="target warn">▲ ≥44.8%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Revenue (FY25)</div><div class="val good">$158.5<span style="font-size:1.1rem;color:var(--muted);">M</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:93%"></div></div>
+        <div class="kpi-target-line"><span class="actual">+23.8% vs FY24</span><span class="target good">▲ $170M</span></div></div></div>
+    <div class="kpi"><div class="lbl">PO / GR coherence</div><div class="val good">1.13<span style="font-size:1.1rem;color:var(--muted);">×</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">in healthy band</span><span class="target good">◆ 1.05–1.20×</span></div></div></div>
+    <div class="kpi"><div class="lbl">Parts/Consum/Maint % rev</div><div class="val warn">27.4<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:55%"></div></div>
+        <div class="kpi-target-line"><span class="actual">5-yr high · +4.3pp YoY</span><span class="target warn">▼ ≤22%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Staff cost % rev</div><div class="val good">34.3<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:90%"></div></div>
+        <div class="kpi-target-line"><span class="actual">−6.7pp YoY</span><span class="target good">▼ ≤35%</span></div></div></div>
+    <div class="kpi"><div class="lbl">CAPEX intensity</div><div class="val good">5.4<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">peer 5–10% (sustaining)</span><span class="target good">◆ 5–10%</span></div></div></div>
+  </div>
+
+  <div class="below-kpi">
+   <div class="content-main">
+    <div class="main-grid">
+      <div class="panel">
+        <div class="panel-head"><span>Per-rig P&amp;L on Direct Margin basis</span><span class="right">USD '000s &middot; FY25 run-rate</span></div>
+        <div class="pl-row" style="grid-template-columns:1fr 0.7fr 0.7fr 0.7fr 0.7fr 0.8fr;border-bottom:1px solid var(--border3);"><div class="label" style="color:var(--muted);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;">Rig</div><div class="val" style="font-family:inherit;font-weight:400;color:var(--muted);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;">Revenue</div><div class="val" style="font-family:inherit;font-weight:400;color:var(--muted);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;">Spares</div><div class="val" style="font-family:inherit;font-weight:400;color:var(--muted);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;">Staff</div><div class="val" style="font-family:inherit;font-weight:400;color:var(--muted);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;">RDM%</div><div class="val" style="font-family:inherit;font-weight:400;color:var(--muted);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;text-align:right;">CAPEX/rev</div></div>
+        <div class="pl-row" style="grid-template-columns:1fr 0.7fr 0.7fr 0.7fr 0.7fr 0.8fr;"><div class="label">Axima</div><div class="val">$39.2M</div><div class="val warn">15.1%</div><div class="val">31.7%</div><div class="val good">39.5%</div><div class="val" style="text-align:right;">6.1%</div></div>
+        <div class="pl-row" style="grid-template-columns:1fr 0.7fr 0.7fr 0.7fr 0.7fr 0.8fr;"><div class="label">Banba</div><div class="val">$32.0M</div><div class="val warn">22.4%</div><div class="val">28.7%</div><div class="val good">36.3%</div><div class="val" style="text-align:right;">3.6%</div></div>
+        <div class="pl-row" style="grid-template-columns:1fr 0.7fr 0.7fr 0.7fr 0.7fr 0.8fr;"><div class="label">Nuada</div><div class="val">$32.5M</div><div class="val">18.7%</div><div class="val good">26.2%</div><div class="val good">41.1%</div><div class="val good" style="text-align:right;">2.6%</div></div>
+        <div class="pl-row" style="grid-template-columns:1fr 0.7fr 0.7fr 0.7fr 0.7fr 0.8fr;"><div class="label">Lug</div><div class="val">$23.4M</div><div class="val warn">19.4%</div><div class="val good">29.9%</div><div class="val good">37.1%</div><div class="val good" style="text-align:right;">1.7%</div></div>
+        <div class="pl-row" style="grid-template-columns:1fr 0.7fr 0.7fr 0.7fr 0.7fr 0.8fr;"><div class="label">Midir</div><div class="val">$13.6M</div><div class="val bad">25.5%</div><div class="val bad">51.9%</div><div class="val bad">−10.7%</div><div class="val bad" style="text-align:right;">11.0%</div></div>
+        <div class="pl-row" style="grid-template-columns:1fr 0.7fr 0.7fr 0.7fr 0.7fr 0.8fr;"><div class="label">Dravus</div><div class="val">$14.4M</div><div class="val warn">23.1%</div><div class="val warn">40.9%</div><div class="val warn">23.5%</div><div class="val bad" style="text-align:right;">22.3%</div></div>
+        <div class="pl-row" style="grid-template-columns:1fr 0.7fr 0.7fr 0.7fr 0.7fr 0.8fr;border-top:1px solid var(--border3);border-bottom:0;"><div class="label accent">Fleet</div><div class="val">$155.1M</div><div class="val warn">19.4%</div><div class="val">34.3%</div><div class="val warn">33.9%</div><div class="val" style="text-align:right;">5.4%</div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><span>RDM by rig vs peer median</span><span class="right">segment-matched</span></div>
+        <div class="bar-row"><div class="lbl">Nuada<span class="sub">Jack-up · peer 42.9%</span></div><div class="bar-track"><div class="bar-fill good" style="width:96%;"></div></div><div class="num">41.1%</div></div>
+        <div class="bar-row"><div class="lbl">Axima<span class="sub">Premium JU · peer 46.7%</span></div><div class="bar-track"><div class="bar-fill warn" style="width:85%;"></div></div><div class="num">39.5%</div></div>
+        <div class="bar-row"><div class="lbl">Lug<span class="sub">Platform · peer 32.8%</span></div><div class="bar-track"><div class="bar-fill good" style="width:100%;"></div></div><div class="num">37.1%</div></div>
+        <div class="bar-row"><div class="lbl">Banba<span class="sub">Jack-up · peer 42.9%</span></div><div class="bar-track"><div class="bar-fill warn" style="width:85%;"></div></div><div class="num">36.3%</div></div>
+        <div class="bar-row"><div class="lbl">Dravus<span class="sub">Land · peer 32.8%</span></div><div class="bar-track"><div class="bar-fill warn" style="width:72%;"></div></div><div class="num">23.5%</div></div>
+        <div class="bar-row"><div class="lbl"><strong>Midir</strong><span class="sub">Land · peer 32.8%</span></div><div class="bar-track"><div class="bar-fill bad" style="width:5%;"></div></div><div class="num" style="color:var(--bad);">−10.7%</div></div>
+      </div>
+    </div>
+
+    <div class="mat-grid">
+      <div class="mat-panel">
+        <div class="panel-head"><span>Cost mix · % of revenue</span><span class="right">vs peer median</span></div>
+        <div class="mat-row"><div class="lbl">Staff</div><div class="mat-bar"><div class="mat-fill po" style="width:90%;"></div></div><div class="num">34.3%</div><div class="pct">≤35%</div></div>
+        <div class="mat-row"><div class="lbl">Spares</div><div class="mat-bar"><div class="mat-fill po" style="width:55%;"></div></div><div class="num">19.4%</div><div class="pct">≤14%</div></div>
+        <div class="mat-row"><div class="lbl">Services</div><div class="mat-bar"><div class="mat-fill po" style="width:78%;"></div></div><div class="num">8.0%</div><div class="pct">≤7%</div></div>
+        <div class="mat-row"><div class="lbl">Logistics</div><div class="mat-bar"><div class="mat-fill po" style="width:85%;"></div></div><div class="num">4.4%</div><div class="pct">≤4%</div></div>
+        <div class="mat-row"><div class="lbl">Other</div><div class="mat-bar"><div class="mat-fill po" style="width:88%;"></div></div><div class="num">0.0%</div><div class="pct">res.</div></div>
+        <div class="mat-total"><span>Cost ratio total</span><span class="num">66.1%</span></div>
+      </div>
+      <div class="mat-panel">
+        <div class="panel-head"><span>CAPEX intensity · sustaining vs growth</span></div>
+        <div class="mat-row"><div class="lbl">Axima</div><div class="mat-bar"><div class="mat-fill gr" style="width:95%;"></div></div><div class="num">6.1%</div><div class="pct">SPS yr</div></div>
+        <div class="mat-row"><div class="lbl">Banba</div><div class="mat-bar"><div class="mat-fill gr" style="width:70%;"></div></div><div class="num">3.6%</div><div class="pct">sustain</div></div>
+        <div class="mat-row"><div class="lbl">Nuada</div><div class="mat-bar"><div class="mat-fill gr" style="width:50%;"></div></div><div class="num">2.6%</div><div class="pct">low</div></div>
+        <div class="mat-row"><div class="lbl">Lug</div><div class="mat-bar"><div class="mat-fill gr" style="width:32%;"></div></div><div class="num">1.7%</div><div class="pct">low</div></div>
+        <div class="mat-row"><div class="lbl">Midir</div><div class="mat-bar"><div class="mat-fill gr" style="width:60%;background:linear-gradient(90deg,var(--warn),#ffaf7e);"></div></div><div class="num">11.0%</div><div class="pct">over</div></div>
+        <div class="mat-row"><div class="lbl">Dravus</div><div class="mat-bar"><div class="mat-fill gr" style="width:90%;background:linear-gradient(90deg,var(--bad),#ff95a4);"></div></div><div class="num">22.3%</div><div class="pct">red flag</div></div>
+        <div class="mat-total"><span>Land norm 3–8% &middot; JU 5–10%</span><span class="num">5.4%</span></div>
+      </div>
+      <div class="mat-panel">
+        <div class="panel-head"><span>RDM trajectory · last 4 quarters</span><span class="right">fleet · vs peer 44.8%</span></div>
+        <div class="mat-row"><div class="lbl">Q1 FY25</div><div class="mat-bar"><div class="mat-fill io" style="width:68%;"></div></div><div class="num">30.5%</div><div class="pct">−14.3pp</div></div>
+        <div class="mat-row"><div class="lbl">Q2 FY25</div><div class="mat-bar"><div class="mat-fill io" style="width:70%;"></div></div><div class="num">31.2%</div><div class="pct">−13.6pp</div></div>
+        <div class="mat-row"><div class="lbl">Q3 FY25</div><div class="mat-bar"><div class="mat-fill io" style="width:73%;"></div></div><div class="num">32.6%</div><div class="pct">−12.2pp</div></div>
+        <div class="mat-row"><div class="lbl">Q4 FY25</div><div class="mat-bar"><div class="mat-fill io" style="width:76%;"></div></div><div class="num">33.9%</div><div class="pct">−10.9pp</div></div>
+        <div class="mat-row"><div class="lbl">FY26 target</div><div class="mat-bar"><div class="mat-fill io" style="width:100%;"></div></div><div class="num">44.8%</div><div class="pct">peer</div></div>
+        <div class="mat-total"><span>Closing gap · +3.4pp last 4Q</span><span class="num">on path</span></div>
+      </div>
+    </div>
+   </div>
+   <div class="dfa-panel">
+    <div class="dfa-header"><div class="dfa-mark">DFA</div><div class="dfa-title"><div class="dfa-name">Drilling Financial Analyst</div><div class="dfa-sub">Sigma AI &middot; Finance narrative</div></div></div>
+    <div class="dfa-body">
+     <div class="dfa-headline"><div class="dfa-headline-label">Executive read</div><h3>$21M annual RDM gap is structural &mdash; 80% concentrated in three controllable levers</h3></div>
+     <div class="dfa-section"><div class="dfa-section-label">Headline finding</div><p>Fleet RDM <strong>33.9% trails peer median 44.8% by 10.9pp</strong>, equivalent to ~$21M annualised. Cost-mix decomposition shows Staff at 34.3% (in band 20–35%) but spares/consumables at <strong>19.4% (target ≤14%)</strong> — a 5-year high and the structural overspend.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">The non-obvious connection</div><p>Five rigs sit between 23% and 41% RDM. <strong>One rig — Midir at −10.7% — drags fleet RDM by ~1.8pp on its own</strong>. Its 51.9% staff cost / revenue alone exceeds the cost cap for any margin target, and CAPEX 11.0% (vs land norm 3–8%) signals capital deployment without commercial return.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Working-capital reading</div><p>Approx <strong>$21M trapped in inventory</strong> (nearly all of fleet working capital). PO/GR coherence has recovered to 1.13× (in healthy band 1.05–1.20×); FY24 was 2.0×. <strong>Discipline restored on the flow; the standing inventory level remains the structural drag.</strong></p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Three financial levers</div><p><strong>(1) Midir restructure</strong> +$10.8M annual RDM (workforce + commercial review). <strong>(2) Inventory release</strong> $8.2M working-capital release in 12 months. <strong>(3) Dravus procurement controls</strong> $4.5M avoided cost build. Combined: 81% of the gap, deliverable over 12 months.</p></div>
+     <div class="dfa-section dfa-action"><div class="dfa-section-label">Recommended action &mdash; this review</div><p>Approve the three-lever programme. Authorise weekly RDM flash close (replacing monthly-only) to track progress at cadence. Set FY26 target: <strong>RDM 40%</strong> by year-end.</p></div>
+    </div>
+    <div class="dfa-footer"><span class="dfa-disclaimer">⚠ AI-generated &middot; please cross-check before taking action</span><span class="dfa-version">DFA v2.4</span></div>
+   </div>
+  </div>
+</section>
+
+<!-- ============================ FLEET · SUPPLY CHAIN ============================ -->
+<section class="section" id="section-fleet-supply-chain">
+  <div class="rig-head">
+    <h1>Supply Chain</h1>
+    <span class="type-pill jackup">Fleet</span>
+    <span class="rig-head-spacer"></span>
+    <span class="meta">Vendors &middot; cycle time &middot; critical spares &middot; W23</span>
+    <div class="status-banner warn"><span class="icon"></span><span>Fill rate 87% &middot; Dravus PO/GR 1.81× the structural outlier</span></div>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi"><div class="lbl">PO spend (YTD)</div><div class="val">$48.9<span style="font-size:1.1rem;color:var(--muted);">M</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:67%"></div></div>
+        <div class="kpi-target-line"><span class="actual">−33% vs FY24</span><span class="target good">on plan</span></div></div></div>
+    <div class="kpi"><div class="lbl">Procurement cycle</div><div class="val warn">47<span style="font-size:1.1rem;color:var(--muted);">d</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:42%"></div></div>
+        <div class="kpi-target-line"><span class="actual">PO raised → GR</span><span class="target warn">▼ ≤22d (Hackett WC)</span></div></div></div>
+    <div class="kpi"><div class="lbl">Top-3 vendor concentration</div><div class="val warn">42<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:58%"></div></div>
+        <div class="kpi-target-line"><span class="actual">NOV single-source</span><span class="target warn">▼ ≤30%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Stockouts YTD</div><div class="val warn">5</div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:50%"></div></div>
+        <div class="kpi-target-line"><span class="actual">vital SKUs &middot; $267k NPT impact</span><span class="target warn">▼ ≤2</span></div></div></div>
+    <div class="kpi"><div class="lbl">Expedite spend (YTD)</div><div class="val warn">$1.8<span style="font-size:1.1rem;color:var(--muted);">M</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:60%"></div></div>
+        <div class="kpi-target-line"><span class="actual">FY25 $4.2M &middot; trending lower</span><span class="target warn">▼ ≤$1M</span></div></div></div>
+    <div class="kpi"><div class="lbl">PO ageing &gt;30d</div><div class="val warn">14<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:71%"></div></div>
+        <div class="kpi-target-line"><span class="actual">open POs aged</span><span class="target warn">▼ ≤10%</span></div></div></div>
+  </div>
+
+  <div class="below-kpi">
+   <div class="content-main">
+    <div class="main-grid">
+      <div class="panel">
+        <div class="panel-head"><span>PO / GR coherence by rig</span><span class="right">healthy band 1.05–1.20×</span></div>
+        <div class="bar-row"><div class="lbl"><strong>Dravus</strong><span class="sub">Cameroon stockpile · land</span></div><div class="bar-track" style="position:relative;"><div class="bar-fill bad" style="width:90%;"></div><div class="marker" style="left:60%;"></div></div><div class="num" style="color:var(--bad);">1.81×</div></div>
+        <div class="bar-row"><div class="lbl">Lug<span class="sub">In band</span></div><div class="bar-track"><div class="bar-fill good" style="width:58%;"></div></div><div class="num">1.17×</div></div>
+        <div class="bar-row"><div class="lbl">Banba<span class="sub">In band</span></div><div class="bar-track"><div class="bar-fill good" style="width:57%;"></div></div><div class="num">1.15×</div></div>
+        <div class="bar-row"><div class="lbl">Axima<span class="sub">In band</span></div><div class="bar-track"><div class="bar-fill good" style="width:57%;"></div></div><div class="num">1.14×</div></div>
+        <div class="bar-row"><div class="lbl">Midir<span class="sub">Recovered from 4.16×</span></div><div class="bar-track"><div class="bar-fill good" style="width:54%;"></div></div><div class="num">1.08×</div></div>
+        <div class="bar-row"><div class="lbl">Nuada<span class="sub">Drawing down</span></div><div class="bar-track"><div class="bar-fill info" style="width:28%;"></div></div><div class="num">0.56×</div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><span>Top-10 vendor concentration (Pareto)</span><span class="right">flag &gt;15% single, &gt;40% top-3</span></div>
+        <div class="bar-row"><div class="lbl">NOV<span class="sub">BOP &amp; TDS · single-source</span></div><div class="bar-track"><div class="bar-fill bad" style="width:100%;"></div></div><div class="num" style="color:var(--bad);">22%</div></div>
+        <div class="bar-row"><div class="lbl">M-I SWACO<span class="sub">Drilling fluids</span></div><div class="bar-track"><div class="bar-fill warn" style="width:55%;"></div></div><div class="num">12%</div></div>
+        <div class="bar-row"><div class="lbl">Tenaris<span class="sub">OCTG &amp; tubulars</span></div><div class="bar-track"><div class="bar-fill info" style="width:36%;"></div></div><div class="num">8%</div></div>
+        <div class="bar-row"><div class="lbl">Schneider<span class="sub">Electrical/control</span></div><div class="bar-track"><div class="bar-fill info" style="width:27%;"></div></div><div class="num">6%</div></div>
+        <div class="bar-row"><div class="lbl">Bristow<span class="sub">Helicopter</span></div><div class="bar-track"><div class="bar-fill info" style="width:18%;"></div></div><div class="num">4%</div></div>
+        <div class="bar-row"><div class="lbl">Tail (213 vendors)<span class="sub">&lt;1% each</span></div><div class="bar-track"><div class="bar-fill" style="width:80%;"></div></div><div class="num">28%</div></div>
+      </div>
+    </div>
+
+    <div class="mat-grid">
+      <div class="mat-panel">
+        <div class="panel-head"><span>Spend by category</span><span class="right">FY26 YTD</span></div>
+        <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill po" style="width:100%;"></div></div><div class="num">$3.87M</div><div class="pct">7.9%</div></div>
+        <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill po" style="width:81%;"></div></div><div class="num">$3.12M</div><div class="pct">6.4%</div></div>
+        <div class="mat-row"><div class="lbl">Drilling control</div><div class="mat-bar"><div class="mat-fill po" style="width:67%;"></div></div><div class="num">$2.59M</div><div class="pct">5.3%</div></div>
+        <div class="mat-row"><div class="lbl">Drilling handling</div><div class="mat-bar"><div class="mat-fill po" style="width:53%;"></div></div><div class="num">$2.07M</div><div class="pct">4.2%</div></div>
+        <div class="mat-row"><div class="lbl">Structural svcs</div><div class="mat-bar"><div class="mat-fill po" style="width:50%;"></div></div><div class="num">$1.92M</div><div class="pct">3.9%</div></div>
+        <div class="mat-total"><span>Top-5 mat-group spend</span><span class="num">$13.6M</span></div>
+      </div>
+      <div class="mat-panel">
+        <div class="panel-head"><span>Critical-spares stockout register</span><span class="right">YTD · vital SKUs</span></div>
+        <div class="mat-row"><div class="lbl">Banba TDS</div><div class="mat-bar"><div class="mat-fill bad" style="width:30%;"></div></div><div class="num">$46k</div><div class="pct">W19</div></div>
+        <div class="mat-row"><div class="lbl">Nuada PowGen</div><div class="mat-bar"><div class="mat-fill bad" style="width:80%;"></div></div><div class="num">$117k</div><div class="pct">W12</div></div>
+        <div class="mat-row"><div class="lbl">Midir Draw.</div><div class="mat-bar"><div class="mat-fill bad" style="width:22%;"></div></div><div class="num">$30k</div><div class="pct">W16</div></div>
+        <div class="mat-row"><div class="lbl">Axima BOP</div><div class="mat-bar"><div class="mat-fill bad" style="width:25%;"></div></div><div class="num">$33k</div><div class="pct">W04</div></div>
+        <div class="mat-row"><div class="lbl">Lug Mud-end</div><div class="mat-bar"><div class="mat-fill bad" style="width:28%;"></div></div><div class="num">$41k</div><div class="pct">W08</div></div>
+        <div class="mat-total"><span>5 events · 3.2 rig-days lost</span><span class="num">$267k</span></div>
+      </div>
+      <div class="mat-panel">
+        <div class="panel-head"><span>Procurement cycle by category</span><span class="right">PO → GR days</span></div>
+        <div class="mat-row"><div class="lbl">Vital spares</div><div class="mat-bar"><div class="mat-fill io" style="width:90%;"></div></div><div class="num">62 d</div><div class="pct">≤30</div></div>
+        <div class="mat-row"><div class="lbl">Consumables</div><div class="mat-bar"><div class="mat-fill io" style="width:42%;"></div></div><div class="num">38 d</div><div class="pct">≤20</div></div>
+        <div class="mat-row"><div class="lbl">Services</div><div class="mat-bar"><div class="mat-fill io" style="width:50%;"></div></div><div class="num">42 d</div><div class="pct">≤25</div></div>
+        <div class="mat-row"><div class="lbl">Logistics</div><div class="mat-bar"><div class="mat-fill io" style="width:18%;"></div></div><div class="num">21 d</div><div class="pct">≤15</div></div>
+        <div class="mat-row"><div class="lbl">Expedited</div><div class="mat-bar"><div class="mat-fill io" style="width:12%;"></div></div><div class="num">11 d</div><div class="pct">~10×$</div></div>
+        <div class="mat-total"><span>Hackett world-class</span><span class="num">19–22 d</span></div>
+      </div>
+    </div>
+   </div>
+   <div class="dfa-panel">
+    <div class="dfa-header"><div class="dfa-mark">DFA</div><div class="dfa-title"><div class="dfa-name">Drilling Financial Analyst</div><div class="dfa-sub">Sigma AI &middot; Supply Chain narrative</div></div></div>
+    <div class="dfa-body">
+     <div class="dfa-headline"><div class="dfa-headline-label">Executive read</div><h3>Spend control restored at the fleet level &mdash; vendor concentration is the next exposure</h3></div>
+     <div class="dfa-section"><div class="dfa-section-label">Headline finding</div><p>Fleet PO/GR coherence recovered from 2.0× to <strong>1.13× (in band 1.05–1.20×)</strong>. Dravus at <strong>1.81×</strong> is the only structural outlier. Procurement cycle averages <strong>47 days</strong> — twice the world-class benchmark of 19–22 days. PO spend $48.9M YTD is <strong>−33% vs FY24</strong>, consistent with restored discipline.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">The non-obvious connection</div><p>NOV is <strong>single-source</strong> on BOP &amp; TDS critical spares — <strong>22% of fleet spend, no qualified alternate</strong>. M-I SWACO single-source on drilling fluids at 12%. Tenaris OCTG at 8%. <strong>Combined single-source exposure: $20M / 42% of fleet spend</strong>. A 30-day disruption from any one would idle 1–2 rigs.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Stockout-NPT linkage</div><p>5 critical-spares stockouts YTD drove <strong>$267k in lost revenue / NPT cost</strong> across Banba TDS, Nuada PowGen, Midir Drawworks, Axima BOP, Lug Mud-pump. <strong>Every event traces to a stale reorder point</strong> — reorder logic set against FY24 consumption profile, not actual run-rate.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Where the spend concentrates</div><p>Top-5 mat groups account for <strong>$13.6M / 28%</strong> of total fleet spend. Electrical and Mechanical alone are <strong>14.3%</strong>. The concentration sits in categories where dual-sourcing is feasible (commodity-grade items with multiple qualified vendors) — yet the vendor base remains single-source on the highest-value lines (BOP/TDS).</p></div>
+     <div class="dfa-section dfa-action"><div class="dfa-section-label">Recommended action &mdash; this quarter</div><p><strong>(1)</strong> Initiate <strong>dual-source RFQ</strong> on NOV BOP / TDS critical spares within Q3. <strong>(2)</strong> Refresh reorder points on top 25 vital SKUs against rolling 12-week consumption. <strong>(3)</strong> Dravus PO-pipeline audit pending Drilling Manager intent confirmation (see Dravus tab).</p></div>
+    </div>
+    <div class="dfa-footer"><span class="dfa-disclaimer">⚠ AI-generated &middot; please cross-check before taking action</span><span class="dfa-version">DFA v2.4</span></div>
+   </div>
+  </div>
+</section>
+
+<!-- ======================================================================== -->
+<!-- ============================ RIG ONE-PAGERS ============================ -->
+<!-- ======================================================================== -->
+
+<!-- ============================ AXIMA ============================ -->
+<section class="section" id="section-rig-axima">
+  <div class="rig-head">
+    <h1>Axima</h1>
+    <span class="type-pill premium">Premium Jack-up</span>
+    <span class="rig-head-spacer"></span>
+    <span class="meta">FY 2025 &middot; SAP direct</span>
+    <div class="status-banner good"><span class="icon"></span><span>Reference rig</span></div>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi"><div class="lbl">Utilisation</div><div class="val warn">84.9<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:89%"></div></div>
+        <div class="kpi-target-line"><span class="actual">310 / 365 days</span><span class="target warn">▲ ≥95%</span></div></div></div>
+    <div class="kpi"><div class="lbl">NPT</div><div class="val good">2.7<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">at peer best</span><span class="target good">▼ ≤3.0%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Revenue</div><div class="val warn">$39.2<span style="font-size:1.1rem;color:var(--muted);">M</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:83%"></div></div>
+        <div class="kpi-target-line"><span class="actual">$130K · 301.6 d</span><span class="target warn">▲ $47.5M</span></div></div></div>
+    <div class="kpi"><div class="lbl">Rig Direct Margin</div><div class="val warn">39.5<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:85%"></div></div>
+        <div class="kpi-target-line"><span class="actual">Δ −8.2pp YoY</span><span class="target warn">▲ ≥46.7%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Staff Cost %</div><div class="val good">31.7<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:99%"></div></div>
+        <div class="kpi-target-line"><span class="actual">$12.4M · 106 FTE</span><span class="target good">▼ ≤32%</span></div></div></div>
+    <div class="kpi"><div class="lbl">PO / GR coherence</div><div class="val warn">0.92<span style="font-size:1.1rem;color:var(--muted);">×</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:78%"></div></div>
+        <div class="kpi-target-line"><span class="actual">drawing slightly</span><span class="target warn">◆ 1.05–1.20×</span></div></div></div>
+  </div>
+
+  <div class="below-kpi">
+   <div class="content-main">
+  <div class="main-grid">
+    <div class="panel">
+      <div class="panel-head"><span>P&amp;L snapshot · USD \'000s</span><span class="right">Δ vs FY24</span></div>
+      <div class="pl-row"><div class="label">Revenue</div><div class="val">$39,210</div><div class="compare"><span class="delta up">−11.4%</span></div></div>
+      <div class="pl-row"><div class="label">Spare parts cost</div><div class="val warn">$5,921 (15.1%)</div><div class="compare"><span class="delta up">+47.1%</span> <span class="pp">+6.0pp</span></div></div>
+      <div class="pl-row"><div class="label">Workforce cost</div><div class="val warn">$12,415 (31.7%)</div><div class="compare"><span class="delta down">−6.8%</span> <span class="pp warn">+1.6pp</span></div></div>
+      <div class="pl-row"><div class="label">Rig Direct Margin (norm.)</div><div class="val good">$15,504 (39.5%)</div><div class="compare"><span class="delta up">−26.5%</span> <span class="pp">−8.2pp</span></div></div>
+      <div class="pl-row section-divider"><div class="label accent">2025 Real Spent · GR</div><div class="val">$10,066 (25.8%)</div><div class="compare"><span class="delta up">+40.3%</span> <span class="pp">+9.6pp</span></div></div>
+      <div class="pl-row"><div class="label accent">2025 New POs</div><div class="val">$11.5M</div><div class="compare"><span class="delta down">−1% YoY</span></div></div>
+      <div class="pl-row"><div class="label">PO ÷ GR coherence</div><div class="val">1.14×</div><div class="compare">ordering slightly ahead of consumption</div></div>
+      <div class="pl-row section-divider no-compare"><div class="label">Inventory (end-2025)</div><div class="val">$5.0M</div></div>
+      <div class="pl-row no-compare"><div class="label">Dead stock %</div><div class="val warn">40%</div></div>
+      <div class="pl-row no-compare"><div class="label">FY25 CAPEX / Rev</div><div class="val bad">6.1%</div></div>
+      <div class="pl-row no-compare"><div class="label">5Y CAPEX / Rev (2021–25)</div><div class="val bad">4.6%</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head"><span>NPT equipment drivers · 2025 · Top 5</span></div>
+      <div class="npt-row"><div class="lbl">BOP</div><div class="npt-bar"><div class="npt-fill" style="width:52%;"></div></div><div class="num">52.4%</div></div>
+      <div class="npt-row"><div class="lbl">TDS</div><div class="npt-bar"><div class="npt-fill" style="width:17%;"></div></div><div class="num">16.9%</div></div>
+      <div class="npt-row"><div class="lbl">Rig Crew</div><div class="npt-bar"><div class="npt-fill" style="width:15%;"></div></div><div class="num">15.4%</div></div>
+      <div class="npt-row"><div class="lbl">Miscel</div><div class="npt-bar"><div class="npt-fill" style="width:7%;"></div></div><div class="num">6.5%</div></div>
+      <div class="npt-row"><div class="lbl">Rig Floor</div><div class="npt-bar"><div class="npt-fill" style="width:4%;"></div></div><div class="num">3.8%</div></div>
+      <div class="npt-summary">
+        <div class="label">2025 NPT (total)</div>
+        <div class="big">201.25 hrs · 8.4 days · 2.7% NPT</div>
+        <div class="commentary">Lowest total NPT hours in fleet. BOP (52%) + TDS PM are the primary interventions.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mat-grid">
+    <div class="mat-panel">
+      <div class="panel-head"><span>2025 PO · Top 5 mat groups</span></div>
+      <div class="mat-row"><div class="lbl">Drilling handling</div><div class="mat-bar"><div class="mat-fill po" style="width:100%;"></div></div><div class="num">$1.13M</div><div class="pct">9.9%</div></div>
+      <div class="mat-row"><div class="lbl">Drilling control</div><div class="mat-bar"><div class="mat-fill po" style="width:92%;"></div></div><div class="num">$1.04M</div><div class="pct">9.0%</div></div>
+      <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill po" style="width:88%;"></div></div><div class="num">$994K</div><div class="pct">8.7%</div></div>
+      <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill po" style="width:67%;"></div></div><div class="num">$759K</div><div class="pct">6.6%</div></div>
+      <div class="mat-row"><div class="lbl">Rotating eqpt</div><div class="mat-bar"><div class="mat-fill po" style="width:45%;"></div></div><div class="num">$502K</div><div class="pct">4.4%</div></div>
+      <div class="mat-total"><span>Total 2025 PO</span><span class="num">$11.5M</span></div>
+    </div>
+    <div class="mat-panel">
+      <div class="panel-head"><span>2025 GR · Top 5 mat groups</span></div>
+      <div class="mat-row"><div class="lbl">Services / freight</div><div class="mat-bar"><div class="mat-fill gr" style="width:100%;"></div></div><div class="num">$1.22M</div><div class="pct">13.6%</div></div>
+      <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill gr" style="width:52%;"></div></div><div class="num">$640K</div><div class="pct">7.1%</div></div>
+      <div class="mat-row"><div class="lbl">Piping</div><div class="mat-bar"><div class="mat-fill gr" style="width:38%;"></div></div><div class="num">$460K</div><div class="pct">5.1%</div></div>
+      <div class="mat-row"><div class="lbl">Inspection svcs</div><div class="mat-bar"><div class="mat-fill gr" style="width:37%;"></div></div><div class="num">$450K</div><div class="pct">5.0%</div></div>
+      <div class="mat-row"><div class="lbl">Pipe services</div><div class="mat-bar"><div class="mat-fill gr" style="width:33%;"></div></div><div class="num">$400K</div><div class="pct">4.4%</div></div>
+      <div class="mat-total"><span>Total 2025 GR</span><span class="num">$9.0M</span></div>
+    </div>
+    <div class="mat-panel">
+      <div class="panel-head"><span>2025 IO · Top 5 mat groups</span><span class="right">proxy — 42% line cov.</span></div>
+      <div class="mat-row"><div class="lbl">Safety / PPE</div><div class="mat-bar"><div class="mat-fill io" style="width:100%;"></div></div><div class="num">$1.36M</div><div class="pct">18.7%</div></div>
+      <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill io" style="width:58%;"></div></div><div class="num">$794K</div><div class="pct">10.9%</div></div>
+      <div class="mat-row"><div class="lbl">Well completion</div><div class="mat-bar"><div class="mat-fill io" style="width:55%;"></div></div><div class="num">$751K</div><div class="pct">10.3%</div></div>
+      <div class="mat-row"><div class="lbl">Drilling handling</div><div class="mat-bar"><div class="mat-fill io" style="width:45%;"></div></div><div class="num">$617K</div><div class="pct">8.5%</div></div>
+      <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill io" style="width:45%;"></div></div><div class="num">$615K</div><div class="pct">8.4%</div></div>
+      <div class="mat-total"><span>Total 2025 IO</span><span class="num">$7.3M</span></div>
+    </div>
+  </div>
+   </div>
+   <div class="dfa-panel">
+    <div class="dfa-header"><div class="dfa-mark">DFA</div><div class="dfa-title"><div class="dfa-name">Drilling Financial Analyst</div><div class="dfa-sub">Sigma AI &middot; W23 narrative</div></div></div>
+    <div class="dfa-body">
+     <div class="dfa-headline"><div class="dfa-headline-label">Executive read</div><h3>The +47% spare-parts increase is OPEX, not SPS &mdash; pattern matches Banba's prior deterioration</h3></div>
+     <div class="dfa-section"><div class="dfa-section-label">Headline finding</div><p>Spare parts 15.1% of revenue (was 9.1%) is <strong>consumable OPEX, not SPS overhaul</strong>. SPS spending sits separately in CAPEX at 6.1%. The OPEX increase is concentrated in TDS / BOP-adjacent consumables &mdash; the same signature that preceded Banba's reliability deterioration two quarters ago.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">The non-obvious connection</div><p>Banba ran the same profile in <strong>FY24 Q3</strong>: spare parts rose two quarters before NPT roughly doubled. Axima's BOP already accounts for <strong>52.4% of its NPT</strong> &mdash; top-drive-adjacent events are the likely next exposure. Maintenance debt is visible in the procurement data before it surfaces in NPT.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Supporting evidence</div><p>Three indicators corroborate the maintenance-debt reading: (i) BOP-related PO line items up <strong>+62% vs FY24</strong> on Axima, weighted toward emergency-rated lead times; (ii) TDS PM-task slippage averaging <strong>11 days</strong> against the 5-day target since W12; (iii) two near-miss seal events logged in W18 and W21 without operational impact. None individually conclusive; together a clear signal.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">What an audit would reveal</div><p>Two outcomes are likely. <strong>Scenario A</strong> (PM compliance &gt;90%): the spike reflects condition-based intervention, justified spend &mdash; close the question, set FY26 baseline higher. <strong>Scenario B</strong> (compliance &lt;90%): catch-up maintenance is being substituted for planned PM &mdash; the Banba pattern. Audit cost is small relative to either outcome's value of clarity.</p></div>
+     <div class="dfa-section dfa-action"><div class="dfa-section-label">Recommended action &mdash; this month</div><p>BOP + TDS PM compliance audit, scoped 4–6 weeks. If &lt;90%, return to full compliance within Q2 (estimated ~$180k). <strong>Modelled trajectory without action:</strong> Axima NPT rises to ~5.4% by Q4, adding ~$1.4M in downtime and removing reference-rig status for the segment.</p></div>
+    </div>
+    <div class="dfa-footer"><span class="dfa-disclaimer">⚠ AI-generated &middot; please cross-check before taking action</span><span class="dfa-version">DFA v2.4</span></div>
+   </div>
+  </div>
+</section>
+
+<!-- ============================ BANBA ============================ -->
+<section class="section" id="section-rig-banba">
+  <div class="rig-head"><h1>Banba</h1><span class="type-pill jackup">Jack-up</span><span class="rig-head-spacer"></span><span class="meta">FY 2025 · SAP direct</span><div class="status-banner warn"><span class="icon"></span><span>NPT drift · TDS stockouts</span></div></div>
+  <div class="kpi-strip">
+    <div class="kpi"><div class="lbl">Utilisation</div><div class="val good">96.2<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">351 / 365 days</span><span class="target good">▲ ≥95%</span></div></div></div>
+    <div class="kpi"><div class="lbl">NPT</div><div class="val bad">8.7<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill bad" style="width:35%"></div></div>
+        <div class="kpi-target-line"><span class="actual">+5.7pp vs peer</span><span class="target bad">▼ ≤3.0%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Revenue</div><div class="val warn">$32.0<span style="font-size:1.1rem;color:var(--muted);">M</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:88%"></div></div>
+        <div class="kpi-target-line"><span class="actual">$100K · 320 d</span><span class="target warn">▲ $36.5M</span></div></div></div>
+    <div class="kpi"><div class="lbl">Rig Direct Margin</div><div class="val warn">36.3<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:85%"></div></div>
+        <div class="kpi-target-line"><span class="actual">−6.6pp</span><span class="target warn">▲ ≥42.9%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Staff Cost %</div><div class="val good">28.7<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">104 FTE (over cap)</span><span class="target good">▼ ≤32%</span></div></div></div>
+    <div class="kpi"><div class="lbl">PO / GR coherence</div><div class="val good">1.15<span style="font-size:1.1rem;color:var(--muted);">×</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">in band</span><span class="target good">◆ 1.05–1.20×</span></div></div></div>
+  </div>
+  <div class="below-kpi">
+   <div class="content-main">
+  <div class="main-grid">
+    <div class="panel">
+      <div class="panel-head"><span>P&amp;L snapshot · USD \'000s</span><span class="right">Δ vs FY24</span></div>
+      <div class="pl-row"><div class="label">Revenue</div><div class="val">$32,000</div><div class="compare"><span class="delta down">+6.1%</span></div></div>
+      <div class="pl-row"><div class="label">Spare parts cost</div><div class="val warn">$7,168 (22.4%)</div><div class="compare"><span class="delta up">+20.7%</span> <span class="pp">+2.7pp</span></div></div>
+      <div class="pl-row"><div class="label">Workforce cost</div><div class="val warn">$9,184 (28.7%)</div><div class="compare"><span class="delta up">+4.1%</span> <span class="pp down">−0.6pp</span></div></div>
+      <div class="pl-row"><div class="label">Rig Direct Margin (norm.)</div><div class="val good">$11,616 (36.3%)</div><div class="compare"><span class="delta down">+49.7%</span> <span class="pp down">+10.6pp</span></div></div>
+      <div class="pl-row section-divider"><div class="label accent">2025 Real Spent · GR</div><div class="val">$8,800 (27.5%)</div><div class="compare"><span class="delta up">+17.3%</span> <span class="pp">+2.6pp</span></div></div>
+      <div class="pl-row"><div class="label accent">2025 New POs</div><div class="val">$10.1M</div><div class="compare"><span class="delta up">+7.4% YoY</span></div></div>
+      <div class="pl-row"><div class="label">PO ÷ GR coherence</div><div class="val warn">1.15×</div><div class="compare">in healthy band 1.05–1.20×</div></div>
+      <div class="pl-row section-divider no-compare"><div class="label">Inventory (end-2025)</div><div class="val warn">$9.0M</div></div>
+      <div class="pl-row no-compare"><div class="label">Dead stock %</div><div class="val bad">59%</div></div>
+      <div class="pl-row no-compare"><div class="label">FY25 CAPEX / Rev</div><div class="val">3.6%</div></div>
+      <div class="pl-row no-compare"><div class="label">5Y CAPEX / Rev (2021–25)</div><div class="val">3.4%</div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span>NPT equipment drivers · 2025 · Top 5</span></div>
+      <div class="npt-row"><div class="lbl">Miscel</div><div class="npt-bar"><div class="npt-fill" style="width:63%;"></div></div><div class="num">62.9%</div></div>
+      <div class="npt-row"><div class="lbl">PowGen</div><div class="npt-bar"><div class="npt-fill" style="width:21%;"></div></div><div class="num">21.0%</div></div>
+      <div class="npt-row"><div class="lbl">BOP</div><div class="npt-bar"><div class="npt-fill" style="width:11%;"></div></div><div class="num">10.6%</div></div>
+      <div class="npt-row"><div class="lbl">TDS</div><div class="npt-bar"><div class="npt-fill" style="width:4%;"></div></div><div class="num">3.7%</div></div>
+      <div class="npt-row"><div class="lbl">Rig Crew</div><div class="npt-bar"><div class="npt-fill" style="width:2%;"></div></div><div class="num">1.8%</div></div>
+      <div class="npt-summary"><div class="label">2025 NPT (total)</div><div class="big">724 hrs · 30.2 days · 8.7% NPT</div><div class="commentary">Highest NPT in fleet. W19 TDS seal-kit stockout drove $46k loss. Reorder-point refresh required.</div></div>
+    </div>
+  </div>
+  <div class="mat-grid">
+    <div class="mat-panel"><div class="panel-head"><span>2025 PO · Top 5 mat groups</span></div>
+      <div class="mat-row"><div class="lbl">Drilling handling</div><div class="mat-bar"><div class="mat-fill po" style="width:100%;"></div></div><div class="num">$1.18M</div><div class="pct">11.7%</div></div>
+      <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill po" style="width:85%;"></div></div><div class="num">$1.01M</div><div class="pct">10.0%</div></div>
+      <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill po" style="width:78%;"></div></div><div class="num">$924K</div><div class="pct">9.1%</div></div>
+      <div class="mat-row"><div class="lbl">Drilling control</div><div class="mat-bar"><div class="mat-fill po" style="width:62%;"></div></div><div class="num">$734K</div><div class="pct">7.3%</div></div>
+      <div class="mat-row"><div class="lbl">Rotating eqpt</div><div class="mat-bar"><div class="mat-fill po" style="width:38%;"></div></div><div class="num">$452K</div><div class="pct">4.5%</div></div>
+      <div class="mat-total"><span>Total 2025 PO</span><span class="num">$10.1M</span></div>
+    </div>
+    <div class="mat-panel"><div class="panel-head"><span>2025 GR · Top 5 mat groups</span></div>
+      <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill gr" style="width:100%;"></div></div><div class="num">$880K</div><div class="pct">10.0%</div></div>
+      <div class="mat-row"><div class="lbl">Drilling handling</div><div class="mat-bar"><div class="mat-fill gr" style="width:85%;"></div></div><div class="num">$748K</div><div class="pct">8.5%</div></div>
+      <div class="mat-row"><div class="lbl">Maintenance</div><div class="mat-bar"><div class="mat-fill gr" style="width:72%;"></div></div><div class="num">$634K</div><div class="pct">7.2%</div></div>
+      <div class="mat-row"><div class="lbl">Telecom svcs</div><div class="mat-bar"><div class="mat-fill gr" style="width:54%;"></div></div><div class="num">$475K</div><div class="pct">5.4%</div></div>
+      <div class="mat-row"><div class="lbl">Piping</div><div class="mat-bar"><div class="mat-fill gr" style="width:42%;"></div></div><div class="num">$370K</div><div class="pct">4.2%</div></div>
+      <div class="mat-total"><span>Total 2025 GR</span><span class="num">$8.8M</span></div>
+    </div>
+    <div class="mat-panel"><div class="panel-head"><span>2025 IO · Top 5 mat groups</span><span class="right">$9.0M total inv.</span></div>
+      <div class="mat-row"><div class="lbl">Drill tubulars</div><div class="mat-bar"><div class="mat-fill io" style="width:100%;"></div></div><div class="num">$1.62M</div><div class="pct">18.0%</div></div>
+      <div class="mat-row"><div class="lbl">Drilling handling</div><div class="mat-bar"><div class="mat-fill io" style="width:75%;"></div></div><div class="num">$1.21M</div><div class="pct">13.4%</div></div>
+      <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill io" style="width:64%;"></div></div><div class="num">$1.03M</div><div class="pct">11.4%</div></div>
+      <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill io" style="width:51%;"></div></div><div class="num">$823K</div><div class="pct">9.1%</div></div>
+      <div class="mat-row"><div class="lbl">Safety / PPE</div><div class="mat-bar"><div class="mat-fill io" style="width:38%;"></div></div><div class="num">$614K</div><div class="pct">6.8%</div></div>
+      <div class="mat-total"><span>Total 2025 IO</span><span class="num">$9.0M</span></div>
+    </div>
+  </div>
+   </div>
+   <div class="dfa-panel">
+    <div class="dfa-header"><div class="dfa-mark">DFA</div><div class="dfa-title"><div class="dfa-name">Drilling Financial Analyst</div><div class="dfa-sub">Sigma AI &middot; W23 narrative</div></div></div>
+    <div class="dfa-body">
+     <div class="dfa-headline"><div class="dfa-headline-label">Executive read</div><h3>Banba's NPT is addressable this quarter through cross-rig reallocation from Nuada</h3></div>
+     <div class="dfa-section"><div class="dfa-section-label">Headline finding</div><p>Three SKU groups &mdash; TDS seal kits, PowGen alternator brushes, BOP solenoids &mdash; account for <strong>80%</strong> of FY25 stockout-driven NPT events. Individual event cost ranges $33k–$117k. Year-to-date avoidable downtime: <strong>$196k</strong>, against a Banba revenue base of $32M.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">The non-obvious connection</div><p>Each of the three SKU groups sits as dormant surplus on Nuada (12m+ no movement) or Axima (redundant pod). Total surplus carrying value: <strong>~$0.8M, already in inventory</strong>. The intervention is logistical, not financial &mdash; transfer paperwork, transport, and warehouse acceptance, no procurement cycle.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Transfer specifics</div><p><strong>TDS seal kits</strong> (~$420k) from Nuada 12m+ dormant stock. <strong>PowGen alternator brushes</strong> (~$185k) from Nuada surplus pool. <strong>BOP solenoids and redundant pod</strong> (~$240k) from Axima redundant assembly. Combined freight estimate: ~$15k. Receipt and qualification at Banba: 3–5 weeks.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Why reorder-point refresh is the second step</div><p>Reallocation closes the immediate exposure, but Banba's consumption pattern is running +18% above the FY24 reorder profile. Without refreshing the reorder point against actual consumption, the surplus pool will be depleted within 8 months. The $220k AFE supplement funds the consumption-aligned safety stock that prevents reversion.</p></div>
+     <div class="dfa-section dfa-action"><div class="dfa-section-label">Recommended action &mdash; this week</div><p><strong>Cross-rig pool transfer</strong> (no additional procurement). Refresh Banba TDS reorder point against actual consumption (estimated $220k AFE supplement). Addresses <strong>~60% of stockout exposure</strong> by Q3, with the residual 40% covered by the consumption-aligned safety stock.</p></div>
+    </div>
+    <div class="dfa-footer"><span class="dfa-disclaimer">⚠ AI-generated &middot; please cross-check before taking action</span><span class="dfa-version">DFA v2.4</span></div>
+   </div>
+  </div>
+</section>
+
+<!-- ============================ NUADA ============================ -->
+<section class="section" id="section-rig-nuada">
+  <div class="rig-head"><h1>Nuada</h1><span class="type-pill jackup">Jack-up</span><span class="rig-head-spacer"></span><span class="meta">FY 2025 · SAP direct</span><div class="status-banner warn"><span class="icon"></span><span>Inventory is the cash trap</span></div></div>
+  <div class="kpi-strip">
+    <div class="kpi"><div class="lbl">Utilisation</div><div class="val good">97.5<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">356 / 365 days</span><span class="target good">▲ ≥95%</span></div></div></div>
+    <div class="kpi"><div class="lbl">NPT</div><div class="val warn">5.8<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:52%"></div></div>
+        <div class="kpi-target-line"><span class="actual">+2.8pp vs peer</span><span class="target warn">▼ ≤3.0%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Revenue</div><div class="val warn">$32.5<span style="font-size:1.1rem;color:var(--muted);">M</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:89%"></div></div>
+        <div class="kpi-target-line"><span class="actual">$100K · 325 d</span><span class="target warn">▲ $36.5M</span></div></div></div>
+    <div class="kpi"><div class="lbl">Rig Direct Margin</div><div class="val good">41.1<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:96%"></div></div>
+        <div class="kpi-target-line"><span class="actual">best of JUs</span><span class="target good">▲ ≥42.9%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Staff Cost %</div><div class="val good">26.2<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">$8.5M · 96 FTE</span><span class="target good">▼ ≤32%</span></div></div></div>
+    <div class="kpi"><div class="lbl">PO / GR coherence</div><div class="val warn">0.56<span style="font-size:1.1rem;color:var(--muted);">×</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:50%"></div></div>
+        <div class="kpi-target-line"><span class="actual">drawing down</span><span class="target warn">◆ 1.05–1.20×</span></div></div></div>
+  </div>
+  <div class="below-kpi">
+   <div class="content-main">
+  <div class="main-grid">
+    <div class="panel">
+      <div class="panel-head"><span>P&amp;L snapshot · USD \'000s</span><span class="right">Δ vs FY24</span></div>
+      <div class="pl-row"><div class="label">Revenue</div><div class="val">$32,500</div><div class="compare"><span class="delta down">+9.1%</span></div></div>
+      <div class="pl-row"><div class="label">Spare parts cost</div><div class="val">$6,078 (18.7%)</div><div class="compare"><span class="delta up">+20.0%</span> <span class="pp">+1.7pp</span></div></div>
+      <div class="pl-row"><div class="label">Workforce cost</div><div class="val">$8,515 (26.2%)</div><div class="compare"><span class="delta up">+2.0%</span> <span class="pp down">−1.8pp</span></div></div>
+      <div class="pl-row"><div class="label">Rig Direct Margin (norm.)</div><div class="val good">$13,358 (41.1%)</div><div class="compare"><span class="delta down">+12.9%</span> <span class="pp down">+1.4pp</span></div></div>
+      <div class="pl-row section-divider"><div class="label accent">2025 Real Spent · GR</div><div class="val">$7,150 (22.0%)</div><div class="compare"><span class="delta down">−25.0%</span> <span class="pp down">−10.0pp</span></div></div>
+      <div class="pl-row"><div class="label accent">2025 New POs</div><div class="val">$4.0M</div><div class="compare"><span class="delta down">−69.5% YoY</span></div></div>
+      <div class="pl-row"><div class="label">PO ÷ GR coherence</div><div class="val warn">0.56×</div><div class="compare">drawing down stock — well below band</div></div>
+      <div class="pl-row section-divider no-compare"><div class="label">Inventory (end-2025)</div><div class="val bad">$12.3M</div></div>
+      <div class="pl-row no-compare"><div class="label">Dead stock %</div><div class="val bad">58%</div></div>
+      <div class="pl-row no-compare"><div class="label">FY25 CAPEX / Rev</div><div class="val good">2.6%</div></div>
+      <div class="pl-row no-compare"><div class="label">5Y CAPEX / Rev (2021–25)</div><div class="val good">6.0%</div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span>NPT equipment drivers · 2025 · Top 5</span></div>
+      <div class="npt-row"><div class="lbl">PowGen</div><div class="npt-bar"><div class="npt-fill" style="width:40%;"></div></div><div class="num">39.9%</div></div>
+      <div class="npt-row"><div class="lbl">BOP</div><div class="npt-bar"><div class="npt-fill" style="width:26%;"></div></div><div class="num">26.2%</div></div>
+      <div class="npt-row"><div class="lbl">Miscel</div><div class="npt-bar"><div class="npt-fill" style="width:18%;"></div></div><div class="num">17.9%</div></div>
+      <div class="npt-row"><div class="lbl">TDS</div><div class="npt-bar"><div class="npt-fill" style="width:9%;"></div></div><div class="num">9.4%</div></div>
+      <div class="npt-row"><div class="lbl">Mud Pump</div><div class="npt-bar"><div class="npt-fill" style="width:6%;"></div></div><div class="num">6.6%</div></div>
+      <div class="npt-summary"><div class="label">2025 NPT (total)</div><div class="big">453 hrs · 18.9 days · 5.8% NPT</div><div class="commentary">PowGen alternator-brush stockout (W12) cost $117k. Coverage 42 days — refresh reorder this week.</div></div>
+    </div>
+  </div>
+  <div class="mat-grid">
+    <div class="mat-panel"><div class="panel-head"><span>2025 PO · Top 5 mat groups</span></div>
+      <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill po" style="width:100%;"></div></div><div class="num">$684K</div><div class="pct">17.1%</div></div>
+      <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill po" style="width:74%;"></div></div><div class="num">$508K</div><div class="pct">12.7%</div></div>
+      <div class="mat-row"><div class="lbl">Drilling handling</div><div class="mat-bar"><div class="mat-fill po" style="width:60%;"></div></div><div class="num">$412K</div><div class="pct">10.3%</div></div>
+      <div class="mat-row"><div class="lbl">Drilling control</div><div class="mat-bar"><div class="mat-fill po" style="width:48%;"></div></div><div class="num">$328K</div><div class="pct">8.2%</div></div>
+      <div class="mat-row"><div class="lbl">Telecom svcs</div><div class="mat-bar"><div class="mat-fill po" style="width:36%;"></div></div><div class="num">$248K</div><div class="pct">6.2%</div></div>
+      <div class="mat-total"><span>Total 2025 PO</span><span class="num">$4.0M</span></div>
+    </div>
+    <div class="mat-panel"><div class="panel-head"><span>2025 GR · Top 5 mat groups</span></div>
+      <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill gr" style="width:100%;"></div></div><div class="num">$1.07M</div><div class="pct">15.0%</div></div>
+      <div class="mat-row"><div class="lbl">Top drive</div><div class="mat-bar"><div class="mat-fill gr" style="width:78%;"></div></div><div class="num">$834K</div><div class="pct">11.7%</div></div>
+      <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill gr" style="width:68%;"></div></div><div class="num">$732K</div><div class="pct">10.2%</div></div>
+      <div class="mat-row"><div class="lbl">Drilling handling</div><div class="mat-bar"><div class="mat-fill gr" style="width:54%;"></div></div><div class="num">$580K</div><div class="pct">8.1%</div></div>
+      <div class="mat-row"><div class="lbl">Maintenance</div><div class="mat-bar"><div class="mat-fill gr" style="width:42%;"></div></div><div class="num">$450K</div><div class="pct">6.3%</div></div>
+      <div class="mat-total"><span>Total 2025 GR</span><span class="num">$7.2M</span></div>
+    </div>
+    <div class="mat-panel"><div class="panel-head"><span>2025 IO · Top 5 mat groups</span><span class="right">$12.3M total · cash trap</span></div>
+      <div class="mat-row"><div class="lbl">Drill tubulars</div><div class="mat-bar"><div class="mat-fill io" style="width:100%;"></div></div><div class="num">$2.34M</div><div class="pct">19.0%</div></div>
+      <div class="mat-row"><div class="lbl">Drilling handling</div><div class="mat-bar"><div class="mat-fill io" style="width:75%;"></div></div><div class="num">$1.76M</div><div class="pct">14.3%</div></div>
+      <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill io" style="width:63%;"></div></div><div class="num">$1.47M</div><div class="pct">12.0%</div></div>
+      <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill io" style="width:54%;"></div></div><div class="num">$1.25M</div><div class="pct">10.2%</div></div>
+      <div class="mat-row"><div class="lbl">Rotating eqpt</div><div class="mat-bar"><div class="mat-fill io" style="width:42%;"></div></div><div class="num">$985K</div><div class="pct">8.0%</div></div>
+      <div class="mat-total"><span>Total 2025 IO</span><span class="num">$12.3M</span></div>
+    </div>
+  </div>
+   </div>
+   <div class="dfa-panel">
+    <div class="dfa-header"><div class="dfa-mark">DFA</div><div class="dfa-title"><div class="dfa-name">Drilling Financial Analyst</div><div class="dfa-sub">Sigma AI &middot; W23 narrative</div></div></div>
+    <div class="dfa-body">
+     <div class="dfa-headline"><div class="dfa-headline-label">Executive read</div><h3>$4.2M of Nuada's inventory is fleet-shared spares carried on Nuada's books</h3></div>
+     <div class="dfa-section"><div class="dfa-section-label">Headline finding</div><p>$12.3M total inventory. Composition: <strong>~$4.2M of critical spares</strong> that serve the entire JU fleet but currently sit on Nuada's balance sheet. ~$3M of disposal candidates (5+ years dormant). Operational requirement: ~$5M. Nuada is the warehouse-of-record by historical accident, not by operational design.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">The non-obvious connection</div><p>Reclassification &mdash; moving fleet-shared spares to the Gabon Base central pool &mdash; shifts <strong>$4.2M off Nuada's books without operational impact</strong>. Critical spares remain accessible to Nuada via the pool, but are no longer carried as Nuada working capital. This is the largest single working-capital opportunity in the fleet.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Reclassification mechanics</div><p>The change is accounting and policy, not physical. <strong>Step 1:</strong> SKU-level audit by Asset team identifies the 4.2M of shared items (~60–80 SKUs estimated). <strong>Step 2:</strong> ownership transfer from Nuada cost centre to Gabon Base pool, with pool-issuance protocol governing Nuada draw-down rights. <strong>Step 3:</strong> physical relocation optional &mdash; can remain on Nuada if logistically efficient, with Gabon Base as accounting owner.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Disposal tranche supporting the additional $3M</div><p>14 SKUs identified across drill tubulars, drilling handling spares, and rotating equipment, all with 60+ months no movement. Recovery rate assumed at 35% of carrying value (typical for offshore-MRO scrap-market disposals). Net release estimate: ~$3M after disposal costs.</p></div>
+     <div class="dfa-section dfa-action"><div class="dfa-section-label">Recommended action &mdash; this quarter</div><p>Approve inventory reclassification (90-day programme) plus disposal pipeline. Estimated cash release: <strong>$7.2M within 90 days</strong>. No expected impact on Nuada uptime. Disposal SKU list available in inventory annex.</p></div>
+    </div>
+    <div class="dfa-footer"><span class="dfa-disclaimer">⚠ AI-generated &middot; please cross-check before taking action</span><span class="dfa-version">DFA v2.4</span></div>
+   </div>
+  </div>
+</section>
+
+<!-- ============================ LUG ============================ -->
+<section class="section" id="section-rig-lug">
+  <div class="rig-head"><h1>Lug</h1><span class="type-pill platform">Platform</span><span class="rig-head-spacer"></span><span class="meta">FY 2025 · SAP direct</span><div class="status-banner good"><span class="icon"></span><span>Quiet performer · steady</span></div></div>
+  <div class="kpi-strip">
+    <div class="kpi"><div class="lbl">Utilisation</div><div class="val good">95.8<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">350 / 365 days</span><span class="target good">▲ ≥95%</span></div></div></div>
+    <div class="kpi"><div class="lbl">NPT</div><div class="val warn">6.7<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:52%"></div></div>
+        <div class="kpi-target-line"><span class="actual">above platform peer</span><span class="target warn">▼ ≤3.5%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Revenue</div><div class="val warn">$23.4<span style="font-size:1.1rem;color:var(--muted);">M</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:91%"></div></div>
+        <div class="kpi-target-line"><span class="actual">$70K · 334 d</span><span class="target warn">▲ $25.6M</span></div></div></div>
+    <div class="kpi"><div class="lbl">Rig Direct Margin</div><div class="val good">37.1<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">+4.3pp vs peer</span><span class="target good">▲ ≥32.8%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Staff Cost %</div><div class="val good">29.9<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">$7.0M · 66 FTE</span><span class="target good">▼ ≤32%</span></div></div></div>
+    <div class="kpi"><div class="lbl">PO / GR coherence</div><div class="val good">1.17<span style="font-size:1.1rem;color:var(--muted);">×</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">in band</span><span class="target good">◆ 1.05–1.20×</span></div></div></div>
+  </div>
+  <div class="below-kpi">
+   <div class="content-main">
+  <div class="main-grid">
+    <div class="panel">
+      <div class="panel-head"><span>P&amp;L snapshot · USD \'000s</span><span class="right">Δ vs FY24</span></div>
+      <div class="pl-row"><div class="label">Revenue</div><div class="val">$23,380</div><div class="compare"><span class="delta down">+7.2%</span></div></div>
+      <div class="pl-row"><div class="label">Spare parts cost</div><div class="val warn">$4,536 (19.4%)</div><div class="compare"><span class="delta up">+38.7%</span> <span class="pp">+4.4pp</span></div></div>
+      <div class="pl-row"><div class="label">Workforce cost</div><div class="val">$6,991 (29.9%)</div><div class="compare"><span class="delta up">+3.4%</span> <span class="pp down">−1.1pp</span></div></div>
+      <div class="pl-row"><div class="label">Rig Direct Margin (norm.)</div><div class="val good">$8,674 (37.1%)</div><div class="compare"><span class="delta down">+1385%</span> <span class="pp down">+34.4pp</span></div></div>
+      <div class="pl-row section-divider"><div class="label accent">2025 Real Spent · GR</div><div class="val">$5,910 (25.3%)</div><div class="compare"><span class="delta up">+84.1%</span> <span class="pp">+10.6pp</span></div></div>
+      <div class="pl-row"><div class="label accent">2025 New POs</div><div class="val">$6.0M</div><div class="compare"><span class="delta up">+91.0% YoY</span></div></div>
+      <div class="pl-row"><div class="label">PO ÷ GR coherence</div><div class="val good">1.17×</div><div class="compare">in healthy band 1.05–1.20×</div></div>
+      <div class="pl-row section-divider no-compare"><div class="label">Inventory (end-2025)</div><div class="val warn">$5.3M</div></div>
+      <div class="pl-row no-compare"><div class="label">Dead stock %</div><div class="val bad">60%</div></div>
+      <div class="pl-row no-compare"><div class="label">FY25 CAPEX / Rev</div><div class="val good">1.7%</div></div>
+      <div class="pl-row no-compare"><div class="label">5Y CAPEX / Rev (2021–25)</div><div class="val good">3.0%</div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span>NPT equipment drivers · 2025 · Top 5</span></div>
+      <div class="npt-row"><div class="lbl">TDS</div><div class="npt-bar"><div class="npt-fill" style="width:34%;"></div></div><div class="num">34.0%</div></div>
+      <div class="npt-row"><div class="lbl">Mud Pump</div><div class="npt-bar"><div class="npt-fill" style="width:25%;"></div></div><div class="num">25.1%</div></div>
+      <div class="npt-row"><div class="lbl">BOP</div><div class="npt-bar"><div class="npt-fill" style="width:11%;"></div></div><div class="num">11.4%</div></div>
+      <div class="npt-row"><div class="lbl">PowGen</div><div class="npt-bar"><div class="npt-fill" style="width:9%;"></div></div><div class="num">8.7%</div></div>
+      <div class="npt-row"><div class="lbl">Miscel</div><div class="npt-bar"><div class="npt-fill" style="width:7%;"></div></div><div class="num">7.3%</div></div>
+      <div class="npt-summary"><div class="label">2025 NPT (total)</div><div class="big">537 hrs · 22.4 days · 6.7% NPT</div><div class="commentary">TDS + mud-pump consumables driving 59% of NPT. W08 mud-pump seat stockout cost $41k.</div></div>
+    </div>
+  </div>
+  <div class="mat-grid">
+    <div class="mat-panel"><div class="panel-head"><span>2025 PO · Top 5 mat groups</span></div>
+      <div class="mat-row"><div class="lbl">Top drive</div><div class="mat-bar"><div class="mat-fill po" style="width:100%;"></div></div><div class="num">$998K</div><div class="pct">16.6%</div></div>
+      <div class="mat-row"><div class="lbl">Rotating eqpt</div><div class="mat-bar"><div class="mat-fill po" style="width:78%;"></div></div><div class="num">$782K</div><div class="pct">13.0%</div></div>
+      <div class="mat-row"><div class="lbl">Drilling handling</div><div class="mat-bar"><div class="mat-fill po" style="width:62%;"></div></div><div class="num">$620K</div><div class="pct">10.3%</div></div>
+      <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill po" style="width:48%;"></div></div><div class="num">$480K</div><div class="pct">8.0%</div></div>
+      <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill po" style="width:38%;"></div></div><div class="num">$380K</div><div class="pct">6.3%</div></div>
+      <div class="mat-total"><span>Total 2025 PO</span><span class="num">$6.0M</span></div>
+    </div>
+    <div class="mat-panel"><div class="panel-head"><span>2025 GR · Top 5 mat groups</span></div>
+      <div class="mat-row"><div class="lbl">Top drive</div><div class="mat-bar"><div class="mat-fill gr" style="width:100%;"></div></div><div class="num">$840K</div><div class="pct">14.2%</div></div>
+      <div class="mat-row"><div class="lbl">Rotating eqpt</div><div class="mat-bar"><div class="mat-fill gr" style="width:82%;"></div></div><div class="num">$690K</div><div class="pct">11.7%</div></div>
+      <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill gr" style="width:64%;"></div></div><div class="num">$540K</div><div class="pct">9.1%</div></div>
+      <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill gr" style="width:54%;"></div></div><div class="num">$455K</div><div class="pct">7.7%</div></div>
+      <div class="mat-row"><div class="lbl">Lifting &amp; rigging</div><div class="mat-bar"><div class="mat-fill gr" style="width:42%;"></div></div><div class="num">$352K</div><div class="pct">6.0%</div></div>
+      <div class="mat-total"><span>Total 2025 GR</span><span class="num">$5.9M</span></div>
+    </div>
+    <div class="mat-panel"><div class="panel-head"><span>2025 IO · Top 5 mat groups</span><span class="right">$5.3M total inv.</span></div>
+      <div class="mat-row"><div class="lbl">Drilling handling</div><div class="mat-bar"><div class="mat-fill io" style="width:100%;"></div></div><div class="num">$880K</div><div class="pct">16.6%</div></div>
+      <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill io" style="width:75%;"></div></div><div class="num">$662K</div><div class="pct">12.5%</div></div>
+      <div class="mat-row"><div class="lbl">Top drive</div><div class="mat-bar"><div class="mat-fill io" style="width:62%;"></div></div><div class="num">$545K</div><div class="pct">10.3%</div></div>
+      <div class="mat-row"><div class="lbl">Rotating eqpt</div><div class="mat-bar"><div class="mat-fill io" style="width:50%;"></div></div><div class="num">$440K</div><div class="pct">8.3%</div></div>
+      <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill io" style="width:40%;"></div></div><div class="num">$354K</div><div class="pct">6.7%</div></div>
+      <div class="mat-total"><span>Total 2025 IO</span><span class="num">$5.3M</span></div>
+    </div>
+  </div>
+   </div>
+   <div class="dfa-panel">
+    <div class="dfa-header"><div class="dfa-mark">DFA</div><div class="dfa-title"><div class="dfa-name">Drilling Financial Analyst</div><div class="dfa-sub">Sigma AI &middot; W23 narrative</div></div></div>
+    <div class="dfa-body">
+     <div class="dfa-headline"><div class="dfa-headline-label">Executive read</div><h3>Lug is the operating template &mdash; TDS reliability is a fleet-wide structural pattern</h3></div>
+     <div class="dfa-section"><div class="dfa-section-label">Headline finding</div><p>Lug is the <strong>only rig with every cost line within policy band</strong>. RDM 37.1% exceeds platform peer median by +4.3pp. Workforce 29.9%, parts/consumables 19.4%, and CAPEX 1.7% all sit inside healthy ranges simultaneously &mdash; an outcome no other rig achieves. The operating discipline here is demonstrable and worth codifying as a fleet template.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">The non-obvious connection</div><p>Lug's one weak area &mdash; NPT 6.7%, with TDS-related drivers at 34% &mdash; shares its root cause with Banba (62.9% miscel, TDS-adjacent), Midir (49.1% TDS), and the emerging Axima pattern. <strong>TDS reliability is therefore a fleet-wide structural issue, not four independent rig-level findings.</strong></p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Programme structure</div><p>The TDS reliability programme has three components: (i) a <strong>standardised PM protocol</strong> across all six rigs &mdash; harmonising the inspection cycle, calibration intervals, and seal-replacement triggers; (ii) a <strong>shared critical-spares pool</strong> at Gabon Base for cross-rig draw-down; (iii) a <strong>reliability-engineering review board</strong> (quarterly, fleet-level) to track MTBF, failure modes, and PM compliance. Estimated standing cost: ~$0.6M / year.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Why this isn't already happening</div><p>Each rig currently runs its own TDS PM standard, derived from OEM recommendations and adjusted by local practice. The variance across rigs is the issue: Lug runs a tighter inspection cycle than Banba on the same equipment family. A single fleet standard, codified from Lug's practice, lifts the lower performers without constraining Lug.</p></div>
+     <div class="dfa-section dfa-action"><div class="dfa-section-label">Recommended action &mdash; fleet level</div><p>Establish the fleet-wide TDS reliability programme described above. Modelled NPT reduction: ~3pp fleet-wide (≈ <strong>$4.2M/year</strong> in revenue protected). Payback within two quarters at the estimated cost.</p></div>
+    </div>
+    <div class="dfa-footer"><span class="dfa-disclaimer">⚠ AI-generated &middot; please cross-check before taking action</span><span class="dfa-version">DFA v2.4</span></div>
+   </div>
+  </div>
+</section>
+
+<!-- ============================ MIDIR ============================ -->
+<section class="section" id="section-rig-midir">
+  <div class="rig-head"><h1>Midir</h1><span class="type-pill land">Land</span><span class="rig-head-spacer"></span><span class="meta">FY 2025 · SAP direct</span><div class="status-banner bad"><span class="icon"></span><span>Action required · loss-making</span></div></div>
+  <div class="kpi-strip">
+    <div class="kpi"><div class="lbl">Utilisation</div><div class="val good">98.1<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">358 / 365 days</span><span class="target good">▲ ≥95%</span></div></div></div>
+    <div class="kpi"><div class="lbl">NPT</div><div class="val warn">6.9<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:51%"></div></div>
+        <div class="kpi-target-line"><span class="actual">+3.4pp vs peer</span><span class="target warn">▼ ≤3.5%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Revenue</div><div class="val warn">$13.6<span style="font-size:1.1rem;color:var(--muted);">M</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:93%"></div></div>
+        <div class="kpi-target-line"><span class="actual">$40K · 340 d</span><span class="target warn">▲ $14.6M</span></div></div></div>
+    <div class="kpi"><div class="lbl">Rig Direct Margin</div><div class="val bad">−10.7<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill bad" style="width:5%"></div></div>
+        <div class="kpi-target-line"><span class="actual">−43.5pp vs peer</span><span class="target bad">▲ ≥32.8%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Staff Cost %</div><div class="val bad">51.9<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill bad" style="width:35%"></div></div>
+        <div class="kpi-target-line"><span class="actual">72 FTE (over cap)</span><span class="target bad">▼ ≤32%</span></div></div></div>
+    <div class="kpi"><div class="lbl">PO / GR coherence</div><div class="val good">1.08<span style="font-size:1.1rem;color:var(--muted);">×</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">recovered from 4.16×</span><span class="target good">◆ 1.05–1.20×</span></div></div></div>
+  </div>
+  <div class="below-kpi">
+   <div class="content-main">
+  <div class="main-grid">
+    <div class="panel">
+      <div class="panel-head"><span>P&amp;L snapshot · USD \'000s</span><span class="right">Δ vs FY24</span></div>
+      <div class="pl-row"><div class="label">Revenue</div><div class="val">$13,600</div><div class="compare"><span class="delta down">+18.3%</span></div></div>
+      <div class="pl-row"><div class="label">Spare parts cost</div><div class="val bad">$3,468 (25.5%)</div><div class="compare"><span class="delta up">+184%</span> <span class="pp">+14.9pp</span></div></div>
+      <div class="pl-row"><div class="label">Workforce cost</div><div class="val bad">$7,058 (51.9%)</div><div class="compare"><span class="delta up">+13.7%</span> <span class="pp down">−2.1pp</span></div></div>
+      <div class="pl-row"><div class="label">Rig Direct Margin (norm.)</div><div class="val bad">−$1,455 (−10.7%)</div><div class="compare"><span class="delta up">−276%</span> <span class="pp">−17.9pp</span></div></div>
+      <div class="pl-row section-divider"><div class="label accent">2025 Real Spent · GR</div><div class="val bad">$7,072 (52.0%)</div><div class="compare"><span class="delta up">+183%</span> <span class="pp">+30.3pp</span></div></div>
+      <div class="pl-row"><div class="label accent">2025 New POs</div><div class="val">$7.6M</div><div class="compare"><span class="delta down">−26.9% YoY</span></div></div>
+      <div class="pl-row"><div class="label">PO ÷ GR coherence</div><div class="val warn">1.08×</div><div class="compare">recovered from 4.16× FY24</div></div>
+      <div class="pl-row section-divider no-compare"><div class="label">Inventory (end-2025)</div><div class="val warn">$6.0M</div></div>
+      <div class="pl-row no-compare"><div class="label">Dead stock %</div><div class="val warn">38%</div></div>
+      <div class="pl-row no-compare"><div class="label">FY25 CAPEX / Rev</div><div class="val bad">11.0%</div></div>
+      <div class="pl-row no-compare"><div class="label">5Y CAPEX / Rev (2021–25)</div><div class="val warn">8.2%</div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span>NPT equipment drivers · 2025 · Top 5</span></div>
+      <div class="npt-row"><div class="lbl">TDS</div><div class="npt-bar"><div class="npt-fill" style="width:49%;"></div></div><div class="num">49.1%</div></div>
+      <div class="npt-row"><div class="lbl">BOP</div><div class="npt-bar"><div class="npt-fill" style="width:13%;"></div></div><div class="num">12.5%</div></div>
+      <div class="npt-row"><div class="lbl">Drawworks</div><div class="npt-bar"><div class="npt-fill" style="width:12%;"></div></div><div class="num">11.6%</div></div>
+      <div class="npt-row"><div class="lbl">PowGen</div><div class="npt-bar"><div class="npt-fill" style="width:9%;"></div></div><div class="num">9.4%</div></div>
+      <div class="npt-row"><div class="lbl">Miscel</div><div class="npt-bar"><div class="npt-fill" style="width:8%;"></div></div><div class="num">7.6%</div></div>
+      <div class="npt-summary"><div class="label">2025 NPT (total) · the structural problem</div><div class="big">541 hrs · 22.5 days · 6.9% NPT</div><div class="commentary">Staff cost 51.9% of revenue alone exceeds the cost cap for any margin target. Workforce restructure is the only path to break-even.</div></div>
+    </div>
+  </div>
+  <div class="mat-grid">
+    <div class="mat-panel"><div class="panel-head"><span>2025 PO · Top 5 mat groups</span></div>
+      <div class="mat-row"><div class="lbl">Top drive</div><div class="mat-bar"><div class="mat-fill po" style="width:100%;"></div></div><div class="num">$1.41M</div><div class="pct">18.5%</div></div>
+      <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill po" style="width:74%;"></div></div><div class="num">$1.04M</div><div class="pct">13.7%</div></div>
+      <div class="mat-row"><div class="lbl">Drilling control</div><div class="mat-bar"><div class="mat-fill po" style="width:58%;"></div></div><div class="num">$820K</div><div class="pct">10.8%</div></div>
+      <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill po" style="width:45%;"></div></div><div class="num">$634K</div><div class="pct">8.3%</div></div>
+      <div class="mat-row"><div class="lbl">Helicopter</div><div class="mat-bar"><div class="mat-fill po" style="width:36%;"></div></div><div class="num">$508K</div><div class="pct">6.7%</div></div>
+      <div class="mat-total"><span>Total 2025 PO</span><span class="num">$7.6M</span></div>
+    </div>
+    <div class="mat-panel"><div class="panel-head"><span>2025 GR · Top 5 mat groups</span></div>
+      <div class="mat-row"><div class="lbl">Top drive</div><div class="mat-bar"><div class="mat-fill gr" style="width:100%;"></div></div><div class="num">$1.18M</div><div class="pct">16.7%</div></div>
+      <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill gr" style="width:78%;"></div></div><div class="num">$920K</div><div class="pct">13.0%</div></div>
+      <div class="mat-row"><div class="lbl">Helicopter</div><div class="mat-bar"><div class="mat-fill gr" style="width:62%;"></div></div><div class="num">$735K</div><div class="pct">10.4%</div></div>
+      <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill gr" style="width:52%;"></div></div><div class="num">$612K</div><div class="pct">8.7%</div></div>
+      <div class="mat-row"><div class="lbl">Drilling control</div><div class="mat-bar"><div class="mat-fill gr" style="width:44%;"></div></div><div class="num">$518K</div><div class="pct">7.3%</div></div>
+      <div class="mat-total"><span>Total 2025 GR</span><span class="num">$7.1M</span></div>
+    </div>
+    <div class="mat-panel"><div class="panel-head"><span>2025 IO · Top 5 mat groups</span><span class="right">$6.0M total · 10× bracket</span></div>
+      <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill io" style="width:100%;"></div></div><div class="num">$1.08M</div><div class="pct">18.0%</div></div>
+      <div class="mat-row"><div class="lbl">Top drive</div><div class="mat-bar"><div class="mat-fill io" style="width:75%;"></div></div><div class="num">$816K</div><div class="pct">13.6%</div></div>
+      <div class="mat-row"><div class="lbl">Drilling handling</div><div class="mat-bar"><div class="mat-fill io" style="width:65%;"></div></div><div class="num">$702K</div><div class="pct">11.7%</div></div>
+      <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill io" style="width:54%;"></div></div><div class="num">$582K</div><div class="pct">9.7%</div></div>
+      <div class="mat-row"><div class="lbl">Drilling control</div><div class="mat-bar"><div class="mat-fill io" style="width:42%;"></div></div><div class="num">$456K</div><div class="pct">7.6%</div></div>
+      <div class="mat-total"><span>Total 2025 IO</span><span class="num">$6.0M</span></div>
+    </div>
+  </div>
+   </div>
+   <div class="dfa-panel">
+    <div class="dfa-header"><div class="dfa-mark">DFA</div><div class="dfa-title"><div class="dfa-name">Drilling Financial Analyst</div><div class="dfa-sub">Sigma AI &middot; W23 narrative</div></div></div>
+    <div class="dfa-body">
+     <div class="dfa-headline"><div class="dfa-headline-label">Executive read</div><h3>Workforce is one of two roots &mdash; Midir's dayrate sits 33% below land peer median</h3></div>
+     <div class="dfa-section"><div class="dfa-section-label">Headline finding</div><p>The −10.7% RDM reflects <strong>two structural drivers, not one</strong>. Workforce: 72 FTE vs cap 60 (+20% over). Revenue: contracted dayrate $40K vs land peer median $60K (−33%). Per-FTE cost is fleet-normal at ~$98K/year &mdash; the issue is headcount, not wage rate. Treating only the cost side closes half the gap.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">The non-obvious connection</div><p>A workforce-only adjustment (FTE to cap) returns Midir to <strong>break-even, not to peer-median margin</strong>. Closing the full RDM gap requires either re-pricing the Perenco contract or repositioning Midir for higher-value work (workover, P&amp;A, decommissioning) where land rigs typically earn $55–70K. The commercial path may also obviate the workforce question entirely if a higher-margin scope absorbs current capacity.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Commercial options worth scoping</div><p>Three distinct paths are visible. <strong>(a) Contract re-price:</strong> within Perenco, supported by inflation pass-through clause or scope expansion. <strong>(b) Workover repositioning:</strong> upgrade Midir's spec to deeper workover work, dayrate ~$55K. <strong>(c) Decommissioning:</strong> West Africa P&amp;A market is undersupplied; specialised land rigs earn $65–70K, with conversion CAPEX ~$3–4M and 6–9 month timeline.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Risk if workforce-first proceeds without review</div><p>An immediate 12-FTE reduction yields ~$1.2M/yr in cost savings but locks Midir into the $40K dayrate basis with reduced operational flexibility for any future commercial pivot. Replacement hiring in West Africa land-rig roles takes 4–6 months; the action is meaningfully reversible only on that timeline. The commercial review costs two weeks and preserves all options.</p></div>
+     <div class="dfa-section dfa-action"><div class="dfa-section-label">Recommended sequence &mdash; commercial review first</div><p>A two-week commercial review precedes any workforce action. If a commercial path is identified, headcount adjustment may not be required. Otherwise, restructure to <strong>60 FTE</strong> targets a break-even position; full peer-median margin remains contingent on the commercial side.</p></div>
+    </div>
+    <div class="dfa-footer"><span class="dfa-disclaimer">⚠ AI-generated &middot; please cross-check before taking action</span><span class="dfa-version">DFA v2.4</span></div>
+   </div>
+  </div>
+</section>
+
+<!-- ============================ DRAVUS ============================ -->
+<section class="section" id="section-rig-dravus">
+  <div class="rig-head"><h1>Dravus</h1><span class="type-pill land">Land</span><span class="rig-head-spacer"></span><span class="meta">FY 2025 · SAP direct</span><div class="status-banner warn"><span class="icon"></span><span>Procurement outlier · PO/GR 1.81×</span></div></div>
+  <div class="kpi-strip">
+    <div class="kpi"><div class="lbl">Utilisation</div><div class="val good">98.7<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">360 / 365 days</span><span class="target good">▲ ≥95%</span></div></div></div>
+    <div class="kpi"><div class="lbl">NPT</div><div class="val good">3.3<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:100%"></div></div>
+        <div class="kpi-target-line"><span class="actual">below land peer</span><span class="target good">▼ ≤3.5%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Revenue</div><div class="val good">$14.4<span style="font-size:1.1rem;color:var(--muted);">M</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill good" style="width:99%"></div></div>
+        <div class="kpi-target-line"><span class="actual">$40K · 360 d</span><span class="target good">▲ $14.6M</span></div></div></div>
+    <div class="kpi"><div class="lbl">Rig Direct Margin</div><div class="val warn">23.5<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:72%"></div></div>
+        <div class="kpi-target-line"><span class="actual">−9.3pp vs peer</span><span class="target warn">▲ ≥32.8%</span></div></div></div>
+    <div class="kpi"><div class="lbl">Staff Cost %</div><div class="val warn">40.9<span style="font-size:1.1rem;color:var(--muted);">%</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill warn" style="width:65%"></div></div>
+        <div class="kpi-target-line"><span class="actual">$5.9M · 66 FTE</span><span class="target warn">▼ ≤32%</span></div></div></div>
+    <div class="kpi"><div class="lbl">PO / GR coherence</div><div class="val bad">1.81<span style="font-size:1.1rem;color:var(--muted);">×</span></div>
+      <div class="kpi-meter"><div class="kpi-bar"><div class="kpi-bar-fill bad" style="width:25%"></div></div>
+        <div class="kpi-target-line"><span class="actual">Cameroon stockpile</span><span class="target bad">◆ 1.05–1.20×</span></div></div></div>
+  </div>
+  <div class="below-kpi">
+   <div class="content-main">
+  <div class="main-grid">
+    <div class="panel">
+      <div class="panel-head"><span>P&amp;L snapshot · USD \'000s</span><span class="right">Δ vs FY24</span></div>
+      <div class="pl-row"><div class="label">Revenue</div><div class="val">$14,400</div><div class="compare"><span class="delta down">+12.5%</span></div></div>
+      <div class="pl-row"><div class="label">Spare parts cost</div><div class="val warn">$3,326 (23.1%)</div><div class="compare"><span class="delta up">+36.8%</span> <span class="pp">+4.1pp</span></div></div>
+      <div class="pl-row"><div class="label">Workforce cost</div><div class="val warn">$5,890 (40.9%)</div><div class="compare"><span class="delta up">+9.6%</span> <span class="pp down">−1.1pp</span></div></div>
+      <div class="pl-row"><div class="label">Rig Direct Margin (norm.)</div><div class="val">$3,384 (23.5%)</div><div class="compare"><span class="delta up">−21.8%</span> <span class="pp">−10.3pp</span></div></div>
+      <div class="pl-row section-divider"><div class="label accent">2025 Real Spent · GR</div><div class="val">$2,290 (15.9%)</div><div class="compare"><span class="delta down">−13.3%</span> <span class="pp down">−4.7pp</span></div></div>
+      <div class="pl-row"><div class="label accent">2025 New POs</div><div class="val bad">$4.1M</div><div class="compare">$1.81 spent per $1.00 consumed</div></div>
+      <div class="pl-row"><div class="label">PO ÷ GR coherence</div><div class="val bad">1.81×</div><div class="compare">Cameroon stockpile · pattern matches Midir −12mo</div></div>
+      <div class="pl-row section-divider no-compare"><div class="label">Inventory (end-2025)</div><div class="val">$3.7M</div></div>
+      <div class="pl-row no-compare"><div class="label">Dead stock %</div><div class="val bad">73%</div></div>
+      <div class="pl-row no-compare"><div class="label">FY25 CAPEX / Rev</div><div class="val bad">22.3%</div></div>
+      <div class="pl-row no-compare"><div class="label">5Y CAPEX / Rev (2021–25)</div><div class="val bad">12.5%</div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span>NPT equipment drivers · 2025 · Top 5</span></div>
+      <div class="npt-row"><div class="lbl">Miscel</div><div class="npt-bar"><div class="npt-fill" style="width:33%;"></div></div><div class="num">32.9%</div></div>
+      <div class="npt-row"><div class="lbl">TDS</div><div class="npt-bar"><div class="npt-fill" style="width:27%;"></div></div><div class="num">26.7%</div></div>
+      <div class="npt-row"><div class="lbl">Drawworks</div><div class="npt-bar"><div class="npt-fill" style="width:10%;"></div></div><div class="num">10.1%</div></div>
+      <div class="npt-row"><div class="lbl">BOP</div><div class="npt-bar"><div class="npt-fill" style="width:9%;"></div></div><div class="num">9.4%</div></div>
+      <div class="npt-row"><div class="lbl">Rig Crew</div><div class="npt-bar"><div class="npt-fill" style="width:7%;"></div></div><div class="num">7.2%</div></div>
+      <div class="npt-summary"><div class="label">2025 NPT (total) · the leading indicator</div><div class="big">270 hrs · 11.2 days · 3.3% NPT</div><div class="commentary">NPT is healthy. The risk is procurement — 1.81× run-rate building Cameroon stockpile; 73% dead is highest in fleet.</div></div>
+    </div>
+  </div>
+  <div class="mat-grid">
+    <div class="mat-panel"><div class="panel-head"><span>2025 PO · Top 5 mat groups</span></div>
+      <div class="mat-row"><div class="lbl">Top drive</div><div class="mat-bar"><div class="mat-fill po" style="width:100%;"></div></div><div class="num">$662K</div><div class="pct">16.1%</div></div>
+      <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill po" style="width:82%;"></div></div><div class="num">$542K</div><div class="pct">13.2%</div></div>
+      <div class="mat-row"><div class="lbl">Drilling handling</div><div class="mat-bar"><div class="mat-fill po" style="width:65%;"></div></div><div class="num">$432K</div><div class="pct">10.5%</div></div>
+      <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill po" style="width:52%;"></div></div><div class="num">$344K</div><div class="pct">8.4%</div></div>
+      <div class="mat-row"><div class="lbl">Drilling control</div><div class="mat-bar"><div class="mat-fill po" style="width:42%;"></div></div><div class="num">$278K</div><div class="pct">6.8%</div></div>
+      <div class="mat-total"><span>Total 2025 PO</span><span class="num">$4.1M</span></div>
+    </div>
+    <div class="mat-panel"><div class="panel-head"><span>2025 GR · Top 5 mat groups</span></div>
+      <div class="mat-row"><div class="lbl">Top drive</div><div class="mat-bar"><div class="mat-fill gr" style="width:100%;"></div></div><div class="num">$365K</div><div class="pct">15.9%</div></div>
+      <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill gr" style="width:78%;"></div></div><div class="num">$286K</div><div class="pct">12.5%</div></div>
+      <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill gr" style="width:60%;"></div></div><div class="num">$218K</div><div class="pct">9.5%</div></div>
+      <div class="mat-row"><div class="lbl">Drilling handling</div><div class="mat-bar"><div class="mat-fill gr" style="width:48%;"></div></div><div class="num">$176K</div><div class="pct">7.7%</div></div>
+      <div class="mat-row"><div class="lbl">Piping</div><div class="mat-bar"><div class="mat-fill gr" style="width:38%;"></div></div><div class="num">$140K</div><div class="pct">6.1%</div></div>
+      <div class="mat-total"><span>Total 2025 GR</span><span class="num">$2.3M</span></div>
+    </div>
+    <div class="mat-panel"><div class="panel-head"><span>2025 IO · Top 5 mat groups</span><span class="right">$3.7M total · 73% dead</span></div>
+      <div class="mat-row"><div class="lbl">Mechanical</div><div class="mat-bar"><div class="mat-fill io" style="width:100%;"></div></div><div class="num">$680K</div><div class="pct">18.4%</div></div>
+      <div class="mat-row"><div class="lbl">Drilling handling</div><div class="mat-bar"><div class="mat-fill io" style="width:78%;"></div></div><div class="num">$532K</div><div class="pct">14.4%</div></div>
+      <div class="mat-row"><div class="lbl">Top drive</div><div class="mat-bar"><div class="mat-fill io" style="width:62%;"></div></div><div class="num">$420K</div><div class="pct">11.4%</div></div>
+      <div class="mat-row"><div class="lbl">Electrical</div><div class="mat-bar"><div class="mat-fill io" style="width:52%;"></div></div><div class="num">$354K</div><div class="pct">9.6%</div></div>
+      <div class="mat-row"><div class="lbl">Drilling control</div><div class="mat-bar"><div class="mat-fill io" style="width:40%;"></div></div><div class="num">$276K</div><div class="pct">7.5%</div></div>
+      <div class="mat-total"><span>Total 2025 IO</span><span class="num">$3.7M</span></div>
+    </div>
+  </div>
+   </div>
+   <div class="dfa-panel">
+    <div class="dfa-header"><div class="dfa-mark">DFA</div><div class="dfa-title"><div class="dfa-name">Drilling Financial Analyst</div><div class="dfa-sub">Sigma AI &middot; W23 narrative</div></div></div>
+    <div class="dfa-body">
+     <div class="dfa-headline"><div class="dfa-headline-label">Executive read</div><h3>Confirm intent before auditing &mdash; 1.81× may be planned pre-position rather than drift</h3></div>
+     <div class="dfa-section"><div class="dfa-section-label">Headline finding</div><p>PO/GR 1.81× and CAPEX 22.3% (vs land norm 3–8%) are consistent with the Midir pre-loss pattern. They are also consistent with deliberate pre-positioning for an upcoming Cameroon contract. <strong>The procurement data alone does not distinguish runaway spend from planned stockpile.</strong></p></div>
+     <div class="dfa-section"><div class="dfa-section-label">The non-obvious connection</div><p><strong>73% dead-stock is the diagnostic signal.</strong> Pre-positioning typically shows new SKUs flowing in; the dead-stock fraction suggests the build-up is on prior inventory rather than forward-looking stock. Probable interpretation: drift rather than plan &mdash; but the question should be confirmed before audit.</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">What confirmation looks like</div><p>Three checks resolve the ambiguity quickly. <strong>(1)</strong> Contract pipeline review with Commercial: any signed or near-signed Cameroon-based scope starting in the next 2 quarters. <strong>(2)</strong> PO-line composition: are recent POs concentrated in new SKUs (pre-position) or in existing ageing categories (drift)? <strong>(3)</strong> CAPEX category split: is the 22.3% in project-coded items (pre-position) or sustaining maintenance (drift)?</p></div>
+     <div class="dfa-section"><div class="dfa-section-label">Reading the two scenarios</div><p><strong>Scenario A — planned pre-position:</strong> $4.5M of OPEX has been mis-coded; reclassification to project CAPEX restores the P&amp;L view and the dashboard reads correctly going forward. <strong>Scenario B — drift:</strong> we are at the Midir-Q3-FY24 inflection point. Untreated, structural P&amp;L erosion follows within 12–18 months. PO-pipeline audit, procurement controls, and inventory bracket programme become required.</p></div>
+     <div class="dfa-section dfa-action"><div class="dfa-section-label">Question for the Drilling Manager &mdash; this week</div><p>Is there a Cameroon-based contract starting in the next two quarters that justifies the current procurement run-rate? <strong>If yes:</strong> reclassify ~$4.5M OPEX to project CAPEX. <strong>If no:</strong> initiate PO-pipeline audit and procurement controls.</p></div>
+    </div>
+    <div class="dfa-footer"><span class="dfa-disclaimer">⚠ AI-generated &middot; please cross-check before taking action</span><span class="dfa-version">DFA v2.4</span></div>
+   </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+// Theme management
+function toggleTheme(){
+  var cur = document.documentElement.getAttribute('data-theme') || 'light';
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try{ localStorage.setItem('dixstone-dashboard-theme', next); }catch(e){}
+}
+document.addEventListener('keydown', function(e){
+  if(e.key === 't' || e.key === 'T'){
+    if(document.activeElement && (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA')) return;
+    toggleTheme();
+  }
+});
+
+// 'rollup' = the fleet aggregate one-pager (section-fleet-rollup) — DIFFERENT from
+// 'executive' which is the curated Executive Summary board view (section-fleet-executive).
+// Default landing: Fleet roll-up (rig-format aggregate), domain tabs deselected.
+let currentDomain = 'rollup';
+let currentEntity = 'fleet';
+
+function applySelection(){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  if(currentEntity === 'fleet'){
+    const id = (currentDomain === 'rollup') ? 'section-fleet-rollup' : ('section-fleet-' + currentDomain);
+    const el = document.getElementById(id);
+    if(el) el.classList.add('active');
+  } else {
+    const id = 'section-rig-' + currentEntity;
+    const el = document.getElementById(id);
+    if(el) el.classList.add('active');
+  }
+  // Domain tabs: highlight the one matching currentDomain. On 'rollup', no tab is active.
+  document.querySelectorAll('#domain-nav .tab').forEach(t=>t.classList.toggle('active', currentDomain !== 'rollup' && t.dataset.domain === currentDomain));
+  document.querySelectorAll('#entity-nav .chip').forEach(c=>c.classList.toggle('active', c.dataset.entity === currentEntity));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function selectDomain(d){
+  currentDomain = d;
+  if(currentEntity !== 'fleet') currentEntity = 'fleet';
+  applySelection();
+}
+
+function selectEntity(e){
+  currentEntity = e;
+  // Clicking Fleet chip → always show the aggregate one-pager (deselect any deep-dive tab).
+  // Clicking a rig chip → show that rig's one-pager (domain tabs become inert).
+  if(e === 'fleet') currentDomain = 'rollup';
+  applySelection();
+}
+
+document.getElementById('domain-nav').addEventListener('click', (ev)=>{
+  const btn = ev.target.closest('.tab');
+  if(btn && btn.dataset.domain) selectDomain(btn.dataset.domain);
+});
+document.getElementById('entity-nav').addEventListener('click', (ev)=>{
+  const btn = ev.target.closest('.chip');
+  if(btn && btn.dataset.entity) selectEntity(btn.dataset.entity);
+});
+</script>
+
+</body>
+</html>

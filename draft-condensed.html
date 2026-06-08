@@ -1468,33 +1468,89 @@
       </div>
     </div>
 
-    <div class="reveal d3" style="overflow-x:auto;margin-top:1.1rem;">
-      <table class="bench-table" style="font-size:1.032rem;">
-        <thead>
-          <tr><th>Rig</th><th>Inventory $</th><th>Best-practice bracket</th><th>× over ceiling</th><th>Dead stock (3Y)</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><span class="rig-name">NUADA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td>
-            <td class="val-red"><strong>$12.3M</strong></td><td>$2.5–3.0M</td><td class="val-red">~4×</td><td class="val-red">58% · $7.1M</td></tr>
-          <tr><td><span class="rig-name">BANBA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td>
-            <td class="val-red"><strong>$9.0M</strong></td><td>$2.5–3.0M</td><td class="val-red">~3×</td><td class="val-red">59% · $5.3M</td></tr>
-          <tr><td><span class="rig-name">AXIMA</span><span class="rig-type" style="color:var(--premium);">Premium JU</span></td>
-            <td>$5.0M</td><td>$2.5–3.5M</td><td class="val-amber">1.4×</td><td class="val-amber">40% · $2.0M</td></tr>
-          <tr><td><span class="rig-name">LUG</span><span class="rig-type" style="color:var(--platform);">Platform</span></td>
-            <td class="val-red"><strong>$5.3M</strong></td><td>$0.4–0.6M</td><td class="val-red">~9×</td><td class="val-red">60% · $3.2M</td></tr>
-          <tr><td><span class="rig-name">MIDIR</span><span class="rig-type" style="color:var(--land);">Land</span></td>
-            <td>$6.0M</td><td>$0.4–0.6M</td><td class="val-red">~10×</td><td class="val-amber">38% · $2.3M</td></tr>
-          <tr><td><span class="rig-name">DRAVUS</span><span class="rig-type" style="color:var(--land);">Land</span></td>
-            <td class="val-red"><strong>$3.7M</strong></td><td>$0.4–0.6M</td><td class="val-red">~6×</td><td class="val-red">73% · $2.7M</td></tr>
-          <tr><td><span class="rig-name">HARIMA</span><span class="rig-type" style="color:var(--platform);">Platform</span></td>
-            <td>$1.1M</td><td>$0.3–0.6M</td><td class="val-amber">~2×</td><td class="val-red">73% · $0.8M</td></tr>
-          <tr><td><span class="rig-name">Gabon Base</span><span class="rig-type">Central · to split JU rigs</span></td>
-            <td>$2.7M</td><td>—</td><td>—</td><td class="val-red">65% · $1.8M</td></tr>
-          <tr style="background:rgba(232,160,32,0.08);font-weight:600;border-top:2px solid var(--border3);">
-            <td><strong>Fleet</strong></td><td><strong>$45.2M</strong></td><td>—</td><td class="val-red"><strong>+$33M</strong></td><td class="val-red"><strong>56% · $25.2M</strong></td></tr>
-        </tbody>
-      </table>
+    <div class="op-panel reveal d3" style="margin-top:1.2rem;">
+      <div class="ptitle">Per-rig inventory &middot; dead vs live &middot; vs best-practice ceiling</div>
+      <p style="font-size:0.9rem;color:var(--muted);margin-top:0.2rem;margin-bottom:0.7rem;"><span style="display:inline-block;width:14px;height:10px;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:2px;vertical-align:middle;margin-right:4px;"></span> <strong style="color:var(--text2);">Dead stock</strong> (3-year no-movement) &nbsp; <span style="display:inline-block;width:14px;height:10px;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:2px;vertical-align:middle;margin:0 4px 0 12px;"></span> <strong style="color:var(--text2);">Live stock</strong> &nbsp; <span style="display:inline-block;width:2px;height:14px;background:var(--text);vertical-align:middle;margin:0 4px 0 12px;"></span> <strong style="color:var(--text2);">Best-practice ceiling</strong></p>
+
+      <!-- NUADA  $12.3M total: dead 57.7% live 42.3%; ceiling at 22.4% -->
+      <div style="display:grid;grid-template-columns:130px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
+        <span><span class="rig-name">NUADA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Standard JU</div></span>
+        <div style="position:relative;height:16px;border-radius:3px;">
+          <div style="position:absolute;left:0;width:57.7%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:3px 0 0 3px;"></div>
+          <div style="position:absolute;left:57.7%;width:42.3%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
+          <div style="position:absolute;left:22.4%;top:-4px;bottom:-4px;width:2px;background:var(--text);"></div>
+        </div>
+        <div style="text-align:right;font-family:'JetBrains Mono',monospace;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$12.3M</div><div class="val-red" style="font-size:0.78rem;font-weight:600;">~4&times; over ceiling</div></div>
+      </div>
+
+      <!-- BANBA  $9.0M total: dead 43.1% live 30.1%; ceiling 22.4% -->
+      <div style="display:grid;grid-template-columns:130px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
+        <span><span class="rig-name">BANBA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Standard JU</div></span>
+        <div style="position:relative;height:16px;border-radius:3px;">
+          <div style="position:absolute;left:0;width:43.1%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:3px 0 0 3px;"></div>
+          <div style="position:absolute;left:43.1%;width:30.1%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
+          <div style="position:absolute;left:22.4%;top:-4px;bottom:-4px;width:2px;background:var(--text);"></div>
+        </div>
+        <div style="text-align:right;font-family:'JetBrains Mono',monospace;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$9.0M</div><div class="val-red" style="font-size:0.78rem;font-weight:600;">~3&times; over ceiling</div></div>
+      </div>
+
+      <!-- MIDIR  $6.0M total: dead 18.7% live 30.1%; ceiling 4.1% -->
+      <div style="display:grid;grid-template-columns:130px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
+        <span><span class="rig-name">MIDIR</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Land</div></span>
+        <div style="position:relative;height:16px;border-radius:3px;">
+          <div style="position:absolute;left:0;width:18.7%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:3px 0 0 3px;"></div>
+          <div style="position:absolute;left:18.7%;width:30.1%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
+          <div style="position:absolute;left:4.1%;top:-4px;bottom:-4px;width:2px;background:var(--text);"></div>
+        </div>
+        <div style="text-align:right;font-family:'JetBrains Mono',monospace;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$6.0M</div><div class="val-red" style="font-size:0.78rem;font-weight:600;">~10&times; over ceiling</div></div>
+      </div>
+
+      <!-- LUG  $5.3M: dead 26.0% live 17.1%; ceiling 4.1% -->
+      <div style="display:grid;grid-template-columns:130px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
+        <span><span class="rig-name">LUG</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Platform</div></span>
+        <div style="position:relative;height:16px;border-radius:3px;">
+          <div style="position:absolute;left:0;width:26.0%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:3px 0 0 3px;"></div>
+          <div style="position:absolute;left:26.0%;width:17.1%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
+          <div style="position:absolute;left:4.1%;top:-4px;bottom:-4px;width:2px;background:var(--text);"></div>
+        </div>
+        <div style="text-align:right;font-family:'JetBrains Mono',monospace;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$5.3M</div><div class="val-red" style="font-size:0.78rem;font-weight:600;">~9&times; over ceiling</div></div>
+      </div>
+
+      <!-- AXIMA  $5.0M: dead 16.3% live 24.4%; ceiling 24.4% -->
+      <div style="display:grid;grid-template-columns:130px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
+        <span><span class="rig-name">AXIMA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Premium JU</div></span>
+        <div style="position:relative;height:16px;border-radius:3px;">
+          <div style="position:absolute;left:0;width:16.3%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:3px 0 0 3px;"></div>
+          <div style="position:absolute;left:16.3%;width:24.4%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
+          <div style="position:absolute;left:24.4%;top:-4px;bottom:-4px;width:2px;background:var(--text);"></div>
+        </div>
+        <div style="text-align:right;font-family:'JetBrains Mono',monospace;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$5.0M</div><div class="val-amber" style="font-size:0.78rem;font-weight:600;">1.4&times; over ceiling</div></div>
+      </div>
+
+      <!-- DRAVUS  $3.7M: dead 22.0% live 8.1%; ceiling 4.1% -->
+      <div style="display:grid;grid-template-columns:130px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
+        <span><span class="rig-name">DRAVUS</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Land</div></span>
+        <div style="position:relative;height:16px;border-radius:3px;">
+          <div style="position:absolute;left:0;width:22.0%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:3px 0 0 3px;"></div>
+          <div style="position:absolute;left:22.0%;width:8.1%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
+          <div style="position:absolute;left:4.1%;top:-4px;bottom:-4px;width:2px;background:var(--text);"></div>
+        </div>
+        <div style="text-align:right;font-family:'JetBrains Mono',monospace;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$3.7M</div><div class="val-red" style="font-size:0.78rem;font-weight:600;">~6&times; over ceiling</div></div>
+      </div>
+
+      <!-- HARIMA  $1.1M: dead 6.5% live 2.4%; ceiling 3.7% -->
+      <div style="display:grid;grid-template-columns:130px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;">
+        <span><span class="rig-name">HARIMA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Platform</div></span>
+        <div style="position:relative;height:16px;border-radius:3px;">
+          <div style="position:absolute;left:0;width:6.5%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:3px 0 0 3px;"></div>
+          <div style="position:absolute;left:6.5%;width:2.4%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
+          <div style="position:absolute;left:3.7%;top:-4px;bottom:-4px;width:2px;background:var(--text);"></div>
+        </div>
+        <div style="text-align:right;font-family:'JetBrains Mono',monospace;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$1.1M</div><div class="val-amber" style="font-size:0.78rem;font-weight:600;">~2&times; over ceiling</div></div>
+      </div>
     </div>
+
+    <p class="reveal d4" style="margin-top:0.9rem;font-size:0.9rem;color:var(--muted);font-style:italic;"><strong style="color:var(--text2);font-style:normal;">Fleet:</strong> $45.2M inventory (incl. $2.7M Gabon central pool to be split) &middot; $25.2M dead stock (56%) &middot; $33M above the combined best-practice ceiling.</p>
 
     <div class="reveal d4" style="margin-top:0.9rem;font-size:0.9rem;color:var(--muted);font-style:italic;line-height:1.5;">
       <strong style="color:var(--text2);font-style:normal;">Disclaimer · </strong>

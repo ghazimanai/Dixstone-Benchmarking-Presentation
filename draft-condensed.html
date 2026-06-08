@@ -1222,54 +1222,74 @@
     <div class="eyebrow reveal">Procurement Commitments vs Actual Consumption &middot; FY 2025</div>
     <h1 class="slide-title reveal">5 of 6 rigs ordered more than they consumed &mdash;<br><em>~$5.5M added to inventory in 2025 alone.</em></h1>
 
-    <div class="grid-3 reveal d2" style="gap:1rem;margin-top:1.5rem;">
-      <div class="insight-card" style="border-left-color:var(--bad);">
-        <div class="ic-eyebrow" style="color:var(--bad);">DRAVUS</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-top:0.6rem;">
-          <div><div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">Ordered</div><div style="font-size:1.35rem;font-weight:600;color:var(--text);">$7.6M</div></div>
-          <div><div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">Consumed</div><div style="font-size:1.35rem;font-weight:600;color:var(--text2);">$4.2M</div></div>
+    <div class="op-panel reveal d2" style="margin-top:1.5rem;">
+      <div class="ptitle">Net $ inventory change per rig &middot; ordered minus consumed &middot; FY 2025</div>
+      <p style="font-size:0.92rem;color:var(--muted);margin-top:0.2rem;margin-bottom:0.9rem;">Bars to the right of the centre line = rig <strong style="color:var(--bad);">added to inventory</strong>; bars to the left = rig <strong style="color:var(--good);">drew down stock</strong>.</p>
+
+      <!-- Axis labels -->
+      <div style="display:grid;grid-template-columns:80px 1fr 130px;gap:1rem;font-size:0.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;padding-bottom:0.45rem;border-bottom:1px solid var(--border2);">
+        <span></span>
+        <div style="position:relative;text-align:center;">
+          <span style="position:absolute;left:0;">&larr; drew down</span>
+          <span style="font-weight:600;">0</span>
+          <span style="position:absolute;right:0;">added &rarr;</span>
         </div>
-        <div style="margin-top:0.7rem;padding-top:0.55rem;border-top:1px dashed var(--border2);font-size:0.95rem;"><span style="color:var(--muted);">Net added:</span> <strong class="val-red">+$3.4M</strong></div>
+        <span style="text-align:right;">Net $ / Ord &middot; Cons</span>
       </div>
-      <div class="insight-card">
-        <div class="ic-eyebrow">AXIMA</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-top:0.6rem;">
-          <div><div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">Ordered</div><div style="font-size:1.35rem;font-weight:600;color:var(--text);">$11.5M</div></div>
-          <div><div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">Consumed</div><div style="font-size:1.35rem;font-weight:600;color:var(--text2);">$10.1M</div></div>
+
+      <!-- DRAVUS -->
+      <div style="display:grid;grid-template-columns:80px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
+        <span class="rig-name">DRAVUS</span>
+        <div style="position:relative;height:16px;background:var(--bg3);border-radius:3px;">
+          <div style="position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--text2);opacity:0.45;"></div>
+          <div style="position:absolute;left:50%;top:0;bottom:0;width:48.6%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:0 3px 3px 0;"></div>
         </div>
-        <div style="margin-top:0.7rem;padding-top:0.55rem;border-top:1px dashed var(--border2);font-size:0.95rem;"><span style="color:var(--muted);">Net added:</span> <strong class="val-amber">+$1.4M</strong></div>
+        <div style="text-align:right;"><span class="val-red" style="font-weight:600;font-size:1.05rem;">+$3.4M</span><div style="font-size:0.76rem;color:var(--muted);font-family:'JetBrains Mono',monospace;">$7.6M / $4.2M</div></div>
       </div>
-      <div class="insight-card">
-        <div class="ic-eyebrow">BANBA</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-top:0.6rem;">
-          <div><div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">Ordered</div><div style="font-size:1.35rem;font-weight:600;color:var(--text);">$10.1M</div></div>
-          <div><div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">Consumed</div><div style="font-size:1.35rem;font-weight:600;color:var(--text2);">$8.8M</div></div>
+      <!-- AXIMA -->
+      <div style="display:grid;grid-template-columns:80px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
+        <span class="rig-name">AXIMA</span>
+        <div style="position:relative;height:16px;background:var(--bg3);border-radius:3px;">
+          <div style="position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--text2);opacity:0.45;"></div>
+          <div style="position:absolute;left:50%;top:0;bottom:0;width:20%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
         </div>
-        <div style="margin-top:0.7rem;padding-top:0.55rem;border-top:1px dashed var(--border2);font-size:0.95rem;"><span style="color:var(--muted);">Net added:</span> <strong class="val-amber">+$1.3M</strong></div>
+        <div style="text-align:right;"><span class="val-amber" style="font-weight:600;font-size:1.05rem;">+$1.4M</span><div style="font-size:0.76rem;color:var(--muted);font-family:'JetBrains Mono',monospace;">$11.5M / $10.1M</div></div>
       </div>
-      <div class="insight-card">
-        <div class="ic-eyebrow">LUG</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-top:0.6rem;">
-          <div><div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">Ordered</div><div style="font-size:1.35rem;font-weight:600;color:var(--text);">$7.6M</div></div>
-          <div><div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">Consumed</div><div style="font-size:1.35rem;font-weight:600;color:var(--text2);">$6.5M</div></div>
+      <!-- BANBA -->
+      <div style="display:grid;grid-template-columns:80px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
+        <span class="rig-name">BANBA</span>
+        <div style="position:relative;height:16px;background:var(--bg3);border-radius:3px;">
+          <div style="position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--text2);opacity:0.45;"></div>
+          <div style="position:absolute;left:50%;top:0;bottom:0;width:18.6%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
         </div>
-        <div style="margin-top:0.7rem;padding-top:0.55rem;border-top:1px dashed var(--border2);font-size:0.95rem;"><span style="color:var(--muted);">Net added:</span> <strong class="val-amber">+$1.1M</strong></div>
+        <div style="text-align:right;"><span class="val-amber" style="font-weight:600;font-size:1.05rem;">+$1.3M</span><div style="font-size:0.76rem;color:var(--muted);font-family:'JetBrains Mono',monospace;">$10.1M / $8.8M</div></div>
       </div>
-      <div class="insight-card">
-        <div class="ic-eyebrow">MIDIR</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-top:0.6rem;">
-          <div><div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">Ordered</div><div style="font-size:1.35rem;font-weight:600;color:var(--text);">$7.7M</div></div>
-          <div><div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">Consumed</div><div style="font-size:1.35rem;font-weight:600;color:var(--text2);">$7.1M</div></div>
+      <!-- LUG -->
+      <div style="display:grid;grid-template-columns:80px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
+        <span class="rig-name">LUG</span>
+        <div style="position:relative;height:16px;background:var(--bg3);border-radius:3px;">
+          <div style="position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--text2);opacity:0.45;"></div>
+          <div style="position:absolute;left:50%;top:0;bottom:0;width:15.7%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
         </div>
-        <div style="margin-top:0.7rem;padding-top:0.55rem;border-top:1px dashed var(--border2);font-size:0.95rem;"><span style="color:var(--muted);">Net added:</span> <strong class="val-amber">+$0.6M</strong></div>
+        <div style="text-align:right;"><span class="val-amber" style="font-weight:600;font-size:1.05rem;">+$1.1M</span><div style="font-size:0.76rem;color:var(--muted);font-family:'JetBrains Mono',monospace;">$7.6M / $6.5M</div></div>
       </div>
-      <div class="insight-card" style="border-left-color:var(--good);">
-        <div class="ic-eyebrow" style="color:var(--good);">NUADA</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-top:0.6rem;">
-          <div><div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">Ordered</div><div style="font-size:1.35rem;font-weight:600;color:var(--text);">$4.4M</div></div>
-          <div><div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">Consumed</div><div style="font-size:1.35rem;font-weight:600;color:var(--text2);">$7.8M</div></div>
+      <!-- MIDIR -->
+      <div style="display:grid;grid-template-columns:80px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
+        <span class="rig-name">MIDIR</span>
+        <div style="position:relative;height:16px;background:var(--bg3);border-radius:3px;">
+          <div style="position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--text2);opacity:0.45;"></div>
+          <div style="position:absolute;left:50%;top:0;bottom:0;width:8.6%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
         </div>
-        <div style="margin-top:0.7rem;padding-top:0.55rem;border-top:1px dashed var(--border2);font-size:0.95rem;"><span style="color:var(--muted);">Drew down:</span> <strong class="val-green">&minus;$3.4M</strong></div>
+        <div style="text-align:right;"><span class="val-amber" style="font-weight:600;font-size:1.05rem;">+$0.6M</span><div style="font-size:0.76rem;color:var(--muted);font-family:'JetBrains Mono',monospace;">$7.7M / $7.1M</div></div>
+      </div>
+      <!-- NUADA -->
+      <div style="display:grid;grid-template-columns:80px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;">
+        <span class="rig-name">NUADA</span>
+        <div style="position:relative;height:16px;background:var(--bg3);border-radius:3px;">
+          <div style="position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--text2);opacity:0.45;"></div>
+          <div style="position:absolute;right:50%;top:0;bottom:0;width:48.6%;background:linear-gradient(270deg,#1f7a4c,#155e3a);border-radius:3px 0 0 3px;"></div>
+        </div>
+        <div style="text-align:right;"><span class="val-green" style="font-weight:600;font-size:1.05rem;">&minus;$3.4M</span><div style="font-size:0.76rem;color:var(--muted);font-family:'JetBrains Mono',monospace;">$4.4M / $7.8M</div></div>
       </div>
     </div>
 

@@ -726,6 +726,8 @@
   html[data-theme="light"] .num-tag{color:#1E40AF !important;}
   /* Flatten the multicolour rig-type labels in tables to one neutral tone */
   html[data-theme="light"] .rig-type{color:var(--text2) !important;}
+  /* Restore a real amber for status cells (val-amber otherwise inherits the light-theme navy --sigma) */
+  html[data-theme="light"] .bench-table .val-amber{color:#b8780f !important;}
 
   /* PROGRESS BAR keeps gold gradient (no change needed) */
   html[data-theme="light"] .progress-bar{background:linear-gradient(90deg, var(--sigma3), var(--sigma), var(--sigma2));}

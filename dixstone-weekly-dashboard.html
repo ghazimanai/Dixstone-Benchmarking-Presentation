@@ -1630,9 +1630,14 @@ function applySelection(){
     const el = document.getElementById(id);
     if(el) el.classList.add('active');
   }
-  // Domain tabs: highlight the one matching currentDomain. On 'rollup', no tab is active.
-  document.querySelectorAll('#domain-nav .tab').forEach(t=>t.classList.toggle('active', currentDomain !== 'rollup' && t.dataset.domain === currentDomain));
-  document.querySelectorAll('#entity-nav .chip').forEach(c=>c.classList.toggle('active', c.dataset.entity === currentEntity));
+  // Mutual exclusion: only ONE row highlights at a time.
+  //   - On a domain tab view (Executive Summary, Operations, Finance, etc.):
+  //       tab highlights, chip does NOT.
+  //   - On Fleet roll-up or any rig one-pager:
+  //       chip highlights, no tab does.
+  const tabActive = currentEntity === 'fleet' && currentDomain !== 'rollup';
+  document.querySelectorAll('#domain-nav .tab').forEach(t=>t.classList.toggle('active', tabActive && t.dataset.domain === currentDomain));
+  document.querySelectorAll('#entity-nav .chip').forEach(c=>c.classList.toggle('active', !tabActive && c.dataset.entity === currentEntity));
   window.scrollTo({top:0, behavior:'smooth'});
 }
 

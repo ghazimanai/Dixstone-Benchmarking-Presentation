@@ -717,7 +717,10 @@
   html[data-theme="light"] .insight-card{border-left:3px solid var(--sigma);}
 
   /* SLIDE-TITLE em accent — slightly darker gold to read on white */
-  html[data-theme="light"] h1.slide-title em{color:var(--sigma);}
+  /* Hero accent — deep teal for emphasised text in slide titles, cover and phase dividers */
+  html[data-theme="light"] h1.slide-title em,
+  html[data-theme="light"] .cover-title em,
+  html[data-theme="light"] .divider-slide h1 em{color:#1F6B7A;}
 
   /* PROGRESS BAR keeps gold gradient (no change needed) */
   html[data-theme="light"] .progress-bar{background:linear-gradient(90deg, var(--sigma3), var(--sigma), var(--sigma2));}

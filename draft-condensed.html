@@ -1079,44 +1079,70 @@
     <div class="eyebrow reveal">Rig Direct Margin Evolution · 2024 → 2025 · Per Rig</div>
     <h1 class="slide-title reveal">Fleet RDM at 33.7% —<br><em>but rigs range from +41% to &minus;11% &mdash; a 52pp gap.</em></h1>
 
-    <div class="reveal d2" style="overflow-x:auto;margin-top:0.4rem;">
-      <table class="bench-table" style="font-size:1.056rem;">
-        <thead>
-          <tr><th>Rig</th><th>2025 RDM%</th><th>2024 RDM%</th><th>Δ pp</th><th>Trajectory</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><span class="rig-name">AXIMA</span><span class="rig-type" style="color:var(--premium);">Premium JU</span></td>
-            <td class="val-green">39.5%</td><td class="val-green">47.7%</td>
-            <td class="val-red"><strong>−8.2 pp</strong></td>
-            <td>Gave back 2024 peak · still #2 in fleet</td></tr>
-          <tr><td><span class="rig-name">BANBA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td>
-            <td class="val-amber">36.3%</td><td class="val-amber">25.7%</td>
-            <td class="val-green"><strong>+10.6 pp</strong></td>
-            <td class="val-green">Consistent recovery · workforce normalised</td></tr>
-          <tr><td><span class="rig-name">NUADA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td>
-            <td class="val-green">41.1%</td><td class="val-amber">39.7%</td>
-            <td class="val-green"><strong>+1.4 pp</strong></td>
-            <td class="val-green">Stabilised at fleet-best margin</td></tr>
-          <tr><td><span class="rig-name">LUG</span><span class="rig-type" style="color:var(--platform);">Platform</span></td>
-            <td class="val-amber">37.1%</td><td class="val-red">2.7%</td>
-            <td class="val-green"><strong>+34.4 pp</strong></td>
-            <td class="val-green">Recovered from 2024 extraordinary spike</td></tr>
-          <tr><td><span class="rig-name">MIDIR</span><span class="rig-type" style="color:var(--land);">Land</span></td>
-            <td class="val-red">−10.7%</td><td class="val-red">7.2%</td>
-            <td class="val-red"><strong>−17.9 pp</strong></td>
-            <td class="val-red">Structural deterioration · turned loss-making</td></tr>
-          <tr><td><span class="rig-name">DRAVUS</span><span class="rig-type" style="color:var(--land);">Land</span></td>
-            <td class="val-amber">23.5%</td><td class="val-amber">33.8%</td>
-            <td class="val-red"><strong>−10.3 pp</strong></td>
-            <td class="val-red">Gave back most of 2024 gain</td></tr>
-          <tr style="background:rgba(232,160,32,0.08);font-weight:600;border-top:2px solid var(--border3);">
-            <td><strong>Fleet</strong></td>
-            <td><strong>33.7%</strong></td><td>33.2%</td>
-            <td><strong>+0.5 pp</strong></td>
-            <td>Headline flat YoY · masks wide rig-level divergence</td></tr>
-        </tbody>
-      </table>
+    <div class="grid-3 reveal d2" style="gap:1rem;margin-top:1.4rem;">
+      <!-- NUADA · best 2025 -->
+      <div class="insight-card" style="border-left-color:var(--good);">
+        <div class="ic-eyebrow">NUADA &middot; STANDARD JU</div>
+        <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0.5rem;align-items:center;margin-top:0.6rem;">
+          <div><div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">2024</div><div style="font-size:1.3rem;font-weight:600;color:var(--text2);">39.7%</div></div>
+          <div style="font-size:1.4rem;color:var(--good);font-weight:600;">&rarr;</div>
+          <div style="text-align:right;"><div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">2025</div><div style="font-size:1.3rem;font-weight:600;color:var(--text);">41.1%</div></div>
+        </div>
+        <div style="margin-top:0.65rem;padding-top:0.5rem;border-top:1px dashed var(--border2);font-size:0.92rem;"><strong class="val-green">&uarr; +1.4 pp</strong> &middot; <span style="color:var(--muted);">Stabilised at fleet-best margin</span></div>
+      </div>
+      <!-- AXIMA -->
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow">AXIMA &middot; PREMIUM JU</div>
+        <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0.5rem;align-items:center;margin-top:0.6rem;">
+          <div><div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">2024</div><div style="font-size:1.3rem;font-weight:600;color:var(--text2);">47.7%</div></div>
+          <div style="font-size:1.4rem;color:var(--bad);font-weight:600;">&rarr;</div>
+          <div style="text-align:right;"><div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">2025</div><div style="font-size:1.3rem;font-weight:600;color:var(--text);">39.5%</div></div>
+        </div>
+        <div style="margin-top:0.65rem;padding-top:0.5rem;border-top:1px dashed var(--border2);font-size:0.92rem;"><strong class="val-red">&darr; &minus;8.2 pp</strong> &middot; <span style="color:var(--muted);">Gave back 2024 peak &middot; still #2 in fleet</span></div>
+      </div>
+      <!-- LUG · big improver -->
+      <div class="insight-card" style="border-left-color:var(--good);">
+        <div class="ic-eyebrow">LUG &middot; PLATFORM</div>
+        <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0.5rem;align-items:center;margin-top:0.6rem;">
+          <div><div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">2024</div><div style="font-size:1.3rem;font-weight:600;color:var(--text2);">2.7%</div></div>
+          <div style="font-size:1.4rem;color:var(--good);font-weight:600;">&rarr;</div>
+          <div style="text-align:right;"><div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">2025</div><div style="font-size:1.3rem;font-weight:600;color:var(--text);">37.1%</div></div>
+        </div>
+        <div style="margin-top:0.65rem;padding-top:0.5rem;border-top:1px dashed var(--border2);font-size:0.92rem;"><strong class="val-green">&uarr; +34.4 pp</strong> &middot; <span style="color:var(--muted);">Recovered from 2024 extraordinary spike</span></div>
+      </div>
+      <!-- BANBA -->
+      <div class="insight-card" style="border-left-color:var(--good);">
+        <div class="ic-eyebrow">BANBA &middot; STANDARD JU</div>
+        <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0.5rem;align-items:center;margin-top:0.6rem;">
+          <div><div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">2024</div><div style="font-size:1.3rem;font-weight:600;color:var(--text2);">25.7%</div></div>
+          <div style="font-size:1.4rem;color:var(--good);font-weight:600;">&rarr;</div>
+          <div style="text-align:right;"><div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">2025</div><div style="font-size:1.3rem;font-weight:600;color:var(--text);">36.3%</div></div>
+        </div>
+        <div style="margin-top:0.65rem;padding-top:0.5rem;border-top:1px dashed var(--border2);font-size:0.92rem;"><strong class="val-green">&uarr; +10.6 pp</strong> &middot; <span style="color:var(--muted);">Consistent recovery &middot; workforce normalised</span></div>
+      </div>
+      <!-- DRAVUS -->
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow">DRAVUS &middot; LAND</div>
+        <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0.5rem;align-items:center;margin-top:0.6rem;">
+          <div><div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">2024</div><div style="font-size:1.3rem;font-weight:600;color:var(--text2);">33.8%</div></div>
+          <div style="font-size:1.4rem;color:var(--bad);font-weight:600;">&rarr;</div>
+          <div style="text-align:right;"><div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">2025</div><div style="font-size:1.3rem;font-weight:600;color:var(--text);">23.5%</div></div>
+        </div>
+        <div style="margin-top:0.65rem;padding-top:0.5rem;border-top:1px dashed var(--border2);font-size:0.92rem;"><strong class="val-red">&darr; &minus;10.3 pp</strong> &middot; <span style="color:var(--muted);">Gave back most of 2024 gain</span></div>
+      </div>
+      <!-- MIDIR · worst -->
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow">MIDIR &middot; LAND</div>
+        <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0.5rem;align-items:center;margin-top:0.6rem;">
+          <div><div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">2024</div><div style="font-size:1.3rem;font-weight:600;color:var(--text2);">7.2%</div></div>
+          <div style="font-size:1.4rem;color:var(--bad);font-weight:600;">&rarr;</div>
+          <div style="text-align:right;"><div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;">2025</div><div style="font-size:1.3rem;font-weight:600;color:var(--bad);">&minus;10.7%</div></div>
+        </div>
+        <div style="margin-top:0.65rem;padding-top:0.5rem;border-top:1px dashed var(--border2);font-size:0.92rem;"><strong class="val-red">&darr; &minus;17.9 pp</strong> &middot; <span style="color:var(--muted);">Structural deterioration &middot; turned loss-making</span></div>
+      </div>
     </div>
+
+    <p class="reveal d3" style="margin-top:1.1rem;font-size:0.95rem;color:var(--muted);font-style:italic;"><strong style="color:var(--text2);font-style:normal;">Fleet:</strong> 33.2% &rarr; 33.7% (+0.5 pp) &mdash; headline flat YoY masks the wide rig-level divergence above.</p>
 
 </section>
 

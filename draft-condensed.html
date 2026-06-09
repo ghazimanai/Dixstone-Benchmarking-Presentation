@@ -1020,47 +1020,7 @@
     <div class="eyebrow reveal" style="justify-content:center;">Phase 1 of 3</div>
     <h1 class="reveal d1">Internal <em>Diagnostics</em></h1>  </section>
 
-  <!-- ========================= 4b · DATA FOUNDATION · GATHERING CHALLENGES ========================= -->
-  <section class="slide" data-title="Data Foundation · Challenges">
-    <div class="eyebrow reveal">Data Foundation · Challenges Encountered During Diagnostics</div>
-    <h1 class="slide-title reveal">Data <em>inconsistent, incomplete and scattered</em> across systems —<br>limited to no visibility to <em>make data driven decisions</em>.</h1>
-    <p class="lede reveal d1" style="max-width:none;">Pulling a coherent fleet picture required significant effort &mdash; including back-calculating figures from underlying records in several cases. The same gaps prevent day-to-day management visibility on rig performance, procurement and inventory.</p>
-
-    <div class="grid-3 reveal d2" style="gap:1.1rem;margin-top:1.2rem;">
-      <div class="insight-card" style="border-left-color:var(--bad);">
-        <div class="ic-eyebrow" style="color:var(--bad);">01 · SCATTERED SYSTEMS</div>
-        <h3>Multiple disconnected platforms.</h3>
-        <p class="body">SAP, MM10 and ad-hoc Excel trackers in parallel &mdash; no single source of truth.</p>
-      </div>
-      <div class="insight-card" style="border-left-color:var(--bad);">
-        <div class="ic-eyebrow" style="color:var(--bad);">02 · TWO SAP ENVIRONMENTS</div>
-        <h3>Historical data split across two SAP environments.</h3>
-        <p class="body">Not run simultaneously &mdash; but historical data lives in one environment and current operations in another. Reconciling across periods requires bridging the two.</p>
-      </div>
-      <div class="insight-card" style="border-left-color:var(--bad);">
-        <div class="ic-eyebrow" style="color:var(--bad);">03 · INCOMPLETE EXTRACTS</div>
-        <h3>SAP extracts missing critical fields.</h3>
-        <p class="body">Material codes, rig allocations, dates and amounts pulled incomplete &mdash; manual completion required.</p>
-      </div>
-      <div class="insight-card" style="border-left-color:var(--bad);">
-        <div class="ic-eyebrow" style="color:var(--bad);">04 · NO MOVEMENT HISTORY</div>
-        <h3>No historical values on movements.</h3>
-        <p class="body">Issue-outs, transfers and re-pricing cannot be reconstructed reliably across years.</p>
-      </div>
-      <div class="insight-card" style="border-left-color:var(--bad);">
-        <div class="ic-eyebrow" style="color:var(--bad);">05 · NO MGMT DASHBOARDS</div>
-        <h3>No consolidated dashboards.</h3>
-        <p class="body">GR, PO, OPEX, NPT and overdue PMs built per-request &mdash; not on-demand for the business.</p>
-      </div>
-      <div class="insight-card" style="border-left-color:var(--bad);">
-        <div class="ic-eyebrow" style="color:var(--bad);">06 · MANUAL PO TRACKING</div>
-        <h3>Rig managers track POs manually.</h3>
-        <p class="body">Copy-pasted into local Excel trackers &mdash; no automated PO status feed from SAP.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================= 4b · ON-SITE SURVEY ROOT CAUSE ========================= -->
+  <!-- ========================= 4a · ON-SITE SURVEY ROOT CAUSE ========================= -->
   <section class="slide" data-title="Root Cause · On-Site Surveys">
     <div class="eyebrow reveal">On-Site Surveys &middot; AXIMA &amp; LUG &middot; Root-Cause Diagnostic</div>
     <h1 class="slide-title reveal">We went to the rigs &mdash;<br><em>and the cost gap traces to four operational root causes.</em></h1>
@@ -1137,10 +1097,50 @@
     </div>
 
     <div class="reveal d3" style="margin-top:1.0rem;padding:0.75rem 1.0rem;border-left:3px solid #1E40AF;background:rgba(30,64,175,0.06);">
-      <div style="font-family:var(--mono);font-size:0.72rem;letter-spacing:0.14em;color:#1E40AF;">FROM OBSERVATION TO NUMBERS</div>
-      <div style="font-size:1.0rem;color:var(--text);margin-top:0.25rem;line-height:1.4;">These four root causes drive the NPT, working-capital and visibility gaps quantified in the rest of Phase 1 &mdash; and shape the action plan in Phase 3.</div>
+      <div style="font-family:var(--mono);font-size:0.72rem;letter-spacing:0.14em;color:#1E40AF;">WHAT FOLLOWS</div>
+      <div style="font-size:1.0rem;color:var(--text);margin-top:0.25rem;line-height:1.4;">These root causes drive every number in the rest of Phase 1. But first: the data foundation that had to be untangled before any of it could be quantified &mdash; which is where we go next.</div>
     </div>
 </section>
+
+  <!-- ========================= 4b · DATA FOUNDATION · GATHERING CHALLENGES ========================= -->
+  <section class="slide" data-title="Data Foundation · Challenges">
+    <div class="eyebrow reveal">Data Foundation · Challenges Encountered During Diagnostics</div>
+    <h1 class="slide-title reveal">Data <em>inconsistent, incomplete and scattered</em> across systems —<br>limited to no visibility to <em>make data driven decisions</em>.</h1>
+    <p class="lede reveal d1" style="max-width:none;">Pulling a coherent fleet picture required significant effort &mdash; including back-calculating figures from underlying records in several cases. The same gaps prevent day-to-day management visibility on rig performance, procurement and inventory.</p>
+
+    <div class="grid-3 reveal d2" style="gap:1.1rem;margin-top:1.2rem;">
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow" style="color:var(--bad);">01 · SCATTERED SYSTEMS</div>
+        <h3>Multiple disconnected platforms.</h3>
+        <p class="body">SAP, MM10 and ad-hoc Excel trackers in parallel &mdash; no single source of truth.</p>
+      </div>
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow" style="color:var(--bad);">02 · TWO SAP ENVIRONMENTS</div>
+        <h3>Historical data split across two SAP environments.</h3>
+        <p class="body">Not run simultaneously &mdash; but historical data lives in one environment and current operations in another. Reconciling across periods requires bridging the two.</p>
+      </div>
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow" style="color:var(--bad);">03 · INCOMPLETE EXTRACTS</div>
+        <h3>SAP extracts missing critical fields.</h3>
+        <p class="body">Material codes, rig allocations, dates and amounts pulled incomplete &mdash; manual completion required.</p>
+      </div>
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow" style="color:var(--bad);">04 · NO MOVEMENT HISTORY</div>
+        <h3>No historical values on movements.</h3>
+        <p class="body">Issue-outs, transfers and re-pricing cannot be reconstructed reliably across years.</p>
+      </div>
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow" style="color:var(--bad);">05 · NO MGMT DASHBOARDS</div>
+        <h3>No consolidated dashboards.</h3>
+        <p class="body">GR, PO, OPEX, NPT and overdue PMs built per-request &mdash; not on-demand for the business.</p>
+      </div>
+      <div class="insight-card" style="border-left-color:var(--bad);">
+        <div class="ic-eyebrow" style="color:var(--bad);">06 · MANUAL PO TRACKING</div>
+        <h3>Rig managers track POs manually.</h3>
+        <p class="body">Copy-pasted into local Excel trackers &mdash; no automated PO status feed from SAP.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- ========================= 5 · PER-RIG P&L ========================= -->
   <section class="slide" data-title="2025 Per-Rig P&amp;L">

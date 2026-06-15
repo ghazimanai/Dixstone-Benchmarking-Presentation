@@ -2502,90 +2502,39 @@
     <div class="eyebrow reveal">Recommendations &middot; Strategic Direction</div>
     <h1 class="slide-title reveal">Five strategic areas, run concurrently &mdash;<br><em>toward one outcome.</em></h1>
 
-    <div class="reveal d2" style="display:flex;justify-content:center;margin-top:0.2rem;">
-      <svg viewBox="0 0 1000 720" style="width:100%;max-width:820px;height:auto;font-family:'Space Grotesk',sans-serif;" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="goalGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="var(--sigma)" stop-opacity="0.30"/>
-            <stop offset="55%" stop-color="var(--sigma)" stop-opacity="0.07"/>
-            <stop offset="100%" stop-color="var(--sigma)" stop-opacity="0"/>
-          </radialGradient>
-          <radialGradient id="hubFill" cx="50%" cy="36%" r="72%">
-            <stop offset="0%" stop-color="var(--sigma)" stop-opacity="0.34"/>
-            <stop offset="100%" stop-color="var(--sigma)" stop-opacity="0.06"/>
-          </radialGradient>
-          <linearGradient id="nodeFill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="var(--bg-card)"/>
-            <stop offset="100%" stop-color="var(--bg2)"/>
-          </linearGradient>
-          <linearGradient id="spoke" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="var(--sigma)" stop-opacity="0.15"/>
-            <stop offset="100%" stop-color="var(--sigma)" stop-opacity="0.75"/>
-          </linearGradient>
-          <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
-            <feDropShadow dx="0" dy="7" stdDeviation="11" flood-color="#000" flood-opacity="0.45"/>
-          </filter>
-          <marker id="arrowIn" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto">
-            <path d="M0,0 L7,3 L0,6 Z" fill="var(--sigma)"/>
-          </marker>
-        </defs>
+    <div class="reveal d2" style="margin-top:1.4rem;">
+      <!-- five strategic areas -->
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;">
+        <div style="background:var(--bg-card);border:1px solid var(--border2);border-top:4px solid var(--sigma);border-radius:10px;padding:1.5rem 1rem;display:flex;flex-direction:column;align-items:center;gap:0.9rem;text-align:center;">
+          <div style="width:3rem;height:3rem;border-radius:50%;background:var(--sigma);color:#0d1119;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.4rem;">1</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.05rem,1.35vw,1.5rem);color:var(--text);line-height:1.2;">Data Visualisation</div>
+        </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border2);border-top:4px solid var(--sigma);border-radius:10px;padding:1.5rem 1rem;display:flex;flex-direction:column;align-items:center;gap:0.9rem;text-align:center;">
+          <div style="width:3rem;height:3rem;border-radius:50%;background:var(--sigma);color:#0d1119;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.4rem;">2</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.05rem,1.35vw,1.5rem);color:var(--text);line-height:1.2;">Supply Chain</div>
+        </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border2);border-top:4px solid var(--sigma);border-radius:10px;padding:1.5rem 1rem;display:flex;flex-direction:column;align-items:center;gap:0.9rem;text-align:center;">
+          <div style="width:3rem;height:3rem;border-radius:50%;background:var(--sigma);color:#0d1119;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.4rem;">3</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.05rem,1.35vw,1.5rem);color:var(--text);line-height:1.2;">Equipment</div>
+        </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border2);border-top:4px solid var(--sigma);border-radius:10px;padding:1.5rem 1rem;display:flex;flex-direction:column;align-items:center;gap:0.9rem;text-align:center;">
+          <div style="width:3rem;height:3rem;border-radius:50%;background:var(--sigma);color:#0d1119;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.4rem;">4</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.05rem,1.35vw,1.5rem);color:var(--text);line-height:1.2;">People</div>
+        </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border2);border-top:4px solid var(--sigma);border-radius:10px;padding:1.5rem 1rem;display:flex;flex-direction:column;align-items:center;gap:0.9rem;text-align:center;">
+          <div style="width:3rem;height:3rem;border-radius:50%;background:var(--sigma);color:#0d1119;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.4rem;">5</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.05rem,1.35vw,1.5rem);color:var(--text);line-height:1.2;">Land Rigs Business Review</div>
+        </div>
+      </div>
 
-        <!-- ambient glow -->
-        <circle cx="500" cy="345" r="320" fill="url(#goalGlow)"/>
-        <!-- orbit ring -->
-        <circle cx="500" cy="345" r="244" fill="none" stroke="var(--sigma)" stroke-opacity="0.30" stroke-width="1.4" stroke-dasharray="1.5 11"/>
+      <!-- converge -->
+      <div style="text-align:center;color:var(--sigma);font-size:1.8rem;line-height:1;margin:1.1rem 0 0.9rem;">&#9660;</div>
 
-        <!-- spokes: each discipline drives the goal -->
-        <g stroke="url(#spoke)" stroke-width="3" marker-end="url(#arrowIn)" stroke-linecap="round">
-          <line x1="500" y1="105" x2="500" y2="218"/>
-          <line x1="728" y1="271" x2="623" y2="306"/>
-          <line x1="641" y1="539" x2="577" y2="449"/>
-          <line x1="359" y1="539" x2="423" y2="449"/>
-          <line x1="272" y1="271" x2="377" y2="306"/>
-        </g>
-
-        <!-- centre hub -->
-        <circle cx="500" cy="345" r="116" fill="url(#hubFill)" stroke="var(--sigma)" stroke-width="2.5" filter="url(#soft)"/>
-        <circle cx="500" cy="345" r="116" fill="none" stroke="var(--sigma)" stroke-opacity="0.35" stroke-width="6"/>
-        <text x="500" y="312" text-anchor="middle" fill="var(--sigma)" font-family="'JetBrains Mono',monospace" font-size="14" letter-spacing="4">OUR GOAL</text>
-        <text x="500" y="345" text-anchor="middle" fill="var(--text)" font-size="26" font-weight="600" letter-spacing="-0.01em">Operational &amp;</text>
-        <text x="500" y="375" text-anchor="middle" fill="var(--text)" font-size="26" font-weight="600" letter-spacing="-0.01em">Cost</text>
-        <text x="500" y="405" text-anchor="middle" fill="var(--sigma)" font-size="26" font-weight="700" letter-spacing="-0.01em">Efficiency</text>
-
-        <!-- node 1 · Data Visualisation -->
-        <g filter="url(#soft)"><circle cx="500" cy="105" r="86" fill="url(#nodeFill)" stroke="var(--sigma)" stroke-width="2"/></g>
-        <circle cx="500" cy="42" r="17" fill="var(--sigma)"/>
-        <text x="500" y="48" text-anchor="middle" fill="#0d1119" font-family="'JetBrains Mono',monospace" font-size="16" font-weight="700">1</text>
-        <text x="500" y="104" text-anchor="middle" fill="var(--text)" font-size="20" font-weight="600">DATA</text>
-        <text x="500" y="128" text-anchor="middle" fill="var(--text)" font-size="20" font-weight="600">VISUALISATION</text>
-
-        <!-- node 2 · Supply Chain -->
-        <g filter="url(#soft)"><circle cx="728" cy="271" r="86" fill="url(#nodeFill)" stroke="var(--sigma)" stroke-width="2"/></g>
-        <circle cx="728" cy="208" r="17" fill="var(--sigma)"/>
-        <text x="728" y="214" text-anchor="middle" fill="#0d1119" font-family="'JetBrains Mono',monospace" font-size="16" font-weight="700">2</text>
-        <text x="728" y="270" text-anchor="middle" fill="var(--text)" font-size="20" font-weight="600">SUPPLY</text>
-        <text x="728" y="294" text-anchor="middle" fill="var(--text)" font-size="20" font-weight="600">CHAIN</text>
-
-        <!-- node 3 · Equipment -->
-        <g filter="url(#soft)"><circle cx="641" cy="539" r="86" fill="url(#nodeFill)" stroke="var(--sigma)" stroke-width="2"/></g>
-        <circle cx="641" cy="476" r="17" fill="var(--sigma)"/>
-        <text x="641" y="482" text-anchor="middle" fill="#0d1119" font-family="'JetBrains Mono',monospace" font-size="16" font-weight="700">3</text>
-        <text x="641" y="546" text-anchor="middle" fill="var(--text)" font-size="20" font-weight="600">EQUIPMENT</text>
-
-        <!-- node 4 · People -->
-        <g filter="url(#soft)"><circle cx="359" cy="539" r="86" fill="url(#nodeFill)" stroke="var(--sigma)" stroke-width="2"/></g>
-        <circle cx="359" cy="476" r="17" fill="var(--sigma)"/>
-        <text x="359" y="482" text-anchor="middle" fill="#0d1119" font-family="'JetBrains Mono',monospace" font-size="16" font-weight="700">4</text>
-        <text x="359" y="546" text-anchor="middle" fill="var(--text)" font-size="20" font-weight="600">PEOPLE</text>
-
-        <!-- node 5 · Land Rigs Business Review -->
-        <g filter="url(#soft)"><circle cx="272" cy="271" r="86" fill="url(#nodeFill)" stroke="var(--sigma)" stroke-width="2"/></g>
-        <circle cx="272" cy="208" r="17" fill="var(--sigma)"/>
-        <text x="272" y="214" text-anchor="middle" fill="#0d1119" font-family="'JetBrains Mono',monospace" font-size="16" font-weight="700">5</text>
-        <text x="272" y="256" text-anchor="middle" fill="var(--text)" font-size="17" font-weight="600">LAND RIGS</text>
-        <text x="272" y="277" text-anchor="middle" fill="var(--text)" font-size="17" font-weight="600">BUSINESS</text>
-        <text x="272" y="298" text-anchor="middle" fill="var(--text)" font-size="17" font-weight="600">REVIEW</text>
-      </svg>
+      <!-- goal banner -->
+      <div style="background:linear-gradient(90deg,rgba(232,160,32,0.16),rgba(232,160,32,0.04));border:1px solid var(--sigma);border-radius:12px;padding:1.5rem 2rem;text-align:center;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;letter-spacing:0.22em;color:var(--sigma);font-weight:600;margin-bottom:0.5rem;">OUR GOAL</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.8rem,3vw,2.8rem);color:var(--text);letter-spacing:-0.01em;line-height:1.1;">Operational &amp; Cost Efficiency</div>
+      </div>
     </div>
 </section>
 

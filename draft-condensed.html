@@ -299,6 +299,10 @@
   .pillar p{font-size:1.008rem;color:var(--text2);margin:0;line-height:1.5;}
   .pillar .stat-tag{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.864rem;color:var(--sigma);margin-top:0.8rem;padding-top:0.6rem;border-top:1px solid var(--border2);letter-spacing:0.05em;font-weight:400;}
 
+  /* Editorial em-dash markers in place of disc bullets, deck-wide */
+  .deck li::marker{content:'\2014\00a0';color:var(--sigma);}
+  .deck .org-panel li::marker{content:none;}
+
   /* Insight list (next steps) */
   .insight-list{list-style:none;padding:0;margin:0;}
   .insight-list li{display:grid;grid-template-columns:auto 1fr;gap:1.3rem;align-items:start;padding:1rem 0;border-bottom:1px solid var(--border2);}

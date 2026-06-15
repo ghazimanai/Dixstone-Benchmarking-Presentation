@@ -87,11 +87,11 @@
 
   h1,h2,h3,h4,.eyebrow{font-family:'Space Grotesk',sans-serif;}
   .eyebrow{
-    font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;letter-spacing:0.22em;text-transform:uppercase;
-    color:var(--sigma);font-weight:400;margin-bottom:1.2rem;
-    display:flex;align-items:center;gap:0.6rem;
+    font-family:'JetBrains Mono',monospace;font-weight:600;font-size:clamp(15px,1.2vw,23px);letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--sigma);margin-bottom:0.95rem;
+    display:flex;align-items:center;gap:0.7rem;
   }
-  .eyebrow::before{content:'';width:24px;height:1px;background:var(--sigma);display:inline-block;}
+  .eyebrow::before{content:'';width:30px;height:3px;border-radius:2px;background:var(--sigma);display:inline-block;}
   h1.slide-title{font-size:clamp(2.2rem,4.6vw,3.8rem);font-weight:600;line-height:1.08;letter-spacing:-0.02em;margin:0 0 1.5rem 0;color:var(--text);}
   h1.slide-title em{font-style:normal;color:var(--sigma);font-weight:400;}
   .lede{font-size:clamp(1.05rem,1.5vw,1.55rem);color:var(--text2);max-width:780px;font-weight:400;line-height:1.55;margin-bottom:2.2rem;}
@@ -2651,7 +2651,7 @@
       <div class="insight-card" style="border-left-color:var(--bad);">
         <div class="ic-eyebrow">MATERIAL MANAGEMENT</div>
         <h3>Issue-out discipline and min/max control.</h3>
-        <p class="body"><strong>Log every issue-out in SAP</strong>; set <strong>min/max</strong> on consumption history; consumption check before every PO; cross-rig pooling before new orders.</p>
+        <p class="body"><strong>Log every issue-out in SAP</strong>; <strong>establish history-based min/max</strong>; consumption check before every PO; cross-rig pooling before new orders.</p>
       </div>
       <div class="insight-card" style="border-left-color:var(--bad);">
         <div class="ic-eyebrow">SAP PROCURE-TO-PAY &amp; RECORDS</div>

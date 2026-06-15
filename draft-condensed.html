@@ -185,15 +185,14 @@
   /* Prev / next slide arrows — PPT-style left/right navigation */
   .nav-arrow{
     position:fixed;top:50%;transform:translateY(-50%);z-index:50;
-    width:44px;height:44px;border-radius:50%;
-    background:rgba(13,17,25,0.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-    border:1px solid var(--border2);color:var(--text2);
-    font-size:1.6rem;line-height:1;cursor:pointer;
+    width:44px;height:44px;
+    background:transparent;border:none;color:var(--text2);
+    font-size:1.8rem;line-height:1;cursor:pointer;
     display:flex;align-items:center;justify-content:center;
-    transition:background 0.2s ease,color 0.2s ease,border-color 0.2s ease;
+    transition:color 0.2s ease,transform 0.2s ease;
     font-family:'Space Grotesk',sans-serif;padding:0 0 3px 0;
   }
-  .nav-arrow:hover{background:var(--sigma-soft);color:var(--sigma);border-color:var(--border);}
+  .nav-arrow:hover{color:var(--sigma);transform:translateY(-50%) scale(1.2);}
   .nav-arrow:disabled{opacity:0.25;cursor:default;}
   .nav-arrow.prev{left:1.2rem;}
   .nav-arrow.next{right:1.2rem;}

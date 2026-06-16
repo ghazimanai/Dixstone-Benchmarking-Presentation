@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rig-Site · Data Visualisation</title>
+<style>
+:root{--sigma:#E8A020;--bg:#0f141d;--card:#161d28;--text:#f2f4f8;--text2:#c4ccd8;--muted:#8a93a3;--border:#26303d;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter',system-ui,Arial,sans-serif;}
+.wrap{max-width:1200px;margin:0 auto;padding:2.2rem 1.5rem 4rem;}
+.eyebrow{font-size:0.85rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--sigma);font-weight:600;}
+h1{font-family:'Source Serif 4',Georgia,serif;font-weight:700;font-size:clamp(2rem,4vw,3rem);margin:0.4rem 0 1.4rem;letter-spacing:-0.01em;}
+.back{display:inline-block;margin-bottom:1.6rem;background:var(--sigma);color:#0f141d;text-decoration:none;font-weight:700;font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;padding:0.5rem 1rem;border-radius:6px;}
+figure{margin:0 0 2rem;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+figure img{display:block;width:100%;height:auto;cursor:zoom-in;}
+figcaption{padding:0.8rem 1.1rem;font-size:1.05rem;color:var(--text2);line-height:1.4;}
+.pdfcard{background:linear-gradient(90deg,rgba(232,160,32,0.16),rgba(232,160,32,0.04));border:1.5px solid var(--sigma);border-radius:12px;padding:1.5rem 1.8rem;margin:0 0 2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;}
+.pdfcard .t{font-family:'Source Serif 4',Georgia,serif;font-weight:700;font-size:1.4rem;}
+.pdfcard .s{color:var(--text2);font-size:0.95rem;margin-top:0.3rem;}
+.pdfcard a{background:var(--sigma);color:#0f141d;text-decoration:none;font-weight:700;font-size:0.85rem;letter-spacing:0.06em;text-transform:uppercase;padding:0.6rem 1.2rem;border-radius:8px;white-space:nowrap;}
+#lb{position:fixed;inset:0;background:rgba(0,0,0,0.92);display:none;align-items:center;justify-content:center;cursor:zoom-out;z-index:99;padding:1rem;}
+#lb img{max-width:100%;max-height:100%;}
+</style></head><body><div class="wrap">
+<div class="eyebrow">Rig-Site Findings &middot; Data Visualisation</div>
+<h1>Data visualisation &mdash; from the field.</h1>
+<a class="back" href="../draft-condensed.html#src-rootcause">&larr; Back to rig-site findings</a>
+<figure><img src="../survey-evidence/lug-mr-excel-email.jpg" alt="LUG &mdash; material request raised in Excel / email, outside SAP" loading="lazy"><figcaption>LUG &mdash; material request raised in Excel / email, outside SAP</figcaption></figure>
+</div>
+<div id="lb"><img src="" alt=""></div>
+<script>
+var lb=document.getElementById('lb'),li=lb.querySelector('img');
+document.querySelectorAll('figure img').forEach(function(im){im.addEventListener('click',function(){li.src=im.src;lb.style.display='flex';});});
+lb.addEventListener('click',function(){lb.style.display='none';li.src='';});
+</script>
+</body></html>

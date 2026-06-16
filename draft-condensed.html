@@ -1623,6 +1623,19 @@
 </section>
   <!-- ========================= 3 · INVENTORY · LEVELS, BRACKETS & DEAD STOCK ========================= -->
   <section class="slide" id="src-inventory" data-title="Inventory · Levels, Brackets &amp; Dead Stock">
+    <style>
+      /* Compact this slide so it fits the viewport without the auto-fit scale-down (which caused side margins) */
+      #src-inventory .slide-title{font-size:clamp(1.55rem,2.7vw,2.45rem);line-height:1.12;margin-bottom:0.5rem;}
+      #src-inventory > p.reveal.d1{margin-top:-0.4rem !important;margin-bottom:0.45rem !important;font-size:0.85rem !important;}
+      #src-inventory .mega-kpi{margin-bottom:0.65rem;}
+      #src-inventory .mega-kpi .mk{padding:0.5rem 1rem;}
+      #src-inventory .mega-kpi .mv{font-size:clamp(1.5rem,2.1vw,2.15rem);}
+      #src-inventory .mega-kpi .ml{margin:0.28rem 0 0.12rem 0;}
+      #inv-panel{margin-top:0.6rem !important;padding:0.6rem 1.1rem !important;}
+      #inv-panel > p{margin-bottom:0.5rem !important;}
+      #inv-panel > div[style*="130px 1fr 130px"]{padding-top:0.2rem !important;padding-bottom:0.2rem !important;}
+      #src-inventory .reveal.d4{margin-top:0.45rem !important;font-size:0.8rem !important;line-height:1.36 !important;padding-top:0.45rem !important;}
+    </style>
     <div class="eyebrow reveal">Inventory · Levels vs Brackets &amp; Dead Stock · End-2025</div>
     <h1 class="slide-title reveal">The fleet carries <em>~4× recommended inventory</em> —<br>56% of it <em>dead stock</em>.</h1>
     <p class="reveal d1" style="font-size:0.92rem;color:var(--muted);font-style:italic;margin-top:-0.6rem;margin-bottom:1rem;"><strong style="color:var(--text2);font-style:normal;">Dead stock =</strong> items with no movement for &gt;3 years.</p>
@@ -1637,7 +1650,7 @@
       </div>
     </div>
 
-    <div class="op-panel reveal d3" style="margin-top:1.2rem;">
+    <div class="op-panel reveal d3" id="inv-panel" style="margin-top:1.2rem;">
       <div class="ptitle">Per-rig inventory</div>
       <p style="font-size:0.9rem;color:var(--muted);margin-top:0.2rem;margin-bottom:0.7rem;"><span style="display:inline-block;width:14px;height:10px;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:2px;vertical-align:middle;margin-right:4px;"></span> <strong style="color:var(--text2);">Dead stock</strong> (no movement &gt;3 years) &nbsp; <span style="display:inline-block;width:14px;height:10px;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:2px;vertical-align:middle;margin:0 4px 0 12px;"></span> <strong style="color:var(--text2);">Active + Dormant</strong> (&le;3 years) &nbsp; <span style="display:inline-block;width:2px;height:14px;background:var(--text);vertical-align:middle;margin:0 4px 0 12px;"></span> <strong style="color:var(--text2);">Best-practice mark</strong></p>
 

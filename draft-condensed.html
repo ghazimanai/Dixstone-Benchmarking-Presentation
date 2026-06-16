@@ -3250,7 +3250,21 @@
   });
 
   // Scale each slide's content to fit the viewport height (PPT-style: everything on one screen)
+  // Shrink each slide title just enough that no line wraps (keeps explicit <br> breaks, prevents auto-wrap)
+  function fitTitles(){
+    document.querySelectorAll('.slide-title').forEach(h => {
+      h.style.whiteSpace = 'nowrap';
+      h.style.fontSize = '';
+      var size = parseFloat(getComputedStyle(h).fontSize);
+      var guard = 0;
+      while (h.scrollWidth > h.clientWidth + 1 && size > 13 && guard++ < 260){
+        size -= 1;
+        h.style.fontSize = size + 'px';
+      }
+    });
+  }
   function fitSlides(){
+    fitTitles();
     slides.forEach(s => {
       const inner = s.firstElementChild;
       if (!inner) return;

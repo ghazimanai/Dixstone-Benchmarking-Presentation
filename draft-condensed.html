@@ -33,7 +33,7 @@
 <link rel="icon" type="image/svg+xml" href="sigma-logo-white.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap">
 <style>
   :root{
     --bg:#06080d; --bg2:#0d1119; --bg3:#141a26; --bg-card:#0f141d;
@@ -46,6 +46,8 @@
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:400;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  /* keep number columns aligned now that figures use Inter, not a monospace font */
+  table, .bench-table, .mega-kpi, .op-panel, .slide-num, .stat-strip, .cover-meta{font-variant-numeric:tabular-nums;}
   body{
     background:
       radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232,160,32,0.06), transparent 60%),
@@ -85,14 +87,14 @@
   @media (max-width:1100px){ .slide{padding:2.5vh 3vw 6.5vh 3vw;} }
   @media (max-width:700px){ .slide{padding:2vh 4vw 6vh 4vw;} }
 
-  h1,h2,h3,h4,.eyebrow{font-family:'Space Grotesk',sans-serif;}
+  h1,h2,h3,h4,.eyebrow{font-family:'Source Serif 4',Georgia,serif;}
   .eyebrow{
-    font-family:'JetBrains Mono',monospace;font-weight:600;font-size:clamp(15px,1.2vw,23px);letter-spacing:0.14em;text-transform:uppercase;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:clamp(15px,1.2vw,23px);letter-spacing:0.14em;text-transform:uppercase;
     color:var(--sigma);margin-bottom:0.95rem;
     display:flex;align-items:center;gap:0.7rem;
   }
   .eyebrow::before{content:'';width:30px;height:3px;border-radius:2px;background:var(--sigma);display:inline-block;}
-  h1.slide-title{font-size:clamp(2.2rem,4.6vw,3.8rem);font-weight:600;line-height:1.08;letter-spacing:-0.02em;margin:0 0 1.5rem 0;color:var(--text);}
+  h1.slide-title{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(2.1rem,4.4vw,3.6rem);font-weight:600;line-height:1.1;letter-spacing:-0.015em;margin:0 0 1.5rem 0;color:var(--text);}
   h1.slide-title em{font-style:normal;color:var(--sigma);font-weight:400;}
   .lede{font-size:clamp(1.05rem,1.5vw,1.55rem);color:var(--text2);max-width:780px;font-weight:400;line-height:1.55;margin-bottom:2.2rem;}
 
@@ -110,18 +112,18 @@
     pointer-events:none;
   }
   .card .num-tag{
-    font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.7px;color:var(--sigma);letter-spacing:0.1em;font-weight:400;
+    font-family:'Inter',sans-serif;font-weight:400;font-size:13.7px;color:var(--sigma);letter-spacing:0.1em;font-weight:400;
     border:1px solid var(--border);padding:2px 8px;border-radius:3px;display:inline-block;margin-bottom:0.7rem;
   }
   .card h3{font-size:1.05rem;font-weight:600;margin:0 0 0.5rem 0;color:var(--text);line-height:1.3;letter-spacing:-0.01em;}
   .card p{font-size:1.08rem;color:var(--text2);margin:0;line-height:1.5;font-weight:400;}
-  .card .metric-strip{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.888rem;color:var(--muted);margin-top:0.7rem;padding-top:0.6rem;border-top:1px solid var(--border2);letter-spacing:0.02em;}
+  .card .metric-strip{font-family:'Inter',sans-serif;font-weight:400;font-size:0.888rem;color:var(--muted);margin-top:0.7rem;padding-top:0.6rem;border-top:1px solid var(--border2);letter-spacing:0.02em;}
 
   .stat{display:flex;flex-direction:column;gap:0.2rem;}
-  .stat .label{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;font-weight:400;}
-  .stat .val{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,2.6vw,2.4rem);font-weight:600;color:var(--text);line-height:1;letter-spacing:-0.01em;}
+  .stat .label{font-family:'Inter',sans-serif;font-weight:400;font-size:13.0px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;font-weight:400;}
+  .stat .val{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(1.8rem,2.6vw,2.4rem);font-weight:600;color:var(--text);line-height:1;letter-spacing:-0.01em;}
   .stat .val.sigma{color:var(--sigma);}
-  .stat .delta{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.888rem;color:var(--text2);font-weight:400;}
+  .stat .delta{font-family:'Inter',sans-serif;font-weight:400;font-size:0.888rem;color:var(--text2);font-weight:400;}
 
   .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;}
   .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;}
@@ -152,14 +154,14 @@
   .cover-arc{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
   .cover-arc svg{position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:140%;height:120%;opacity:0.35;}
   .cover-content{position:relative;z-index:2;padding:0;width:100%;}
-  .cover-top{position:absolute;top:5vh;left:7vw;right:7vw;z-index:3;display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;}
+  .cover-top{position:absolute;top:5vh;left:7vw;right:7vw;z-index:3;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;font-weight:400;font-size:14.3px;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;}
   .cover-top .lhs{display:flex;align-items:center;gap:1rem;}
   .cover-top .badge{background:rgba(232,160,32,0.12);border:1px solid var(--border);color:var(--sigma);padding:4px 10px;border-radius:3px;font-weight:400;}
-  .cover-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.6rem,6vw,5.8rem);font-weight:400;color:var(--text);line-height:1.0;letter-spacing:-0.025em;margin:0 0 1.5rem 0;max-width:1100px;}
+  .cover-title{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(2.6rem,6vw,5.8rem);font-weight:400;color:var(--text);line-height:1.0;letter-spacing:-0.025em;margin:0 0 1.5rem 0;max-width:1100px;}
   .cover-title em{font-style:normal;color:var(--sigma);font-weight:400;display:block;font-size:0.82em;white-space:nowrap;}
   .cover-sub{font-family:'Inter',sans-serif;font-size:clamp(1.05rem,1.3vw,1.2rem);font-weight:400;color:var(--text2);max-width:680px;line-height:1.5;margin-bottom:2.4rem;}
-  .cover-meta{display:flex;gap:3rem;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.936rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;padding-top:2rem;border-top:1px solid var(--border2);}
-  .cover-meta strong{display:block;color:var(--text);font-weight:400;font-size:1.104rem;font-family:'Space Grotesk',sans-serif;margin-top:0.3rem;letter-spacing:0;text-transform:none;}
+  .cover-meta{display:flex;gap:3rem;flex-wrap:wrap;font-family:'Inter',sans-serif;font-weight:400;font-size:0.936rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;padding-top:2rem;border-top:1px solid var(--border2);}
+  .cover-meta strong{display:block;color:var(--text);font-weight:400;font-size:1.104rem;font-family:'Source Serif 4',Georgia,serif;margin-top:0.3rem;letter-spacing:0;text-transform:none;}
 
   /* Nav — horizontal bottom bar, centred. Subtle pill background so it reads
      as a deliberate UI element rather than scattered dots over the canvas.
@@ -176,7 +178,7 @@
   .nav-dot .tip{
     position:absolute;bottom:18px;left:50%;transform:translateX(-50%);
     background:var(--bg3);border:1px solid var(--border2);padding:4px 10px;border-radius:3px;
-    font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.1em;color:var(--text2);
+    font-family:'Inter',sans-serif;font-weight:400;font-size:13.0px;letter-spacing:0.1em;color:var(--text2);
     white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 0.15s;
   }
   .nav-dot:hover .tip{opacity:1;}
@@ -190,7 +192,7 @@
     font-size:1.8rem;line-height:1;cursor:pointer;
     display:flex;align-items:center;justify-content:center;
     transition:color 0.2s ease,transform 0.2s ease;
-    font-family:'Space Grotesk',sans-serif;padding:0 0 3px 0;
+    font-family:'Source Serif 4',Georgia,serif;padding:0 0 3px 0;
   }
   .nav-arrow:hover{color:var(--sigma);transform:translateY(-50%) scale(1.2);}
   .nav-arrow:disabled{cursor:default;}
@@ -209,14 +211,14 @@
     border-bottom:1px solid var(--border2);
   }
   .deck-header.show{transform:translateY(0);}
-  .deck-header .brand{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;letter-spacing:0.18em;color:var(--text2);text-transform:uppercase;display:flex;align-items:center;gap:0.85rem;}
+  .deck-header .brand{font-family:'Inter',sans-serif;font-weight:400;font-size:14.3px;letter-spacing:0.18em;color:var(--text2);text-transform:uppercase;display:flex;align-items:center;gap:0.85rem;}
   .deck-header .brand .dot{width:6px;height:6px;border-radius:50%;background:var(--sigma);}
   .deck-header .brand img.sigma-mark{height:22px;width:auto;display:block;}
   .deck-header .brand .sep{width:1px;height:14px;background:var(--border2);}
   .deck-header .right{display:flex;align-items:center;gap:1rem;}
   .deck-header .dixstone-pill{display:flex;align-items:center;}
   .deck-header .dixstone-pill img{height:18px;width:auto;display:block;opacity:0.92;}
-  .deck-header .page-counter{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.15em;}
+  .deck-header .page-counter{font-family:'Inter',sans-serif;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.15em;}
   .deck-header .page-counter .now{color:var(--sigma);font-weight:400;}
 
   /* Cover logos */
@@ -232,16 +234,16 @@
     border-radius:6px;padding:1.4rem 1.5rem;display:flex;flex-direction:column;gap:0.8rem;
   }
   .insight-card .ic-eyebrow{
-    font-family:'JetBrains Mono',monospace;font-weight:400;font-size:clamp(13.0px,0.9vw,18px);letter-spacing:0.18em;color:var(--sigma);
+    font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(13.0px,0.9vw,18px);letter-spacing:0.18em;color:var(--sigma);
     text-transform:uppercase;font-weight:400;
   }
   .insight-card h3{font-size:clamp(1.15rem,1.55vw,1.75rem);font-weight:600;margin:0;color:var(--text);line-height:1.3;letter-spacing:-0.015em;}
   .insight-card .body{font-size:clamp(1.104rem,1.4vw,1.6rem);color:var(--text2);line-height:1.55;margin:0;}
   .insight-card .stat-strip{
     display:flex;gap:1.3rem;margin-top:auto;padding-top:0.7rem;border-top:1px solid var(--border2);
-    font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.864rem;color:var(--muted);letter-spacing:0.02em;
+    font-family:'Inter',sans-serif;font-weight:400;font-size:0.864rem;color:var(--muted);letter-spacing:0.02em;
   }
-  .insight-card .stat-strip strong{color:var(--sigma);font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.104rem;letter-spacing:0;display:block;margin-bottom:0.15rem;}
+  .insight-card .stat-strip strong{color:var(--sigma);font-family:'Source Serif 4',Georgia,serif;font-weight:600;font-size:1.104rem;letter-spacing:0;display:block;margin-bottom:0.15rem;}
 
   /* Segment blocks */
   .segment-block{
@@ -253,9 +255,9 @@
   .segment-block.land{border-left-color:var(--land);}
   .segment-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:1rem;margin-bottom:0.8rem;padding-bottom:0.7rem;border-bottom:1px solid var(--border2);}
   .segment-head .lhs{display:flex;align-items:baseline;gap:0.9rem;flex-wrap:wrap;}
-  .segment-head h3{font-family:'Space Grotesk',sans-serif;font-size:1.75rem;font-weight:600;margin:0;color:var(--text);letter-spacing:-0.01em;}
+  .segment-head h3{font-family:'Source Serif 4',Georgia,serif;font-size:1.75rem;font-weight:600;margin:0;color:var(--text);letter-spacing:-0.01em;}
   .segment-head .seg-pill{
-    font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.12em;text-transform:uppercase;font-weight:400;
+    font-family:'Inter',sans-serif;font-weight:400;font-size:13.0px;letter-spacing:0.12em;text-transform:uppercase;font-weight:400;
     padding:3px 9px;border-radius:3px;background:rgba(232,160,32,0.10);color:var(--sigma);border:1px solid var(--border);
   }
   .segment-block.standard .seg-pill{background:rgba(94,179,255,0.10);color:var(--standard);border-color:rgba(94,179,255,0.30);}
@@ -267,11 +269,11 @@
   @media (max-width:1100px){.seg-grid{grid-template-columns:repeat(3,1fr);}}
   @media (max-width:700px){.seg-grid{grid-template-columns:repeat(2,1fr);}}
   .seg-cell{background:var(--bg2);border:1px solid var(--border2);border-radius:7px;padding:1.2rem 1.4rem;display:flex;flex-direction:column;gap:0.55rem;}
-  .seg-cell .metric{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:16px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;font-weight:400;line-height:1.3;min-height:30px;}
+  .seg-cell .metric{font-family:'Inter',sans-serif;font-weight:400;font-size:16px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;font-weight:400;line-height:1.3;min-height:30px;}
   .seg-cell .dix{display:flex;justify-content:space-between;align-items:baseline;}
-  .seg-cell .dix .who{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:16px;color:var(--sigma);letter-spacing:0.05em;text-transform:uppercase;font-weight:400;}
-  .seg-cell .dix .val{font-family:'Space Grotesk',sans-serif;font-size:2.15rem;font-weight:600;color:var(--sigma);font-feature-settings:"tnum";letter-spacing:-0.01em;line-height:1;}
-  .seg-cell .pp{display:flex;justify-content:space-between;align-items:baseline;font-size:1.2rem;color:var(--text2);margin-top:0.3rem;font-family:'JetBrains Mono',monospace;font-weight:400;}
+  .seg-cell .dix .who{font-family:'Inter',sans-serif;font-weight:400;font-size:16px;color:var(--sigma);letter-spacing:0.05em;text-transform:uppercase;font-weight:400;}
+  .seg-cell .dix .val{font-family:'Source Serif 4',Georgia,serif;font-size:2.15rem;font-weight:600;color:var(--sigma);font-feature-settings:"tnum";letter-spacing:-0.01em;line-height:1;}
+  .seg-cell .pp{display:flex;justify-content:space-between;align-items:baseline;font-size:1.2rem;color:var(--text2);margin-top:0.3rem;font-family:'Inter',sans-serif;font-weight:400;}
   .seg-cell .pp .who{color:var(--muted);}
   .seg-cell .pp .val{color:var(--text2);font-weight:400;}
   .seg-cell.lead .val{color:var(--good) !important;}
@@ -295,9 +297,9 @@
     border:1px solid var(--border);
     display:flex;align-items:center;justify-content:center;margin-bottom:0.9rem;color:var(--sigma);
   }
-  .pillar h4{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;margin:0 0 0.4rem 0;color:var(--text);letter-spacing:-0.01em;}
+  .pillar h4{font-family:'Source Serif 4',Georgia,serif;font-size:1rem;font-weight:600;margin:0 0 0.4rem 0;color:var(--text);letter-spacing:-0.01em;}
   .pillar p{font-size:1.008rem;color:var(--text2);margin:0;line-height:1.5;}
-  .pillar .stat-tag{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.864rem;color:var(--sigma);margin-top:0.8rem;padding-top:0.6rem;border-top:1px solid var(--border2);letter-spacing:0.05em;font-weight:400;}
+  .pillar .stat-tag{font-family:'Inter',sans-serif;font-weight:400;font-size:0.864rem;color:var(--sigma);margin-top:0.8rem;padding-top:0.6rem;border-top:1px solid var(--border2);letter-spacing:0.05em;font-weight:400;}
 
   /* Editorial em-dash markers in place of disc bullets, deck-wide */
   .deck li::marker{content:'-\00a0';color:var(--sigma);}
@@ -307,8 +309,8 @@
   .insight-list{list-style:none;padding:0;margin:0;}
   .insight-list li{display:grid;grid-template-columns:auto 1fr;gap:1.3rem;align-items:start;padding:1rem 0;border-bottom:1px solid var(--border2);}
   .insight-list li:last-child{border-bottom:none;}
-  .insight-list li .num{font-family:'Space Grotesk',sans-serif;font-size:1.7rem;font-weight:400;color:var(--sigma);line-height:1;font-feature-settings:"tnum";min-width:42px;letter-spacing:-0.01em;}
-  .insight-list li h4{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;margin:0 0 0.3rem 0;color:var(--text);letter-spacing:-0.01em;}
+  .insight-list li .num{font-family:'Source Serif 4',Georgia,serif;font-size:1.7rem;font-weight:400;color:var(--sigma);line-height:1;font-feature-settings:"tnum";min-width:42px;letter-spacing:-0.01em;}
+  .insight-list li h4{font-family:'Source Serif 4',Georgia,serif;font-size:1rem;font-weight:600;margin:0 0 0.3rem 0;color:var(--text);letter-spacing:-0.01em;}
   .insight-list li p{font-size:1.056rem;color:var(--text2);margin:0;line-height:1.5;}
 
   /* Closing */
@@ -316,17 +318,17 @@
     background:radial-gradient(ellipse 70% 50% at 50% 50%, rgba(232,160,32,0.08), transparent 70%), var(--bg);
     text-align:center;justify-content:center;align-items:center;
   }
-  .closing h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,4vw,3.6rem);font-weight:400;letter-spacing:-0.025em;max-width:1000px;line-height:1.1;color:var(--text);margin:0 0 1.5rem 0;}
+  .closing h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(2.2rem,4vw,3.6rem);font-weight:400;letter-spacing:-0.025em;max-width:1000px;line-height:1.1;color:var(--text);margin:0 0 1.5rem 0;}
   .closing h1 em{font-style:normal;color:var(--sigma);font-weight:400;}
   .closing .closing-sub{font-size:1.05rem;font-weight:400;color:var(--text2);max-width:620px;line-height:1.55;margin:0 0 2.5rem 0;}
-  .closing .closing-meta{display:flex;gap:3rem;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.936rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;padding-top:2rem;border-top:1px solid var(--border2);}
+  .closing .closing-meta{display:flex;gap:3rem;font-family:'Inter',sans-serif;font-weight:400;font-size:0.936rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;padding-top:2rem;border-top:1px solid var(--border2);}
 
   /* Engagement-brief callout */
   .brief-row{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;align-items:start;}
   @media (max-width:900px){.brief-row{grid-template-columns:1fr;}}
   .brief-q{background:var(--bg-card);border:1px solid var(--border2);border-left:3px solid var(--sigma);border-radius:6px;padding:1.3rem 1.5rem;}
-  .brief-q .lbl{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.16em;text-transform:uppercase;color:var(--sigma);font-weight:400;margin-bottom:0.6rem;}
-  .brief-q h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;margin:0 0 0.5rem 0;color:var(--text);line-height:1.3;letter-spacing:-0.01em;}
+  .brief-q .lbl{font-family:'Inter',sans-serif;font-weight:400;font-size:13.0px;letter-spacing:0.16em;text-transform:uppercase;color:var(--sigma);font-weight:400;margin-bottom:0.6rem;}
+  .brief-q h3{font-family:'Source Serif 4',Georgia,serif;font-size:1.15rem;font-weight:600;margin:0 0 0.5rem 0;color:var(--text);line-height:1.3;letter-spacing:-0.01em;}
   .brief-q p{font-size:1.08rem;color:var(--text2);margin:0;line-height:1.55;}
 
   /* Reveal */
@@ -342,22 +344,22 @@
     background:radial-gradient(ellipse 70% 50% at 50% 50%, rgba(232,160,32,0.07), transparent 70%), var(--bg);
     justify-content:center;align-items:center;text-align:center;
   }
-  .divider-slide .part-num{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;letter-spacing:0.25em;text-transform:uppercase;color:var(--sigma);margin-bottom:1.2rem;}
-  .divider-slide h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,4vw,3.4rem);font-weight:400;letter-spacing:-0.025em;color:var(--text);margin:0 0 1rem 0;line-height:1.1;}
+  .divider-slide .part-num{font-family:'Inter',sans-serif;font-weight:400;font-size:14.3px;letter-spacing:0.25em;text-transform:uppercase;color:var(--sigma);margin-bottom:1.2rem;}
+  .divider-slide h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(2rem,4vw,3.4rem);font-weight:400;letter-spacing:-0.025em;color:var(--text);margin:0 0 1rem 0;line-height:1.1;}
   .divider-slide h1 em{font-style:normal;color:var(--sigma);}
   .divider-slide p{font-size:1rem;font-weight:400;color:var(--text2);max-width:560px;line-height:1.55;}
 
   /* ── Deep-dive benchmark slide ── */
   .bench-table{width:100%;border-collapse:collapse;margin-top:1rem;}
   .bench-table thead tr{border-bottom:1px solid var(--border);}
-  .bench-table thead th{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);padding:0.4rem 0.7rem;text-align:left;}
+  .bench-table thead th{font-family:'Inter',sans-serif;font-weight:400;font-size:14.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);padding:0.4rem 0.7rem;text-align:left;}
   .bench-table thead th:not(:first-child){text-align:right;}
   .bench-table tbody tr{border-bottom:1px solid var(--border2);transition:background 0.15s;}
   .bench-table tbody tr:hover{background:rgba(232,160,32,0.03);}
   .bench-table tbody td{padding:0.38rem 0.7rem;font-size:1.12rem;color:var(--text2);vertical-align:middle;}
-  .bench-table tbody td:not(:first-child){text-align:right;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:1.24rem;}
-  .bench-table .rig-name{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--text);font-size:1.14rem;}
-  .bench-table .rig-type{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.7px;letter-spacing:0.1em;text-transform:uppercase;display:block;margin-top:1px;}
+  .bench-table tbody td:not(:first-child){text-align:right;font-family:'Inter',sans-serif;font-weight:400;font-size:1.24rem;}
+  .bench-table .rig-name{font-family:'Source Serif 4',Georgia,serif;font-weight:600;color:var(--text);font-size:1.14rem;}
+  .bench-table .rig-type{font-family:'Inter',sans-serif;font-weight:400;font-size:11.7px;letter-spacing:0.1em;text-transform:uppercase;display:block;margin-top:1px;}
   .bench-table .val-red{color:var(--bad);}
   .bench-table .val-green{color:var(--good);}
   .bench-table .val-amber{color:var(--sigma);}
@@ -371,8 +373,8 @@
   /* ── One-pager rig slides ── */
   .onepager{padding:1.4rem 2.5vw 6vh;}
   .op-header{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:0.9rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);}
-  .op-rig-name{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:600;letter-spacing:-0.02em;color:var(--text);line-height:1;}
-  .op-rig-type{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.18em;text-transform:uppercase;padding:3px 10px;border-radius:3px;font-weight:400;margin-left:0.7rem;}
+  .op-rig-name{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:600;letter-spacing:-0.02em;color:var(--text);line-height:1;}
+  .op-rig-type{font-family:'Inter',sans-serif;font-weight:400;font-size:13.0px;letter-spacing:0.18em;text-transform:uppercase;padding:3px 10px;border-radius:3px;font-weight:400;margin-left:0.7rem;}
   .op-rig-type.premium{background:rgba(232,160,32,0.12);color:var(--premium);border:1px solid rgba(232,160,32,0.3);}
   .op-rig-type.standard{background:rgba(94,179,255,0.10);color:var(--standard);border:1px solid rgba(94,179,255,0.3);}
   .op-rig-type.platform{background:rgba(123,197,168,0.10);color:var(--platform);border:1px solid rgba(123,197,168,0.3);}
@@ -381,41 +383,41 @@
   @media (max-width:1100px){.op-kpi-row{grid-template-columns:repeat(3,1fr);}}
   @media (max-width:700px){.op-kpi-row{grid-template-columns:repeat(2,1fr);}}
   .op-kpi{background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:0.75rem 1.05rem;}
-  .op-kpi .lbl{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:12.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:400;margin-bottom:0.3rem;}
-  .op-kpi .v{font-family:'Space Grotesk',sans-serif;font-size:1.75rem;font-weight:600;color:var(--sigma);line-height:1;letter-spacing:-0.01em;}
+  .op-kpi .lbl{font-family:'Inter',sans-serif;font-weight:400;font-size:12.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:400;margin-bottom:0.3rem;}
+  .op-kpi .v{font-family:'Source Serif 4',Georgia,serif;font-size:1.75rem;font-weight:600;color:var(--sigma);line-height:1;letter-spacing:-0.01em;}
   .op-kpi .v.red{color:var(--bad);}
   .op-kpi .v.green{color:var(--good);}
-  .op-kpi .sub{font-size:1.02rem;color:var(--muted);margin-top:0.35rem;font-family:'JetBrains Mono',monospace;font-weight:400;}
+  .op-kpi .sub{font-size:1.02rem;color:var(--muted);margin-top:0.35rem;font-family:'Inter',sans-serif;font-weight:400;}
   .op-body{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;}
   @media (max-width:900px){.op-body{grid-template-columns:1fr;}}
   /* Rig one-pager dropdown selector */
   .op-selector{display:flex;align-items:center;gap:1rem;margin-bottom:1.1rem;flex-wrap:wrap;}
-  .op-selector .op-sel-label{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:400;}
-  .op-selector select{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;color:var(--sigma);background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:0.4rem 0.9rem;cursor:pointer;}
+  .op-selector .op-sel-label{font-family:'Inter',sans-serif;font-weight:400;font-size:14.3px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:400;}
+  .op-selector select{font-family:'Source Serif 4',Georgia,serif;font-size:1.05rem;font-weight:600;color:var(--sigma);background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:0.4rem 0.9rem;cursor:pointer;}
   .op-selector select:focus{outline:none;border-color:var(--sigma);}
-  .op-selector .op-sel-hint{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted2);}
+  .op-selector .op-sel-hint{font-family:'Inter',sans-serif;font-weight:400;font-size:13.0px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted2);}
   .op-tabs{display:flex;flex-wrap:wrap;gap:0.5rem;}
-  .op-tab{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;color:var(--text2);background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:0.45rem 0.9rem;cursor:pointer;display:inline-flex;align-items:baseline;gap:0.5rem;transition:border-color .15s,color .15s,background .15s;}
-  .op-tab .ty{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);}
+  .op-tab{font-family:'Source Serif 4',Georgia,serif;font-size:1rem;font-weight:600;color:var(--text2);background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:0.45rem 0.9rem;cursor:pointer;display:inline-flex;align-items:baseline;gap:0.5rem;transition:border-color .15s,color .15s,background .15s;}
+  .op-tab .ty{font-family:'Inter',sans-serif;font-weight:400;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);}
   .op-tab:hover{border-color:var(--sigma);color:var(--text);}
   .op-tab.active{border-color:var(--sigma);color:var(--sigma);background:rgba(232,160,32,0.10);}
   .op-tab.active .ty{color:var(--sigma);}
   .op-tab:focus-visible{outline:none;border-color:var(--sigma);}
   .op-panel{background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:0.95rem 1.2rem;}
-  .op-panel .ptitle{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--sigma);font-weight:400;margin-bottom:0.55rem;}
+  .op-panel .ptitle{font-family:'Inter',sans-serif;font-weight:400;font-size:13.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--sigma);font-weight:400;margin-bottom:0.55rem;}
   /* P&L panel: 4-col grid — label | 2025 | 2024 | Δ — with a column header + two dividers */
   .op-panel .prow{display:grid;grid-template-columns:1fr 132px 112px 92px;align-items:center;column-gap:0;padding:0.42rem 0;border-bottom:1px solid var(--border2);font-size:1.18rem;}
   .op-panel .prow:last-child{border-bottom:none;}
   .op-panel .prow .pk{color:var(--text2);grid-column:1;}
   .op-panel .prow.phead{padding:0.1rem 0 0.34rem;border-bottom:1px solid var(--border3);}
-  .op-panel .prow.phead .ph{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.92rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);text-align:right;padding-right:8px;}
-  .op-panel .prow .pv{grid-column:2;text-align:right;padding-right:8px;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:1.1rem;font-weight:400;color:var(--text);}
+  .op-panel .prow.phead .ph{font-family:'Inter',sans-serif;font-weight:400;font-size:0.92rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);text-align:right;padding-right:8px;}
+  .op-panel .prow .pv{grid-column:2;text-align:right;padding-right:8px;font-family:'Inter',sans-serif;font-weight:400;font-size:1.1rem;font-weight:400;color:var(--text);}
   .op-panel .prow .pv.red{color:var(--bad);}
   .op-panel .prow .pv.amber{color:var(--sigma);}
   .op-panel .prow .pv.green{color:var(--good);}
-  .op-panel .prow .pv2{grid-column:3;text-align:right;padding-right:8px;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:1.02rem;color:var(--text2);}
-  .op-panel .prow .pvd{grid-column:4;text-align:right;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:1.0rem;font-weight:400;}
-  .op-panel .prow .pvnote{grid-column:3 / 5;text-align:left;padding-left:8px;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.88rem;color:var(--muted);line-height:1.3;}
+  .op-panel .prow .pv2{grid-column:3;text-align:right;padding-right:8px;font-family:'Inter',sans-serif;font-weight:400;font-size:1.02rem;color:var(--text2);}
+  .op-panel .prow .pvd{grid-column:4;text-align:right;font-family:'Inter',sans-serif;font-weight:400;font-size:1.0rem;font-weight:400;}
+  .op-panel .prow .pvnote{grid-column:3 / 5;text-align:left;padding-left:8px;font-family:'Inter',sans-serif;font-weight:400;font-size:0.88rem;color:var(--muted);line-height:1.3;}
   .op-panel .prow.no-prev .pv{grid-column:2;}
   /* two subtle vertical dividers separating 2025 | 2024 | Δ, spanning the dual block + header */
   .op-panel .pl-dual{position:relative;}
@@ -427,39 +429,39 @@
   @media (max-width:1100px){.op-body-3{grid-template-columns:1fr;}}
   .op-body-3 .op-panel{padding:0.85rem 1.1rem;}
   .mg-driver{display:grid;grid-template-columns:96px 1fr 70px 52px;gap:0.55rem;align-items:center;padding:0.22rem 0;}
-  .mg-driver .mk{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.5px;letter-spacing:0.06em;color:var(--text);font-weight:400;text-transform:uppercase;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .mg-driver .mk{font-family:'Inter',sans-serif;font-weight:400;font-size:13.5px;letter-spacing:0.06em;color:var(--text);font-weight:400;text-transform:uppercase;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .mg-driver .mtrack{background:var(--bg3);height:10px;border-radius:2px;overflow:hidden;}
   .mg-driver .mfill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--sigma3),var(--sigma));}
   .mg-driver .mfill.po{background:linear-gradient(90deg,#3d8ed4,var(--standard));}
   .mg-driver .mfill.gr{background:linear-gradient(90deg,#5a9580,var(--platform));}
   .mg-driver .mfill.io{background:linear-gradient(90deg,#8273b5,var(--land));}
-  .mg-driver .mv{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.98rem;color:var(--text2);font-weight:400;text-align:right;}
-  .mg-driver .mpct{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.98rem;color:var(--muted);text-align:right;}
-  .op-panel .mg-total{margin-top:0.7rem;padding-top:0.6rem;border-top:1px solid var(--border2);display:flex;justify-content:space-between;align-items:baseline;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;}
-  .op-panel .mg-total strong{color:var(--sigma);font-family:'Space Grotesk',sans-serif;font-size:1.18rem;font-weight:600;letter-spacing:-0.01em;text-transform:none;}
+  .mg-driver .mv{font-family:'Inter',sans-serif;font-weight:400;font-size:0.98rem;color:var(--text2);font-weight:400;text-align:right;}
+  .mg-driver .mpct{font-family:'Inter',sans-serif;font-weight:400;font-size:0.98rem;color:var(--muted);text-align:right;}
+  .op-panel .mg-total{margin-top:0.7rem;padding-top:0.6rem;border-top:1px solid var(--border2);display:flex;justify-content:space-between;align-items:baseline;font-family:'Inter',sans-serif;font-weight:400;font-size:13px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;}
+  .op-panel .mg-total strong{color:var(--sigma);font-family:'Source Serif 4',Georgia,serif;font-size:1.18rem;font-weight:600;letter-spacing:-0.01em;text-transform:none;}
 
   /* Mega-KPI strip (for top of deep-dive slides) */
   .mega-kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.4rem;}
   @media (max-width:900px){.mega-kpi{grid-template-columns:1fr;}}
   .mega-kpi .mk{background:var(--bg-card);border:1px solid var(--border2);border-left:3px solid var(--sigma);border-radius:6px;padding:0.95rem 1.1rem;}
-  .mega-kpi .mk .mv{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,3vw,3.2rem);font-weight:600;color:var(--sigma);line-height:1;letter-spacing:-0.02em;}
-  .mega-kpi .mk .ml{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:clamp(12.3px,0.9vw,17px);letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;margin:0.5rem 0 0.3rem 0;}
+  .mega-kpi .mk .mv{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(2rem,3vw,3.2rem);font-weight:600;color:var(--sigma);line-height:1;letter-spacing:-0.02em;}
+  .mega-kpi .mk .ml{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(12.3px,0.9vw,17px);letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;margin:0.5rem 0 0.3rem 0;}
   .mega-kpi .mk .md{font-size:clamp(1.02rem,1.3vw,1.45rem);color:var(--text2);line-height:1.45;}
 
   /* Source / methodology footer band */
-  .src-band{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.888rem;color:var(--muted);letter-spacing:0.04em;line-height:1.55;margin-top:1.3rem;padding-top:0.9rem;border-top:1px solid var(--border2);}
+  .src-band{font-family:'Inter',sans-serif;font-weight:400;font-size:0.888rem;color:var(--muted);letter-spacing:0.04em;line-height:1.55;margin-top:1.3rem;padding-top:0.9rem;border-top:1px solid var(--border2);}
   .src-band strong{color:var(--text2);font-weight:400;}
 
   /* Horizontal rig bars */
   .hbar-list{display:flex;flex-direction:column;gap:0.5rem;}
   .hbar-row{display:grid;grid-template-columns:200px 1fr 110px;gap:0.8rem;align-items:center;padding:0.3rem 0;}
-  .hbar-row .hk{font-family:'Space Grotesk',sans-serif;font-size:1.104rem;color:var(--text);font-weight:400;}
+  .hbar-row .hk{font-family:'Source Serif 4',Georgia,serif;font-size:1.104rem;color:var(--text);font-weight:400;}
   .hbar-row .ht{height:18px;border-radius:3px;position:relative;overflow:hidden;}
   /* Industry-bracket vertical marker (used on Inventory Levels slide) */
   .hbar-row .ht.with-bracket{overflow:visible;}
   .hbar-bracket{position:absolute;top:-5px;bottom:-5px;width:2px;background:rgba(255,255,255,0.9);box-shadow:0 0 0 1px rgba(15,20,29,0.55);z-index:2;}
   .hbar-bracket::before{content:'';position:absolute;top:-4px;left:-3px;width:8px;height:8px;background:#fff;border:1px solid rgba(15,20,29,0.55);border-radius:50%;}
-  .hbar-bracket .lbl{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-weight:400;font-size:10.4px;letter-spacing:0.06em;color:var(--text);white-space:nowrap;background:var(--bg-card);border:1px solid var(--border2);border-radius:3px;padding:1px 5px;font-weight:400;}
+  .hbar-bracket .lbl{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-family:'Inter',sans-serif;font-weight:400;font-size:10.4px;letter-spacing:0.06em;color:var(--text);white-space:nowrap;background:var(--bg-card);border:1px solid var(--border2);border-radius:3px;padding:1px 5px;font-weight:400;}
   html[data-theme="light"] .hbar-bracket{background:rgba(15,20,29,0.85);box-shadow:0 0 0 1px rgba(255,255,255,0.5);}
   html[data-theme="light"] .hbar-bracket::before{background:#0a0e15;border-color:#fff;}
   .hbar-row .hf{height:100%;background:linear-gradient(90deg,var(--sigma3),var(--sigma));border-radius:3px;display:flex;align-items:center;padding-left:0.5rem;}
@@ -468,17 +470,17 @@
   .hbar-row .hf.platform{background:linear-gradient(90deg,#5a9580,var(--platform));}
   .hbar-row .hf.land{background:linear-gradient(90deg,#8273b5,var(--land));}
   .hbar-row .hf.standard{background:linear-gradient(90deg,#3d8ed4,var(--standard));}
-  .hbar-row .hv{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:1.02rem;color:var(--text);text-align:right;font-weight:400;}
+  .hbar-row .hv{font-family:'Inter',sans-serif;font-weight:400;font-size:1.02rem;color:var(--text);text-align:right;font-weight:400;}
   .hbar-row .hv .sub{color:var(--muted);font-size:0.864rem;display:block;margin-top:1px;}
 
   /* Stacked inventory bar (dead vs live) */
   .stk-row{display:grid;grid-template-columns:130px 1fr 130px;gap:0.8rem;align-items:center;padding:0.3rem 0;}
-  .stk-row .skk{font-family:'Space Grotesk',sans-serif;font-size:1.104rem;color:var(--text);font-weight:400;}
-  .stk-row .skk .typ{display:block;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.7px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;margin-top:1px;}
+  .stk-row .skk{font-family:'Source Serif 4',Georgia,serif;font-size:1.104rem;color:var(--text);font-weight:400;}
+  .stk-row .skk .typ{display:block;font-family:'Inter',sans-serif;font-weight:400;font-size:11.7px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;margin-top:1px;}
   .stk-row .skt{background:var(--bg3);height:22px;border-radius:3px;position:relative;overflow:hidden;display:flex;}
   .stk-row .stk-dead{background:linear-gradient(90deg,#b94656,var(--bad));height:100%;}
   .stk-row .stk-live{background:linear-gradient(90deg,#3e9168,var(--good));height:100%;}
-  .stk-row .skv{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:0.984rem;color:var(--text);text-align:right;}
+  .stk-row .skv{font-family:'Inter',sans-serif;font-weight:400;font-size:0.984rem;color:var(--text);text-align:right;}
   .stk-row .skv .pct{color:var(--bad);font-weight:600;}
   .stk-row .skv .total{color:var(--text);font-weight:400;}
 
@@ -487,9 +489,9 @@
   @media (max-width:900px){.org-grid{grid-template-columns:1fr;}}
   .org-panel{background:var(--bg-card);border:1px solid var(--border2);border-radius:6px;padding:1.2rem 1.4rem;border-top:3px solid var(--sigma3);}
   .org-panel.future{border-top-color:var(--good);}
-  .org-panel .ohead{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.18em;color:var(--sigma);text-transform:uppercase;font-weight:400;margin-bottom:0.3rem;}
+  .org-panel .ohead{font-family:'Inter',sans-serif;font-weight:400;font-size:13.0px;letter-spacing:0.18em;color:var(--sigma);text-transform:uppercase;font-weight:400;margin-bottom:0.3rem;}
   .org-panel.future .ohead{color:var(--good);}
-  .org-panel h4{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;margin:0 0 0.7rem 0;color:var(--text);letter-spacing:-0.01em;}
+  .org-panel h4{font-family:'Source Serif 4',Georgia,serif;font-size:1.05rem;font-weight:600;margin:0 0 0.7rem 0;color:var(--text);letter-spacing:-0.01em;}
   .org-panel ul{margin:0 0 0.6rem 0;padding:0;list-style:none;}
   .org-panel li{padding:0.32rem 0;font-size:1.032rem;color:var(--text2);border-bottom:1px solid var(--border2);line-height:1.45;}
   .org-panel li:last-child{border-bottom:none;}
@@ -503,14 +505,14 @@
   .npt-driver .dk{font-size:1.22rem;color:var(--text2);min-width:160px;}
   .npt-driver .dtrack{flex:1;height:12px;background:var(--bg3);border-radius:3px;overflow:hidden;}
   .npt-driver .dfill{height:100%;border-radius:3px;background:var(--bad);}
-  .npt-driver .dpct{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:1.14rem;color:var(--bad);min-width:54px;text-align:right;}
+  .npt-driver .dpct{font-family:'Inter',sans-serif;font-weight:400;font-size:1.14rem;color:var(--bad);min-width:54px;text-align:right;}
   /* NPT total stat row — three big metric boxes */
   .npt-total{margin-top:1.1rem;padding-top:0.9rem;border-top:1px solid var(--border2);}
-  .npt-total-label{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:12.5px;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase;margin-bottom:0.75rem;}
+  .npt-total-label{font-family:'Inter',sans-serif;font-weight:400;font-size:12.5px;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase;margin-bottom:0.75rem;}
   .npt-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0.65rem;margin-bottom:0.9rem;}
   .npt-stat{background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:0.75rem 0.9rem;}
-  .npt-stat .v{font-family:'Space Grotesk',sans-serif;font-size:2.1rem;font-weight:600;color:var(--sigma);line-height:1;letter-spacing:-0.02em;}
-  .npt-stat .l{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11.5px;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase;margin-top:0.45rem;}
+  .npt-stat .v{font-family:'Source Serif 4',Georgia,serif;font-size:2.1rem;font-weight:600;color:var(--sigma);line-height:1;letter-spacing:-0.02em;}
+  .npt-stat .l{font-family:'Inter',sans-serif;font-weight:400;font-size:11.5px;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase;margin-top:0.45rem;}
   .npt-total-note{font-size:1.08rem;color:var(--text2);line-height:1.45;}
 
   @media print{
@@ -781,7 +783,7 @@
     -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
     border:1px solid var(--border);color:var(--text);
     cursor:pointer;display:flex;align-items:center;gap:0.5rem;
-    font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;letter-spacing:0.15em;text-transform:uppercase;font-weight:400;
+    font-family:'Inter',sans-serif;font-weight:400;font-size:14.3px;letter-spacing:0.15em;text-transform:uppercase;font-weight:400;
     box-shadow:0 4px 16px rgba(0,0,0,0.22);
     transition:background 0.25s ease, color 0.25s ease, transform 0.2s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     animation: themePulse 2.6s ease-in-out 1s 2;
@@ -812,7 +814,7 @@
     height:26px;padding:0 10px 0 8px;border-radius:4px;
     background:transparent;border:1px solid var(--border2);color:var(--text2);
     cursor:pointer;display:flex;align-items:center;gap:0.4rem;
-    font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.13em;text-transform:uppercase;font-weight:400;
+    font-family:'Inter',sans-serif;font-weight:400;font-size:13.0px;letter-spacing:0.13em;text-transform:uppercase;font-weight:400;
     transition:background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   }
   .header-theme-toggle:hover{color:var(--sigma);border-color:var(--sigma);background:var(--sigma-soft);}
@@ -848,14 +850,14 @@
 
   /* ===== 3-way deck switcher (Exec Summary / Key Supporting / Complete) ===== */
   .deck-switcher{position:fixed;top:1.2rem;left:50%;transform:translateX(-50%);z-index:70;display:flex;gap:0.3rem;background:rgba(13,17,25,0.88);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:999px;padding:0.3rem;box-shadow:0 4px 18px rgba(0,0,0,0.28);}
-  .deck-switcher a{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13.0px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:0.5rem 0.9rem;border-radius:999px;transition:all 0.15s ease;white-space:nowrap;font-weight:400;}
+  .deck-switcher a{font-family:'Inter',sans-serif;font-weight:400;font-size:13.0px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:0.5rem 0.9rem;border-radius:999px;transition:all 0.15s ease;white-space:nowrap;font-weight:400;}
   .deck-switcher a:hover{color:var(--text);background:var(--sigma-soft);}
   .deck-switcher a.active{color:#06080d;background:var(--sigma);}
   @media (max-width:820px){.deck-switcher a{font-size:11.1px;padding:0.4rem 0.6rem;letter-spacing:0.04em;}}
   @media (max-width:520px){.deck-switcher{gap:0.15rem;padding:0.2rem;}.deck-switcher a{font-size:9.8px;padding:0.35rem 0.45rem;}}
   html[data-theme="light"] .deck-switcher{background:rgba(255,255,255,0.94);box-shadow:0 4px 16px rgba(0,0,0,0.12);}
   html[data-theme="light"] .deck-switcher a.active{color:#fff;}
-  .slide-num{font-family:'JetBrains Mono',monospace;font-size:0.95rem;letter-spacing:0.08em;color:var(--muted);background:rgba(13,17,25,0.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--border2);border-radius:999px;padding:0.45rem 1rem;}
+  .slide-num{font-family:'Inter',sans-serif;font-size:0.95rem;letter-spacing:0.08em;color:var(--muted);background:rgba(13,17,25,0.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--border2);border-radius:999px;padding:0.45rem 1rem;}
   .slide-num .now{color:var(--sigma);font-weight:700;}
   html[data-theme="light"] .slide-num{background:rgba(255,255,255,0.9);color:var(--muted2);}
   .deck-logos{position:fixed;bottom:1.25rem;left:1.6rem;z-index:55;display:flex;align-items:center;gap:0.7rem;opacity:0.92;max-width:30vw;}
@@ -864,7 +866,7 @@
   @media (max-width:700px){.deck-logos{left:0.7rem;bottom:0.7rem;gap:0.5rem;}.deck-logos img{height:15px;}}
   .br-cluster{position:fixed;bottom:1.3rem;right:1.5rem;z-index:55;display:flex;align-items:center;gap:0.7rem;}
   .deck-toggle{display:flex;gap:0.15rem;background:rgba(13,17,25,0.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--border2);border-radius:999px;padding:0.22rem;}
-  .deck-toggle a{font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:0.35rem 0.75rem;border-radius:999px;transition:background 0.15s,color 0.15s;}
+  .deck-toggle a{font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:0.35rem 0.75rem;border-radius:999px;transition:background 0.15s,color 0.15s;}
   .deck-toggle a:hover{color:var(--text);}
   .deck-toggle a.active{background:var(--sigma);color:#06080d;font-weight:600;}
   html[data-theme="light"] .deck-toggle{background:rgba(255,255,255,0.9);}
@@ -1156,7 +1158,7 @@
         <div style="font-size:1.0rem;color:var(--text);font-weight:500;letter-spacing:0.01em;">Congo &nbsp;&middot;&nbsp; Gabon &nbsp;&middot;&nbsp; Cameroon (incl. Yard)</div>
       </div>
     </div>
-    <div style="margin-top:1rem;text-align:right;"><a href="#annex-pm" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">→ Survey evidence in annex</a></div>
+    <div style="margin-top:1rem;text-align:right;"><a href="#annex-pm" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">→ Survey evidence in annex</a></div>
 </section>
 
   <!-- ========================= 4b · DATA FOUNDATION · GATHERING CHALLENGES ========================= -->
@@ -1191,7 +1193,7 @@
         <h3>Rig managers track POs manually.</h3>
       </div>
     </div>
-      <div style="margin-top:1rem;text-align:right;"><a href="#annex-sap" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">→ SAP usage evidence in annex</a></div>
+      <div style="margin-top:1rem;text-align:right;"><a href="#annex-sap" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">→ SAP usage evidence in annex</a></div>
 </section>
 
   <!-- ========================= 5 · PER-RIG P&L ========================= -->
@@ -1248,7 +1250,7 @@
       <p style="font-size:0.9rem;color:var(--muted);margin-top:0.2rem;margin-bottom:0.9rem;"><strong style="color:var(--good);">Green</strong> = RDM improved 2024 &rarr; 2025 &middot; <strong style="color:var(--bad);">Red</strong> = RDM declined. Vertical line marks 0% RDM.</p>
 
       <!-- Axis labels -->
-      <div style="display:grid;grid-template-columns:120px 1fr 70px 90px;gap:1rem;font-size:0.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;font-family:'JetBrains Mono',monospace;padding-bottom:0.35rem;border-bottom:1px solid var(--border2);">
+      <div style="display:grid;grid-template-columns:120px 1fr 70px 90px;gap:1rem;font-size:0.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;font-family:'Inter',sans-serif;padding-bottom:0.35rem;border-bottom:1px solid var(--border2);">
         <span></span>
         <div style="position:relative;">
           <span style="position:absolute;left:0;">&minus;15%</span>
@@ -1263,7 +1265,7 @@
 
       <!-- NUADA -->
       <div style="display:grid;grid-template-columns:120px 1fr 70px 90px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
-        <span><span class="rig-name">NUADA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Standard JU</div></span>
+        <span><span class="rig-name">NUADA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'Inter',sans-serif;margin-top:2px;">Standard JU</div></span>
         <div style="position:relative;height:18px;border-radius:3px;">
           <div style="position:absolute;left:25%;top:-3px;bottom:-3px;width:2px;background:var(--text);opacity:0.5;"></div>
           <div style="position:absolute;left:25%;width:68.5%;height:100%;background:linear-gradient(90deg,#1f7a4c,#155e3a);border-radius:0 3px 3px 0;"></div>
@@ -1274,7 +1276,7 @@
 
       <!-- AXIMA -->
       <div style="display:grid;grid-template-columns:120px 1fr 70px 90px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
-        <span><span class="rig-name">AXIMA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Premium JU</div></span>
+        <span><span class="rig-name">AXIMA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'Inter',sans-serif;margin-top:2px;">Premium JU</div></span>
         <div style="position:relative;height:18px;border-radius:3px;">
           <div style="position:absolute;left:25%;top:-3px;bottom:-3px;width:2px;background:var(--text);opacity:0.5;"></div>
           <div style="position:absolute;left:25%;width:65.8%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:0 3px 3px 0;"></div>
@@ -1285,7 +1287,7 @@
 
       <!-- LUG -->
       <div style="display:grid;grid-template-columns:120px 1fr 70px 90px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
-        <span><span class="rig-name">LUG</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Platform</div></span>
+        <span><span class="rig-name">LUG</span><div style="font-size:0.74rem;color:var(--muted);font-family:'Inter',sans-serif;margin-top:2px;">Platform</div></span>
         <div style="position:relative;height:18px;border-radius:3px;">
           <div style="position:absolute;left:25%;top:-3px;bottom:-3px;width:2px;background:var(--text);opacity:0.5;"></div>
           <div style="position:absolute;left:25%;width:61.8%;height:100%;background:linear-gradient(90deg,#1f7a4c,#155e3a);border-radius:0 3px 3px 0;"></div>
@@ -1296,7 +1298,7 @@
 
       <!-- BANBA -->
       <div style="display:grid;grid-template-columns:120px 1fr 70px 90px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
-        <span><span class="rig-name">BANBA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Standard JU</div></span>
+        <span><span class="rig-name">BANBA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'Inter',sans-serif;margin-top:2px;">Standard JU</div></span>
         <div style="position:relative;height:18px;border-radius:3px;">
           <div style="position:absolute;left:25%;top:-3px;bottom:-3px;width:2px;background:var(--text);opacity:0.5;"></div>
           <div style="position:absolute;left:25%;width:60.5%;height:100%;background:linear-gradient(90deg,#1f7a4c,#155e3a);border-radius:0 3px 3px 0;"></div>
@@ -1307,7 +1309,7 @@
 
       <!-- DRAVUS -->
       <div style="display:grid;grid-template-columns:120px 1fr 70px 90px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
-        <span><span class="rig-name">DRAVUS</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Land</div></span>
+        <span><span class="rig-name">DRAVUS</span><div style="font-size:0.74rem;color:var(--muted);font-family:'Inter',sans-serif;margin-top:2px;">Land</div></span>
         <div style="position:relative;height:18px;border-radius:3px;">
           <div style="position:absolute;left:25%;top:-3px;bottom:-3px;width:2px;background:var(--text);opacity:0.5;"></div>
           <div style="position:absolute;left:25%;width:39.2%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:0 3px 3px 0;"></div>
@@ -1318,7 +1320,7 @@
 
       <!-- MIDIR (negative) -->
       <div style="display:grid;grid-template-columns:120px 1fr 70px 90px;gap:1rem;align-items:center;padding:0.55rem 0;">
-        <span><span class="rig-name">MIDIR</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Land</div></span>
+        <span><span class="rig-name">MIDIR</span><div style="font-size:0.74rem;color:var(--muted);font-family:'Inter',sans-serif;margin-top:2px;">Land</div></span>
         <div style="position:relative;height:18px;border-radius:3px;">
           <div style="position:absolute;left:25%;top:-3px;bottom:-3px;width:2px;background:var(--text);opacity:0.5;"></div>
           <div style="position:absolute;right:75%;width:17.8%;height:100%;background:linear-gradient(270deg,#c41e3a,#8b1428);border-radius:3px 0 0 3px;"></div>
@@ -1330,7 +1332,7 @@
 
     <p class="reveal d3" style="margin-top:1rem;font-size:0.95rem;color:var(--muted);font-style:italic;"><strong style="color:var(--text2);font-style:normal;">Fleet:</strong> 33.2% &rarr; 33.7% (+0.5 pp) &mdash; headline flat YoY masks the wide rig-level divergence above.</p>
 
-    <div style="margin-top:1rem;text-align:right;"><a href="#annex-spendmix" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">→ Per-rig spend mix in annex</a></div>
+    <div style="margin-top:1rem;text-align:right;"><a href="#annex-spendmix" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">→ Per-rig spend mix in annex</a></div>
 </section>
 
 
@@ -1344,7 +1346,7 @@
       <p style="font-size:0.9rem;color:var(--muted);margin-top:0.2rem;margin-bottom:0.9rem;">Two bars per rig: <strong style="color:var(--text2);">peer benchmark</strong> (lighter) and <strong style="color:var(--text2);">actual crew</strong> (longer). Same FTE scale across all rigs; the visible gap between the two bars is the overmanning.</p>
 
       <!-- FTE axis -->
-      <div style="display:grid;grid-template-columns:130px 1fr 70px;gap:1rem;font-size:0.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;font-family:'JetBrains Mono',monospace;padding-bottom:0.35rem;border-bottom:1px solid var(--border2);">
+      <div style="display:grid;grid-template-columns:130px 1fr 70px;gap:1rem;font-size:0.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;font-family:'Inter',sans-serif;padding-bottom:0.35rem;border-bottom:1px solid var(--border2);">
         <span></span>
         <div style="position:relative;">
           <span style="position:absolute;left:0;">0</span>
@@ -1357,17 +1359,17 @@
 
       <!-- MIDIR -->
       <div style="display:grid;grid-template-columns:130px 1fr 70px;gap:1rem;align-items:center;padding:0.7rem 0;border-bottom:1px solid var(--border2);">
-        <span><span class="rig-name">MIDIR</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Land</div></span>
+        <span><span class="rig-name">MIDIR</span><div style="font-size:0.74rem;color:var(--muted);font-family:'Inter',sans-serif;margin-top:2px;">Land</div></span>
         <div>
           <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);">
-            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;">Peer</span>
+            <span style="font-family:'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;">Peer</span>
             <div style="position:relative;height:11px;border-radius:2px;"><div style="position:absolute;left:0;width:54.5%;height:100%;background:rgba(15,20,29,0.30);border-radius:2px;"></div></div>
-            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text2);">60</span>
+            <span style="text-align:right;font-family:'Inter',sans-serif;color:var(--text2);">60</span>
           </div>
           <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);margin-top:5px;">
-            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2);">Crew</span>
+            <span style="font-family:'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2);">Crew</span>
             <div style="position:relative;height:13px;border-radius:2px;"><div style="position:absolute;left:0;width:65.5%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:2px;"></div></div>
-            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:600;">72</span>
+            <span style="text-align:right;font-family:'Inter',sans-serif;color:var(--text);font-weight:600;">72</span>
           </div>
         </div>
         <span class="val-red" style="font-weight:600;font-size:1.15rem;text-align:right;">20%</span>
@@ -1375,17 +1377,17 @@
 
       <!-- LUG -->
       <div style="display:grid;grid-template-columns:130px 1fr 70px;gap:1rem;align-items:center;padding:0.7rem 0;border-bottom:1px solid var(--border2);">
-        <span><span class="rig-name">LUG</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Platform</div></span>
+        <span><span class="rig-name">LUG</span><div style="font-size:0.74rem;color:var(--muted);font-family:'Inter',sans-serif;margin-top:2px;">Platform</div></span>
         <div>
           <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);">
-            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;">Peer</span>
+            <span style="font-family:'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;">Peer</span>
             <div style="position:relative;height:11px;border-radius:2px;"><div style="position:absolute;left:0;width:54.5%;height:100%;background:rgba(15,20,29,0.30);border-radius:2px;"></div></div>
-            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text2);">60</span>
+            <span style="text-align:right;font-family:'Inter',sans-serif;color:var(--text2);">60</span>
           </div>
           <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);margin-top:5px;">
-            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2);">Crew</span>
+            <span style="font-family:'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2);">Crew</span>
             <div style="position:relative;height:13px;border-radius:2px;"><div style="position:absolute;left:0;width:60%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:2px;"></div></div>
-            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:600;">66</span>
+            <span style="text-align:right;font-family:'Inter',sans-serif;color:var(--text);font-weight:600;">66</span>
           </div>
         </div>
         <span class="val-red" style="font-weight:600;font-size:1.15rem;text-align:right;">10%</span>
@@ -1393,17 +1395,17 @@
 
       <!-- DRAVUS -->
       <div style="display:grid;grid-template-columns:130px 1fr 70px;gap:1rem;align-items:center;padding:0.7rem 0;border-bottom:1px solid var(--border2);">
-        <span><span class="rig-name">DRAVUS</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Land</div></span>
+        <span><span class="rig-name">DRAVUS</span><div style="font-size:0.74rem;color:var(--muted);font-family:'Inter',sans-serif;margin-top:2px;">Land</div></span>
         <div>
           <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);">
-            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;">Peer</span>
+            <span style="font-family:'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;">Peer</span>
             <div style="position:relative;height:11px;border-radius:2px;"><div style="position:absolute;left:0;width:54.5%;height:100%;background:rgba(15,20,29,0.30);border-radius:2px;"></div></div>
-            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text2);">60</span>
+            <span style="text-align:right;font-family:'Inter',sans-serif;color:var(--text2);">60</span>
           </div>
           <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);margin-top:5px;">
-            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2);">Crew</span>
+            <span style="font-family:'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2);">Crew</span>
             <div style="position:relative;height:13px;border-radius:2px;"><div style="position:absolute;left:0;width:60%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:2px;"></div></div>
-            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:600;">66</span>
+            <span style="text-align:right;font-family:'Inter',sans-serif;color:var(--text);font-weight:600;">66</span>
           </div>
         </div>
         <span class="val-red" style="font-weight:600;font-size:1.15rem;text-align:right;">10%</span>
@@ -1411,17 +1413,17 @@
 
       <!-- BANBA -->
       <div style="display:grid;grid-template-columns:130px 1fr 70px;gap:1rem;align-items:center;padding:0.7rem 0;border-bottom:1px solid var(--border2);">
-        <span><span class="rig-name">BANBA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Standard JU</div></span>
+        <span><span class="rig-name">BANBA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'Inter',sans-serif;margin-top:2px;">Standard JU</div></span>
         <div>
           <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);">
-            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;">Peer</span>
+            <span style="font-family:'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;">Peer</span>
             <div style="position:relative;height:11px;border-radius:2px;"><div style="position:absolute;left:0;width:86.4%;height:100%;background:rgba(15,20,29,0.30);border-radius:2px;"></div></div>
-            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text2);">95</span>
+            <span style="text-align:right;font-family:'Inter',sans-serif;color:var(--text2);">95</span>
           </div>
           <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);margin-top:5px;">
-            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2);">Crew</span>
+            <span style="font-family:'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2);">Crew</span>
             <div style="position:relative;height:13px;border-radius:2px;"><div style="position:absolute;left:0;width:94.5%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:2px;"></div></div>
-            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:600;">104</span>
+            <span style="text-align:right;font-family:'Inter',sans-serif;color:var(--text);font-weight:600;">104</span>
           </div>
         </div>
         <span class="val-amber" style="font-weight:600;font-size:1.15rem;text-align:right;">9%</span>
@@ -1429,17 +1431,17 @@
 
       <!-- AXIMA -->
       <div style="display:grid;grid-template-columns:130px 1fr 70px;gap:1rem;align-items:center;padding:0.7rem 0;border-bottom:1px solid var(--border2);">
-        <span><span class="rig-name">AXIMA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Premium JU</div></span>
+        <span><span class="rig-name">AXIMA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'Inter',sans-serif;margin-top:2px;">Premium JU</div></span>
         <div>
           <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);">
-            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;">Peer</span>
+            <span style="font-family:'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;">Peer</span>
             <div style="position:relative;height:11px;border-radius:2px;"><div style="position:absolute;left:0;width:90.9%;height:100%;background:rgba(15,20,29,0.30);border-radius:2px;"></div></div>
-            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text2);">100</span>
+            <span style="text-align:right;font-family:'Inter',sans-serif;color:var(--text2);">100</span>
           </div>
           <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);margin-top:5px;">
-            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2);">Crew</span>
+            <span style="font-family:'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2);">Crew</span>
             <div style="position:relative;height:13px;border-radius:2px;"><div style="position:absolute;left:0;width:96.4%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:2px;"></div></div>
-            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:600;">106</span>
+            <span style="text-align:right;font-family:'Inter',sans-serif;color:var(--text);font-weight:600;">106</span>
           </div>
         </div>
         <span class="val-amber" style="font-weight:600;font-size:1.15rem;text-align:right;">6%</span>
@@ -1447,17 +1449,17 @@
 
       <!-- NUADA -->
       <div style="display:grid;grid-template-columns:130px 1fr 70px;gap:1rem;align-items:center;padding:0.7rem 0;">
-        <span><span class="rig-name">NUADA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Standard JU</div></span>
+        <span><span class="rig-name">NUADA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'Inter',sans-serif;margin-top:2px;">Standard JU</div></span>
         <div>
           <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);">
-            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;">Peer</span>
+            <span style="font-family:'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;">Peer</span>
             <div style="position:relative;height:11px;border-radius:2px;"><div style="position:absolute;left:0;width:86.4%;height:100%;background:rgba(15,20,29,0.30);border-radius:2px;"></div></div>
-            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text2);">95</span>
+            <span style="text-align:right;font-family:'Inter',sans-serif;color:var(--text2);">95</span>
           </div>
           <div style="display:grid;grid-template-columns:50px 1fr 40px;gap:0.5rem;align-items:center;font-size:0.78rem;color:var(--muted);margin-top:5px;">
-            <span style="font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2);">Crew</span>
+            <span style="font-family:'Inter',sans-serif;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2);">Crew</span>
             <div style="position:relative;height:13px;border-radius:2px;"><div style="position:absolute;left:0;width:87.3%;height:100%;background:linear-gradient(90deg,#1f7a4c,#155e3a);border-radius:2px;"></div></div>
-            <span style="text-align:right;font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:600;">96</span>
+            <span style="text-align:right;font-family:'Inter',sans-serif;color:var(--text);font-weight:600;">96</span>
           </div>
         </div>
         <span class="val-green" style="font-weight:600;font-size:1.15rem;text-align:right;">1%</span>
@@ -1465,7 +1467,7 @@
     </div>
 
     <p class="reveal d3" style="margin-top:1.4rem;font-size:0.95rem;color:var(--muted);font-style:italic;text-align:right;">Full workforce breakdown &mdash; expat cost, land-rig dynamics and org evolution &mdash; in Annexures.</p>
-      <div style="margin-top:1rem;text-align:right;"><a href="#annex-workforce" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">→ Workforce detail in annex</a></div>
+      <div style="margin-top:1rem;text-align:right;"><a href="#annex-workforce" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">→ Workforce detail in annex</a></div>
 </section>
   <!-- ========================= 9b · HQ SUPPORT · UNDERMANNING ========================= -->
   <section class="slide" id="src-hqsupport" data-title="HQ Support &middot; Below Peers">
@@ -1504,7 +1506,7 @@
         <h3>Bring in expertise to support these functions (hiring and/or external).</h3>
       </div>
     </div>
-      <div style="margin-top:1rem;text-align:right;"><a href="#annex-hqsupport" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">→ HQ support detail in annex</a></div>
+      <div style="margin-top:1rem;text-align:right;"><a href="#annex-hqsupport" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">→ HQ support detail in annex</a></div>
 </section>
 
   <!-- ========================= 8 · CAPEX · PEER INTENSITY ========================= -->
@@ -1553,7 +1555,7 @@
       <p style="font-size:0.92rem;color:var(--muted);margin-top:0.2rem;margin-bottom:0.9rem;">Bars to the right of the centre line = rig <strong style="color:var(--bad);">added to inventory</strong>; bars to the left = rig <strong style="color:var(--good);">drew down stock</strong>.</p>
 
       <!-- Axis labels -->
-      <div style="display:grid;grid-template-columns:80px 1fr 130px;gap:1rem;font-size:0.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;padding-bottom:0.45rem;border-bottom:1px solid var(--border2);">
+      <div style="display:grid;grid-template-columns:80px 1fr 130px;gap:1rem;font-size:0.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-family:'Inter',sans-serif;padding-bottom:0.45rem;border-bottom:1px solid var(--border2);">
         <span></span>
         <div style="position:relative;text-align:center;">
           <span style="position:absolute;left:0;">&larr; drew down</span>
@@ -1655,79 +1657,79 @@
 
       <!-- NUADA  $12.3M total: dead 57.7% live 42.3%; ceiling at 22.4% -->
       <div style="display:grid;grid-template-columns:130px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
-        <span><span class="rig-name">NUADA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Standard JU</div></span>
+        <span><span class="rig-name">NUADA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'Inter',sans-serif;margin-top:2px;">Standard JU</div></span>
         <div style="position:relative;height:16px;border-radius:3px;">
           <div style="position:absolute;left:0;width:57.7%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:3px 0 0 3px;"></div>
           <div style="position:absolute;left:57.7%;width:42.3%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
           <div style="position:absolute;left:22.4%;top:-4px;bottom:-4px;width:2px;background:var(--text);"></div>
         </div>
-        <div style="text-align:right;font-family:'JetBrains Mono',monospace;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$12.3M</div><div class="val-red" style="font-size:0.78rem;font-weight:600;">~4&times;</div></div>
+        <div style="text-align:right;font-family:'Inter',sans-serif;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$12.3M</div><div class="val-red" style="font-size:0.78rem;font-weight:600;">~4&times;</div></div>
       </div>
 
       <!-- BANBA  $9.0M total: dead 43.1% live 30.1%; ceiling 22.4% -->
       <div style="display:grid;grid-template-columns:130px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
-        <span><span class="rig-name">BANBA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Standard JU</div></span>
+        <span><span class="rig-name">BANBA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'Inter',sans-serif;margin-top:2px;">Standard JU</div></span>
         <div style="position:relative;height:16px;border-radius:3px;">
           <div style="position:absolute;left:0;width:43.1%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:3px 0 0 3px;"></div>
           <div style="position:absolute;left:43.1%;width:30.1%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
           <div style="position:absolute;left:22.4%;top:-4px;bottom:-4px;width:2px;background:var(--text);"></div>
         </div>
-        <div style="text-align:right;font-family:'JetBrains Mono',monospace;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$9.0M</div><div class="val-red" style="font-size:0.78rem;font-weight:600;">~3&times;</div></div>
+        <div style="text-align:right;font-family:'Inter',sans-serif;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$9.0M</div><div class="val-red" style="font-size:0.78rem;font-weight:600;">~3&times;</div></div>
       </div>
 
       <!-- MIDIR  $6.0M total: dead 18.7% live 30.1%; ceiling 4.1% -->
       <div style="display:grid;grid-template-columns:130px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
-        <span><span class="rig-name">MIDIR</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Land</div></span>
+        <span><span class="rig-name">MIDIR</span><div style="font-size:0.74rem;color:var(--muted);font-family:'Inter',sans-serif;margin-top:2px;">Land</div></span>
         <div style="position:relative;height:16px;border-radius:3px;">
           <div style="position:absolute;left:0;width:18.7%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:3px 0 0 3px;"></div>
           <div style="position:absolute;left:18.7%;width:30.1%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
           <div style="position:absolute;left:4.1%;top:-4px;bottom:-4px;width:2px;background:var(--text);"></div>
         </div>
-        <div style="text-align:right;font-family:'JetBrains Mono',monospace;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$6.0M</div><div class="val-red" style="font-size:0.78rem;font-weight:600;">~10&times;</div></div>
+        <div style="text-align:right;font-family:'Inter',sans-serif;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$6.0M</div><div class="val-red" style="font-size:0.78rem;font-weight:600;">~10&times;</div></div>
       </div>
 
       <!-- LUG  $5.3M: dead 26.0% live 17.1%; ceiling 4.1% -->
       <div style="display:grid;grid-template-columns:130px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
-        <span><span class="rig-name">LUG</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Platform</div></span>
+        <span><span class="rig-name">LUG</span><div style="font-size:0.74rem;color:var(--muted);font-family:'Inter',sans-serif;margin-top:2px;">Platform</div></span>
         <div style="position:relative;height:16px;border-radius:3px;">
           <div style="position:absolute;left:0;width:26.0%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:3px 0 0 3px;"></div>
           <div style="position:absolute;left:26.0%;width:17.1%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
           <div style="position:absolute;left:4.1%;top:-4px;bottom:-4px;width:2px;background:var(--text);"></div>
         </div>
-        <div style="text-align:right;font-family:'JetBrains Mono',monospace;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$5.3M</div><div class="val-red" style="font-size:0.78rem;font-weight:600;">~9&times;</div></div>
+        <div style="text-align:right;font-family:'Inter',sans-serif;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$5.3M</div><div class="val-red" style="font-size:0.78rem;font-weight:600;">~9&times;</div></div>
       </div>
 
       <!-- AXIMA  $5.0M: dead 16.3% live 24.4%; ceiling 24.4% -->
       <div style="display:grid;grid-template-columns:130px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
-        <span><span class="rig-name">AXIMA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Premium JU</div></span>
+        <span><span class="rig-name">AXIMA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'Inter',sans-serif;margin-top:2px;">Premium JU</div></span>
         <div style="position:relative;height:16px;border-radius:3px;">
           <div style="position:absolute;left:0;width:16.3%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:3px 0 0 3px;"></div>
           <div style="position:absolute;left:16.3%;width:24.4%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
           <div style="position:absolute;left:24.4%;top:-4px;bottom:-4px;width:2px;background:var(--text);"></div>
         </div>
-        <div style="text-align:right;font-family:'JetBrains Mono',monospace;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$5.0M</div><div class="val-amber" style="font-size:0.78rem;font-weight:600;">1.4&times;</div></div>
+        <div style="text-align:right;font-family:'Inter',sans-serif;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$5.0M</div><div class="val-amber" style="font-size:0.78rem;font-weight:600;">1.4&times;</div></div>
       </div>
 
       <!-- DRAVUS  $3.7M: dead 22.0% live 8.1%; ceiling 4.1% -->
       <div style="display:grid;grid-template-columns:130px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border2);">
-        <span><span class="rig-name">DRAVUS</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Land</div></span>
+        <span><span class="rig-name">DRAVUS</span><div style="font-size:0.74rem;color:var(--muted);font-family:'Inter',sans-serif;margin-top:2px;">Land</div></span>
         <div style="position:relative;height:16px;border-radius:3px;">
           <div style="position:absolute;left:0;width:22.0%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:3px 0 0 3px;"></div>
           <div style="position:absolute;left:22.0%;width:8.1%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
           <div style="position:absolute;left:4.1%;top:-4px;bottom:-4px;width:2px;background:var(--text);"></div>
         </div>
-        <div style="text-align:right;font-family:'JetBrains Mono',monospace;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$3.7M</div><div class="val-red" style="font-size:0.78rem;font-weight:600;">~6&times;</div></div>
+        <div style="text-align:right;font-family:'Inter',sans-serif;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$3.7M</div><div class="val-red" style="font-size:0.78rem;font-weight:600;">~6&times;</div></div>
       </div>
 
       <!-- HARIMA  $1.1M: dead 6.5% live 2.4%; ceiling 3.7% -->
       <div style="display:grid;grid-template-columns:130px 1fr 130px;gap:1rem;align-items:center;padding:0.55rem 0;">
-        <span><span class="rig-name">HARIMA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px;">Platform</div></span>
+        <span><span class="rig-name">HARIMA</span><div style="font-size:0.74rem;color:var(--muted);font-family:'Inter',sans-serif;margin-top:2px;">Platform</div></span>
         <div style="position:relative;height:16px;border-radius:3px;">
           <div style="position:absolute;left:0;width:6.5%;height:100%;background:linear-gradient(90deg,#c41e3a,#8b1428);border-radius:3px 0 0 3px;"></div>
           <div style="position:absolute;left:6.5%;width:2.4%;height:100%;background:linear-gradient(90deg,#d97706,#b8780f);border-radius:0 3px 3px 0;"></div>
           <div style="position:absolute;left:3.7%;top:-4px;bottom:-4px;width:2px;background:var(--text);"></div>
         </div>
-        <div style="text-align:right;font-family:'JetBrains Mono',monospace;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$1.1M</div><div class="val-amber" style="font-size:0.78rem;font-weight:600;">~2&times;</div></div>
+        <div style="text-align:right;font-family:'Inter',sans-serif;"><div style="font-weight:600;font-size:1.05rem;color:var(--text);">$1.1M</div><div class="val-amber" style="font-size:0.78rem;font-weight:600;">~2&times;</div></div>
       </div>
     </div>
 
@@ -1740,7 +1742,7 @@
       <strong style="color:var(--text2);font-style:normal;">Disclaimer &middot; </strong>
       <strong style="font-style:normal;">Partial unit-price mapping</strong> of PO history (MB52 via ME2N) &mdash; read as <strong style="font-style:normal;">directional magnitude</strong>, not an audited valuation.
     </div>
-    <div style="margin-top:1rem;text-align:right;"><a href="#annex-inv" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">→ Inventory survey in annex</a></div>
+    <div style="margin-top:1rem;text-align:right;"><a href="#annex-inv" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">→ Inventory survey in annex</a></div>
 </section>
 
   <!-- ========================= 12b · CAUSAL CHAIN — CERT → NPT → OPEX ========================= -->
@@ -1796,7 +1798,7 @@
       <div class="rigpanel" data-rig="AXIMA">
 <div class="op-header">
       <div><span class="op-rig-name">AXIMA</span><span class="op-rig-type premium">Premium Jack-Up</span></div>
-      <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+      <div style="font-family:'Inter',sans-serif;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
     </div>
     <div class="op-kpi-row">
       <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v amber">84.9%</div><div class="sub">310 / 365 days</div></div>
@@ -1873,7 +1875,7 @@
       <div class="rigpanel" data-rig="BANBA" style="display:none;">
 <div class="op-header">
       <div><span class="op-rig-name">BANBA</span><span class="op-rig-type standard">Standard Jack-Up</span></div>
-      <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+      <div style="font-family:'Inter',sans-serif;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
     </div>
     <div class="op-kpi-row">
       <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
@@ -1950,7 +1952,7 @@
       <div class="rigpanel" data-rig="NUADA" style="display:none;">
 <div class="op-header">
       <div><span class="op-rig-name">NUADA</span><span class="op-rig-type standard">Standard Jack-Up</span></div>
-      <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+      <div style="font-family:'Inter',sans-serif;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
     </div>
     <div class="op-kpi-row">
       <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
@@ -2027,7 +2029,7 @@
       <div class="rigpanel" data-rig="LUG" style="display:none;">
 <div class="op-header">
       <div><span class="op-rig-name">LUG</span><span class="op-rig-type platform">Platform Rig</span></div>
-      <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+      <div style="font-family:'Inter',sans-serif;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
     </div>
     <div class="op-kpi-row">
       <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
@@ -2104,7 +2106,7 @@
       <div class="rigpanel" data-rig="MIDIR" style="display:none;">
 <div class="op-header">
       <div><span class="op-rig-name">MIDIR</span><span class="op-rig-type land">Land Rig</span></div>
-      <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+      <div style="font-family:'Inter',sans-serif;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
     </div>
     <div class="op-kpi-row">
       <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
@@ -2181,7 +2183,7 @@
       <div class="rigpanel" data-rig="DRAVUS" style="display:none;">
 <div class="op-header">
       <div><span class="op-rig-name">DRAVUS</span><span class="op-rig-type land">Land Rig</span></div>
-      <div style="font-family:'JetBrains Mono',monospace;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
+      <div style="font-family:'Inter',sans-serif;font-weight:400;font-size:14.3px;color:var(--muted);letter-spacing:0.1em;">FY 2025 · SAP direct</div>
     </div>
     <div class="op-kpi-row">
       <div class="op-kpi"><div class="lbl">Utilisation</div><div class="v green">100%</div><div class="sub">365 / 365 days</div></div>
@@ -2300,26 +2302,26 @@
       <div class="op-panel">
         <div class="ptitle">Land &amp; mixed peers &middot; 5 contractors &middot; ~1,083 rigs</div>
         <div style="margin-top:0.7rem;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 0;border-bottom:1px solid var(--border2);"><span><span class="rig-name">Helmerich &amp; Payne</span> <span style="font-size:0.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-left:0.5rem;">Land + platform &middot; US + Intl</span></span><span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--text);">367</span></div>
-          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 0;border-bottom:1px solid var(--border2);"><span><span class="rig-name">Nabors Industries</span> <span style="font-size:0.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-left:0.5rem;">Land + platform &middot; Global</span></span><span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--text);">269</span></div>
-          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 0;border-bottom:1px solid var(--border2);"><span><span class="rig-name">Precision Drilling</span> <span style="font-size:0.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-left:0.5rem;">Land &middot; Canada + US + Intl</span></span><span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--text);">184</span></div>
-          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 0;border-bottom:1px solid var(--border2);"><span><span class="rig-name">ADNOC Drilling</span> <span style="font-size:0.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-left:0.5rem;">Mixed &middot; UAE</span></span><span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--text);">140</span></div>
-          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 0;"><span><span class="rig-name">ADES Holding</span> <span style="font-size:0.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-left:0.5rem;">JU + onshore &middot; MENA + Intl</span></span><span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--text);">123</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 0;border-bottom:1px solid var(--border2);"><span><span class="rig-name">Helmerich &amp; Payne</span> <span style="font-size:0.78rem;color:var(--muted);font-family:'Inter',sans-serif;margin-left:0.5rem;">Land + platform &middot; US + Intl</span></span><span style="font-family:'Inter',sans-serif;font-weight:600;color:var(--text);">367</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 0;border-bottom:1px solid var(--border2);"><span><span class="rig-name">Nabors Industries</span> <span style="font-size:0.78rem;color:var(--muted);font-family:'Inter',sans-serif;margin-left:0.5rem;">Land + platform &middot; Global</span></span><span style="font-family:'Inter',sans-serif;font-weight:600;color:var(--text);">269</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 0;border-bottom:1px solid var(--border2);"><span><span class="rig-name">Precision Drilling</span> <span style="font-size:0.78rem;color:var(--muted);font-family:'Inter',sans-serif;margin-left:0.5rem;">Land &middot; Canada + US + Intl</span></span><span style="font-family:'Inter',sans-serif;font-weight:600;color:var(--text);">184</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 0;border-bottom:1px solid var(--border2);"><span><span class="rig-name">ADNOC Drilling</span> <span style="font-size:0.78rem;color:var(--muted);font-family:'Inter',sans-serif;margin-left:0.5rem;">Mixed &middot; UAE</span></span><span style="font-family:'Inter',sans-serif;font-weight:600;color:var(--text);">140</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 0;"><span><span class="rig-name">ADES Holding</span> <span style="font-size:0.78rem;color:var(--muted);font-family:'Inter',sans-serif;margin-left:0.5rem;">JU + onshore &middot; MENA + Intl</span></span><span style="font-family:'Inter',sans-serif;font-weight:600;color:var(--text);">123</span></div>
         </div>
       </div>
       <div class="op-panel">
         <div class="ptitle">Jackup-pure peers &middot; 4 contractors &middot; 96 rigs</div>
         <div style="margin-top:0.7rem;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 0;border-bottom:1px solid var(--border2);"><span><span class="rig-name">Valaris</span> <span style="font-size:0.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-left:0.5rem;">JU + ARO &middot; Global</span></span><span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--text);">33</span></div>
-          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 0;border-bottom:1px solid var(--border2);"><span><span class="rig-name">Shelf Drilling</span> <span style="font-size:0.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-left:0.5rem;">Standard JU &middot; MENA + SE Asia</span></span><span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--text);">33</span></div>
-          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 0;border-bottom:1px solid var(--border2);"><span><span class="rig-name">Borr Drilling</span> <span style="font-size:0.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-left:0.5rem;">Premium JU &middot; Global</span></span><span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--text);">24</span></div>
-          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 0;"><span><span class="rig-name">Velesto Energy</span> <span style="font-size:0.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-left:0.5rem;">Standard JU &middot; SE Asia</span></span><span style="font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--text);">6</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 0;border-bottom:1px solid var(--border2);"><span><span class="rig-name">Valaris</span> <span style="font-size:0.78rem;color:var(--muted);font-family:'Inter',sans-serif;margin-left:0.5rem;">JU + ARO &middot; Global</span></span><span style="font-family:'Inter',sans-serif;font-weight:600;color:var(--text);">33</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 0;border-bottom:1px solid var(--border2);"><span><span class="rig-name">Shelf Drilling</span> <span style="font-size:0.78rem;color:var(--muted);font-family:'Inter',sans-serif;margin-left:0.5rem;">Standard JU &middot; MENA + SE Asia</span></span><span style="font-family:'Inter',sans-serif;font-weight:600;color:var(--text);">33</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 0;border-bottom:1px solid var(--border2);"><span><span class="rig-name">Borr Drilling</span> <span style="font-size:0.78rem;color:var(--muted);font-family:'Inter',sans-serif;margin-left:0.5rem;">Premium JU &middot; Global</span></span><span style="font-family:'Inter',sans-serif;font-weight:600;color:var(--text);">24</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 0;"><span><span class="rig-name">Velesto Energy</span> <span style="font-size:0.78rem;color:var(--muted);font-family:'Inter',sans-serif;margin-left:0.5rem;">Standard JU &middot; SE Asia</span></span><span style="font-family:'Inter',sans-serif;font-weight:600;color:var(--text);">6</span></div>
         </div>
       </div>
     </div>
 
     <p class="reveal d3" style="margin-top:1.1rem;font-size:0.9rem;color:var(--muted);font-style:italic;text-align:right;"><strong style="color:var(--text2);font-style:normal;">Subject:</strong> Dixstone &middot; 7 rigs (3 jackups, 2 platform, 2 land) &middot; West Africa.</p>
-    <div style="margin-top:1rem;text-align:right;"><a href="#annex-peers" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">→ Internal vs peers in annex</a></div>
+    <div style="margin-top:1rem;text-align:right;"><a href="#annex-peers" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">→ Internal vs peers in annex</a></div>
 </section>
 
   <!-- ========================= 13a · SEGMENT VIEW · PREMIUM JACKUP ========================= -->
@@ -2515,24 +2517,24 @@
       <!-- five strategic areas -->
       <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;">
         <div style="background:var(--bg-card);border:1px solid var(--border2);border-top:4px solid var(--sigma);border-radius:10px;padding:1.5rem 1rem;display:flex;flex-direction:column;align-items:center;gap:0.9rem;text-align:center;">
-          <div style="width:3rem;height:3rem;border-radius:50%;background:#1E40AF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.4rem;">1</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.05rem,1.35vw,1.5rem);color:var(--text);line-height:1.2;">Data Visualisation</div>
+          <div style="width:3rem;height:3rem;border-radius:50%;background:#1E40AF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-weight:700;font-size:1.4rem;">1</div>
+          <div style="font-family:'Source Serif 4',Georgia,serif;font-weight:600;font-size:clamp(1.05rem,1.35vw,1.5rem);color:var(--text);line-height:1.2;">Data Visualisation</div>
         </div>
         <div style="background:var(--bg-card);border:1px solid var(--border2);border-top:4px solid var(--sigma);border-radius:10px;padding:1.5rem 1rem;display:flex;flex-direction:column;align-items:center;gap:0.9rem;text-align:center;">
-          <div style="width:3rem;height:3rem;border-radius:50%;background:#1E40AF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.4rem;">2</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.05rem,1.35vw,1.5rem);color:var(--text);line-height:1.2;">Supply Chain</div>
+          <div style="width:3rem;height:3rem;border-radius:50%;background:#1E40AF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-weight:700;font-size:1.4rem;">2</div>
+          <div style="font-family:'Source Serif 4',Georgia,serif;font-weight:600;font-size:clamp(1.05rem,1.35vw,1.5rem);color:var(--text);line-height:1.2;">Supply Chain</div>
         </div>
         <div style="background:var(--bg-card);border:1px solid var(--border2);border-top:4px solid var(--sigma);border-radius:10px;padding:1.5rem 1rem;display:flex;flex-direction:column;align-items:center;gap:0.9rem;text-align:center;">
-          <div style="width:3rem;height:3rem;border-radius:50%;background:#1E40AF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.4rem;">3</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.05rem,1.35vw,1.5rem);color:var(--text);line-height:1.2;">Equipment</div>
+          <div style="width:3rem;height:3rem;border-radius:50%;background:#1E40AF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-weight:700;font-size:1.4rem;">3</div>
+          <div style="font-family:'Source Serif 4',Georgia,serif;font-weight:600;font-size:clamp(1.05rem,1.35vw,1.5rem);color:var(--text);line-height:1.2;">Equipment</div>
         </div>
         <div style="background:var(--bg-card);border:1px solid var(--border2);border-top:4px solid var(--sigma);border-radius:10px;padding:1.5rem 1rem;display:flex;flex-direction:column;align-items:center;gap:0.9rem;text-align:center;">
-          <div style="width:3rem;height:3rem;border-radius:50%;background:#1E40AF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.4rem;">4</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.05rem,1.35vw,1.5rem);color:var(--text);line-height:1.2;">People</div>
+          <div style="width:3rem;height:3rem;border-radius:50%;background:#1E40AF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-weight:700;font-size:1.4rem;">4</div>
+          <div style="font-family:'Source Serif 4',Georgia,serif;font-weight:600;font-size:clamp(1.05rem,1.35vw,1.5rem);color:var(--text);line-height:1.2;">People</div>
         </div>
         <div style="background:var(--bg-card);border:1px solid var(--border2);border-top:4px solid var(--sigma);border-radius:10px;padding:1.5rem 1rem;display:flex;flex-direction:column;align-items:center;gap:0.9rem;text-align:center;">
-          <div style="width:3rem;height:3rem;border-radius:50%;background:#1E40AF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.4rem;">5</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.05rem,1.35vw,1.5rem);color:var(--text);line-height:1.2;">Land Rigs Business Review</div>
+          <div style="width:3rem;height:3rem;border-radius:50%;background:#1E40AF;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-weight:700;font-size:1.4rem;">5</div>
+          <div style="font-family:'Source Serif 4',Georgia,serif;font-weight:600;font-size:clamp(1.05rem,1.35vw,1.5rem);color:var(--text);line-height:1.2;">Land Rigs Business Review</div>
         </div>
       </div>
 
@@ -2541,8 +2543,8 @@
 
       <!-- goal banner -->
       <div style="background:linear-gradient(90deg,rgba(232,160,32,0.16),rgba(232,160,32,0.04));border:1px solid var(--sigma);border-radius:12px;padding:1.5rem 2rem;text-align:center;">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;letter-spacing:0.22em;color:var(--sigma);font-weight:600;margin-bottom:0.5rem;">OUR GOAL</div>
-        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.8rem,3vw,2.8rem);color:var(--text);letter-spacing:-0.01em;line-height:1.1;">Operational &amp; Cost Efficiency</div>
+        <div style="font-family:'Inter',sans-serif;font-size:0.85rem;letter-spacing:0.22em;color:var(--sigma);font-weight:600;margin-bottom:0.5rem;">OUR GOAL</div>
+        <div style="font-family:'Source Serif 4',Georgia,serif;font-weight:700;font-size:clamp(1.8rem,3vw,2.8rem);color:var(--text);letter-spacing:-0.01em;line-height:1.1;">Operational &amp; Cost Efficiency</div>
       </div>
     </div>
 </section>
@@ -2670,7 +2672,7 @@
         </ul>
       </div>
     </div>
-      <div style="margin-top:1rem;text-align:right;"><a href="#annex-sc" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">&rarr; Supply chain detail in annex</a></div>
+      <div style="margin-top:1rem;text-align:right;"><a href="#annex-sc" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">&rarr; Supply chain detail in annex</a></div>
 </section>
 
   <!-- ========================= STRATEGIC AREA 03 · EQUIPMENT ========================= -->
@@ -2700,7 +2702,7 @@
         <p class="body">Keep <strong>asset registers and transfers updated</strong> (single transfer workflow, weekly reconciliation); maintain an <strong>equipment certification tracker for Cat III &amp; Cat IV</strong>, overdue surfaced weekly.</p>
       </div>
     </div>
-      <div style="margin-top:1rem;text-align:right;"><a href="#annex-maint" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">&rarr; Maintenance &amp; assets detail in annex</a></div>
+      <div style="margin-top:1rem;text-align:right;"><a href="#annex-maint" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">&rarr; Maintenance &amp; assets detail in annex</a></div>
 </section>
 
   <!-- ========================= STRATEGIC AREA 04 · PEOPLE ========================= -->
@@ -2933,7 +2935,7 @@
         <div style="margin-top:0.85rem;padding-top:0.6rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--muted);">Source: AXIMA WCE &amp; LUG Survey Findings registers</div>
       </div>
     </div>
-      <div style="margin-top:1rem;text-align:left;"><a href="#src-rootcause" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to Root Cause</a></div>
+      <div style="margin-top:1rem;text-align:left;"><a href="#src-rootcause" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to Root Cause</a></div>
 </section>
 
   <!-- ========================= ANNEX 02 · SURVEY EVIDENCE · CERTIFICATION ========================= -->
@@ -2981,7 +2983,7 @@
         <div style="margin-top:0.85rem;padding-top:0.6rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--muted);">Source: AXIMA WCE Equipment Certification Tracker (2025-11-11) &amp; Survey Findings</div>
       </div>
     </div>
-      <div style="margin-top:1rem;text-align:left;"><a href="#src-rootcause" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to Root Cause</a></div>
+      <div style="margin-top:1rem;text-align:left;"><a href="#src-rootcause" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to Root Cause</a></div>
 </section>
 
   <!-- ========================= ANNEX 03 · SURVEY EVIDENCE · INVENTORY ========================= -->
@@ -3021,7 +3023,7 @@
         <div style="margin-top:0.85rem;padding-top:0.6rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--muted);">Source: LUG Materials Analysis (MB52, 2026-03-10) &amp; Survey Findings</div>
       </div>
     </div>
-      <div style="margin-top:1rem;text-align:left;"><a href="#src-inventory" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to Inventory</a></div>
+      <div style="margin-top:1rem;text-align:left;"><a href="#src-inventory" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to Inventory</a></div>
 </section>
 
   <!-- ========================= ANNEX 04 · SURVEY EVIDENCE · SAP USAGE ========================= -->
@@ -3062,7 +3064,7 @@
         <div style="margin-top:0.85rem;padding-top:0.6rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--muted);">Source: AXIMA &amp; LUG Survey Findings registers</div>
       </div>
     </div>
-      <div style="margin-top:1rem;text-align:left;"><a href="#src-datafoundation" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to Data Foundation</a></div>
+      <div style="margin-top:1rem;text-align:left;"><a href="#src-datafoundation" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to Data Foundation</a></div>
 </section>
   <!-- ========================= ANNEX 06 · PER-RIG SPEND MIX ========================= -->
   <section class="slide" id="annex-spendmix" data-title="Annex &middot; Per-Rig Spend Mix">
@@ -3100,7 +3102,7 @@
         </tbody>
       </table>
     </div>
-      <div style="margin-top:1rem;text-align:left;"><a href="#src-rdm" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to RDM Evolution</a></div>
+      <div style="margin-top:1rem;text-align:left;"><a href="#src-rdm" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to RDM Evolution</a></div>
 </section>
 
   <!-- ========================= ANNEX 07 · WORKFORCE DETAIL ========================= -->
@@ -3129,7 +3131,7 @@
       <div class="card accent" style="border-left-color:var(--bad);"><span class="num-tag" style="color:var(--bad);">Land &middot; critical combination</span><h3>MIDIR &amp; DRAVUS &mdash; overmanning + expat overload.</h3><p>16% / 11% expat-cost vs land norm &lt;8%. Workforce &gt;35% of revenue can't reach the 40% profitability floor; MIDIR sits at 51.9% &mdash; structurally unprofitable at current dayrate.</p></div>
       <div class="card accent"><span class="num-tag">Org evolution &middot; 7-rig steady state</span><h3>Build dedicated Supply Chain, Assets &amp; Maintenance competencies.</h3><p>Strengthen three functional competencies the fleet currently lacks: <strong>Supply Chain</strong> (ME2N/MB51/MB52, GR/IR, country-base strategy), <strong>Assets</strong> (register, transfers, certification) and <strong>Maintenance</strong> (CMMS, PM compliance, OEM routines). Today these skills are bundled / procurement sits under Finance.</p></div>
     </div>
-      <div style="margin-top:1rem;text-align:left;"><a href="#src-workforce" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to Workforce</a></div>
+      <div style="margin-top:1rem;text-align:left;"><a href="#src-workforce" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to Workforce</a></div>
 </section>
 
   <!-- ========================= ANNEX 08 · HQ SUPPORT DETAIL ========================= -->
@@ -3151,7 +3153,7 @@
       </table>
     </div>
 
-      <div style="margin-top:1rem;text-align:left;"><a href="#src-hqsupport" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to HQ Support</a></div>
+      <div style="margin-top:1rem;text-align:left;"><a href="#src-hqsupport" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to HQ Support</a></div>
 </section>
 
   <!-- ========================= ANNEX 09 · HOW DIXSTONE COMPARES (CONSOLIDATED) ========================= -->
@@ -3204,7 +3206,7 @@
         <p>Inventory $6.46M/rig (~3&times; peers) &middot; $25.2M dead stock.</p>
       </div>
     </div>
-      <div style="margin-top:1rem;text-align:left;"><a href="#src-peers" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to Peer Fleet</a></div>
+      <div style="margin-top:1rem;text-align:left;"><a href="#src-peers" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to Peer Fleet</a></div>
 </section>
 
   <!-- ========================= ANNEX 12 · SUPPLY CHAIN DETAIL ========================= -->
@@ -3247,7 +3249,7 @@
         </ul>
       </div>
     </div>
-      <div style="margin-top:1rem;text-align:left;"><a href="#src-ws2" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">&larr; Back to Supply Chain</a></div>
+      <div style="margin-top:1rem;text-align:left;"><a href="#src-ws2" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">&larr; Back to Supply Chain</a></div>
 </section>
 
   <!-- ========================= ANNEX 13 · MAINTENANCE DETAIL ========================= -->
@@ -3275,7 +3277,7 @@
         </ul>
       </div>
     </div>
-      <div style="margin-top:1rem;text-align:left;"><a href="#src-equipment" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">&larr; Back to Equipment</a></div>
+      <div style="margin-top:1rem;text-align:left;"><a href="#src-equipment" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">&larr; Back to Equipment</a></div>
 </section>
 
   <!-- ========================= ANNEX 14 · ASSETS DETAIL ========================= -->
@@ -3305,7 +3307,7 @@
         </ul>
       </div>
     </div>
-      <div style="margin-top:1rem;text-align:left;"><a href="#src-equipment" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">&larr; Back to Equipment</a></div>
+      <div style="margin-top:1rem;text-align:left;"><a href="#src-equipment" style="font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">&larr; Back to Equipment</a></div>
 </section>
 
 </main>

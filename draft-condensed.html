@@ -1156,7 +1156,6 @@
       </div>
     </div>
 
-    <div style="margin-top:1rem;text-align:right;"><a href="#annex-pm" style="font-family:'Source Serif 4',Georgia,serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">→ Survey evidence in annex</a></div>
 </section>
 
 
@@ -1197,7 +1196,6 @@
         <h3>Rig managers track POs manually.</h3>
       </div>
     </div>
-      <div style="margin-top:1rem;text-align:right;"><a href="#annex-sap" style="font-family:'Source Serif 4',Georgia,serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">→ SAP usage evidence in annex</a></div>
 </section>
 
   <!-- ========================= 2 · REAL GR SPENDING vs NEW PO ========================= -->
@@ -1408,7 +1406,6 @@
       <strong style="color:var(--text2);font-style:normal;">Disclaimer &middot; </strong>
       <strong style="font-style:normal;">Partial unit-price mapping</strong> of PO history (MB52 via ME2N) &mdash; read as <strong style="font-style:normal;">directional magnitude</strong>, not an audited valuation.
     </div>
-    <div style="margin-top:1rem;text-align:right;"><a href="#annex-inv" style="font-family:'Source Serif 4',Georgia,serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">→ Inventory survey in annex</a></div>
 </section>
 
   <!-- ========================= 12b · CAUSAL CHAIN — CERT → NPT → OPEX ========================= -->
@@ -1588,7 +1585,6 @@
     </div>
 
     <p class="reveal d3" style="margin-top:1.4rem;font-size:0.95rem;color:var(--muted);font-style:italic;text-align:right;">Full workforce breakdown &mdash; expat cost, land-rig dynamics and org evolution &mdash; in Annexures.</p>
-      <div style="margin-top:1rem;text-align:right;"><a href="#annex-workforce" style="font-family:'Source Serif 4',Georgia,serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">→ Workforce detail in annex</a></div>
 </section>
 
   <!-- ========================= ANNEX 06 · PER-RIG SPEND MIX ========================= -->
@@ -1668,6 +1664,16 @@
       </div>
     </div>
     <div class="reveal d3" style="margin-top:1.1rem;padding-top:0.7rem;border-top:1px solid var(--border2);font-size:0.97rem;color:var(--muted);line-height:1.5;"><strong style="color:var(--text2);">How the ~14 support / rig benchmark is derived:</strong> Shelf Drilling 13.9 (500 support / 36 rigs &middot; FY24) &middot; Borr Drilling 13.8 (332 / 24 &middot; FY25) &rarr; <strong style="color:var(--text2);">14 &times; 6 rigs = 84 target</strong>; Dixstone today ~72.</div>
+    <div class="reveal d3" style="overflow-x:auto;margin-top:0.8rem;">
+      <table class="bench-table" style="font-size:0.95rem;">
+        <thead><tr><th>Peer benchmark</th><th>Rigs</th><th>Total support (shore + HQ)</th><th>Support / rig</th></tr></thead>
+        <tbody>
+          <tr><td><span class="rig-name">Shelf Drilling</span><span class="rig-type">FY24</span></td><td>36</td><td>500</td><td class="val-amber"><strong>13.9</strong></td></tr>
+          <tr><td><span class="rig-name">Borr Drilling</span><span class="rig-type">FY25</span></td><td>24</td><td>332</td><td class="val-amber"><strong>13.8</strong></td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--muted);">Source: peer annual reports / SEC filings (FY24&ndash;FY25) &middot; support headcount &divide; rig count &rarr; ~14 / rig.</div>
+    </div>
 </section>
 
   <!-- ========================= 8 · CAPEX · PEER INTENSITY ========================= -->
@@ -2965,203 +2971,6 @@
     </div>
 </section>
 
-  <!-- ========================= ANNEXURES DIVIDER ========================= -->
-  <section class="slide divider-slide" data-title="Annexures">
-    <div class="eyebrow reveal" style="justify-content:center;">Annexures</div>
-    <h1 class="reveal d1"><em>Supporting Detail</em></h1>
-  </section>
-
-  <!-- ========================= ANNEX 01 · SURVEY EVIDENCE · PM ========================= -->
-  <section class="slide" id="annex-pm" data-title="Annex &middot; Survey Evidence &middot; PM">
-    <div class="eyebrow reveal">Annex &middot; On-Site Survey Evidence &middot; Preventive Maintenance</div>
-    <h1 class="slide-title reveal">Maintenance runs on spreadsheets &mdash;<br><em>PM tasks overdue, no usable history.</em></h1>
-    <p class="lede reveal d1" style="max-width:none;">Across both surveys, preventive maintenance is tracked in local Excel files rather than a CMMS. Safety-critical PMs are overdue, and completed task sheets are not retained.</p>
-
-    <div class="reveal d2" style="margin-top:1.1rem;display:grid;grid-template-columns:1.05fr 1fr;gap:1.1rem;align-items:start;">
-      <!-- photo + stats column -->
-      <div>
-        <div style="position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#f5f6f8;">
-          <img src="survey-evidence/lug-pm-screen.jpg" alt="LUG PM/certification spreadsheet" style="display:block;width:100%;height:auto;max-height:22rem;object-fit:cover;"/>
-          <div style="position:absolute;left:0;right:0;bottom:0;padding:0.65rem 0.9rem;background:linear-gradient(0deg,rgba(15,27,51,0.92) 0%,rgba(15,27,51,0.55) 60%,rgba(15,27,51,0) 100%);color:#fff;">
-            <div style="font-family:var(--mono);font-size:0.72rem;letter-spacing:0.12em;color:#8fb7ff;">LUG &middot; PM / CERTIFICATION SCREEN</div>
-            <div style="font-size:0.88rem;margin-top:0.2rem;line-height:1.35;">PM and certification status held in a local spreadsheet &mdash; no maintenance-management system behind it.</div>
-          </div>
-        </div>
-        <div style="margin-top:0.9rem;display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;">
-          <div style="padding:0.7rem 0.85rem;background:var(--card);border:1px solid var(--border);border-radius:8px;"><div style="font-size:1.6rem;font-weight:700;color:var(--bad);line-height:1;">0</div><div style="font-size:0.74rem;color:var(--muted);margin-top:0.35rem;line-height:1.3;">PM task records retained (LUG)</div></div>
-          <div style="padding:0.7rem 0.85rem;background:var(--card);border:1px solid var(--border);border-radius:8px;"><div style="font-size:1.6rem;font-weight:700;color:#b8780f;line-height:1;">3+</div><div style="font-size:0.74rem;color:var(--muted);margin-top:0.35rem;line-height:1.3;">BOP / BCU PMs overdue since mid-2025</div></div>
-          <div style="padding:0.7rem 0.85rem;background:var(--card);border:1px solid var(--border);border-radius:8px;"><div style="font-size:1.2rem;font-weight:700;color:#1E40AF;line-height:1;">No CMMS</div><div style="font-size:0.74rem;color:var(--muted);margin-top:0.35rem;line-height:1.3;">PM run on local Excel, both rigs</div></div>
-        </div>
-      </div>
-
-      <!-- findings column -->
-      <div class="insight-card">
-        <div class="ic-eyebrow">FINDINGS &middot; PREVENTIVE MAINTENANCE</div>
-        <div style="margin-top:0.7rem;display:flex;flex-direction:column;gap:0.55rem;">
-          <div style="display:flex;align-items:flex-start;gap:0.55rem;"><span style="font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;padding:0.18rem 0.4rem;border-radius:3px;background:rgba(196,30,58,0.12);color:var(--bad);flex-shrink:0;margin-top:0.22rem;font-weight:600;">CRIT</span><p style="font-size:0.93rem;color:var(--text2);line-height:1.4;"><span style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">SIG-2676 &middot; </span><strong style="color:var(--text);">Transferred Double-Ram BOP PMs never loaded</strong> into SAP or MM10 &mdash; PM team cannot run any task on it. <span style="color:var(--muted);">(AXIMA)</span></p></div>
-          <div style="display:flex;align-items:flex-start;gap:0.55rem;"><span style="font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;padding:0.18rem 0.4rem;border-radius:3px;background:rgba(196,30,58,0.12);color:var(--bad);flex-shrink:0;margin-top:0.22rem;font-weight:600;">CRIT</span><p style="font-size:0.93rem;color:var(--text2);line-height:1.4;"><span style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">SIG-2817 &middot; </span>PM updated in Excel only; printed task sheets <strong style="color:var(--text);">completed then thrown away</strong> &mdash; zero records retained. <span style="color:var(--muted);">(LUG)</span></p></div>
-          <div style="display:flex;align-items:flex-start;gap:0.55rem;"><span style="font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;padding:0.18rem 0.4rem;border-radius:3px;background:rgba(184,120,15,0.14);color:#b8780f;flex-shrink:0;margin-top:0.22rem;font-weight:600;">MAJ</span><p style="font-size:0.93rem;color:var(--text2);line-height:1.4;"><span style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">SIG-2673/74 &middot; </span>Single-Ram BOP 6-month PM <strong style="color:var(--text);">overdue since August</strong>; BCU 1-month &amp; 1-year PMs overdue since June &amp; October. <span style="color:var(--muted);">(AXIMA)</span></p></div>
-          <div style="display:flex;align-items:flex-start;gap:0.55rem;"><span style="font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;padding:0.18rem 0.4rem;border-radius:3px;background:rgba(184,120,15,0.14);color:#b8780f;flex-shrink:0;margin-top:0.22rem;font-weight:600;">MAJ</span><p style="font-size:0.93rem;color:var(--text2);line-height:1.4;"><span style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">SIG-2816 &middot; </span>Locally-built Excel PM tracker &mdash; only <strong style="color:var(--text);">88 equipment lines</strong>, no change-out history. <span style="color:var(--muted);">(LUG)</span></p></div>
-          <div style="display:flex;align-items:flex-start;gap:0.55rem;"><span style="font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;padding:0.18rem 0.4rem;border-radius:3px;background:rgba(184,120,15,0.14);color:#b8780f;flex-shrink:0;margin-top:0.22rem;font-weight:600;">MAJ</span><p style="font-size:0.93rem;color:var(--text2);line-height:1.4;"><span style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">SIG-2818 &middot; </span>Electrical PM updated in Excel with <strong style="color:var(--text);">only 5&ndash;6 task sheets</strong> ever scanned. <span style="color:var(--muted);">(LUG)</span></p></div>
-        </div>
-        <div style="margin-top:0.85rem;padding-top:0.6rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--muted);">Source: AXIMA WCE &amp; LUG Survey Findings registers</div>
-      </div>
-    </div>
-      <div style="margin-top:1rem;text-align:left;"><a href="#src-rootcause" style="font-family:'Source Serif 4',Georgia,serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to Root Cause</a></div>
-</section>
-
-  <!-- ========================= ANNEX 02 · SURVEY EVIDENCE · CERTIFICATION ========================= -->
-  <section class="slide" id="annex-cert" data-title="Annex &middot; Survey Evidence &middot; Certification">
-    <div class="eyebrow reveal">Annex &middot; On-Site Survey Evidence &middot; Equipment Certification</div>
-    <h1 class="slide-title reveal">No central certification register &mdash;<br><em>38 major items, none with a CoC on file, 10 recerts already lapsed.</em></h1>
-    <p class="lede reveal d1" style="max-width:none;">The AXIMA certification tracker is the only consolidated record, yet it shows no Certificate of Conformity logged for any item and multiple CAT III / CAT IV recertifications past due (status as of survey date).</p>
-
-    <div class="reveal d2" style="margin-top:1.0rem;display:grid;grid-template-columns:1.1fr 1fr;gap:1.1rem;align-items:start;">
-      <!-- tracker table -->
-      <div class="insight-card" style="padding:0.95rem 1.05rem;">
-        <div class="ic-eyebrow">AXIMA EQUIPMENT CERTIFICATION TRACKER &mdash; EXTRACT</div>
-        <table style="width:100%;border-collapse:collapse;margin-top:0.6rem;">
-          <thead>
-            <tr style="border-bottom:1px solid var(--border);">
-              <th style="text-align:left;padding:0.35rem 0.4rem;font-family:var(--mono);font-size:0.66rem;letter-spacing:0.1em;color:var(--muted);font-weight:600;">MAJOR EQUIPMENT</th>
-              <th style="text-align:center;padding:0.35rem 0.4rem;font-family:var(--mono);font-size:0.66rem;letter-spacing:0.1em;color:var(--muted);font-weight:600;">COC</th>
-              <th style="text-align:center;padding:0.35rem 0.4rem;font-family:var(--mono);font-size:0.66rem;letter-spacing:0.1em;color:var(--muted);font-weight:600;">CAT III DUE</th>
-              <th style="text-align:center;padding:0.35rem 0.4rem;font-family:var(--mono);font-size:0.66rem;letter-spacing:0.1em;color:var(--muted);font-weight:600;">CAT IV DUE</th>
-            </tr>
-          </thead>
-          <tbody style="font-size:0.85rem;">
-            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.42rem 0.4rem;color:var(--text);font-weight:600;">Mast / Derrick</td><td style="text-align:center;padding:0.42rem 0.4rem;"><span style="font-family:var(--mono);font-size:0.68rem;padding:0.16rem 0.4rem;border-radius:999px;background:rgba(184,120,15,0.14);color:#b8780f;font-weight:600;">NONE</span></td><td style="text-align:center;padding:0.42rem 0.4rem;"><span style="font-family:var(--mono);font-size:0.68rem;padding:0.16rem 0.4rem;border-radius:999px;background:rgba(196,30,58,0.12);color:var(--bad);font-weight:600;">2025-04</span></td><td style="text-align:center;padding:0.42rem 0.4rem;"><span style="font-family:var(--mono);font-size:0.68rem;padding:0.16rem 0.4rem;border-radius:999px;background:rgba(31,122,76,0.14);color:var(--good);font-weight:600;">2030-12</span></td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.42rem 0.4rem;color:var(--text);font-weight:600;">Top Drive System</td><td style="text-align:center;padding:0.42rem 0.4rem;"><span style="font-family:var(--mono);font-size:0.68rem;padding:0.16rem 0.4rem;border-radius:999px;background:rgba(184,120,15,0.14);color:#b8780f;font-weight:600;">NONE</span></td><td style="text-align:center;padding:0.42rem 0.4rem;"><span style="font-family:var(--mono);font-size:0.68rem;padding:0.16rem 0.4rem;border-radius:999px;background:rgba(196,30,58,0.12);color:var(--bad);font-weight:600;">2021-10</span></td><td style="text-align:center;padding:0.42rem 0.4rem;"><span style="font-family:var(--mono);font-size:0.68rem;padding:0.16rem 0.4rem;border-radius:999px;background:rgba(196,30,58,0.12);color:var(--bad);font-weight:600;">2026-03</span></td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.42rem 0.4rem;color:var(--text);font-weight:600;">Crown Block</td><td style="text-align:center;padding:0.42rem 0.4rem;"><span style="font-family:var(--mono);font-size:0.68rem;padding:0.16rem 0.4rem;border-radius:999px;background:rgba(184,120,15,0.14);color:#b8780f;font-weight:600;">NONE</span></td><td style="text-align:center;padding:0.42rem 0.4rem;color:var(--muted);">&mdash;</td><td style="text-align:center;padding:0.42rem 0.4rem;"><span style="font-family:var(--mono);font-size:0.68rem;padding:0.16rem 0.4rem;border-radius:999px;background:rgba(196,30,58,0.12);color:var(--bad);font-weight:600;">2025-11</span></td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.42rem 0.4rem;color:var(--text);font-weight:600;">Drawworks (incl. brake band)</td><td style="text-align:center;padding:0.42rem 0.4rem;"><span style="font-family:var(--mono);font-size:0.68rem;padding:0.16rem 0.4rem;border-radius:999px;background:rgba(184,120,15,0.14);color:#b8780f;font-weight:600;">NONE</span></td><td style="text-align:center;padding:0.42rem 0.4rem;"><span style="font-family:var(--mono);font-size:0.68rem;padding:0.16rem 0.4rem;border-radius:999px;background:rgba(196,30,58,0.12);color:var(--bad);font-weight:600;">2023-08</span></td><td style="text-align:center;padding:0.42rem 0.4rem;color:var(--muted);">&mdash;</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.42rem 0.4rem;color:var(--text);font-weight:600;">Deadline Anchor</td><td style="text-align:center;padding:0.42rem 0.4rem;"><span style="font-family:var(--mono);font-size:0.68rem;padding:0.16rem 0.4rem;border-radius:999px;background:rgba(184,120,15,0.14);color:#b8780f;font-weight:600;">NONE</span></td><td style="text-align:center;padding:0.42rem 0.4rem;"><span style="font-family:var(--mono);font-size:0.68rem;padding:0.16rem 0.4rem;border-radius:999px;background:rgba(196,30,58,0.12);color:var(--bad);font-weight:600;">2021-07</span></td><td style="text-align:center;padding:0.42rem 0.4rem;"><span style="font-family:var(--mono);font-size:0.68rem;padding:0.16rem 0.4rem;border-radius:999px;background:rgba(196,30,58,0.12);color:var(--bad);font-weight:600;">2026-01</span></td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.42rem 0.4rem;color:var(--text);font-weight:600;">Single-Ram BOP 13-5/8&Prime; 10k</td><td style="text-align:center;padding:0.42rem 0.4rem;"><span style="font-family:var(--mono);font-size:0.68rem;padding:0.16rem 0.4rem;border-radius:999px;background:rgba(184,120,15,0.14);color:#b8780f;font-weight:600;">NONE</span></td><td style="text-align:center;padding:0.42rem 0.4rem;color:var(--muted);">&mdash;</td><td style="text-align:center;padding:0.42rem 0.4rem;"><span style="font-family:var(--mono);font-size:0.68rem;padding:0.16rem 0.4rem;border-radius:999px;background:rgba(196,30,58,0.12);color:var(--bad);font-weight:600;">2025-02</span></td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.42rem 0.4rem;color:var(--text);font-weight:600;">Double-Ram BOP 13-5/8&Prime; 10k</td><td style="text-align:center;padding:0.42rem 0.4rem;"><span style="font-family:var(--mono);font-size:0.68rem;padding:0.16rem 0.4rem;border-radius:999px;background:rgba(184,120,15,0.14);color:#b8780f;font-weight:600;">NONE</span></td><td style="text-align:center;padding:0.42rem 0.4rem;color:var(--muted);">&mdash;</td><td style="text-align:center;padding:0.42rem 0.4rem;"><span style="font-family:var(--mono);font-size:0.68rem;padding:0.16rem 0.4rem;border-radius:999px;background:rgba(196,30,58,0.12);color:var(--bad);font-weight:600;">2025-05</span></td></tr>
-            <tr><td style="padding:0.42rem 0.4rem;color:var(--text);font-weight:600;">Rotary Table</td><td style="text-align:center;padding:0.42rem 0.4rem;"><span style="font-family:var(--mono);font-size:0.68rem;padding:0.16rem 0.4rem;border-radius:999px;background:rgba(184,120,15,0.14);color:#b8780f;font-weight:600;">NONE</span></td><td style="text-align:center;padding:0.42rem 0.4rem;color:var(--muted);">&mdash;</td><td style="text-align:center;padding:0.42rem 0.4rem;"><span style="font-family:var(--mono);font-size:0.68rem;padding:0.16rem 0.4rem;border-radius:999px;background:rgba(31,122,76,0.14);color:var(--good);font-weight:600;">2029-09</span></td></tr>
-          </tbody>
-        </table>
-        <div style="margin-top:0.6rem;font-size:0.78rem;color:var(--muted);line-height:1.4;">Red = past due vs survey date. A further 28 items (slips, elevators, tongs, RAM blocks, drill line&hellip;) carry no CoC and no inspection dates at all.</div>
-      </div>
-
-      <!-- findings -->
-      <div class="insight-card">
-        <div class="ic-eyebrow">FINDINGS &middot; CERTIFICATION</div>
-        <div style="margin-top:0.7rem;display:flex;flex-direction:column;gap:0.55rem;">
-          <div style="display:flex;align-items:flex-start;gap:0.55rem;"><span style="font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;padding:0.18rem 0.4rem;border-radius:3px;background:rgba(196,30,58,0.12);color:var(--bad);flex-shrink:0;margin-top:0.22rem;font-weight:600;">CRIT</span><p style="font-size:0.93rem;color:var(--text2);line-height:1.4;"><span style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">SIG-2828 &middot; </span>Most major equipment <strong style="color:var(--text);">missing CAT IV inspection &amp; recertification</strong> &mdash; a proven source of major NPT and incidents. <span style="color:var(--muted);">(LUG)</span></p></div>
-          <div style="display:flex;align-items:flex-start;gap:0.55rem;"><span style="font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;padding:0.18rem 0.4rem;border-radius:3px;background:rgba(196,30,58,0.12);color:var(--bad);flex-shrink:0;margin-top:0.22rem;font-weight:600;">CRIT</span><p style="font-size:0.93rem;color:var(--text2);line-height:1.4;"><span style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">SIG-2685 &middot; </span>BCU certification data book dated <strong style="color:var(--text);">2008</strong>; no readily available recert evidence within the 5-year window. <span style="color:var(--muted);">(AXIMA)</span></p></div>
-          <div style="display:flex;align-items:flex-start;gap:0.55rem;"><span style="font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;padding:0.18rem 0.4rem;border-radius:3px;background:rgba(184,120,15,0.14);color:#b8780f;flex-shrink:0;margin-top:0.22rem;font-weight:600;">MAJ</span><p style="font-size:0.93rem;color:var(--text2);line-height:1.4;"><span style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">SIG-2706 &middot; </span><strong style="color:var(--text);">No centralized certification system</strong> &mdash; hard copies in OIM office plus scattered SharePoint folders editable by anyone. <span style="color:var(--muted);">(AXIMA)</span></p></div>
-          <div style="display:flex;align-items:flex-start;gap:0.55rem;"><span style="font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;padding:0.18rem 0.4rem;border-radius:3px;background:rgba(184,120,15,0.14);color:#b8780f;flex-shrink:0;margin-top:0.22rem;font-weight:600;">MAJ</span><p style="font-size:0.93rem;color:var(--text2);line-height:1.4;"><span style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">SIG-2682/83 &middot; </span>Annular-BOP recert package contains <strong style="color:var(--text);">data errors</strong>; current certificate <strong style="color:var(--text);">expires Jan 2026</strong>. <span style="color:var(--muted);">(AXIMA)</span></p></div>
-        </div>
-        <div style="margin-top:0.85rem;padding-top:0.6rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--muted);">Source: AXIMA WCE Equipment Certification Tracker (2025-11-11) &amp; Survey Findings</div>
-      </div>
-    </div>
-      <div style="margin-top:1rem;text-align:left;"><a href="#src-rootcause" style="font-family:'Source Serif 4',Georgia,serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to Root Cause</a></div>
-</section>
-
-  <!-- ========================= ANNEX 03 · SURVEY EVIDENCE · INVENTORY ========================= -->
-  <section class="slide" id="annex-inv" data-title="Annex &middot; Survey Evidence &middot; Inventory &amp; E&amp;O">
-    <div class="eyebrow reveal">Annex &middot; On-Site Survey Evidence &middot; Inventory &amp; Excess / Obsolete Stock</div>
-    <h1 class="slide-title reveal">Most of the warehouse never moves &mdash;<br><em>$3.0M of $5.1M has sat idle for 5 years.</em></h1>
-    <p class="lede reveal d1" style="max-width:none;">The LUG materials analysis shows 59% of inventory value as dead stock, while physical condition and records on the rig don&rsquo;t match the system.</p>
-
-    <div class="reveal d2" style="margin-top:1.1rem;display:grid;grid-template-columns:1.05fr 1fr;gap:1.1rem;align-items:start;">
-      <!-- two stacked photos -->
-      <div style="display:flex;flex-direction:column;gap:0.7rem;">
-        <div style="position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#f5f6f8;">
-          <img src="survey-evidence/axima-store-shelves.jpg" alt="AXIMA store overcrowded shelves" style="display:block;width:100%;height:auto;max-height:13rem;object-fit:cover;"/>
-          <div style="position:absolute;left:0;right:0;bottom:0;padding:0.55rem 0.85rem;background:linear-gradient(0deg,rgba(15,27,51,0.92) 0%,rgba(15,27,51,0.5) 60%,rgba(15,27,51,0) 100%);color:#fff;">
-            <div style="font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;color:#8fb7ff;">AXIMA STORE &middot; SIG-2666</div>
-            <div style="font-size:0.84rem;margin-top:0.15rem;line-height:1.35;">Overcrowded shelves &mdash; excess slow-moving / non-fit parts, packing elements exposed to light &amp; heat.</div>
-          </div>
-        </div>
-        <div style="position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#f5f6f8;">
-          <img src="survey-evidence/axima-store-atwood-labels.jpg" alt="AXIMA store Atwood stock labels" style="display:block;width:100%;height:auto;max-height:13rem;object-fit:cover;"/>
-          <div style="position:absolute;left:0;right:0;bottom:0;padding:0.55rem 0.85rem;background:linear-gradient(0deg,rgba(15,27,51,0.92) 0%,rgba(15,27,51,0.5) 60%,rgba(15,27,51,0) 100%);color:#fff;">
-            <div style="font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;color:#8fb7ff;">AXIMA STORE &middot; SIG-2661</div>
-            <div style="font-size:0.84rem;margin-top:0.15rem;line-height:1.35;">Spares still carrying previous-owner &ldquo;ATWOOD&rdquo; stock labels &mdash; no SAP ID, poor bin information.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- findings -->
-      <div class="insight-card">
-        <div class="ic-eyebrow">FINDINGS &middot; INVENTORY &amp; E&amp;O</div>
-        <div style="margin-top:0.7rem;display:flex;flex-direction:column;gap:0.55rem;">
-          <div style="display:flex;align-items:flex-start;gap:0.55rem;"><span style="font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;padding:0.18rem 0.4rem;border-radius:3px;background:rgba(196,30,58,0.12);color:var(--bad);flex-shrink:0;margin-top:0.22rem;font-weight:600;">CRIT</span><p style="font-size:0.93rem;color:var(--text2);line-height:1.4;"><span style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">SIG-2663 &middot; </span><strong style="color:var(--text);">Expired rubber well-control spares</strong> (BOP ram seals, accumulator bladders) still on the shelves. <span style="color:var(--muted);">(AXIMA)</span></p></div>
-          <div style="display:flex;align-items:flex-start;gap:0.55rem;"><span style="font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;padding:0.18rem 0.4rem;border-radius:3px;background:rgba(184,120,15,0.14);color:#b8780f;flex-shrink:0;margin-top:0.22rem;font-weight:600;">MAJ</span><p style="font-size:0.93rem;color:var(--text2);line-height:1.4;"><span style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">SIG-2661 &middot; </span>Most parts still carry the <strong style="color:var(--text);">previous owner&rsquo;s labels</strong> with no SAP ID &mdash; movements impossible to follow. <span style="color:var(--muted);">(AXIMA)</span></p></div>
-          <div style="display:flex;align-items:flex-start;gap:0.55rem;"><span style="font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;padding:0.18rem 0.4rem;border-radius:3px;background:rgba(184,120,15,0.14);color:#b8780f;flex-shrink:0;margin-top:0.22rem;font-weight:600;">MAJ</span><p style="font-size:0.93rem;color:var(--text2);line-height:1.4;"><span style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">SIG-2666 &middot; </span>Excess quantities causing shelf congestion (e.g. <strong style="color:var(--text);">4 nitrogen precharge kits</strong>). <span style="color:var(--muted);">(AXIMA)</span></p></div>
-          <div style="display:flex;align-items:flex-start;gap:0.55rem;"><span style="font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;padding:0.18rem 0.4rem;border-radius:3px;background:rgba(184,120,15,0.14);color:#b8780f;flex-shrink:0;margin-top:0.22rem;font-weight:600;">MAJ</span><p style="font-size:0.93rem;color:var(--text2);line-height:1.4;"><span style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">SIG-2814/15 &middot; </span>Rig MB52 inventory <strong style="color:var(--text);">inaccurate vs SAP</strong>; reconciled only once a year by bulk update. <span style="color:var(--muted);">(LUG)</span></p></div>
-        </div>
-        <div style="margin-top:0.85rem;padding-top:0.6rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--muted);">Source: LUG Materials Analysis (MB52, 2026-03-10) &amp; Survey Findings</div>
-      </div>
-    </div>
-      <div style="margin-top:1rem;text-align:left;"><a href="#src-inventory" style="font-family:'Source Serif 4',Georgia,serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to Inventory</a></div>
-</section>
-
-  <!-- ========================= ANNEX 04 · SURVEY EVIDENCE · SAP USAGE ========================= -->
-  <section class="slide" id="annex-sap" data-title="Annex &middot; Survey Evidence &middot; SAP Usage">
-    <div class="eyebrow reveal">Annex &middot; On-Site Survey Evidence &middot; System Usage &middot; SAP</div>
-    <h1 class="slide-title reveal">SAP installed but used as a catalogue &mdash;<br><em>issue-outs &amp; purchasing run on email &amp; Excel.</em></h1>
-    <p class="lede reveal d1" style="max-width:none;">A fully operational SAP system is bypassed for day-to-day material movements, so inventory and spend data can&rsquo;t be trusted.</p>
-
-    <div class="reveal d2" style="margin-top:1.1rem;display:grid;grid-template-columns:1.05fr 1fr;gap:1.1rem;align-items:start;">
-      <!-- two stacked photos -->
-      <div style="display:flex;flex-direction:column;gap:0.7rem;">
-        <div style="position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#f5f6f8;">
-          <img src="survey-evidence/lug-sap-catalogue.jpg" alt="LUG SAP screen used as catalogue" style="display:block;width:100%;height:auto;max-height:13rem;object-fit:cover;"/>
-          <div style="position:absolute;left:0;right:0;bottom:0;padding:0.55rem 0.85rem;background:linear-gradient(0deg,rgba(15,27,51,0.92) 0%,rgba(15,27,51,0.5) 60%,rgba(15,27,51,0) 100%);color:#fff;">
-            <div style="font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;color:#8fb7ff;">SIG-2811 &middot; MAJOR</div>
-            <div style="font-size:0.84rem;margin-top:0.15rem;line-height:1.35;">SAP open on the rig &mdash; used only to look up part IDs, not to record movements.</div>
-          </div>
-        </div>
-        <div style="position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#f5f6f8;">
-          <img src="survey-evidence/lug-mr-excel-email.jpg" alt="LUG material requests on Excel" style="display:block;width:100%;height:auto;max-height:13rem;object-fit:cover;"/>
-          <div style="position:absolute;left:0;right:0;bottom:0;padding:0.55rem 0.85rem;background:linear-gradient(0deg,rgba(15,27,51,0.92) 0%,rgba(15,27,51,0.5) 60%,rgba(15,27,51,0) 100%);color:#fff;">
-            <div style="font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;color:#8fb7ff;">SIG-2825 &middot; MAJOR</div>
-            <div style="font-size:0.84rem;margin-top:0.15rem;line-height:1.35;">Material requests still raised on manual Excel sheets and email.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- findings -->
-      <div class="insight-card">
-        <div class="ic-eyebrow">FINDINGS &middot; SYSTEM &amp; PROCESS</div>
-        <div style="margin-top:0.7rem;display:flex;flex-direction:column;gap:0.55rem;">
-          <div style="display:flex;align-items:flex-start;gap:0.55rem;"><span style="font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;padding:0.18rem 0.4rem;border-radius:3px;background:rgba(196,30,58,0.12);color:var(--bad);flex-shrink:0;margin-top:0.22rem;font-weight:600;">CRIT</span><p style="font-size:0.93rem;color:var(--text2);line-height:1.4;"><span style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">SIG-2651/52 &middot; </span><strong style="color:var(--text);">Large physical-vs-SAP discrepancies</strong>; an 18-month review shows long gaps then <strong style="color:var(--text);">bulk readjustment of hundreds of items</strong>. <span style="color:var(--muted);">(AXIMA)</span></p></div>
-          <div style="display:flex;align-items:flex-start;gap:0.55rem;"><span style="font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;padding:0.18rem 0.4rem;border-radius:3px;background:rgba(184,120,15,0.14);color:#b8780f;flex-shrink:0;margin-top:0.22rem;font-weight:600;">MAJ</span><p style="font-size:0.93rem;color:var(--text2);line-height:1.4;"><span style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">SIG-2811 &middot; </span>Operational SAP used <strong style="color:var(--text);">only as a catalogue</strong> to look up part SAP IDs &mdash; no issue-outs entered. <span style="color:var(--muted);">(LUG)</span></p></div>
-          <div style="display:flex;align-items:flex-start;gap:0.55rem;"><span style="font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;padding:0.18rem 0.4rem;border-radius:3px;background:rgba(184,120,15,0.14);color:#b8780f;flex-shrink:0;margin-top:0.22rem;font-weight:600;">MAJ</span><p style="font-size:0.93rem;color:var(--text2);line-height:1.4;"><span style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">SIG-2813 &middot; </span>Materials man keeps a <strong style="color:var(--text);">personal Excel inventory</strong>, not shared with SCM nor updated in SAP. <span style="color:var(--muted);">(LUG)</span></p></div>
-          <div style="display:flex;align-items:flex-start;gap:0.55rem;"><span style="font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;padding:0.18rem 0.4rem;border-radius:3px;background:rgba(184,120,15,0.14);color:#b8780f;flex-shrink:0;margin-top:0.22rem;font-weight:600;">MAJ</span><p style="font-size:0.93rem;color:var(--text2);line-height:1.4;"><span style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">SIG-2805/06 &middot; </span>Whole of February: only 2 Excel issue-out files, <strong style="color:var(--text);">26 line items for the entire month</strong>. <span style="color:var(--muted);">(LUG)</span></p></div>
-          <div style="display:flex;align-items:flex-start;gap:0.55rem;"><span style="font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;padding:0.18rem 0.4rem;border-radius:3px;background:rgba(184,120,15,0.14);color:#b8780f;flex-shrink:0;margin-top:0.22rem;font-weight:600;">MAJ</span><p style="font-size:0.93rem;color:var(--text2);line-height:1.4;"><span style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">SIG-2825 &middot; </span>MR-to-PO run on <strong style="color:var(--text);">manual Excel &amp; email</strong> &mdash; delays, duplications and omissions. <span style="color:var(--muted);">(LUG)</span></p></div>
-        </div>
-        <div style="margin-top:0.85rem;padding-top:0.6rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--muted);">Source: AXIMA &amp; LUG Survey Findings registers</div>
-      </div>
-    </div>
-      <div style="margin-top:1rem;text-align:left;"><a href="#src-datafoundation" style="font-family:'Source Serif 4',Georgia,serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to Data Foundation</a></div>
-</section>
-
-  <!-- ========================= ANNEX 07 · WORKFORCE DETAIL ========================= -->
-  <section class="slide" id="annex-workforce" data-title="Annex &middot; Workforce Detail">
-    <div class="eyebrow reveal">Annex &middot; Workforce &middot; Manning, Cost &amp; Organizational Evolution &middot; FY 2025</div>
-    <h1 class="slide-title reveal">Slight overmanning on jackups &mdash;<br><em>high overmanning <span style="color:var(--text);font-style:normal;">and</span> workforce costs on land rigs.</em></h1>
-
-    <div class="reveal d2" style="overflow-x:auto;margin-top:0.4rem;">
-      <table class="bench-table" style="font-size:1.008rem;">
-        <thead>
-          <tr><th>Rig</th><th>Type</th><th>Crew (rig-resident)</th><th>Industry peer</th><th>Excess</th><th>Expat % of rev</th><th>Flag</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><span class="rig-name">AXIMA</span></td><td><span class="rig-type" style="color:var(--premium);">Premium JU</span></td><td>106</td><td>100</td><td class="val-amber">+6</td><td>9.6%</td><td class="val-amber">Modest overmanning</td></tr>
-          <tr><td><span class="rig-name">NUADA</span></td><td><span class="rig-type" style="color:var(--standard);">Standard JU</span></td><td>96</td><td>95</td><td class="val-green">+1</td><td>13.9%</td><td class="val-green">At peer &middot; expat mix normal for JU</td></tr>
-          <tr><td><span class="rig-name">BANBA</span></td><td><span class="rig-type" style="color:var(--standard);">Standard JU</span></td><td>104</td><td>95</td><td class="val-amber">+9</td><td>11.5%</td><td class="val-amber">Modest overmanning</td></tr>
-          <tr><td><span class="rig-name">LUG</span></td><td><span class="rig-type" style="color:var(--platform);">Platform</span></td><td>66</td><td>60</td><td class="val-amber">+6</td><td>9.8%</td><td class="val-amber">Modest overmanning</td></tr>
-          <tr><td><span class="rig-name">MIDIR</span></td><td><span class="rig-type" style="color:var(--land);">Land</span></td><td>72</td><td>60</td><td class="val-red">+12</td><td class="val-red">16.2%</td><td class="val-red">&#9888; Overmanning + expat overload</td></tr>
-          <tr><td><span class="rig-name">DRAVUS</span></td><td><span class="rig-type" style="color:var(--land);">Land</span></td><td>66</td><td>60</td><td class="val-amber">+6</td><td class="val-red">10.5%</td><td class="val-red">&#9888; Modest overmanning + expat overload</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-      <div style="margin-top:1.3rem;text-align:left;"><a href="#src-workforce" style="font-family:'Source Serif 4',Georgia,serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to Workforce</a></div>
-</section>
 
 
 

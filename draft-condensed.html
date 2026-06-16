@@ -3271,6 +3271,8 @@
   // Shrink each slide title just enough that no line wraps (keeps explicit <br> breaks, prevents auto-wrap)
   function fitTitles(){
     document.querySelectorAll('.slide-title').forEach(h => {
+      // collapse any forced line breaks so the whole title sits on one line, then size to fit
+      h.querySelectorAll('br').forEach(function(b){ b.replaceWith(document.createTextNode(' ')); });
       h.style.whiteSpace = 'nowrap';
       h.style.fontSize = '';
       var size = parseFloat(getComputedStyle(h).fontSize);

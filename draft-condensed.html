@@ -1584,44 +1584,6 @@
 
 </section>
 
-  <!-- ========================= PER-RIG SPEND MIX ========================= -->
-  <section class="slide" id="spendmix" data-title="Per-Rig Spend Mix">
-    <div class="eyebrow reveal">Per-Rig Spend Mix &middot; % of Theoretical Revenue &middot; FY 2025</div>
-    <h1 class="slide-title reveal">AXIMA, MIDIR and DRAVUS run high on spare parts &mdash;<br><em>land rigs high on manning.</em></h1>
-    <div class="reveal d2" style="overflow-x:auto;margin-top:0.6rem;">
-      <table class="bench-table" style="font-size:1.032rem;">
-        <thead>
-          <tr><th rowspan="2">Rig</th><th colspan="3" style="border-left:2px solid var(--border3);text-align:center;">Spare Parts &middot; % of revenue</th><th colspan="3" style="border-left:2px solid var(--border3);text-align:center;">Workforce &middot; % of revenue</th></tr>
-          <tr><th style="border-left:2px solid var(--border3);text-align:right;">2025</th><th style="text-align:right;">2024</th><th style="text-align:right;">&Delta; pp</th><th style="border-left:2px solid var(--border3);text-align:right;">2025</th><th style="text-align:right;">2024</th><th style="text-align:right;">&Delta; pp</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><span class="rig-name">AXIMA</span><span class="rig-type" style="color:var(--premium);">Premium JU</span></td>
-            <td class="val-red" style="border-left:2px solid var(--border3);"><strong>15.1%</strong></td><td>9.1%</td><td class="val-red">+6.0</td>
-            <td style="border-left:2px solid var(--border3);">31.7%</td><td>30.1%</td><td class="val-red">+1.6</td></tr>
-          <tr><td><span class="rig-name">BANBA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td>
-            <td style="border-left:2px solid var(--border3);">11.2%</td><td>21.7%</td><td class="val-green">&minus;10.5</td>
-            <td style="border-left:2px solid var(--border3);">33.7%</td><td>37.7%</td><td class="val-green">&minus;4.0</td></tr>
-          <tr><td><span class="rig-name">NUADA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td>
-            <td class="val-green" style="border-left:2px solid var(--border3);">10.0%</td><td>17.0%</td><td class="val-green">&minus;7.0</td>
-            <td class="val-green" style="border-left:2px solid var(--border3);">30.0%</td><td>33.5%</td><td class="val-green">&minus;3.5</td></tr>
-          <tr><td><span class="rig-name">LUG</span><span class="rig-type" style="color:var(--platform);">Platform</span></td>
-            <td style="border-left:2px solid var(--border3);">12.9%</td><td>11.7%</td><td class="val-red">+1.2</td>
-            <td style="border-left:2px solid var(--border3);">32.0%</td><td>47.9%</td><td class="val-green">&minus;15.9</td></tr>
-          <tr><td><span class="rig-name">MIDIR</span><span class="rig-type" style="color:var(--land);">Land</span></td>
-            <td class="val-red" style="border-left:2px solid var(--border3);">25.5%</td><td>13.8%</td><td class="val-red">+11.7</td>
-            <td class="val-red" style="border-left:2px solid var(--border3);">51.9%</td><td>68.5%</td><td class="val-green">&minus;16.6</td></tr>
-          <tr><td><span class="rig-name">DRAVUS</span><span class="rig-type" style="color:var(--land);">Land</span></td>
-            <td class="val-red" style="border-left:2px solid var(--border3);">23.1%</td><td>19.8%</td><td class="val-red">+3.3</td>
-            <td class="val-red" style="border-left:2px solid var(--border3);">40.9%</td><td>45.4%</td><td class="val-green">&minus;4.5</td></tr>
-          <tr style="background:rgba(232,160,32,0.08);font-weight:600;border-top:2px solid var(--border3);">
-            <td><strong>Fleet</strong></td>
-            <td style="border-left:2px solid var(--border3);">14.5%</td><td>14.7%</td><td class="val-green">&minus;0.2</td>
-            <td style="border-left:2px solid var(--border3);">34.3%</td><td>38.6%</td><td class="val-green">&minus;4.3</td></tr>
-        </tbody>
-      </table>
-    </div>
-      <div style="margin-top:1rem;text-align:left;"><a href="#src-rdm" style="font-family:'Source Serif 4',Georgia,serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to RDM Evolution</a></div>
-</section>
 
   <!-- ========================= 9b · HQ SUPPORT · UNDERMANNING ========================= -->
   <section class="slide" id="src-hqsupport" data-title="HQ Support &middot; Below Peers">
@@ -1727,7 +1689,63 @@
         <p class="body">Adds back operating spend booked as CAPEX, putting every rig and peer on a like-for-like basis.</p>
       </div>
     </div>
+    <div class="reveal d3" style="margin-top:1.4rem;">
+      <div style="font-family:var(--mono);font-size:0.74rem;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;">The top line of the exercise &middot; theoretical revenue per rig &middot; FY 2025</div>
+      <style>
+        #rdm-top{width:100%;border-collapse:collapse;table-layout:fixed;font-variant-numeric:tabular-nums;}
+        #rdm-top th,#rdm-top td{font-size:1.02rem;padding:0.5rem 0.4rem;text-align:right;border-bottom:1px solid var(--border2);white-space:nowrap;color:var(--text);}
+        #rdm-top th{font-family:'Source Serif 4',Georgia,serif;font-weight:400;color:var(--muted);font-size:0.82rem;letter-spacing:0.04em;text-transform:uppercase;}
+        #rdm-top td:first-child,#rdm-top th:first-child{text-align:left;width:20%;white-space:normal;}
+      </style>
+      <table id="rdm-top">
+        <thead><tr><th>P&amp;L Line</th><th>AXIMA</th><th>BANBA</th><th>NUADA</th><th>LUG</th><th>MIDIR</th><th>DRAVUS</th><th>Fleet</th></tr></thead>
+        <tbody>
+          <tr><td>Theoretical Day Rate</td><td>$130K</td><td>$100K</td><td>$100K</td><td>$70K</td><td>$40K</td><td>$40K</td><td>&mdash;</td></tr>
+          <tr><td>Billable Operating Days</td><td>301.6</td><td>333.2</td><td>343.7</td><td>340.5</td><td>339.8</td><td>353.1</td><td>2,012</td></tr>
+          <tr style="font-weight:700;"><td>Theoretical Revenue</td><td>$39.2M</td><td>$33.3M</td><td>$34.4M</td><td>$23.8M</td><td>$13.6M</td><td>$14.1M</td><td>$158.5M</td></tr>
+        </tbody>
+      </table>
+    </div>
   </section>
+
+  <!-- ========================= PER-RIG SPEND MIX ========================= -->
+  <section class="slide" id="spendmix" data-title="Per-Rig Spend Mix">
+    <div class="eyebrow reveal">Per-Rig Spend Mix &middot; % of Theoretical Revenue &middot; FY 2025</div>
+    <h1 class="slide-title reveal">AXIMA, MIDIR and DRAVUS run high on spare parts &mdash;<br><em>land rigs high on manning.</em></h1>
+    <div class="reveal d2" style="overflow-x:auto;margin-top:0.6rem;">
+      <table class="bench-table" style="font-size:1.032rem;">
+        <thead>
+          <tr><th rowspan="2">Rig</th><th colspan="3" style="border-left:2px solid var(--border3);text-align:center;">Spare Parts &middot; % of revenue</th><th colspan="3" style="border-left:2px solid var(--border3);text-align:center;">Workforce &middot; % of revenue</th></tr>
+          <tr><th style="border-left:2px solid var(--border3);text-align:right;">2025</th><th style="text-align:right;">2024</th><th style="text-align:right;">&Delta; pp</th><th style="border-left:2px solid var(--border3);text-align:right;">2025</th><th style="text-align:right;">2024</th><th style="text-align:right;">&Delta; pp</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="rig-name">AXIMA</span><span class="rig-type" style="color:var(--premium);">Premium JU</span></td>
+            <td class="val-red" style="border-left:2px solid var(--border3);"><strong>15.1%</strong></td><td>9.1%</td><td class="val-red">+6.0</td>
+            <td style="border-left:2px solid var(--border3);">31.7%</td><td>30.1%</td><td class="val-red">+1.6</td></tr>
+          <tr><td><span class="rig-name">BANBA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td>
+            <td style="border-left:2px solid var(--border3);">11.2%</td><td>21.7%</td><td class="val-green">&minus;10.5</td>
+            <td style="border-left:2px solid var(--border3);">33.7%</td><td>37.7%</td><td class="val-green">&minus;4.0</td></tr>
+          <tr><td><span class="rig-name">NUADA</span><span class="rig-type" style="color:var(--standard);">Standard JU</span></td>
+            <td class="val-green" style="border-left:2px solid var(--border3);">10.0%</td><td>17.0%</td><td class="val-green">&minus;7.0</td>
+            <td class="val-green" style="border-left:2px solid var(--border3);">30.0%</td><td>33.5%</td><td class="val-green">&minus;3.5</td></tr>
+          <tr><td><span class="rig-name">LUG</span><span class="rig-type" style="color:var(--platform);">Platform</span></td>
+            <td style="border-left:2px solid var(--border3);">12.9%</td><td>11.7%</td><td class="val-red">+1.2</td>
+            <td style="border-left:2px solid var(--border3);">32.0%</td><td>47.9%</td><td class="val-green">&minus;15.9</td></tr>
+          <tr><td><span class="rig-name">MIDIR</span><span class="rig-type" style="color:var(--land);">Land</span></td>
+            <td class="val-red" style="border-left:2px solid var(--border3);">25.5%</td><td>13.8%</td><td class="val-red">+11.7</td>
+            <td class="val-red" style="border-left:2px solid var(--border3);">51.9%</td><td>68.5%</td><td class="val-green">&minus;16.6</td></tr>
+          <tr><td><span class="rig-name">DRAVUS</span><span class="rig-type" style="color:var(--land);">Land</span></td>
+            <td class="val-red" style="border-left:2px solid var(--border3);">23.1%</td><td>19.8%</td><td class="val-red">+3.3</td>
+            <td class="val-red" style="border-left:2px solid var(--border3);">40.9%</td><td>45.4%</td><td class="val-green">&minus;4.5</td></tr>
+          <tr style="background:rgba(232,160,32,0.08);font-weight:600;border-top:2px solid var(--border3);">
+            <td><strong>Fleet</strong></td>
+            <td style="border-left:2px solid var(--border3);">14.5%</td><td>14.7%</td><td class="val-green">&minus;0.2</td>
+            <td style="border-left:2px solid var(--border3);">34.3%</td><td>38.6%</td><td class="val-green">&minus;4.3</td></tr>
+        </tbody>
+      </table>
+    </div>
+      <div style="margin-top:1rem;text-align:left;"><a href="#src-rdm" style="font-family:'Source Serif 4',Georgia,serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sigma);text-decoration:none;border:1px solid var(--sigma);border-radius:4px;padding:0.32rem 0.7rem;display:inline-block;">← Back to RDM Evolution</a></div>
+</section>
 
   <!-- ========================= 5 · PER-RIG P&L ========================= -->
   <section class="slide" data-title="2025 Per-Rig P&amp;L">
@@ -2463,7 +2481,7 @@
       <div class="mk" style="border-left-color:var(--bad);">
         <div class="mv" style="color:var(--bad);">106</div>
         <div class="ml">FTE / rig</div>
-        <div class="md">Premium peer 96 &middot; +10 over</div>
+        <div class="md">Premium peer 96 &middot; +10 over (mostly back-charged)</div>
       </div>
       <div class="mk" style="border-left-color:#b8780f;">
         <div class="mv" style="color:#b8780f;">$5.0M</div>
@@ -2486,7 +2504,7 @@
         <div class="mk" style="border-left-color:var(--good);"><div class="mv" style="color:var(--good);">$100K</div><div class="ml">Dayrate</div><div class="md">Shelf $83K &middot; Valaris JU $138K</div></div>
         <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">8.7%</div><div class="ml">NPT</div><div class="md">Peer median 3.0% &middot; Shelf best 0.6%</div></div>
         <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">36.3%</div><div class="ml">Rig Direct Margin</div><div class="md">Peer median 42.9% &middot; gap &minus;6.6 pp</div></div>
-        <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">104</div><div class="ml">FTE / rig</div><div class="md">Standard peer 96 &middot; +8 over</div></div>
+        <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">104</div><div class="ml">FTE / rig</div><div class="md">Standard peer 96 &middot; +8 over (mostly back-charged)</div></div>
         <div class="mk" style="border-left-color:var(--bad);"><div class="mv" style="color:var(--bad);">$9.0M</div><div class="ml">Inventory</div><div class="md">Best-practice mark $2.5&ndash;3.0M &middot; ~3&times; over</div></div>
       </div>
     </div>
@@ -2851,11 +2869,11 @@
     <div class="grid-3 reveal d2" style="gap:1.1rem;margin-top:1.4rem;">
       <div class="insight-card" style="border-left-color:var(--bad);">
         <div class="ic-eyebrow">COMPETENCY &amp; TRAINING</div>
-        <h3>Strengthen competency &amp; training matrices (operations, equipment, HSE, supply chain).</h3>
+        <h3 style="font-weight:700;">Strengthen competency &amp; training matrices (operations, equipment, HSE, supply chain).</h3>
       </div>
       <div class="insight-card" style="border-left-color:var(--bad);">
         <div class="ic-eyebrow">HQ RESOURCING</div>
-        <h3>Strengthen HQ competencies &amp; headcount.</h3>
+        <h3 style="font-weight:700;">Strengthen HQ competencies &amp; headcount.</h3>
         <div class="body" style="margin-top:0.5rem;">Recommended minimum:</div>
         <ul class="body" style="margin:0.3rem 0 0;padding-left:1.1rem;line-height:1.6;">
           <li>Drilling supply chain manager</li>
@@ -2864,7 +2882,7 @@
       </div>
       <div class="insight-card">
         <div class="ic-eyebrow">RIG MANNING</div>
-        <h3>Right-size land-rig crews to peer norms.</h3>
+        <h3 style="font-weight:700;">Right-size land-rig crews to peer norms.</h3>
       </div>
     </div>
 </section>

@@ -1,0 +1,76 @@
+name: Daily swing brief
+
+# Pre-market on weekdays. Cron is UTC and does not follow US daylight saving,
+# so this lands at 07:00 ET in summer and 06:00 ET in winter -- both comfortably
+# before the 09:30 open. Adjust if you want a fixed local time year-round.
+on:
+  schedule:
+    - cron: "0 11 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      count:
+        description: "Number of ideas to return"
+        required: false
+        default: "5"
+      min_score:
+        description: "Score threshold (0-100)"
+        required: false
+        default: ""
+
+concurrency:
+  group: swing-brief
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  brief:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # No pip install step: the tool runs on the standard library alone.
+      - name: Show which data sources are reachable from CI
+        env:
+          FINVIZ_AUTH_TOKEN: ${{ secrets.FINVIZ_AUTH_TOKEN }}
+        run: python3 -m swingtrader providers
+
+      - name: Run the tests
+        run: python3 -m unittest discover -s tests -t . -v
+
+      - name: Build today's brief
+        env:
+          FINVIZ_AUTH_TOKEN: ${{ secrets.FINVIZ_AUTH_TOKEN }}
+          SWINGTRADER_EQUITY: ${{ secrets.SWINGTRADER_EQUITY }}
+        run: |
+          ARGS=""
+          if [ -n "${{ inputs.count }}" ]; then ARGS="$ARGS --count ${{ inputs.count }}"; fi
+          if [ -n "${{ inputs.min_score }}" ]; then ARGS="$ARGS --min-score ${{ inputs.min_score }}"; fi
+          if [ -n "$SWINGTRADER_EQUITY" ]; then ARGS="$ARGS --equity $SWINGTRADER_EQUITY"; fi
+          python3 -m swingtrader run --quiet $ARGS
+
+      - name: Summarise into the run page
+        if: always()
+        run: |
+          BRIEF=$(ls -1 out/swing-brief-*.md 2>/dev/null | tail -1)
+          if [ -n "$BRIEF" ]; then
+            cat "$BRIEF" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "No brief was produced -- check the build step." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Keep the brief as an artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: swing-brief-${{ github.run_id }}
+          path: out/
+          retention-days: 30
+          if-no-files-found: warn

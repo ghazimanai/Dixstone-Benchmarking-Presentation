@@ -32,3 +32,12 @@ venv/
 *~
 *.bak
 *.orig
+
+# swingtrader — generated briefs and the local bar cache
+/out/
+.swingtrader-cache/
+.env
+
+# Morningstar manual exports are subscriber data: keep them local.
+data/morningstar/*
+!data/morningstar/README.md

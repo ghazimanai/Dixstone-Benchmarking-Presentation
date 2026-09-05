@@ -52,6 +52,14 @@ April 2026 progress presentation:
 - **Operating days = field operations + rig moves** (the activity denominator)
 - **PO-history join** to re-price GR / MB52 lines lacking valuation
 
+## Also in this repository
+
+`swingtrader/` — a scheduled swing-trade research assistant, unrelated to the
+Dixstone engagement. Runs before the open, screens a configured universe,
+sizes each idea against a real account and writes a daily brief. Standard
+library only. See [`swingtrader/README.md`](swingtrader/README.md) and
+[`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md).
+
 ## Credits
 
 Prepared by Sigma Energy · Engagement QC25377 · May 2026.

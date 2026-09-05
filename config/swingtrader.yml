@@ -1,0 +1,117 @@
+# Daily swing-trade brief — strategy configuration.
+#
+# Everything the screen does is decided here, so a change of mind shows up as
+# a reviewable diff rather than an edit buried in code. No secrets in this
+# file: use ${ENV_VAR} placeholders, they are expanded at load time.
+#
+# Run it with:   python3 -m swingtrader run
+# Check sources: python3 -m swingtrader providers
+
+account:
+  # ---- SET THIS. Every share count in the brief scales off it. ----
+  equity: 100000
+  currency: USD
+
+  # Percent of equity lost if a stop fills exactly. 0.5-1.0 is the normal
+  # range for swing trading; above 2 a run of six losers is a serious hole.
+  risk_per_trade_pct: 0.75
+
+  # Total risk allowed across every open idea at once (portfolio heat).
+  max_open_risk_pct: 4.0
+
+  # Notional ceiling for one name, however good the setup looks.
+  max_position_pct: 20.0
+
+  # Never be more than this share of a name's 20-day average volume --
+  # a position you cannot exit in a day is not really liquid.
+  max_adv_participation_pct: 2.0
+
+universe:
+  benchmark: SPY
+  lookback_days: 400        # ~18 months, enough for a 200-day average plus slope
+  max_symbols: 150          # hard ceiling on the morning's data pulls
+
+  # Names you follow yourself. These are always evaluated, screens or not.
+  watchlist:
+    - AAPL
+    - MSFT
+    - NVDA
+    - AMZN
+    - GOOGL
+    - META
+    - AVGO
+    - AMD
+    - NFLX
+    - CRM
+    - JPM
+    - GS
+    - V
+    - MA
+    - UNH
+    - LLY
+    - XOM
+    - CVX
+    - CAT
+    - DE
+    - HON
+    - WMT
+    - COST
+    - HD
+    - LIN
+    - GE
+    - BA
+    - UBER
+
+  # Finviz Elite screener pulls. Requires FINVIZ_AUTH_TOKEN.
+  # Build a screen on the Finviz website, then copy the `f=` value out of the
+  # URL into `filters` here -- the export endpoint takes the same string.
+  finviz_screens:
+    - name: trend-pullback
+      filters: cap_midover,sh_avgvol_o1000,sh_price_o10,ind_stocksonly,ta_sma200_pa,ta_sma50_pa,ta_rsi_nob60
+      order: -perf13w
+      limit: 50
+
+    - name: breakout-watch
+      filters: cap_midover,sh_avgvol_o1000,sh_price_o10,ind_stocksonly,ta_sma200_pa,ta_highlow52w_b0to10h
+      order: -volume
+      limit: 40
+
+    - name: momentum-leaders
+      filters: cap_midover,sh_avgvol_o1000,sh_price_o10,ind_stocksonly,ta_sma50_pa,ta_perf_13w30o
+      order: -perf13w
+      limit: 40
+
+filters:
+  min_price: 10.0
+  max_price: null
+  min_avg_dollar_volume: 25000000   # $25M/day: exits stay real, not theoretical
+  min_atr_pct: 1.5                  # below this the move will not cover costs
+  max_atr_pct: 10.0                 # above this the stop has to be too wide
+  min_bars: 210                     # need a genuine 200-day average
+  earnings_blackout_days: 3         # do not hold a swing into a print
+  exclude_symbols: []
+
+setups:
+  enabled:
+    - trend_pullback
+    - breakout
+    - momentum_flag
+    - oversold_reversion
+  allow_shorts: false               # flip on only if your account can borrow
+  min_score: 60.0                   # raise for fewer, higher-conviction ideas
+  atr_stop_multiple: 1.5            # stop distance in ATRs
+  reward_multiple: 2.0              # first target at 2R
+  max_hold_days: 10
+
+regime:
+  benchmark: SPY
+  # reduce = half size when the index is below trend; halt = no new longs;
+  # ignore = trade the same regardless.
+  risk_off_action: reduce
+  reduce_factor: 0.5
+
+output:
+  count: 5
+  directory: out
+  formats: [markdown, html, json]
+  include_verification_checklist: true
